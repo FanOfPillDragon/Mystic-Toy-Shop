@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MysticToyShop</title>
+    <title>Mystic-Toy-Shop</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -19,7 +19,7 @@
 <!-- 상단 메뉴 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
-        <a class="navbar-brand" href="<%=request.getContextPath()%>/">MysticToyShop</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/">Mystic-Toy-Shop</a>
     </div>
 </nav>
 </body>

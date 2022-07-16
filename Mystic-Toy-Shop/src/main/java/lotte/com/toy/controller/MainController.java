@@ -7,13 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
+    private Logger log = LoggerFactory.getLogger(MainController.class);
 
-    private static final Logger log = LoggerFactory.getLogger(MainController.class);
-
-    @GetMapping("main.do")
-    public String main() {
-        log.info("MainController main");
-
-        return "/";
+    @GetMapping("/main.do")
+    public String main(){
+        log.info("MainController main()");
+        return "main";
     }
+
 }

@@ -1,26 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="tiles"  uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><tiles:getAsString name="title"/></title>
-    <style type="text/css">
-        html {
-            height: 100vh;
-        }
-
-        #footer {
+    <style>
+        #footer{
             /*  left: 0;
              bottom: 0;
              width: 100%; */
             margin-top: auto;
-            height: 10%;
+            height:10%;
         }
-
-        .body {
-            min-height: 730px;
-            height: 80%;
+        .body{
+            min-height: 550px;
+            height:80%;
         }
     </style>
 </head>
