@@ -200,7 +200,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,macos,windows
-
-
-# 사용자 정의
-# ../.DS_Store
