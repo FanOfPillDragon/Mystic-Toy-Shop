@@ -14,7 +14,7 @@
 </head>
 <body>
 <!-- 상단 메뉴 -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
     <div class="container-fluid">
         <a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">Mystic-Toy-Shop</a>
     </div>

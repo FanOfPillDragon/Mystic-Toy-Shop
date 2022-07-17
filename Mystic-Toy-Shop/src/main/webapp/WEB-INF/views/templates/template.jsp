@@ -6,15 +6,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><tiles:getAsString name="title"/></title>
     <style>
+        body{
+            height: 100vh;
+        }
         #footer{
             /*  left: 0;
              bottom: 0;
              width: 100%; */
             margin-top: auto;
-            height:10%;
+            height:8%;
         }
         .body{
-            min-height: 550px;
+            min-height: 750px;
             height:80%;
         }
     </style>

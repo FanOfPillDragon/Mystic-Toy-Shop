@@ -1,20 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <link rel="stylesheet" href="/resources/static/css/bottom.css">
-</head>
-<body>
-<footer class="container-fluid navbar-fixed-bottom body-bottom-color"
-        style="text-align: center;">
-    <!--container-fluid navbar-fixed-bottom">  sticky-footer-->
-    <hr style="margin-top: 0px;" />
-    <div class="container l-bottom">
-        <div class="m-0 p-0">@ 2022 All Rights Reserved By Mystic-Toy-Shop </div>
-    </div>
+<footer class="container-fluid navbar-fixed-bottom mt-auto mx-0"
+        style="text-align: center; background-color: #f8f8f8; height:100%;">
+    <hr class="mx-0" style="margin-top: 0px;" />
+    <div class="m-0 pt-1">@ 2022 All Rights Reserved By Mystic-Toy-Shop </div>
+
 </footer>
-</body>
-</html>
