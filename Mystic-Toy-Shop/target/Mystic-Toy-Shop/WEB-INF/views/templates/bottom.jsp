@@ -14,14 +14,6 @@
     <hr style="margin-top: 0px;" />
     <div class="container l-bottom">
         <div class="m-0 p-0">@ 2022 All Rights Reserved By Mystic-Toy-Shop </div>
-        <div class="l-help-bottom txt-title-help">
-
-            고객센터&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a class="link-help-bottom"
-                                                        href="${root}/notice/list">공지사항</a> <a class="link-help-bottom"
-                                                                                               href="${root}/notice/chatbot">Q&amp;A Chatbot</a> <a
-                class="link-help-bottom" href="${root}/user/privacy">Privacy</a>
-
-        </div>
     </div>
 </footer>
 </body>
