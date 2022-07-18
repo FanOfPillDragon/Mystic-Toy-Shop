@@ -13,11 +13,22 @@
     <title>Title</title>
 </head>
 <body>
+<div>
 <c:forEach var="dto" items="${cartList}">
     <div><c:out value="${dto.cart_id}"/></div>
     <div>${dto.cart_quantity}</div>
     <div>${dto.user_id}</div>
     <div>${dto.product_id}</div>
 </c:forEach>
+</div>
+<div>
+<c:forEach var="cupDto" items="${cartUserProductDtoList}">
+    <div><c:out value="${cupDto.cart_id}"/></div>
+    <div>${cupDto.cart_quantity}</div>
+    <div>${cupDto.user_email}</div>
+    <div>${cupDto.product_name}</div>
+    <div>${cupDto.product_cost}</div>
+</c:forEach>
+</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.CartDto;
+import lotte.com.toy.dto.CartUserProductDto;
 import lotte.com.toy.service.CartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +25,14 @@ public class CartController {
         log.info("CartController cartDetail()");
 
         List<CartDto> cartList = cartService.getCartListByUserId(1);
+        List<CartUserProductDto> cartUserProductDtoList = cartService.getCartUserProductDtoByUserId(1);
 
         for (CartDto dto : cartList) {
             System.out.println(dto.toString());
         }
 
         model.addAttribute("cartList", cartList);
+        model.addAttribute("cartUserProductDtoList", cartUserProductDtoList);
 
         return "cartdetail";
     }

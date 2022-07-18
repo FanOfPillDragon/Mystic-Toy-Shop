@@ -101,7 +101,8 @@ CREATE TABLE reviews (
 
 CREATE TABLE files(
                       file_id INT AUTO_INCREMENT PRIMARY KEY,
-                      file_name varchar(500) not null,
+                      file_original_name varchar(1000) not null,
+                      file_name varchar(1000) not null,
                       file_where_use char(1) not null,
                       file_use_id INT not null
 );

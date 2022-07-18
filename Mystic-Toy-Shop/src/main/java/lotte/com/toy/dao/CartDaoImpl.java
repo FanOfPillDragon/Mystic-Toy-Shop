@@ -1,6 +1,7 @@
 package lotte.com.toy.dao;
 
 import lotte.com.toy.dto.CartDto;
+import lotte.com.toy.dto.CartUserProductDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,11 @@ public class CartDaoImpl implements CartDao {
     @Override
     public List<CartDto> getCartListByUserId(int userId) {
         return session.selectList(nameSpace + "getCartListByUserId", userId);
+    }
+
+    @Override
+    public List<CartUserProductDto> getCartUserProductDtoByUserId(int userId) {
+        return session.selectList(nameSpace + "getCartUserProductDtoByUserId", userId);
     }
 
     @Override

@@ -2,6 +2,7 @@ package lotte.com.toy.service;
 
 import lotte.com.toy.dao.CartDao;
 import lotte.com.toy.dto.CartDto;
+import lotte.com.toy.dto.CartUserProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,11 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartDto> getCartListByUserId(int userId) {
         return cartDao.getCartListByUserId(userId);
+    }
+
+    @Override
+    public List<CartUserProductDto> getCartUserProductDtoByUserId(int userId) {
+        return cartDao.getCartUserProductDtoByUserId(userId);
     }
 
     @Override
