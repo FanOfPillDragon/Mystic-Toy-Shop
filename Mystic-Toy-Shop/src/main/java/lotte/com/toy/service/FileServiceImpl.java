@@ -20,12 +20,12 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public List<FileDto> getFileList(Map<Character, Integer> fileUse) {
+    public List<FileDto> getFileList(List<String> fileUse) {
         return fileDao.getFileList(fileUse);
     }
 
     @Override
-    public void deleteFileList(Map<Character, Integer> fileUse) {
+    public void deleteFileList(List<String> fileUse) {
         fileDao.deleteFileList(fileUse);
     }
 }

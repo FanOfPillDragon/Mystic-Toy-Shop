@@ -22,12 +22,12 @@ public class FileDaoImpl implements FileDao {
     }
 
     @Override
-    public List<FileDto> getFileList(Map<Character, Integer> fileUse) {
+    public List<FileDto> getFileList(List<String> fileUse) {
         return session.selectList(nameSpace+"uploadFile",fileUse);
     }
 
     @Override
-    public void deleteFileList(Map<Character, Integer> fileUse) {
+    public void deleteFileList(List<String> fileUse) {
         session.delete(nameSpace+"deleteFileList", fileUse);
     }
 }

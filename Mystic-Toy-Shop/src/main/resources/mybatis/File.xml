@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="File">
+
+    <insert id="uploadFile" parameterType="lotte.com.a.dto.FileDto">
+        insert into files(file_name, file_original_name, file_where_use, file_use_id)
+        values(#{file_name}, #{file_original_name}, #{file_where_use}, #{file_use_id})
+    </insert>
+
+</mapper>
+
+

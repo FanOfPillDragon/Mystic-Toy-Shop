@@ -10,6 +10,6 @@ import java.util.Map;
 public interface FileService {
 
     int uploadFile(FileDto dto);
-    List<FileDto> getFileList(Map<Character, Integer> fileUse);
-    void deleteFileList(Map<Character, Integer> fileUse);
+    List<FileDto> getFileList(List<String> fileUse);
+    void deleteFileList(List<String> fileUse);
 }
