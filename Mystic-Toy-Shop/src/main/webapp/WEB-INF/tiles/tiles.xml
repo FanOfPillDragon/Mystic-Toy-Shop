@@ -16,8 +16,50 @@
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
     </definition>
 
+    <definition name="signup" extends="main_tile">
+        <put-attribute name="title" value="회원가입"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/signup.jsp"/>
+    </definition>
+
+    <definition name="login" extends="main_tile">
+        <put-attribute name="title" value="회원가입"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
+    </definition>
+
+    <definition name="userLogin" extends="main_tile">
+        <put-attribute name="title" value="사용자 로그인"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/userLogin.jsp"/>
+    </definition>
+
+    <definition name="userSignup" extends="main_tile">
+        <put-attribute name="title" value="사용자 회원가입"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/userSignup.jsp"/>
+    </definition>
+
+    <definition name="sellerLogin" extends="main_tile">
+        <put-attribute name="title" value="판매자 로그인"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/sellerLogin.jsp"/>
+    </definition>
+
+    <definition name="sellerSignup" extends="main_tile">
+        <put-attribute name="title" value="판매자 회원가입"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/sellerSignup.jsp"/>
+    </definition>
+
+<!--    <definition name="message" extends="main_tile">
+        <put-attribute name="title" value="메시지"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/sellerSignup.jsp"/>
+    </definition>-->
+
+
+    <definition name="cartdetail" extends="main_tile">
+        <put-attribute name="title" value="장바구니"/>
+        <put-attribute name="body" value="/WEB-INF/views/cart/detail.jsp"/>
+    </definition>
+
     <definition name="filedetail" extends="main_tile">
         <put-attribute name="title" value="파일"/>
         <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
     </definition>
+
 </tiles-definitions>

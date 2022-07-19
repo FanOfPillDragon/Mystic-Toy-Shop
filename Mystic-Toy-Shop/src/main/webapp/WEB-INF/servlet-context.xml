@@ -44,4 +44,5 @@
     <!-- spring에서 처리할 수 없는 요청은 tomcat에 위임 -->
     <mvc:default-servlet-handler/>
 
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>
