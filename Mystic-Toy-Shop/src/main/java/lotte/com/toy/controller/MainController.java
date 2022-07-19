@@ -21,8 +21,9 @@ public class MainController {
     @GetMapping("/main.do")
     public String main() {
         log.info("MainController main()");
-        System.out.println("MainController");
-        List<AuthDto> list = authService.authList();
+
+        List<AuthDto> authList = authService.authList();
+
 
 //        for (AuthDto dto : list) {
 //            System.out.println(dto.getAuth_role());

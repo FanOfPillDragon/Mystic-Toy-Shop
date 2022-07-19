@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Order">
+    <select id="find" parameterType="Integer" resultType="lotte.com.toy.dto.OrderDetailDto">
+        select distinct a.order_id order_id, a.order_group order_group, a.order_total_price order_total_price,a.order_address order_address,a.order_phone order_phone,a.order_comment order_comment,a.order_date order_date,a.order_quantity order_quantity,b.user_id user_id,b.user_name user_name,c.product_name product_name,c.product_info product_info,c.product_img product_img,c.product_cost product_cost,c.category_id category_id, d.ship_status ship_status
+        from orders a,users b,products c, payments d
+        where a.user_id = b.user_id and a.product_id = c.product_id and a.order_id = #{order_id}
+    </select>
+    <select id="findAll" parameterType="lotte.com.toy.dto.OrderGroupDto" resultType="lotte.com.toy.dto.OrderDetailDto">
+        select distinct a.order_id order_id, a.order_group order_group, a.order_total_price order_total_price,a.order_address order_address,a.order_phone order_phone,a.order_comment order_comment,a.order_date order_date,a.order_quantity order_quantity,b.user_id user_id,b.user_name user_name,c.product_name product_name,c.product_info product_info,c.product_img product_img,c.product_cost product_cost,c.category_id category_id, d.ship_status ship_status
+        from orders a,users b,products c, payments d
+        where a.user_id = b.user_id and a.product_id = c.product_id and a.order_group = #{order_group} and a.user_id = #{user_id}
+    </select>
+    <select id="findDate" parameterType="lotte.com.toy.dto.OrderDateDto" resultType="lotte.com.toy.dto.OrderDetailDto">
+        select distinct a.order_id order_id, a.order_group order_group, a.order_total_price order_total_price,a.order_address order_address,a.order_phone order_phone,a.order_comment order_comment,a.order_date order_date,a.order_quantity order_quantity,b.user_id user_id,b.user_name user_name,c.product_name product_name,c.product_info product_info,c.product_img product_img,c.product_cost product_cost,c.category_id category_id, d.ship_status ship_status
+        from orders a,users b,products c, payments d
+        where a.user_id = b.user_id and a.product_id = c.product_id and a.order_date between #{startDate} and #{endDate} and a.user_id = #{userId};
+    </select>
+    <select id="findOrderGroupList" resultType="Integer">
+        select distinct a.order_group
+        from orders a,users b,products c, payments d
+        where a.user_id = b.user_id and a.product_id = c.product_id
+    </select>
+    <select id="findOrderGroupDateList" parameterType="lotte.com.toy.dto.OrderDateDto" resultType="Integer">
+        select distinct a.order_group
+        from orders a,users b,products c, payments d
+        where a.user_id = b.user_id and a.product_id = c.product_id and a.order_date between #{startDate} and #{endDate};
+    </select>
+    <delete id="delete" parameterType="Integer">
+        delete order
+        where order_id = #{order_id}
+    </delete>
+</mapper>
