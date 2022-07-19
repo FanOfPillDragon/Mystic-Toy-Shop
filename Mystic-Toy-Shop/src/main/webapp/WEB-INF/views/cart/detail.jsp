@@ -174,7 +174,7 @@
     }
 
     function goToOrder() {
-        console.log('cartId들을 결제하는 곳으로 넘어가도록 변경해야 하는 함수');
+        location.href = '<%=request.getContextPath()%>/ordersheet.do';
     }
 
 </script>
