@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Statistics">
+
+
+    <select id="getTodayOrderStats" parameterType="java.util.Date" resultType="">
+/*
+
+    -- 일간 결제 금액
+select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
+from orders
+where date(order_date) = '2022-07-18';
+-- where date(order_date) = date(now());
+
+-- 지난 일주일
+select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
+from orders
+where date(order_date) >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+
+-- 이번달
+select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
+from orders
+where date(order_date) >=  DATE_FORMAT(NOW(), '%Y-%m-01');
+
+
+
+    */</select>
+
+
+</mapper>
