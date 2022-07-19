@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: BTC-N15
+  Date: 2022-07-19
+  Time: 오전 11:33
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -34,10 +41,10 @@
 <div id="container">
     <div id="loginBox">
         <div id="userLoginBox">
-            <img src="<%=request.getContextPath() %>/images/userLogin.png" onclick="location.href = 'userLogin.do'">
+            <img src="<%=request.getContextPath() %>/images/userSignup.png" onclick="location.href = 'userSignup.do'">
         </div>
         <div id="sellerLoginBox">
-            <img src="<%=request.getContextPath() %>/images/sellerLogin.png" onclick="location.href = 'sellerLogin.do'">
+            <img src="<%=request.getContextPath() %>/images/sellerSignup.png" onclick="location.href = 'sellerSignup.do'">
         </div>
     </div>
 </div>

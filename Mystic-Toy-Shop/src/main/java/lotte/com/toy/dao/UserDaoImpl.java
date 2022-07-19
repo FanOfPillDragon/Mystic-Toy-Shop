@@ -22,7 +22,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public UserDto userLogin(UserDto dto) {
-        System.out.println(dto.getUser_email() + " " + dto.getUser_password());
         return session.selectOne(ns+"userLogin", dto);
     }
 

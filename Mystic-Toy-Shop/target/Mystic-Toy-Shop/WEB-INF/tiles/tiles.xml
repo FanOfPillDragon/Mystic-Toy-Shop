@@ -16,8 +16,18 @@
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
     </definition>
 
+    <definition name="signup" extends="main_tile">
+        <put-attribute name="title" value="회원가입"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/signup.jsp"/>
+    </definition>
+
+    <definition name="login" extends="main_tile">
+        <put-attribute name="title" value="회원가입"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
+    </definition>
+
     <definition name="userLogin" extends="main_tile">
-        <put-attribute name="title" value="로그인"/>
+        <put-attribute name="title" value="사용자 로그인"/>
         <put-attribute name="body" value="/WEB-INF/views/user/userLogin.jsp"/>
     </definition>
 

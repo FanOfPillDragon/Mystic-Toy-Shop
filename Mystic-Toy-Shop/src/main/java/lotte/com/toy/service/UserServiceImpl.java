@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getSellerId(String seller_id) {
         int count = dao.getSellerId(seller_id);
-        System.out.println(count + " :  getSellerId service");
         return count>0?"NO":"YES";
     }
 

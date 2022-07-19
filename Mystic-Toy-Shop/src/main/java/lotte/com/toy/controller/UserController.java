@@ -20,9 +20,22 @@ public class UserController {
     @Autowired
     UserService service;
 
+    //    회원가입
+    @GetMapping("/signup.do")
+    public String signup() {
+        log.info("MemberController signup()");
+        return "signup";
+    }
+    //    로그인
+    @GetMapping("/login.do")
+    public String login() {
+        log.info("MemberController login()");
+        return "login";
+    }
+
     //    유저 로그인
     @GetMapping("/userLogin.do")
-    public String login() {
+    public String userLogin() {
         log.info("MemberController userLogin()");
         return "userLogin";
     }
@@ -33,7 +46,6 @@ public class UserController {
         UserDto rDto = service.userLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("login", rDto);
-            System.out.println("유저 로그인 성공!!!");
             return "main";
         } else {
             return "userLogin";
