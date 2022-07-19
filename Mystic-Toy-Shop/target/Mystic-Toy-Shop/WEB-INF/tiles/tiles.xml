@@ -16,4 +16,24 @@
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
     </definition>
 
+    <definition name="order" extends="main_tile">
+        <put-attribute name="title" value="주문"/>
+        <put-attribute name="body" value="/WEB-INF/views/order.jsp"/>
+    </definition>
+
+    <definition name="orderdetail" extends="main_tile">
+        <put-attribute name="title" value="주문상세"/>
+        <put-attribute name="body" value="/WEB-INF/views/orderdetail.jsp"/>
+    </definition>
+
+    <definition name="orderdate" extends="main_tile">
+        <put-attribute name="title" value="주문상세"/>
+        <put-attribute name="body" value="/WEB-INF/views/orderdate.jsp"/>
+    </definition>
+
+    <definition name="orderempty" extends="main_tile">
+        <put-attribute name="title" value="주문상세"/>
+        <put-attribute name="body" value="/WEB-INF/views/orderempty.jsp"/>
+    </definition>
+
 </tiles-definitions>
