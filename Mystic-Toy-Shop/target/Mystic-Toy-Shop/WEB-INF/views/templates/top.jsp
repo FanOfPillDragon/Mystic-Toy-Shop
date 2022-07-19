@@ -17,6 +17,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
     <div class="container-fluid">
         <a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">Mystic-Toy-Shop</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/userLogin.do">구매자 로그인</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/sellerLogin.do">판매자 로그인</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/userSignup.do">구매자 회원가입</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/sellerSignup.do">판매자 회원가입</a>
     </div>
 </nav>
 </body>
