@@ -8,14 +8,14 @@
     <title><tiles:getAsString name="title"/></title>
     <style>
         body{
-            height: 100vh;
+            height: 100%;
         }
         #footer{
             /*  left: 0;
              bottom: 0;
              width: 100%; */
             margin-top: auto;
-            height:8%;
+            height:50px;
         }
         .body{
             min-height: 750px;

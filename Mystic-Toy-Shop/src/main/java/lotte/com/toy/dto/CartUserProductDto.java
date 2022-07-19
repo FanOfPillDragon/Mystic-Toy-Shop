@@ -13,20 +13,8 @@ public class CartUserProductDto {
     private int user_id;
     private int product_id;
 
-    private String user_email;
     private int product_cost;
     private String product_name;
+    private int product_stock;
 
-    @Override
-    public String toString() {
-        return "CartUserProductDto{" +
-                "cart_id=" + cart_id +
-                ", cart_quantity=" + cart_quantity +
-                ", user_id=" + user_id +
-                ", product_id=" + product_id +
-                ", user_email='" + user_email + '\'' +
-                ", product_cost=" + product_cost +
-                ", product_name='" + product_name + '\'' +
-                '}';
-    }
 }
