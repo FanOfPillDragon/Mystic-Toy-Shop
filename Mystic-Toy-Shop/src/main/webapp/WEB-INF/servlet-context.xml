@@ -44,5 +44,10 @@
     <!-- spring에서 처리할 수 없는 요청은 tomcat에 위임 -->
     <mvc:default-servlet-handler/>
 
+    <!-- webapp/resources 경로 매핑 -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
+
+<!--    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize" value="100000000"></beans:property>
+    </beans:bean>-->
 </beans>
