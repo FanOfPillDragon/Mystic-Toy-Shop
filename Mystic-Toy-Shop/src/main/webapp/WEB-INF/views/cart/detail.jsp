@@ -155,8 +155,8 @@
             data: data,
             success: function (data) {
                 //$('.won span').text(Number(data.totalPrice) + 2500 + ' 원');
-                document.getElementById("totalPriceOriginal").innerHTML = data.totalPrice;
-                document.getElementById("totalPriceAll").innerHTML = Number(data.totalPrice) + 2500;
+                document.getElementById("totalPriceOriginal").innerHTML = data.totalPrice + ' 원';
+                document.getElementById("totalPriceAll").innerHTML = Number(data.totalPrice) + 2500 + ' 원';
 
             }
         });
