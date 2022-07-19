@@ -18,6 +18,6 @@
 
     <definition name="filedetail" extends="main_tile">
         <put-attribute name="title" value="파일"/>
-        <put-attribute name="body" value="/WEB-INF/views/file/filelist.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
     </definition>
 </tiles-definitions>
