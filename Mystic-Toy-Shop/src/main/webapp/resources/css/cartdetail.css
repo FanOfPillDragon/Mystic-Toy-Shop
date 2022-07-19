@@ -12,6 +12,12 @@
     margin-bottom: 100px;
 }
 
+.emptyContainer{
+    flex-direction: column;
+    justify-content: center !important;
+    height: 260px !important;
+}
+
 .cartBoxContainer{
     margin-right: 20px;
 }

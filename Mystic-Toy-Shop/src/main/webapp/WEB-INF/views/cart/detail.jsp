@@ -18,31 +18,42 @@
         <div class="cartTitle">일반 <span class="colorPrimary">(${fn:length(cartUserProductDtoList)})</span></div>
         <div class="flexContainer">
             <div class="cartBoxContainer">
-                <c:forEach var="cupDto" items="${cartUserProductDtoList}">
-                    <input type="hidden" id="cart_id" value="${cupDto.cart_id}"/>
-                    <input type="hidden" id="user_id" value="${cupDto.user_id}"/>
-                    <input type="hidden" id="product_id" value="${cupDto.product_id}"/>
-                    <div class="cartBox p-3">
-                        <div>
-                            <div class="h4">${cupDto.product_name}</div>
+                <c:choose>
+                    <c:when test="${empty cartUserProductDtoList}">
+                        <div class="cartBox emptyContainer p-3">
+                            <img src="/resources/images/icon_no_result_cart.svg" alt="">
+                            <div>장바구니에 담긴 상품이 없어요.</div>
                         </div>
-
-                        <div>
-                            <div class="spinnerBox">
-                                <button type="button" class="btn minus lookDisabled" onclick="minus(${cupDto.cart_id},${cupDto.product_id})">-</button>
-                                <div class="number">
-                                    <input type="number" class="quantity" id="quantity" name="quantity${cupDto.cart_id}" max="${cupDto.product_stock}" value="${cupDto.cart_quantity}" onchange="updateCartCount(${cupDto.cart_id},${cupDto.product_id})">
-                                    <label for="quantity" class="blind">${cupDto.cart_quantity}</label>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="cupDto" items="${cartUserProductDtoList}">
+                            <input type="hidden" id="cart_id" value="${cupDto.cart_id}"/>
+                            <input type="hidden" id="user_id" value="${cupDto.user_id}"/>
+                            <input type="hidden" id="product_id" value="${cupDto.product_id}"/>
+                            <div class="cartBox p-3">
+                                <div>
+                                    <div class="h4">${cupDto.product_name}</div>
                                 </div>
-                                <button type="button" class="btn plus lookDisabled" onclick="plus(${cupDto.cart_id},${cupDto.product_id})">+</button>
-                            </div>
 
-                        </div>
-                        <div>
-                            <div>${cupDto.product_cost} 원</div>
-                            <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})"></div>
-                    </div>
-                </c:forEach>
+                                <div>
+                                    <div class="spinnerBox">
+                                        <button type="button" class="btn minus lookDisabled" onclick="minus(${cupDto.cart_id},${cupDto.product_id})">-</button>
+                                        <div class="number">
+                                            <input type="number" class="quantity" id="quantity" name="quantity${cupDto.cart_id}" max="${cupDto.product_stock}" value="${cupDto.cart_quantity}"
+                                                   onchange="updateCartCount(${cupDto.cart_id},${cupDto.product_id})">
+                                            <label for="quantity" class="blind">${cupDto.cart_quantity}</label>
+                                        </div>
+                                        <button type="button" class="btn plus lookDisabled" onclick="plus(${cupDto.cart_id},${cupDto.product_id})">+</button>
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <div>${cupDto.product_cost} 원</div>
+                                    <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})"></div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="sideArea p-4">
                 <div class="priceTitle">결제예정금액</div>
@@ -97,7 +108,7 @@
         if (cartCount > 1) {
             cartCount = Number(cartCount) - 1;
             $("input[name=" + cartClassName + "]").val(cartCount);
-            updateCartCount(cartId,productId);
+            updateCartCount(cartId, productId);
         } else {
             alert('최소 구매 수량은 1개입니다');
         }
@@ -109,7 +120,7 @@
         if (cartCount < Number($("input[name=" + cartClassName + "]").attr('max'))) {
             cartCount = Number(cartCount) + 1;
             $("input[name=" + cartClassName + "]").val(cartCount);
-            updateCartCount(cartId,productId);
+            updateCartCount(cartId, productId);
         } else {
             alert('재고가 부족합니다');
         }
