@@ -11,7 +11,6 @@ import java.util.Map;
 @Service
 public class FileServiceImpl implements FileService{
 
-
     @Autowired
     FileDao fileDao ;
 
@@ -21,8 +20,9 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public List<FileDto> getFileListByFileUseId(Map<Character, Integer> whereUseId) {
-        return fileDao.getFileListByFileUseId(whereUseId);
+    public List<FileDto> getFileListByFileWhereUse(Map<String, Object> whereUseId) {
+        System.out.println("FileServiceImpl : getFileListByFileWhereUse");
+        return fileDao.getFileListByFileWhereUse(whereUseId);
     }
 
     @Override

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FileController {
@@ -23,14 +25,24 @@ public class FileController {
     @GetMapping("/file.do")
     public String fileDetail(Model model) {
         logger.info("FileController");
-        System.out.println("???????????????");
+        System.out.println("FileController");
 
         List<FileDto> fileList = fileService.getFileList();
 
-        for (FileDto dto : fileList) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("file_where_use", "1");
+        map.put("file_use_id", 1);
+
+        List<FileDto> fileListByFileWhereUse = fileService.getFileListByFileWhereUse(map);
+/*        for (FileDto dto : fileList) {
+            System.out.println(dto.getFile_name());
+        }*/
+
+        for (FileDto dto : fileListByFileWhereUse) {
             System.out.println(dto.getFile_name());
         }
         model.addAttribute("fileList", fileList);
+        model.addAttribute("fileListByFileWhereUse", fileListByFileWhereUse);
 
         return "filedetail";
     }

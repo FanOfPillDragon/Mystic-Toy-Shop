@@ -23,7 +23,7 @@ public class FileDaoImpl implements FileDao {
     }
 
     @Override
-    public List<FileDto> getFileListByFileUseId(Map<Character, Integer> whereUseId) {
+    public List<FileDto> getFileListByFileWhereUse(Map<String, Object> whereUseId) {
         return session.selectList(nameSpace+"getFileListByFileUseId", whereUseId);
     }
 

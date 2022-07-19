@@ -10,7 +10,7 @@
 
     <select id="getFileListByFileUseId" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.FileDto">
         select file_id, file_original_name, file_name, file_where_use, file_use_id
-        from file
+        from files
         where file_where_use=#{file_where_use}
           and file_use_id = #{file_use_id};
     </select>

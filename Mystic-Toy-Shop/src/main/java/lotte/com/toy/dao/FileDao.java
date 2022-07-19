@@ -8,7 +8,7 @@ import java.util.Map;
 public interface FileDao {
     List<FileDto> getFileList();
 
-    List<FileDto> getFileListByFileUseId(Map<Character, Integer> whereUseId);
+    List<FileDto> getFileListByFileWhereUse(Map<String, Object> whereUseId);
 
     int insertFile(FileDto fileDto);
 
