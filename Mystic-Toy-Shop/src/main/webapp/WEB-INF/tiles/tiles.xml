@@ -11,6 +11,13 @@
         <put-attribute name="footer" value="/WEB-INF/views/templates/bottom.jsp"/>
     </definition>
 
+<!--    <definition name="main_tile" template="/WEB-INF/views/templates/so_template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/templates/so_top.jsp"/>
+        <put-attribute name="left" value="/WEB-INF/views/templates/so_sidebar.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/templates/so_bottom.jsp"/>
+    </definition>-->
+
     <definition name="main" extends="main_tile">
         <put-attribute name="title" value="메인"/>
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
