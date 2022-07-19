@@ -26,7 +26,7 @@
     <br>
     상세주소 : <input type="text" id="seller_detail_address" name="seller_detail_address" placeholder="Detailed Address">
     사업자번호 : <input type="text" id="seller_business_number" name="seller_business_number"> <br>
-    <button type="button" id="submitBtn">회원가아입</button>
+    <button type="button" id="submitBtn">회원가입</button>
 </form>
 
 <script type="text/javascript">
@@ -136,7 +136,6 @@
             alert("회원가입에 성공하였습니다.");
             sellerSignup.submit()   // 회원가입 성공
         }
-
     })
 </script>
 </body>

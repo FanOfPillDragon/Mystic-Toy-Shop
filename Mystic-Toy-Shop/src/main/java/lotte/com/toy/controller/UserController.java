@@ -91,9 +91,10 @@ public class UserController {
     @PostMapping("/sellerLoginAf.do")
     public String sellerLoginAf(HttpServletRequest req, SellerDto dto) {
         log.info("MemberController sellerLoginAf()");
+        System.out.println(dto.getSeller_email() + " " + dto.getSeller_password());
         SellerDto rDto = service.sellerLogin(dto);
         if (rDto != null) {
-            req.getSession().setAttribute("login", rDto);
+            req.getSession().setAttribute("sellerLogin", rDto);
             return "main";
         } else {
             return "sellerLogin";

@@ -104,23 +104,24 @@
 </head>
 <body>
 <div id="container">
+    <form id="userLogin" action="<%=request.getContextPath() %>/userLoginAf.do" method="post">
     <div id="loginBox">
         <div class="title">로그인</div>
         <div class="inputSet login">
             <div>
-                <input type="text" placeholder="이메일 아이디"></div>
+                <input type="text" id="user_email" name="user_email" placeholder="이메일 아이디"></div>
             <div>
-                <input type="password" placeholder="8자리 이상 영문+숫자+특수문자 조합"></div>
+                <input type="password" id="user_password" name="user_password" placeholder="8자리 이상 영문+숫자+특수문자 조합"></div>
         </div>
         <div class="confirmWarp">
-            <button id="loginBtn" onclick="">로그인하기</button>
+            <button id="loginBtn" type="button">로그인하기</button>
         </div>
         <div class="autoLogin">
             <div class="saveId">
                 <input type="checkbox" checked="checked">아이디 저장
             </div>
             <div class="btnSignupWrap">
-                <button id="registerBtn">회원가입</button>
+                <button id="registerBtn" onclick="location.href='userSignup.do'">회원가입</button>
             </div>
         </div>
 
@@ -128,10 +129,24 @@
             <button class="kakaoLogin" onclick="">카카오로 시작하기</button>
         </div>
     </div>
+    </form>
 </div>
-<h1>userLogin</h1>
-<form action="<%=request.getContextPath() %>/userLoginAf.do" method="post">
-    <input type="submit" value="로그인">
-</form>
+<script !src="">
+    // 로그인 유효성 체크
+    const userLogin = document.getElementById("userLogin");
+    document.getElementById("loginBtn").addEventListener("click", function () {
+        const user_email = document.getElementById("user_email");
+        const user_password = document.getElementById("user_password");
+
+        if (user_email.value === '') {
+            alert("아이디를 입력해주세요");
+        } else if (user_password.value === '') {
+            alert("비밀번호를 입력해주세요");
+        }
+        else {
+            userLogin.submit()   // 로그인 성공
+        }
+    })
+</script>
 </body>
 </html>
