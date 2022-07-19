@@ -86,4 +86,9 @@
         <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
     </definition>
 
+    <definition name="filewrite" extends="main_tile">
+        <put-attribute name="title" value="파일"/>
+        <put-attribute name="body" value="/WEB-INF/views/file/filewrite.jsp"/>
+    </definition>
+
 </tiles-definitions>
