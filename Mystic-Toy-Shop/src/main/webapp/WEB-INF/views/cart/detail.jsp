@@ -78,7 +78,7 @@
         <div class="cautionBox">
             <div class="h4 mb-3">유의사항</div>
             <div class="align-middle justify-content-between bgColor py-3 px-1">
-                <ul class="m-1 p-0 ps-4">
+                <ul class="m-2 p-0 ps-4">
                     <li>장바구니에 담긴 상품(옵션 단위)은 99개까지 보여지고, 최대 90일까지 보관됩니다.</li>
                     <li> 장바구니 계속 담아두기를 설정하시면 시간이 지나도 상품이 삭제되지 않습니다.</li>
                     <li>PC와 모바일은 서로 연동되지만 적용에 시간 차가 있을 수 있습니다.</li>
