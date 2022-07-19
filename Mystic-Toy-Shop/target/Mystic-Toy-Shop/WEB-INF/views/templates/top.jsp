@@ -17,8 +17,23 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
     <div class="container-fluid">
         <a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">Mystic-Toy-Shop</a>
+
         <a class="navbar-brand" href="<%=request.getContextPath()%>/login.do">로그인</a>
         <a class="navbar-brand" href="<%=request.getContextPath()%>/signup.do">회원가입</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="flex">
+                <div class="float-end">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%=request.getContextPath()%>/cart.do"> 장바구니 </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </nav>
 </body>
