@@ -96,4 +96,16 @@
         <put-attribute name="body" value="/WEB-INF/views/payment/payment.jsp"/>
     </definition>
 
+
+
+
+
+    <definition name="orderByProduct" extends="main_tile">
+        <put-attribute name="title" value="결제하기"/>
+        <put-attribute name="body" value="/WEB-INF/views/payment/orderByProduct.jsp"/>
+    </definition>
+    <definition name="payMessage" extends="main_tile">
+        <put-attribute name="title" value="결제하기"/>
+        <put-attribute name="body" value="/WEB-INF/views/payment/message.jsp"/>
+    </definition>
 </tiles-definitions>
