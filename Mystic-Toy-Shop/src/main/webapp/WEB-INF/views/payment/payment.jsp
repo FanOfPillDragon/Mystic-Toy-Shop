@@ -1,6 +1,7 @@
 <%@ page import="lotte.com.toy.dto.CartDto" %>
 <%@ page import="java.util.List" %>
-<%@ page import="lotte.com.toy.dto.ProdcutDto" %><%--
+<%@ page import="lotte.com.toy.dto.ProdcutDto" %>
+<%@ page import="lotte.com.toy.dto.CartProductDto" %><%--
   Created by IntelliJ IDEA.
   User: BTC-N06
   Date: 2022-07-19
@@ -12,8 +13,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
 <%
-    List<CartDto> orderCartList = (List<CartDto>)request.getAttribute("orderCartList");
-    List<ProdcutDto> orderProductList = (List<ProdcutDto>) request.getAttribute("orderProductList");
+    List<CartProductDto> cartProductList = (List<CartProductDto>)request.getAttribute("orderCartList");
     int totalPrice = 0;
     int orderCount = 0;
 %>
@@ -24,15 +24,15 @@
 <body>
 <h1>주문/결제</h1>
 <h2>상품 정보</h2>
-<c:forEach var="product" items="${orderProductList}" varStatus="status">
+<c:forEach var="product" items="${cartProductList}" varStatus="status">
     <table border="1">
         <tr>
-            <img alt="" src=<c:out value="${product.product_img}"/>>
-            <p><c:out value="${product.product_name}"/></p>
-            <p><c:out value="${product[status.index]}"/></p>
-            <p><c:out value="${product.product_cost}"/></p>
-            <c:set var="price" value="${product.product_cost}" />
-            <c:set var="quantity" value="${}" />
+            <img alt="" src=<c:out value="${product.productImg}"/>>
+            <p><c:out value="${product.productName}"/></p>
+            <p><c:out value="${product.productQuantity}"/></p>
+            <p><c:out value="${product.productCost}"/></p>
+            <c:set var="price" value="${product.productCost}" />
+            <c:set var="quantity" value="${product.productQuantity}" />
             <%
                 totalPrice+=((Integer)pageContext.getAttribute("price"))*((Integer)pageContext.getAttribute("quantity"));
                 orderCount++;
@@ -46,6 +46,7 @@
         받는분 : <input type="text" name="orderName"><br>
         배송지 : <input type="text" name="orderAddress"><br>
         전화번호 : <input type="text" name="orderPhone"><br>
+        배송 요청사항 : <input type="text" name="orderComment"><br>
         <h3>총 결제금액</h3>
         <table>
             <tr>

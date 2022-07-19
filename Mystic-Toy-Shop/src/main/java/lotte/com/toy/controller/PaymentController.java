@@ -1,6 +1,7 @@
 package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.CartDto;
+import lotte.com.toy.dto.CartProductDto;
 import lotte.com.toy.dto.ProdcutDto;
 import lotte.com.toy.service.CartService;
 import lotte.com.toy.service.OrderService;
@@ -32,12 +33,13 @@ public class PaymentController {
         int id = (Integer)req.getSession().getAttribute("userId");
         List<CartDto> orderCartList = cartService.getCartListByUserId(id);
         List<ProdcutDto> orderProductList = new ArrayList<>();
+        List<CartProductDto> cartProductList = new ArrayList<>();
         for(CartDto cart : orderCartList){
-            orderProductList.add(productService.findByProductId(cart.getProduct_id()));
+            ProdcutDto product = productService.findByProductId(cart.getProduct_id());
+            cartProductList.add(new CartProductDto(product.getProduct_img(), product.getProduct_name(),product.getProduct_cost(),cart.getCart_quantity()));
         }
 
-        model.addAttribute("orderProductList",orderCartList);
-        model.addAttribute("orderProductList",orderProductList);
+        model.addAttribute("cartProductList",cartProductList);
         return "payment";
     }
 
