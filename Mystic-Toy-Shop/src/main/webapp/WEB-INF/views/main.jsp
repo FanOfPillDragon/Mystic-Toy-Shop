@@ -12,6 +12,6 @@
 </head>
 <body>
 <h2>Hello World!</h2>
-<a href="/product_write.do">판매 상품 등록</a>
+<a href="/seller_main.do">판매 상품 등록</a>
 </body>
 </html>

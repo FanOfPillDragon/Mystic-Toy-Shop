@@ -6,7 +6,7 @@
     <insert id="product_write" parameterType="lotte.com.toy.dto.ProdcutDto">
         insert into products(product_name, product_info, product_img, product_cost, product_stock, product_sell_count,
                              category_id, seller_id)
-        values (${product_name},${product_info},${product_img},${product_cost},${product_stock},${product_sell_count},${category_id},${seller_id});
+        values ('${product_name}','${product_info}','${product_img}',${product_cost},${product_stock},${product_sell_count},${category_id},${seller_id});
 
     </insert>
 </mapper>
