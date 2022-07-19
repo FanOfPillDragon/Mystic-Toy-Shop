@@ -29,11 +29,12 @@
 
                         <div>
                             <div class="spinnerBox">
-                                <button class="btn minus disabled">-</button>
-                                <div class="number"><input type="number" class="quantity" id="quantity" max="${cupDto.product_stock}" value="${cupDto.cart_quantity}">
+                                <button type="button" class="btn minus lookDisabled" onclick="minus(${cupDto.cart_id},${cupDto.product_id})">-</button>
+                                <div class="number">
+                                    <input type="number" class="quantity" id="quantity" name="quantity${cupDto.cart_id}" max="${cupDto.product_stock}" value="${cupDto.cart_quantity}" onchange="updateCartCount(${cupDto.cart_id},${cupDto.product_id})">
                                     <label for="quantity" class="blind">${cupDto.cart_quantity}</label>
                                 </div>
-                                <button class="btn plus disabled">+</button>
+                                <button type="button" class="btn plus lookDisabled" onclick="plus(${cupDto.cart_id},${cupDto.product_id})">+</button>
                             </div>
 
                         </div>
@@ -49,7 +50,7 @@
 
                     <dl>
                         <dt>상품금액</dt>
-                        <dd>${totalPrice} 원</dd>
+                        <dd id="totalPriceOriginal">${totalPrice} 원</dd>
                     </dl>
                     <dl>
                         <dt>상품할인금액</dt>
@@ -63,11 +64,11 @@
 
                 <dl class="totalPrice">
                     <dt>총 <span class="colorPrimary">${fn:length(cartUserProductDtoList)}</span> 건</dt>
-                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary">${totalPrice+2500} 원</span></dd>
+                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary" id="totalPriceAll">${totalPrice+2500} 원</span></dd>
                 </dl>
 
                 <ul class="cartBtnSet">
-                    <li><a class="btnOrder">주문하기</a></li>
+                    <li><a class="btnOrder" onclick="goToOrder()">주문하기</a></li>
                     <li><a class="btnGift">선물하기</a></li>
                 </ul>
 
@@ -90,11 +91,38 @@
 </div>
 <script type="text/javascript">
 
+
     // $(document).ready(function () {
-    //     $("button[name='save']").click(function () {
-    //         $("body").append("click!!!<br/>");
+    //     $(".plus").click(function () {
+    //         $(".plus").closest(".quantity").val()
     //     });
     // });
+
+    function minus(cartId, productId) {
+        console.log('plus');
+        let cartClassName = 'quantity' + cartId;
+        let cartCount = $("input[name=" + cartClassName + "]").val();
+        if (cartCount > 1) {
+            cartCount = Number(cartCount) - 1;
+            $("input[name=" + cartClassName + "]").val(cartCount);
+            updateCartCount(cartId,productId);
+        } else {
+            alert('최소 구매 수량은 1개입니다');
+        }
+    }
+
+    function plus(cartId, productId) {
+        console.log('plus');
+        let cartClassName = 'quantity' + cartId;
+        let cartCount = $("input[name=" + cartClassName + "]").val();
+        if (cartCount < Number($("input[name=" + cartClassName + "]").attr('max'))) {
+            cartCount = Number(cartCount) + 1;
+            $("input[name=" + cartClassName + "]").val(cartCount);
+            updateCartCount(cartId,productId);
+        } else {
+            alert('재고가 부족합니다');
+        }
+    }
 
     function deleteCart(cartId) {
         alert('상품을 삭제하시겠습니까?');
@@ -107,6 +135,38 @@
                 location.reload();
             }
         });
+    }
+
+    function updateCartCount(cartId, productId) {
+        console.log('updateCartCount');
+
+        let cartClassName = 'quantity' + cartId;
+        let cartCount = $("input[name=" + cartClassName + "]").val();
+        console.log('cartCount');
+        console.log(cartCount);
+
+        let data = {
+            'cart_id': cartId,
+            'cart_quantity': cartCount,
+            'user_id':${sessionScope.login.user_id},
+            'product_id': productId
+        }
+        $.ajax({
+            url: '<%=request.getContextPath()%>/cartupdate.do',
+            type: 'post',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                //$('.won span').text(Number(data.totalPrice) + 2500 + ' 원');
+                document.getElementById("totalPriceOriginal").innerHTML = data.totalPrice;
+                document.getElementById("totalPriceAll").innerHTML = Number(data.totalPrice) + 2500;
+
+            }
+        });
+    }
+
+    function goToOrder() {
+        console.log('cartId들을 결제하는 곳으로 넘어가도록 변경해야 하는 함수');
     }
 
 </script>

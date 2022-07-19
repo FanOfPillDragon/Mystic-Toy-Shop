@@ -10,7 +10,7 @@ public class Utility {
         int totalPrice = 0;
 
         for(CartUserProductDto cartUserProductDto : cartUserProductDtoList){
-            totalPrice += cartUserProductDto.getProduct_cost();
+            totalPrice += cartUserProductDto.getProduct_cost() * cartUserProductDto.getCart_quantity();
         }
 
         return totalPrice;

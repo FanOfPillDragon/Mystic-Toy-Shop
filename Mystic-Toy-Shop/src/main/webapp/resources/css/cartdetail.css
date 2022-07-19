@@ -78,11 +78,12 @@
     display: flex;
 }
 
-.disabled {
+.lookDisabled {
     opacity: .25;
 }
 
 .plus {
+    outline: none;
     overflow: hidden;
     text-indent: -99999px;
     -webkit-box-flex: 0;
@@ -95,6 +96,7 @@
 }
 
 .minus {
+    outline: none;
     overflow: hidden;
     text-indent: -99999px;
     -webkit-box-flex: 0;
