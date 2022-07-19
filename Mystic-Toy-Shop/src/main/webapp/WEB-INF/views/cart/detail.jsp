@@ -44,7 +44,7 @@
                     </div>
                 </c:forEach>
             </div>
-            <div class="sideArea p-3">
+            <div class="sideArea p-4">
                 <div class="priceTitle">결제예정금액</div>
                 <div class="priceList">
 
@@ -91,15 +91,7 @@
 </div>
 <script type="text/javascript">
 
-
-    // $(document).ready(function () {
-    //     $(".plus").click(function () {
-    //         $(".plus").closest(".quantity").val()
-    //     });
-    // });
-
     function minus(cartId, productId) {
-        console.log('plus');
         let cartClassName = 'quantity' + cartId;
         let cartCount = $("input[name=" + cartClassName + "]").val();
         if (cartCount > 1) {
@@ -112,7 +104,6 @@
     }
 
     function plus(cartId, productId) {
-        console.log('plus');
         let cartClassName = 'quantity' + cartId;
         let cartCount = $("input[name=" + cartClassName + "]").val();
         if (cartCount < Number($("input[name=" + cartClassName + "]").attr('max'))) {
@@ -138,12 +129,19 @@
     }
 
     function updateCartCount(cartId, productId) {
-        console.log('updateCartCount');
-
         let cartClassName = 'quantity' + cartId;
         let cartCount = $("input[name=" + cartClassName + "]").val();
-        console.log('cartCount');
-        console.log(cartCount);
+
+        if (cartCount > Number($("input[name=" + cartClassName + "]").attr('max'))) {
+            alert('재고가 부족합니다');
+            $("input[name=" + cartClassName + "]").val(Number($("input[name=" + cartClassName + "]").attr('max')));
+            return;
+        }
+        if (cartCount < 1) {
+            alert('최소 구매 수량은 1개입니다');
+            $("input[name=" + cartClassName + "]").val(1);
+            return;
+        }
 
         let data = {
             'cart_id': cartId,
@@ -156,7 +154,6 @@
             type: 'post',
             data: data,
             success: function (data) {
-                console.log(data);
                 //$('.won span').text(Number(data.totalPrice) + 2500 + ' 원');
                 document.getElementById("totalPriceOriginal").innerHTML = data.totalPrice;
                 document.getElementById("totalPriceAll").innerHTML = Number(data.totalPrice) + 2500;
