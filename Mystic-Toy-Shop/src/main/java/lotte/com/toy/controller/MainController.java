@@ -22,7 +22,7 @@ public class MainController {
     public String main() {
         log.info("MainController main()");
 
-        List<AuthDto> list = authService.authList();
+        List<AuthDto> authList = authService.authList();
 
 //        for (AuthDto dto : list) {
 //            System.out.println(dto.getAuth_role());
