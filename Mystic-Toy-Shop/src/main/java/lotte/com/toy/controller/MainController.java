@@ -24,6 +24,7 @@ public class MainController {
 
         List<AuthDto> authList = authService.authList();
 
+
 //        for (AuthDto dto : list) {
 //            System.out.println(dto.getAuth_role());
 //        }
