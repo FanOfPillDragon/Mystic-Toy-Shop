@@ -11,21 +11,27 @@ import java.util.Map;
 @Service
 public class FileServiceImpl implements FileService{
 
+
     @Autowired
-    FileDao fileDao;
+    FileDao fileDao ;
 
     @Override
-    public int uploadFile(FileDto dto) {
-        return fileDao.uploadFile(dto);
+    public List<FileDto> getFileList() {
+        return fileDao.getFileList();
     }
 
     @Override
-    public List<FileDto> getFileList(List<String> fileUse) {
-        return fileDao.getFileList(fileUse);
+    public List<FileDto> getFileListByFileUseId(Map<Character, Integer> whereUseId) {
+        return fileDao.getFileListByFileUseId(whereUseId);
     }
 
     @Override
-    public void deleteFileList(List<String> fileUse) {
-        fileDao.deleteFileList(fileUse);
+    public int insertFile(FileDto fileDto) {
+        return fileDao.insertFile(fileDto);
+    }
+
+    @Override
+    public int deleteFileByFileUseId(Map<Character, Integer> whereUseId) {
+        return fileDao.deleteFileByFileUseId(whereUseId);
     }
 }

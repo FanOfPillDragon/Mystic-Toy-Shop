@@ -16,18 +16,24 @@ public class FileDaoImpl implements FileDao {
 
     String nameSpace = "File.";
 
+
     @Override
-    public int uploadFile(FileDto dto) {
-        return session.insert(nameSpace+"uploadFile", dto);
+    public List<FileDto> getFileList() {
+        return session.selectList(nameSpace+"getFileList");
     }
 
     @Override
-    public List<FileDto> getFileList(List<String> fileUse) {
-        return session.selectList(nameSpace+"uploadFile",fileUse);
+    public List<FileDto> getFileListByFileUseId(Map<Character, Integer> whereUseId) {
+        return session.selectList(nameSpace+"getFileListByFileUseId", whereUseId);
     }
 
     @Override
-    public void deleteFileList(List<String> fileUse) {
-        session.delete(nameSpace+"deleteFileList", fileUse);
+    public int insertFile(FileDto fileDto) {
+        return session.insert(nameSpace+"insertFile", fileDto);
+    }
+
+    @Override
+    public int deleteFileByFileUseId(Map<Character, Integer> whereUseId) {
+        return session.delete(nameSpace+"deleteCartByCartId", whereUseId);
     }
 }

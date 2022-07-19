@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface FileService {
+    List<FileDto> getFileList();
 
-    int uploadFile(FileDto dto);
-    List<FileDto> getFileList(List<String> fileUse);
-    void deleteFileList(List<String> fileUse);
+    List<FileDto> getFileListByFileUseId(Map<Character, Integer> whereUseId);
+
+    int insertFile(FileDto fileDto);
+
+    int deleteFileByFileUseId(Map<Character, Integer> whereUseId);
 }
