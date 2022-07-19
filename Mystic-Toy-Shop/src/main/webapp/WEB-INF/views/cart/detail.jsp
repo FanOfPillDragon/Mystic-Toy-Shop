@@ -19,6 +19,7 @@
         <div class="flexContainer">
             <div class="cartBoxContainer">
                 <c:forEach var="cupDto" items="${cartUserProductDtoList}">
+                    <input type="hidden" id="" value="${cupDto.cart_id}"/>
                     <div class="cartBox p-3">
                         <div>
                             <div class="h4">${cupDto.product_name}</div>
@@ -36,7 +37,7 @@
                         </div>
                         <div>
                             <div>${cupDto.product_cost} 원</div>
-                            <input type="button" class="btn deleteItem" id="deleteCart"></div>
+                            <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})"></div>
                     </div>
                 </c:forEach>
             </div>
@@ -70,19 +71,35 @@
 
             </div>
         </div>
-    </div>
-    <div>
-        <div class="h4 mb-3">유의사항</div>
-        <div class="align-middle justify-content-between bgColor py-3 px-1">
-            <ul class="m-1 p-0 ps-4">
-                <li>장바구니에 담긴 상품(옵션 단위)은 99개까지 보여지고, 최대 90일까지 보관됩니다.</li>
-                <li> 장바구니 계속 담아두기를 설정하시면 시간이 지나도 상품이 삭제되지 않습니다.</li>
-                <li>PC와 모바일은 서로 연동되지만 적용에 시간 차가 있을 수 있습니다.</li>
-                <li>상품의 판매상태(판매종료/상품정보변경/품절 등)는 별도 표기 됩니다.</li>
-                <li> 롯데백화점 구매 상품은 즉시할인이 적용된 금액 기준으로 배송비가 부과되며, 롯데마트/롯데슈퍼프레시 구매 상품은 즉시할인 및 추가할인이 적용된 가격 기준으로 부과됩니다.</li>
-            </ul>
+
+        <div class="cautionBox">
+            <div class="h4 mb-3">유의사항</div>
+            <div class="align-middle justify-content-between bgColor py-3 px-1">
+                <ul class="m-1 p-0 ps-4">
+                    <li>장바구니에 담긴 상품(옵션 단위)은 99개까지 보여지고, 최대 90일까지 보관됩니다.</li>
+                    <li> 장바구니 계속 담아두기를 설정하시면 시간이 지나도 상품이 삭제되지 않습니다.</li>
+                    <li>PC와 모바일은 서로 연동되지만 적용에 시간 차가 있을 수 있습니다.</li>
+                    <li>상품의 판매상태(판매종료/상품정보변경/품절 등)는 별도 표기 됩니다.</li>
+                    <li> 롯데백화점 구매 상품은 즉시할인이 적용된 금액 기준으로 배송비가 부과되며, 롯데마트/롯데슈퍼프레시 구매 상품은 즉시할인 및 추가할인이 적용된 가격 기준으로 부과됩니다.</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function deleteCart(cartId) {
+        alert('상품을 삭제하시겠습니까?');
+        $.ajax({
+            url: '<%=request.getContextPath()%>/cartdelete.do?cartId=' + cartId,
+            type: 'get',
+            data: {},
+            success: function (data) {
+                console.log(data);
+                location.reload();
+            }
+        });
+    }
+
+</script>
 </body>
 </html>

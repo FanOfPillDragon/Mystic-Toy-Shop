@@ -15,5 +15,5 @@ public interface CartDao {
 
     int updateCart(CartDto cartDto);
 
-    int deleteCartByCartId(CartDto cartDto);
+    int deleteCartByCartId(int cartId);
 }

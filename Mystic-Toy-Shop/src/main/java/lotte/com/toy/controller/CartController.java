@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -67,11 +68,11 @@ public class CartController {
 
     @ResponseBody
     @GetMapping("/cartdelete.do")
-    public String cartDelete(CartDto cartDto) {
+    public String cartDelete(int cartId) {
         log.info("CartController cartDelete()");
         String msg = "삭제 실패";
 
-        if (cartService.deleteCartByCartId(cartDto)) {
+        if (cartService.deleteCartByCartId(cartId)) {
             msg = "삭제 성공";
         }
 

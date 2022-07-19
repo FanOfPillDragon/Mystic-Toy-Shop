@@ -31,6 +31,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public boolean insertCart(CartDto cartDto) {
+        // product id 조회 후 같은 product id 가 이미 존재하면 quantity를 update 할 수 있도록 한다.
+
         return cartDao.insertCart(cartDto) > 0;
     }
 
@@ -40,7 +42,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public boolean deleteCartByCartId(CartDto cartDto) {
-        return cartDao.deleteCartByCartId(cartDto) > 0;
+    public boolean deleteCartByCartId(int cartId) {
+        return cartDao.deleteCartByCartId(cartId) > 0;
     }
 }
