@@ -16,7 +16,6 @@
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
     </definition>
 
-
     <definition name="signup" extends="main_tile">
         <put-attribute name="title" value="회원가입"/>
         <put-attribute name="body" value="/WEB-INF/views/user/signup.jsp"/>
@@ -58,5 +57,9 @@
         <put-attribute name="body" value="/WEB-INF/views/cart/detail.jsp"/>
     </definition>
 
+    <definition name="filedetail" extends="main_tile">
+        <put-attribute name="title" value="파일"/>
+        <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
+    </definition>
 
 </tiles-definitions>
