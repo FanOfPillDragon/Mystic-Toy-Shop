@@ -45,7 +45,7 @@ public class UserController {
         log.info("MemberController userLoginAf()");
         UserDto rDto = service.userLogin(dto);
         if (rDto != null) {
-            req.getSession().setAttribute("login", rDto);
+            req.getSession().setAttribute("userLogin", rDto);
             return "main";
         } else {
             return "userLogin";
@@ -63,6 +63,9 @@ public class UserController {
     @ResponseBody
     @PostMapping("/userIdCheck.do")
     public String getUserId(String user_id) {
+        if(user_id.length() == 0){
+            return "NONE";
+        }
         log.info("MemberController getUserId()");
         String str = service.getUserId(user_id);
         return str;

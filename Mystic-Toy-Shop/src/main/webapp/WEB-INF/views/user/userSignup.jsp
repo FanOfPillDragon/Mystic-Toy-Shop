@@ -11,28 +11,205 @@
     <title>userSignUp</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+        #container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loginBox {
+            width: 500px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            width: 420px;
+            text-align: left;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .inputSet {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .inputSet input {
+            padding-left: 20px;
+            margin-bottom: 10px;
+            width: 420px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .confirmWarp {
+            margin-bottom: 10px;
+        }
+
+        .checkEmail {
+            width: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .checkEmail button {
+            align-self: end;
+            margin-bottom: 10px;
+            border: none;
+            background-color: transparent;
+            color: #999;
+        }
+
+        .searchAddress {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .searchAddress button {
+            align-self: end;
+            margin-bottom: 10px;
+            border: none;
+            background-color: transparent;
+            color: #999;
+        }
+
+        .selectGender {
+            display: flex;
+            justify-content: center;
+            width: 420px;
+        }
+
+        .selectGender input {
+            width: 12px;
+            margin-bottom: 0;
+            margin-right: 5px;
+        }
+
+        #mRadio {
+            margin-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lRadio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #submitBtn {
+            width: 420px;
+            height: 52px;
+            color: white;
+            background-color: #EF2A23;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 17px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .autoLogin input {
+            width: 18px;
+            height: 18px;
+            background-color: #EF2A23;
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
-<h1>userSignUp</h1>
-<form id="userSignup" action="<%=request.getContextPath() %>/addUser.do" method="post">
-    이메일 : <input type="text" id="user_email" name="user_email"> <br>
-    <p id="idCheck" style="font-size: 8px"></p>
-    <input type="button" id="idBtn" value="이메일 확인">
-    비밀번호 : <input type="password" id="user_password" name="user_password"> <br>
-    <p id="pwCheck" style="font-size: 8px"></p>
-    이름 : <input type="text" id="user_name" name="user_name"> <br>
-    우편번호 : <input id="user_zipcode" name="user_zipcode" type="text" placeholder="Zip Code" readonly>
-    주소 : <input id="user_address" name="user_address" type="text" placeholder="Address" readonly>
-    <button type="button" onclick="findAddr()"> 주소 검색</button>
-    <br>
-    상세주소 : <input type="text" id="user_detail_address" name="user_detail_address" placeholder="Detailed Address">
-    핸드폰번호: <input type="text" id="user_phone" name="user_phone"> <br>
-    성별 : <select name="user_gender" id="user_gender">
-    <option value=0 selected>남</option>
-    <option value=1>여</option>
-</select>
-    <button type="button" id="submitBtn">회원유저가아입</button>
-</form>
+
+<div id="container">
+    <form id="userSignup" action="<%=request.getContextPath() %>/addUser.do" method="post">
+        <div id="loginBox">
+            <div class="title">회원가입</div>
+            <div class="inputSet login">
+                <input type="text" id="user_email" name="user_email" placeholder="이메일 아이디">
+                <div class="checkEmail">
+                    <p id="idCheck" style="font-size: 12px; margin-left: 15px"></p>
+                    <button type="button" id="idBtn">이메일 확인</button>
+                </div>
+                <div>
+                    <input type="password" id="user_password" name="user_password"
+                           placeholder="비밀번호 (8자리 이상 영문+숫자+특수문자 조합)">
+                </div>
+                <p id="pwCheck" style="font-size: 12px; width: 420px; padding-left: 15px; display: none; justify-content: start"></p>
+                <div>
+                    <input type="text" id="user_name" name="user_name" placeholder="이름">
+                </div>
+                <div>
+                    <input type="text" id="user_phone" name="user_phone" placeholder="핸드폰 번호">
+                </div>
+                <div class="selectGender">
+                    <div id="mRadio">
+                        <input type="radio" name="user_gender" value=0>남
+                    </div>
+                    <div id="lRadio">
+                        <input type="radio" name="user_gender" value=1>여
+                    </div>
+                </div>
+                <div class="searchAddress">
+                    <div>
+                        <input id="user_zipcode" name="user_zipcode" type="text" placeholder="Zip Code" readonly
+                               placeholder="우편번호">
+                    </div>
+                    <div>
+                        <input id="user_address" name="user_address" type="text" placeholder="Address" readonly
+                               placeholder="주소">
+                    </div>
+                    <input type="text" id="user_detail_address" name="user_detail_address"
+                           placeholder="Detailed Address" placeholder="상세주소">
+                    <button type="button" onclick="findAddr()"> 주소 검색</button>
+                </div>
+            </div>
+            <div class="confirmWarp">
+                <button type="button" id="submitBtn">회원가입</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%--<h1>userSignUp</h1>--%>
+<%--<form id="userSignup" action="<%=request.getContextPath() %>/addUser.do" method="post">--%>
+<%--    이메일 : <input type="text" id="user_email" name="user_email"> <br>--%>
+<%--    <p id="idCheck" style="font-size: 8px"></p>--%>
+<%--    <input type="button" id="idBtn" value="이메일 확인">--%>
+<%--    비밀번호 : <input type="password" id="user_password" name="user_password"> <br>--%>
+<%--    <p id="pwCheck" style="font-size: 8px"></p>--%>
+<%--    이름 : <input type="text" id="user_name" name="user_name"> <br>--%>
+<%--    우편번호 : <input id="user_zipcode" name="user_zipcode" type="text" placeholder="Zip Code" readonly>--%>
+<%--    주소 : <input id="user_address" name="user_address" type="text" placeholder="Address" readonly>--%>
+<%--    <button type="button" onclick="findAddr()"> 주소 검색</button>--%>
+<%--    <br>--%>
+<%--    상세주소 : <input type="text" id="user_detail_address" name="user_detail_address" placeholder="Detailed Address">--%>
+<%--    핸드폰번호: <input type="text" id="user_phone" name="user_phone"> <br>--%>
+<%--    성별 : <select name="user_gender" id="user_gender">--%>
+<%--    <option value=0 selected>남</option>--%>
+<%--    <option value=1>여</option>--%>
+<%--</select>--%>
+<%--    <button type="button" id="submitBtn">회원유저가아입</button>--%>
+<%--</form>--%>
 <script type="text/javascript">
     let isSId = false;
     let isSPw = false;
@@ -40,6 +217,12 @@
     // id중복 체크
     $(function () {
         $("#idBtn").click(function () {
+            // 아이디가 입력되지 않았을 때
+            if($("#user_email").val().length == 0){
+                $("#idCheck").css("color", "#ff0000");
+                $("#idCheck").html('id를 입력해주세요');
+                return;
+            }
             $.ajax({
                 type: "post",
                 url: "userIdCheck.do",
@@ -70,10 +253,12 @@
             let isRightPw = regex.test(e.target.value);
             if (isRightPw) {
                 $("#pwCheck").css("color", "#0000ff");
+                $("#pwCheck").css("display", "inline-block");
                 $("#pwCheck").html('사용할 수 있는 pw 입니다.');
                 isSPw = true;
             } else {
                 $("#pwCheck").css("color", "#ff0000");
+                $("#pwCheck").css("display", "inline-block");
                 $("#pwCheck").html('비밀번호 양식이 일치하지 않습니다');
                 $("#user_password").val("");
                 isSPw = false;
