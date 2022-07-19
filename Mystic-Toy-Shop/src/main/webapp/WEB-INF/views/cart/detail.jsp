@@ -19,7 +19,9 @@
         <div class="flexContainer">
             <div class="cartBoxContainer">
                 <c:forEach var="cupDto" items="${cartUserProductDtoList}">
-                    <input type="hidden" id="" value="${cupDto.cart_id}"/>
+                    <input type="hidden" id="cart_id" value="${cupDto.cart_id}"/>
+                    <input type="hidden" id="user_id" value="${cupDto.user_id}"/>
+                    <input type="hidden" id="product_id" value="${cupDto.product_id}"/>
                     <div class="cartBox p-3">
                         <div>
                             <div class="h4">${cupDto.product_name}</div>
@@ -47,21 +49,21 @@
 
                     <dl>
                         <dt>상품금액</dt>
-                        <dd>원</dd>
+                        <dd>${totalPrice} 원</dd>
                     </dl>
                     <dl>
                         <dt>상품할인금액</dt>
-                        <dd>원</dd>
+                        <dd>0 원</dd>
                     </dl>
                     <dl>
                         <dt>배송비</dt>
-                        <dd>원</dd>
+                        <dd>2500 원</dd>
                     </dl>
                 </div>
 
                 <dl class="totalPrice">
                     <dt>총 <span class="colorPrimary">${fn:length(cartUserProductDtoList)}</span> 건</dt>
-                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary">원</span></dd>
+                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary">${totalPrice+2500} 원</span></dd>
                 </dl>
 
                 <ul class="cartBtnSet">
@@ -87,6 +89,13 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    // $(document).ready(function () {
+    //     $("button[name='save']").click(function () {
+    //         $("body").append("click!!!<br/>");
+    //     });
+    // });
+
     function deleteCart(cartId) {
         alert('상품을 삭제하시겠습니까?');
         $.ajax({

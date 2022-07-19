@@ -2,17 +2,20 @@ package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.CartDto;
 import lotte.com.toy.dto.CartUserProductDto;
+import lotte.com.toy.dto.UserDto;
 import lotte.com.toy.service.CartService;
+import lotte.com.toy.util.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -23,19 +26,20 @@ public class CartController {
     CartService cartService;
 
     @GetMapping("/cart.do")
-    public String cartDetail(Model model) { //, int userId
+    public String cartDetail(Model model, HttpServletRequest req, HttpServletResponse response) throws IOException { //, int userId
         log.info("CartController cartDetail()");
 
-        List<CartDto> cartList = cartService.getCartListByUserId(1);
-        List<CartUserProductDto> cartUserProductDtoList = cartService.getCartUserProductDtoByUserId(1);
-
-        for (CartDto dto : cartList) {
-            System.out.println(dto.toString());
+        UserDto userDto = (UserDto)req.getSession().getAttribute("login");
+        if(userDto == null){
+            response.sendRedirect("/userLogin.do");
+            return "userLogin";
         }
+        int userId = userDto.getUser_id();
 
-        model.addAttribute("cartList", cartList);
+        List<CartUserProductDto> cartUserProductDtoList = cartService.getCartUserProductDtoByUserId(userId);
+
         model.addAttribute("cartUserProductDtoList", cartUserProductDtoList);
-
+        model.addAttribute("totalPrice", Utility.getTotalPrice(cartUserProductDtoList));
         return "cartdetail";
     }
 
