@@ -101,6 +101,8 @@
             border-radius: 10px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 </head>
 <body>
 <div id="container">
@@ -118,15 +120,15 @@
         </div>
         <div class="autoLogin">
             <div class="saveId">
-                <input type="checkbox" checked="checked">아이디 저장
+                <input type="checkbox" id="chk_save_id">아이디 저장
             </div>
             <div class="btnSignupWrap">
-                <button id="registerBtn" onclick="location.href='userSignup.do'">회원가입</button>
+                <button id="registerBtn" type="button" onclick="location.href='<%=request.getContextPath() %>/userSignup.do'">회원가입</button>
             </div>
         </div>
 
         <div class="socialSignupWrap">
-            <button class="kakaoLogin" onclick="">카카오로 시작하기</button>
+            <button class="kakaoLogin" type="button" onclick="location.href  ='https://kauth.kakao.com/oauth/authorize?client_id=a7b71fe2e271db4868dd5a0203d15d30&redirect_uri=http://localhost:8091/login_callback.do&response_type=code'">카카오로 시작하기</button>
         </div>
     </div>
     </form>
@@ -147,6 +149,30 @@
             userLogin.submit()   // 로그인 성공
         }
     })
+
+    // 아이디 저장
+    let user_email = $.cookie("user_email");
+    if(user_email != null){
+        $("#user_email").val(user_email);
+        $("#chk_save_id").prop("checked", true);
+    }
+
+    $("#chk_save_id").click(function() {
+
+        if($("#chk_save_id").is(":checked")){
+
+            if($("#user_email").val().trim() == ""){
+                alert("id를 입력해 주십시오");
+                $("#chk_save_id").prop("checked", false);
+            }else{
+                // cookie를 저장
+                $.cookie("user_email", $("#user_email").val().trim(), {expires:7, path:'./'});
+            }
+
+        }else{
+            $.removeCookie("user_email", { path:'./' });
+        }
+    });
 </script>
 </body>
 </html>
