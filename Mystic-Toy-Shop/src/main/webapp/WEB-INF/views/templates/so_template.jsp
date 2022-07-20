@@ -29,6 +29,10 @@
 <tiles:insertAttribute name="header"/>
 <!-- 상단 메뉴 끝 -->
 
+<div id="sidebar-left">
+    <tiles:insertAttribute name="side"/>
+</div>
+
 <!-- 내용 시작 -->
 <div class="body"><tiles:insertAttribute name="body"/></div>
 <!-- 내용 끝 -->
