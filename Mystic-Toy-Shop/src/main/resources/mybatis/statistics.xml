@@ -2,31 +2,93 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Statistics">
+<mapper namespace="OrderStats">
 
 
-    <select id="getTodayOrderStats" parameterType="java.util.Date" resultType="">
-/*
+    <!--특정 날짜 결제 금액 / 상품수량 / 주문량 -->
+    <select id="getOrderStatsListByDate" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select sum(order_total_price) as today_total_price, sum(order_quantity) as today_total_quantity , count(*) as today_total_orders
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id = #{seller_id}
+          and date(order_date) = #{order_date};
+    </select>
 
-    -- 일간 결제 금액
-select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
-from orders
-where date(order_date) = '2022-07-18';
--- where date(order_date) = date(now());
+    <!--지난 일주일 결제 금액 / 상품수량 / 주문량 -->
+    <select id="getOrderStatsListWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select sum(order_total_price) as today_total_price, sum(order_quantity) as today_total_quantity , count(*) as today_total_orders
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id = #{seller_id}
+          and order_date between date_add(now(), interval -1 week) and now();
+    </select>
 
--- 지난 일주일
-select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
-from orders
-where date(order_date) >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+    <!--이번 달 결제 금액 / 상품수량 / 주문량 -->
+    <select id="getOrderStatsListMonth" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id = #{seller_id}
+          and date(order_date) >=  DATE_FORMAT(NOW(), '%Y-%m-01');
+        </select>
 
--- 이번달
-select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
-from orders
-where date(order_date) >=  DATE_FORMAT(NOW(), '%Y-%m-01');
+    <!--지난 일주일 요일별 결제 금액 / 상품수량 / 주문량 -->
+    <select id="getOrderStatsListWeekly" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        SELECT DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-1) DAY), '%Y/%m/%d') as start_date,
+               DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-7) DAY), '%Y/%m/%d') as end_date,
+               DATE_FORMAT(order_date, '%Y/%m/%d') AS order_date,
+               DAYOFWEEK(order_date) as weekday,
+               count(o.product_id)   as totay_total_orders,
+               sum(order_total_price) as today_total_price,
+               sum(order_quantity)   as totay_total_quantity
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id =  #{seller_id}
+        GROUP BY DATE_FORMAT(order_date, '%Y/%m/%d');
+    </select>
 
+    <!--카테고리별 결제 금액 / 상품수량 / 주문량 (특정 날짜) -->
+    <select id="getOrderStatsByCatsDate" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select max(category_name)    as category_name,
+               sum(o.order_total_price) as order_total_price,
+               sum(order_quantity)   as total_quantity,
+               count(o.product_id)   as total_orders
+        from orders o, products p, categories c
+        where p.product_id = o.product_id
+          and c.category_id = p.product_id
+          and p.seeler_id = #{seller_id}
+          and date(order_date) = #{order_date};
+        group by c.category_id
+        order by sum(o.order_total_price) desc;
+    </select>
 
+    <!--이번 주 결제 금액 / 상품수량 / 주문량 (특정 날짜) -->
+    <select id="getOrderStatsByCatsWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select max(category_name)    as category_name,
+               sum(o.order_total_price) as order_total_price,
+               sum(order_quantity)   as total_quantity,
+               count(o.product_id)   as total_orders
+        from orders o, products p, categories c
+        where p.product_id = o.product_id
+          and c.category_id = p.product_id
+          and p.seller_id = #{seller_id}
+          and order_date between date_add(now(), interval -1 week) and now()
+        group by c.category_id
+        order by sum(o.order_total_price) desc;
+    </select>
 
-    */</select>
-
-
+    <!--이번 달 결제 금액 / 상품수량 / 주문량 (특정 날짜) -->
+    <select id="getOrderStatsByCatsWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select max(category_name)    as category_name,
+               sum(o.order_total_price) as order_total_price,
+               sum(order_quantity)   as total_quantity,
+               count(o.product_id)   as total_orders
+        from orders o, products p, categories c
+        where p.product_id = o.product_id
+          and c.category_id = p.product_id
+          and p.seller_id = #{seller_id}
+          and date(order_date) >=  DATE_FORMAT(NOW(), '%Y-%m-01')
+        group by c.category_id
+        order by sum(o.order_total_price) desc;
+    </select>
 </mapper>
