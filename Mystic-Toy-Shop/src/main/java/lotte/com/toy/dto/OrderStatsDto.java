@@ -8,9 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderStatsDto {
-    int today_total_price;
-    int today_total_quantity;
-    int today_total_orders;
+    int total_price;
+    int total_quantity;
+    int total_orders;
 
     String start_date;
     String end_date;

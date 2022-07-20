@@ -5,7 +5,7 @@
 <mapper namespace="OrderStats">
 
     <select id="getOrderStatsByDate" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.OrderStatsDto">
-        select sum(order_total_price) as today_total_price, sum(order_quantity) as today_total_quantity , count(*) as today_total_orders
+        select sum(o.order_total_price) as total_price, sum(order_quantity) as total_quantity , count(*) as total_orders
         from orders o, products p
         where p.product_id = o.product_id
           and p.seller_id = #{seller_id}
@@ -13,7 +13,7 @@
     </select>
 
     <select id="getOrderStatsWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
-        select sum(order_total_price) as today_total_price, sum(order_quantity) as today_total_quantity , count(*) as today_total_orders
+        select sum(o.order_total_price) as total_price, sum(order_quantity) as total_quantity , count(*) as total_orders
         from orders o, products p
         where p.product_id = o.product_id
           and p.seller_id = #{seller_id}
@@ -22,7 +22,7 @@
 
 
     <select id="getOrderStatsMonth" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
-        select sum(order_total_price) as today_total_price, sum(order_quantity) as totay_total_quantity , count(*) as totay_total_orders
+        select sum(o.order_total_price) as total_price, sum(order_quantity) as total_quantity , count(*) as total_orders
         from orders o, products p
         where p.product_id = o.product_id
           and p.seller_id = #{seller_id}
@@ -34,9 +34,9 @@
                DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-7) DAY), '%Y/%m/%d') as end_date,
                DATE_FORMAT(order_date, '%Y/%m/%d') AS order_date,
                DAYOFWEEK(order_date) as weekday,
-               count(o.product_id)   as totay_total_orders,
-               sum(order_total_price) as today_total_price,
-               sum(order_quantity)   as totay_total_quantity
+               count(o.product_id)   as total_orders,
+               sum(o.order_total_price) as total_price,
+               sum(order_quantity)   as total_quantity
         from orders o, products p
         where p.product_id = o.product_id
           and p.seller_id =  #{seller_id}
@@ -45,7 +45,7 @@
 
     <select id="getOrderStatsByCatsDate" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.OrderStatsDto">
         select max(category_name)    as category_name,
-               sum(o.order_total_price) as order_total_price,
+               sum(o.order_total_price) as total_price,
                sum(order_quantity)   as total_quantity,
                count(o.product_id)   as total_orders
         from orders o, products p, categories c
@@ -59,7 +59,7 @@
 
     <select id="getOrderStatsByCatsWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
         select max(category_name)    as category_name,
-               sum(o.order_total_price) as order_total_price,
+               sum(o.order_total_price) as total_price,
                sum(order_quantity)   as total_quantity,
                count(o.product_id)   as total_orders
         from orders o, products p, categories c
@@ -73,7 +73,7 @@
 
     <select id="getOrderStatsByCatsMonth" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
         select max(category_name)    as category_name,
-               sum(o.order_total_price) as order_total_price,
+               sum(o.order_total_price) as total_price,
                sum(order_quantity)   as total_quantity,
                count(o.product_id)   as total_orders
         from orders o, products p, categories c
