@@ -42,7 +42,7 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public int deleteCartByCartId(CartDto cartDto) {
-        return session.delete(nameSpace + "deleteCartByCartId", cartDto);
+    public int deleteCartByCartId(int cartId) {
+        return session.delete(nameSpace + "deleteCartByCartId", cartId);
     }
 }

@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 
 @Controller
 public class UserController {
@@ -26,6 +28,7 @@ public class UserController {
         log.info("MemberController signup()");
         return "signup";
     }
+
     //    로그인
     @GetMapping("/login.do")
     public String login() {
@@ -41,12 +44,13 @@ public class UserController {
     }
 
     @PostMapping("/userLoginAf.do")
-    public String userLoginAf(HttpServletRequest req, UserDto dto) {
+    public String userLoginAf(HttpServletRequest req, UserDto dto, HttpSession session) {
         log.info("MemberController userLoginAf()");
         UserDto rDto = service.userLogin(dto);
         if (rDto != null) {
-            req.getSession().setAttribute("login", rDto);
-            return "main";
+            req.getSession().setAttribute("userLogin", rDto);
+            System.out.println(req.getSession().getAttribute("userLogin"));
+            return "redirect:/main.do";
         } else {
             return "userLogin";
         }
@@ -54,7 +58,7 @@ public class UserController {
 
     //    유저 회원가입 view
     @GetMapping("/userSignup.do")
-    public String userSignup() {
+    public String userSignup(Model model) {
         log.info("MemberController userSignup()");
         return "userSignup";
     }
@@ -63,6 +67,9 @@ public class UserController {
     @ResponseBody
     @PostMapping("/userIdCheck.do")
     public String getUserId(String user_id) {
+        if (user_id.length() == 0) {
+            return "NONE";
+        }
         log.info("MemberController getUserId()");
         String str = service.getUserId(user_id);
         return str;
@@ -71,6 +78,7 @@ public class UserController {
     //    유저 회원가입 추가
     @PostMapping("/addUser.do")
     public String addUser(Model model, UserDto dto) {
+        System.out.println(dto.getUser_email());
         log.info("MemberController addUser()");
 
         boolean b = service.addUser(dto);
@@ -91,10 +99,11 @@ public class UserController {
     @PostMapping("/sellerLoginAf.do")
     public String sellerLoginAf(HttpServletRequest req, SellerDto dto) {
         log.info("MemberController sellerLoginAf()");
+        System.out.println(dto.getSeller_email() + " " + dto.getSeller_password());
         SellerDto rDto = service.sellerLogin(dto);
         if (rDto != null) {
-            req.getSession().setAttribute("login", rDto);
-            return "main";
+            req.getSession().setAttribute("sellerLogin", rDto);
+            return "redirect:/main.do";
         } else {
             return "sellerLogin";
         }
@@ -126,5 +135,49 @@ public class UserController {
         model.addAttribute("process", "login");
 
         return "sellerLogin";
+    }
+
+    // kakao
+    @RequestMapping(value = "/login_callback.do", method = RequestMethod.GET)
+    public String loginCallBack(@RequestParam(value = "code", required = false) String code, Model model) throws Exception {
+        System.out.println("#########" + code);
+        String access_Token = service.getAccessToken(code);
+
+        HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
+        System.out.println("###access_Token#### : " + access_Token);
+        System.out.println("###nickname#### : " + userInfo.get("nickname"));
+
+        System.out.println(userInfo.get("id"));
+        String user_kakao_identifier = (String) userInfo.get("id");
+        int isIn = service.getKakaoId(user_kakao_identifier);
+        System.out.println(isIn + ": isIn ");
+        if(isIn == 0){
+            // 아이디 토큰 같이 넣어주기
+            model.addAttribute("user_kakao_identifier", user_kakao_identifier);
+            return "redirect:/userSignup.do";
+        }
+        else{
+            return "main";
+        }
+    }
+
+    // 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpServletRequest req) {
+        log.info("MemberController logout()");
+        System.out.println("comein logout!");
+        System.out.println(req.getSession().getAttribute("userLogin"));
+        // 유저 로그아웃
+        if(req.getSession().getAttribute("userLogin")!=null){
+        System.out.println(req.getSession().getAttribute("userLogin"));
+            System.out.println("들어와따!");
+            req.getSession().removeAttribute("userLogin");
+        }
+        // 판매자 로그아웃
+        else if (req.getSession().getAttribute("sellerLogin")!=null) {
+            System.out.println(req.getSession().getAttribute("sellerLogin"));
+            req.getSession().removeAttribute("sellerLogin");
+        }
+        return "main";
     }
 }

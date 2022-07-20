@@ -1,9 +1,13 @@
 package lotte.com.toy.dao;
 
-import lotte.com.toy.dto.ProdcutDto;
+import lotte.com.toy.dto.ProductDto;
+import lotte.com.toy.dto.ProductResponseDto;
 
 import java.util.List;
 
 public interface ProductDao {
-    ProdcutDto findByProductId(int productId);
+    ProductDto findByProductId(int productId);
+    List<ProductResponseDto> getProductList();
+    ProductResponseDto getProductByProductId(int productId);
+    List<ProductResponseDto> getProductListByCategoryId(int categoryId);
 }

@@ -14,8 +14,8 @@
 
 <!-- 사용자 회원가입-->
     <insert id="addUser" parameterType="lotte.com.toy.dto.UserDto">
-        insert into users(user_email, user_password, user_name, user_zipcode, user_address, user_phone, user_gender, user_register_date, auth_id)
-        values(#{user_email}, #{user_password}, #{user_name}, #{user_zipcode}, #{user_address}, #{user_phone}, #{user_gender}, now(), 1);
+        insert into users(user_email, user_password, user_name, user_zipcode, user_address, user_phone, user_gender, user_register_date, user_kakao_identifier, auth_id)
+        values(#{user_email}, #{user_password}, #{user_name}, #{user_zipcode}, #{user_address}, #{user_phone}, #{user_gender}, now(),#{user_kakao_identifier}, 1);
     </insert>
 
 <!--    사용자 로그인-->
@@ -26,7 +26,12 @@
         where user_email=#{user_email} and user_password=#{user_password}
     </select>
 
-
+    <!--    카카오 아이디 체크-->
+    <select id="getKakaoId" parameterType="String" resultType="Integer">
+        select count(*)
+        from users
+        where user_kakao_identifier=#{user_kakao_identifier}
+    </select>
 
 <!--    판매자 아이디 체크-->
     <select id="getSellerId" parameterType="String" resultType="Integer">
@@ -48,4 +53,5 @@
         from sellers
         where seller_email=#{seller_email} and seller_password=#{seller_password}
     </select>
+
 </mapper>

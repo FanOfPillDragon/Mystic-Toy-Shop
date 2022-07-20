@@ -3,8 +3,11 @@ package lotte.com.toy.dto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
 public class UserDto {
     private int user_id;
@@ -16,7 +19,7 @@ public class UserDto {
     private String user_phone;
     private int user_gender;
     private String user_register_date;
-    private int user_kakao_identifier;
+    private String user_kakao_identifier;
     private boolean is_activated;
     private int auth_id;
 }
