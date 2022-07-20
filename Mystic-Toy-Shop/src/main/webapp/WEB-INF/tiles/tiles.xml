@@ -93,9 +93,10 @@
         <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
     </definition>
 
-    <definition name="filewrite" extends="main_tile">
-        <put-attribute name="title" value="파일"/>
-        <put-attribute name="body" value="/WEB-INF/views/file/filewrite.jsp"/>
+    <definition name="orderstatistics" extends="main_tile">
+        <put-attribute name="title" value="통계 주문분석"/>
+        <put-attribute name="body" value="/WEB-INF/views/statistics/orderstatistics.jsp"/>
     </definition>
+
 
 </tiles-definitions>
