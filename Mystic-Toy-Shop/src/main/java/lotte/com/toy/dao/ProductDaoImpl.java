@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ProductDaoImpl implements ProductDao{
+public class ProductDaoImpl implements ProductDao {
 
     @Autowired
     SqlSession session;
@@ -34,6 +34,12 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public List<ProductResponseDto> getProductListByCategoryId(int categoryId) {
-        return session.selectList(nameSpace+"getProductListByCategoryId",categoryId);
+        return session.selectList(nameSpace + "getProductListByCategoryId", categoryId);
+
+    }
+
+    @Override
+    public int product_write(ProductDto dto) {
+        return session.insert(nameSpace + "product_write", dto);
     }
 }

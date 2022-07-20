@@ -46,6 +46,7 @@
 
     <!-- webapp/resources 경로 매핑 -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/mystic_image/**" location="file:///C:/mystic_image"/>
 
     <!-- 이미지 업로드 -->
     <bean id="multipartResolver"

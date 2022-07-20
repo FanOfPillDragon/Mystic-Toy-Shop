@@ -13,7 +13,7 @@
 <%--products(product_name,product_info,product_img,product_cost,product_stock,product_sell_count,category_id,seller_id) --%>
 <%
     List<CategoryDto> categories = (List<CategoryDto>) request.getAttribute("categories");
-    System.out.println(request.getContextPath()) ;
+    request.setCharacterEncoding("utf-8");
 %>
 <html>
 <head>
@@ -38,10 +38,19 @@
             border-bottom: solid 1px #e2e2e2;
             margin-bottom: 3px;
         }
+
+        .category_radio{
+        }
+
+        .category_name{
+            margin-right: 10px;
+            border: solid 1px;
+            float: left;
+        }
     </style>
 </head>
 <body>
-<form action="writeAf.do" method="post">
+<form action="../writeAf.do" method="post">
     <div class="temp" style="height:80px;">
         <h3 style="font-size: 17pt; float: left ;">상품등록 <span style="color: red; font-size: 8pt;">• 필수입력</span></h3>
     </div>
@@ -50,10 +59,11 @@
             <p>카테고리</p>
         </div>
         <div>
-            <button>t1</button>
-            <button>t2</button>
-            <button>t3</button>
-            <button>t4</button>
+            <% for(CategoryDto c : categories) {%>
+            <input class="category_radio" type="radio" name="category_id" id="category<%=c.getCategory_id()%>" value="<%=c.getCategory_id()%>"> <label><%=c.getCategory_name()%></label>
+
+
+            <% }%>
         </div>
     </div>
     <div class="temp">
@@ -66,7 +76,7 @@
     </div>
     <div class="temp">
         <div class="th">
-            <p>판매가</h3>
+            <p>판매가</p>
         </div>
         <div>
             <input type="text" name="product_cost" size="20" placeholder="판매가">
@@ -77,7 +87,7 @@
             <p>재고수량</p>
         </div>
         <div>
-            <input type="text" size="20" placeholder="숫자만입력"><span>개</span>
+            <input type="text" size="20" name="product_stock" placeholder="숫자만입력"><span>개</span>
         </div>
     </div>
     <div class="temp">
@@ -88,9 +98,12 @@
             <p>상세설명</p>
         </div>
         <div class="container">
-            <textarea class="summernote" name="editordata"></textarea>
+            <button type="button" id="btn1" >상세입력</button>
+            <textarea class="summernote" name="product_info"></textarea>
         </div>
     </div>
+
+    <input type="submit" value="등록">
 </form>
 
 <script>
@@ -116,7 +129,11 @@
         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
         callbacks: {	//여기 부분이 이미지를 첨부하는 부분
             onImageUpload : function(files) {
-                uploadSummernoteImageFile(files[0],this);
+/*                uploadSummernoteImageFile(files[0],this);*/
+                for (var i = files.length - 1; i >= 0; i--) {
+                    uploadSummernoteImageFile(files[i],
+                        this);
+                }
             },
             onPaste: function (e) {
                 var clipboardData = e.originalEvent.clipboardData;
