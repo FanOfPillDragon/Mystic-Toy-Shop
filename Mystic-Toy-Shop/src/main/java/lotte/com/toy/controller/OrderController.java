@@ -3,6 +3,7 @@ package lotte.com.toy.controller;
 import lotte.com.toy.dto.OrderDateDto;
 import lotte.com.toy.dto.OrderDetailDto;
 import lotte.com.toy.dto.OrderGroupDto;
+import lotte.com.toy.dto.UserDto;
 import lotte.com.toy.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,14 @@ public class OrderController {
         /*
         로그인 검증 코드 들어가야 함
          */
-        int id = (Integer)req.getSession().getAttribute("userId");
+        UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
+        if (userDto == null) {
+//            response.sendRedirect("/userLogin.do");
+            return "redirect:/userLogin.do";
+        }
+
+        int userId = userDto.getUser_id();
+
         List<Integer> orderGroupList = orderService.findOrderGroupList();
         if(orderGroupList.isEmpty()){
             System.out.println("데이터없음!");
@@ -33,7 +41,7 @@ public class OrderController {
         }
         List<List<OrderDetailDto>> list = new ArrayList<>();
         for(Integer i : orderGroupList){
-            List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(id,i));
+            List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(userId,i));
             list.add(orderList);
         }
         model.addAttribute("orderList",list);
@@ -54,10 +62,17 @@ public class OrderController {
 
     @RequestMapping(value = "orderDateList.do", method = RequestMethod.GET)
     public String findDateOrderList(String startDate, String endDate,Model model,HttpServletRequest req){
-        int id = (Integer)req.getSession().getAttribute("userId");
+        UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
+        if (userDto == null) {
+//            response.sendRedirect("/userLogin.do");
+            return "redirect:/userLogin.do";
+        }
+
+        int userId = userDto.getUser_id();
+
         Timestamp sDate = Timestamp.valueOf(startDate+" 00:00:00");
         Timestamp eDate = Timestamp.valueOf(endDate+" 00:00:00");
-        OrderDateDto orderDate = new OrderDateDto(sDate,eDate,id);
+        OrderDateDto orderDate = new OrderDateDto(sDate,eDate,userId);
         List<Integer> orderDateGroup = orderService.findOrderGroupDateList(orderDate);
         if(orderDateGroup.isEmpty()){
             System.out.println("데이터없음!");
@@ -65,7 +80,7 @@ public class OrderController {
         }
         List<List<OrderDetailDto>> dateList = new ArrayList<>();
         for(Integer i : orderDateGroup){
-            List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(id,i));
+            List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(userId,i));
             dateList.add(orderList);
         }
         model.addAttribute("dateList",dateList);
