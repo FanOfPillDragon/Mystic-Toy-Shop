@@ -162,7 +162,7 @@
         let data = {
             'cart_id': cartId,
             'cart_quantity': cartCount,
-            'user_id':${sessionScope.login.user_id},
+            'user_id':${sessionScope.userLogin.user_id},
             'product_id': productId
         }
         $.ajax({

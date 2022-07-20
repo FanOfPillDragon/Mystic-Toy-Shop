@@ -209,8 +209,8 @@
     <div class="headerWrapper">
         <div class="headerInnerContent innerContent">
             <c:choose>
-                <c:when test="${not empty sessionScope.login}">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/mypage.do">${sessionScope.login.user_name}님</a>
+                <c:when test="${not empty sessionScope.userLogin}">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/mypage.do">${sessionScope.userLogin.user_name}님</a>
                     <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a>
                 </c:when>
                 <c:when test="${not empty sessionScope.sellerLogin}">

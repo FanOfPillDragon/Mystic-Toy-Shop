@@ -32,7 +32,7 @@ public class CartController {
     public String cartDetail(Model model, HttpServletRequest req, HttpServletResponse response) throws IOException { //, int userId
         log.info("CartController cartDetail()");
 
-        UserDto userDto = (UserDto) req.getSession().getAttribute("login");
+        UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         if (userDto == null) {
             response.sendRedirect("/userLogin.do");
             return "userLogin";
