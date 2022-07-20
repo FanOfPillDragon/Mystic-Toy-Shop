@@ -12,6 +12,9 @@
 </head>
 <body>
 <h2>Hello World!</h2>
-<a href="/seller_main.do">판매 상품 등록</a>
+<a href="/seller_main.do?seller_id=1">판매 상품 등록</a>
+
+
+
 </body>
 </html>

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProductDaoImpl implements ProductDao{
+public class ProductDaoImpl implements ProductDao {
 
     @Autowired
     SqlSession session;
@@ -15,6 +15,6 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public int product_write(ProdcutDto dto) {
-        return session.insert(nameSpace + "product_write" , dto);
+        return session.insert(nameSpace + "product_write", dto);
     }
 }

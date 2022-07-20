@@ -2,8 +2,10 @@ package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.CategoryDto;
 import lotte.com.toy.dto.ProdcutDto;
+import lotte.com.toy.dto.SellerDto;
 import lotte.com.toy.service.CategoryService;
 import lotte.com.toy.service.ProductService;
+import lotte.com.toy.service.SellerService;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +34,8 @@ public class SellerOfficeController {
     CategoryService categoryservice;
     @Autowired
     ProductService productService;
+    @Autowired
+    SellerService sellerservice;
 
     @GetMapping("/product_write.do")
     public String prodcut_write(Model model) {
@@ -98,7 +104,33 @@ public class SellerOfficeController {
     }
 
     @GetMapping("/seller_main.do")
-    public String seller_main(){
+    public String seller_main(SellerDto seller, Model model) {
+
+        int onSaleProduct = sellerservice.findTotalCount(seller); // 판매중 상품
+        int soldOutProduct = sellerservice.findSoldOut(seller); // 품절 상품 stock = 0
+        int endSaleProduct = sellerservice.findEndSale(seller); // 판매 종료 상품 stock = -1
+        int readyToShip = sellerservice.findReadyShip(seller); // 배송 준비
+        int completedShip = sellerservice.findCompletedShip(seller); // 배송 완료
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd%"); // like '2022-07-19%';
+        Date now = new Date();
+        String today = sdf.format(now);
+
+        int newOrder = sellerservice.newOrders(today);
+        int newReview = sellerservice.newReviews(today);
+        int newQnA = sellerservice.newQnAs(today);
+
+        JSONObject seller_data = new JSONObject();
+        seller_data.put("onSaleProduct", onSaleProduct);
+        seller_data.put("soldOutProduct", soldOutProduct);
+        seller_data.put("endSaleProduct", endSaleProduct);
+        seller_data.put("readyToShip", readyToShip);
+        seller_data.put("completedShip", completedShip);
+        seller_data.put("newOrder", newOrder);
+        seller_data.put("newReview", newReview);
+        seller_data.put("newQnA", newQnA);
+
+        model.addAttribute("seller_data", seller_data);
 
         return "seller_main";
     }
