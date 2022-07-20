@@ -32,11 +32,7 @@ public class PaymentController {
 
 
     @RequestMapping(value = "ordersheet.do")
-    public String startPayment(Model model, HttpServletRequest req) { // 임시test 코드
-        //  필요한정보 user_id, product_id들
-        List<Integer> orderCartNumList = new ArrayList<>();
-        orderCartNumList.add(1);
-        orderCartNumList.add(2);
+    public String startPayment(Model model, HttpServletRequest req) {
 
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         if (userDto == null) {
@@ -98,4 +94,20 @@ public class PaymentController {
         return "orderByProduct";
     }
 
+    @RequestMapping(value = "singlepayment.do")
+    public String createSinglePayment(HttpServletRequest req, String orderName, String orderAddress, String orderPhone, String orderComment, int productId, int quantity) {
+        UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
+        int userId = userDto.getUser_id();
+        int orderGroup = orderService.findByOrderGroup();
+        ProductDto product = productService.findByProductId(productId);
+        OrderDto order = new OrderDto(orderName, orderAddress, orderPhone, orderComment, userId, product.getProduct_id(), quantity, product.getProduct_cost(), orderGroup + 1);
+        boolean orderChecker = orderService.insertOrder(order);
+        int orderId = orderService.findByLastRowId();
+        PaymentDto payment = new PaymentDto(product.getProduct_id(), orderId, '0');
+        boolean paymentChecker = paymentService.insertPayment(payment);
+        if (!orderChecker && !paymentChecker) {
+            return "redirect:/main.do";
+        }
+        return "redirect:/main.do";
+    }
 }
