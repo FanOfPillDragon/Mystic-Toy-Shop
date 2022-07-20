@@ -108,4 +108,15 @@
         <put-attribute name="title" value="결제하기"/>
         <put-attribute name="body" value="/WEB-INF/views/payment/message.jsp"/>
     </definition>
+
+    <!--  product part  -->
+    <definition name="productList" extends="main_tile">
+        <put-attribute name="title" value="상품 목록"/>
+        <put-attribute name="body" value="/WEB-INF/views/product/list.jsp"/>
+    </definition>
+    <definition name="productDetail" extends="main_tile">
+        <put-attribute name="title" value="상품상세 페이지"/>
+        <put-attribute name="body" value="/WEB-INF/views/product/detail.jsp"/>
+    </definition>
+
 </tiles-definitions>

@@ -2,17 +2,35 @@ package lotte.com.toy.service;
 
 import lotte.com.toy.dao.ProductDao;
 import lotte.com.toy.dto.ProductDto;
+import lotte.com.toy.dto.ProductResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService{
 
     @Autowired
-    ProductDao productdao;
+    ProductDao productDao;
 
     @Override
     public ProductDto findByProductId(int productId) {
-        return productdao.findByProductId(productId);
+        return productDao.findByProductId(productId);
+    }
+
+    @Override
+    public List<ProductResponseDto> getProductList() {
+        return productDao.getProductList();
+    }
+
+    @Override
+    public ProductResponseDto getProductByProductId(int productId) {
+        return productDao.getProductByProductId(productId);
+    }
+
+    @Override
+    public List<ProductResponseDto> getProductListByCategoryId(int categoryId) {
+        return productDao.getProductListByCategoryId(categoryId);
     }
 }

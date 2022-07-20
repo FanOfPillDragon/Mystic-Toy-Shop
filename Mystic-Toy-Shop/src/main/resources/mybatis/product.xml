@@ -23,16 +23,58 @@
         from products
         where product_id = #{product_id}
     </select>
-    <select id="productList" resultType="lotte.com.toy.dto.ProductDto">
-        select product_id,
-               product_name,
-               product_info,
-               product_img,
-               product_cost,
-               product_stock,
-               product_sell_count,
-               category_id,
-               seller_id
-        from products
+    <select id="getProductList" resultType="lotte.com.toy.dto.ProductResponseDto">
+        select p.product_id,
+               p.product_name,
+               p.product_info,
+               p.product_img,
+               p.product_cost,
+               p.product_stock,
+               p.product_sell_count,
+               p.category_id,
+               c.category_name,
+               p.seller_id,
+               s.seller_company_name,
+               s.seller_company_number,
+               s.seller_email,
+               s.seller_address
+        from products p, categories c, sellers s
+        where p.category_id = c.category_id and p.seller_id = s.seller_id
+    </select>
+    <select id="getProductListByCategoryId" parameterType="Integer" resultType="lotte.com.toy.dto.ProductResponseDto">
+        select p.product_id,
+               p.product_name,
+               p.product_info,
+               p.product_img,
+               p.product_cost,
+               p.product_stock,
+               p.product_sell_count,
+               p.category_id,
+               c.category_name,
+               p.seller_id,
+               s.seller_company_name,
+               s.seller_company_number,
+               s.seller_email,
+               s.seller_address
+        from products p, categories c, sellers s
+        where p.category_id = c.category_id and p.seller_id = s.seller_id and p.category_id = #{category_id}
+    </select>
+    <select id="getProductByProductId" parameterType="Integer" resultType="lotte.com.toy.dto.ProductResponseDto">
+        select p.product_id,
+               p.product_name,
+               p.product_info,
+               p.product_img,
+               p.product_cost,
+               p.product_stock,
+               p.product_sell_count,
+               p.category_id,
+               c.category_name,
+               p.seller_id,
+               s.seller_company_name,
+               s.seller_company_number,
+               s.seller_email,
+               s.seller_address
+        from products p, categories c, sellers s
+        where p.category_id = c.category_id and p.seller_id = s.seller_id and product_id = #{product_id}
     </select>
 </mapper>

@@ -21,6 +21,7 @@ public class ProductResponseDto {
     private String category_name;
     private int seller_id;
     private String seller_email;
+    private String seller_company_name;
     private String seller_company_number;
     private String seller_address;
 }
