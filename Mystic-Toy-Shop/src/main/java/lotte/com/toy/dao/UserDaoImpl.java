@@ -26,10 +26,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public UserDto kakaoUserLogin(String user_kakao_identifier) {
+        System.out.println(user_kakao_identifier + " : dao");
+        return session.selectOne(ns+"kakaoUserLogin", user_kakao_identifier);
+    }
+
+    @Override
     public int addUser(UserDto dto) {
         return session.insert(ns + "addUser", dto);
     }
 
+    @Override
+    public int getKakaoId(String user_kakao_identifier) {
+        int a = session.selectOne(ns + "getKakaoId", user_kakao_identifier);
+        return a;
+
+    }
     @Override
     public int getSellerId(String seller_id) {
         return session.selectOne(ns + "getSellerId", seller_id);
@@ -44,4 +56,5 @@ public class UserDaoImpl implements UserDao {
     public SellerDto sellerLogin(SellerDto dto) {
         return session.selectOne(ns + "sellerLogin", dto);
     }
+
 }

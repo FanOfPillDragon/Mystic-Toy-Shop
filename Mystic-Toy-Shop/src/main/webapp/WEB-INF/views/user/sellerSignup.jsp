@@ -7,27 +7,160 @@
     <title>sellerSignup</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+        #container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loginBox {
+            width: 500px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            width: 420px;
+            text-align: left;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .inputSet {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .inputSet input {
+            padding-left: 20px;
+            margin-bottom: 10px;
+            width: 420px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .confirmWarp {
+            margin-bottom: 10px;
+        }
+
+        .checkEmail{
+            width: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .checkEmail button{
+            align-self: end;
+            margin-bottom: 10px;
+            border: none;
+            background-color: transparent;
+            color: #999;
+        }
+
+        .searchAddress{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .searchAddress button{
+            align-self: end;
+            margin-bottom: 10px;
+            border: none;
+            background-color: transparent;
+            color: #999;
+        }
+
+        #submitBtn {
+            width: 420px;
+            height: 52px;
+            color: white;
+            background-color: #EF2A23;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 17px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .autoLogin input {
+            width: 18px;
+            height: 18px;
+            background-color: #EF2A23;
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
-<h1>sellerSignup</h1>
-<form id="sellerSignup" action="<%=request.getContextPath() %>/addSeller.do" method="post">
-    이메일 : <input type="text" id="seller_email" name="seller_email"> <br>
-    <p id="idCheck" style="font-size: 8px"></p>
-    <input type="button" id="idBtn" value="이메일 확인">
-    비밀번호 : <input type="password" id="seller_password" name="seller_password" onchange="changePw"> <br>
-    <p id="pwCheck" style="font-size: 8px"></p>
-    이름 : <input type="text" id="seller_name" name="seller_name"> <br>
-    핸드폰번호: <input type="text" id="seller_phone" name="seller_phone"> <br>
-    회사이름 : <input type="text" id="seller_company_name" name="seller_company_name"> <br>
-    회사번호 : <input type="text" id="seller_company_number" name="seller_company_number"> <br>
-    우편번호 : <input id="seller_zipcode" name="seller_zipcode" type="text" placeholder="Zip Code" readonly>
-    회사주소 : <input id="seller_address" name="seller_address" type="text" placeholder="Address" readonly>
-    <button type="button" onclick="findAddr()"> 주소 검색</button>
-    <br>
-    상세주소 : <input type="text" id="seller_detail_address" name="seller_detail_address" placeholder="Detailed Address">
-    사업자번호 : <input type="text" id="seller_business_number" name="seller_business_number"> <br>
-    <button type="button" id="submitBtn">회원가아입</button>
-</form>
+
+<div id="container">
+    <form id="sellerSignup" action="<%=request.getContextPath() %>/addSeller.do" method="post">
+        <div id="loginBox">
+            <div class="title">셀러 회원가입</div>
+            <div class="inputSet login">
+                <div>
+                    <input type="text" id="seller_business_number" name="seller_business_number" placeholder="사업자 번호">
+                </div>
+                    <input type="text" id="seller_email" name="seller_email" placeholder="이메일 아이디">
+                <div class="checkEmail">
+                    <p id="idCheck" style="font-size: 12px; margin-left: 15px"></p>
+                    <button type="button" id="idBtn">이메일 확인</button>
+                </div>
+                <div>
+                    <input type="password" id="seller_password" name="seller_password"
+                           placeholder="8자리 이상 영문+숫자+특수문자 조합">
+                </div>
+                <p id="pwCheck" style="font-size: 12px; width: 420px; padding-left: 15px; display: none; justify-content: start"></p>
+                <div>
+                    <input type="text" id="seller_name" name="seller_name" placeholder="이름">
+                </div>
+                <div>
+                    <input type="text" id="seller_phone" name="seller_phone" placeholder="핸드폰 번호">
+                </div>
+                <div>
+                    <input type="text" id="seller_company_name" name="seller_company_name" placeholder="회사 이름">
+                </div>
+                <div>
+                    <input type="text" id="seller_company_number" name="seller_company_number" placeholder="회사 전화번호">
+                </div>
+                <div class="searchAddress">
+                    <div>
+                        <input id="seller_zipcode" name="seller_zipcode" type="text" placeholder="Zip Code" readonly
+                               placeholder="우편번호">
+                    </div>
+                    <div>
+                        <input id="seller_address" name="seller_address" type="text" placeholder="Address" readonly
+                               placeholder="주소">
+                    </div>
+                    <input type="text" id="seller_detail_address" name="seller_detail_address"
+                           placeholder="Detailed Address" placeholder="상세주소">
+                    <button type="button" onclick="findAddr()"> 주소 검색</button>
+                </div>
+            </div>
+            <div class="confirmWarp">
+                <button type="button" id="submitBtn">회원가입</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 <script type="text/javascript">
     let isSId = false;
@@ -36,6 +169,12 @@
     // id중복 체크
     $(function () {
         $("#idBtn").click(function () {
+            // 아이디가 입력되지 않았을 때
+            if($("#user_email").val().length == 0){
+                $("#idCheck").css("color", "#ff0000");
+                $("#idCheck").html('id를 입력해주세요');
+                return;
+            }
             $.ajax({
                 type: "post",
                 url: "sellerIdCheck.do",
@@ -66,10 +205,12 @@
             let isRightPw = regex.test(e.target.value);
             if (isRightPw) {
                 $("#pwCheck").css("color", "#0000ff");
+                $("#pwCheck").css("display", "inline-block");
                 $("#pwCheck").html('사용할 수 있는 pw 입니다.');
                 isSPw = true;
             } else {
                 $("#pwCheck").css("color", "#ff0000");
+                $("#pwCheck").css("display", "inline-block");
                 $("#pwCheck").html('비밀번호 양식이 일치하지 않습니다');
                 $("#seller_password").val("");
                 isSPw = false;
@@ -136,7 +277,6 @@
             alert("회원가입에 성공하였습니다.");
             sellerSignup.submit()   // 회원가입 성공
         }
-
     })
 </script>
 </body>

@@ -20,5 +20,4 @@ public class SellerDto {
     private String seller_register_date;
     private boolean is_activated;
     private int auth_id;
-
 }
