@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,11 @@ public class MainController {
     AuthService authService;
 
     @GetMapping("/main.do")
-    public String main() {
+    public String main(HttpServletRequest req) {
         log.info("MainController main()");
 
         List<AuthDto> authList = authService.authList();
-
+        req.getSession().setAttribute("userId",1);
 
 //        for (AuthDto dto : list) {
 //            System.out.println(dto.getAuth_role());

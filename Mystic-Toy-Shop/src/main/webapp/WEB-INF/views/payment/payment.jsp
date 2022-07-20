@@ -42,11 +42,11 @@
 </c:forEach>
 <h2>배송 정보</h2>
 <div>
-    <form action="payment.do">
-        받는분 : <input type="text" name="orderName"><br>
-        배송지 : <input type="text" name="orderAddress"><br>
-        전화번호 : <input type="text" name="orderPhone"><br>
-        배송 요청사항 : <input type="text" name="orderComment"><br>
+    <form name="frm" action="payment.do" method="post" onsubmit="return checkForm()">
+        받는분 : <input type="text" name="orderName" id="orderName"><br>
+        배송지 : <input type="text" name="orderAddress" id = "orderAddress"><br>
+        전화번호 : <input type="text" name="orderPhone" id = "orderPhone"><br>
+        배송 요청사항 : <input type="text" name="orderComment" id = "orderComment"><br>
         <h3>총 결제금액</h3>
         <table>
             <tr>
@@ -57,5 +57,13 @@
         <input type="submit" value="주문하기">
     </form>
 </div>
+<script type="text/javascript">
+    function checkForm(){
+        if(frm.orderName.value==""||frm.orderAddress.value==""||frm.orderPhone.value==""||frm.orderComment.value==""){
+            alert("입력해");
+            return false;
+        }
+    }
+</script>
 </body>
 </html>
