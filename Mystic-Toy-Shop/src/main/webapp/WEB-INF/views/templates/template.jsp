@@ -14,6 +14,9 @@
             /*  left: 0;
              bottom: 0;
              width: 100%; */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             margin-top: auto;
             height:50px;
         }
