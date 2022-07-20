@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/userLoginAf.do")
-    public String userLoginAf(HttpServletRequest req, UserDto dto) {
+    public String userLoginAf(HttpServletRequest req, UserDto dto, HttpSession session) {
         log.info("MemberController userLoginAf()");
         UserDto rDto = service.userLogin(dto);
         if (rDto != null) {
@@ -103,7 +103,7 @@ public class UserController {
         SellerDto rDto = service.sellerLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("sellerLogin", rDto);
-            return "main";
+            return "redirect:/main.do";
         } else {
             return "sellerLogin";
         }

@@ -8,6 +8,14 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
+    margin-bottom: 100px;
+}
+
+.emptyContainer{
+    flex-direction: column;
+    justify-content: center !important;
+    height: 260px !important;
 }
 
 .cartBoxContainer{
@@ -42,6 +50,8 @@
 
     position: relative;
     align-items: center;
+
+    margin-bottom: 15px;
 }
 
 .bgColor {
@@ -59,8 +69,7 @@
     border-radius: 10px;
     width: 300px;
     min-width: 300px;
-    height: 385px;
-
+    height: 400px;
 }
 
 .spinnerBox {
@@ -74,11 +83,12 @@
     display: flex;
 }
 
-.disabled {
+.lookDisabled {
     opacity: .25;
 }
 
 .plus {
+    outline: none;
     overflow: hidden;
     text-indent: -99999px;
     -webkit-box-flex: 0;
@@ -91,6 +101,7 @@
 }
 
 .minus {
+    outline: none;
     overflow: hidden;
     text-indent: -99999px;
     -webkit-box-flex: 0;
@@ -284,4 +295,12 @@ input[type=number] {
     border: 1px solid #ddd;
     border-radius: 6px;
     margin-top: 10px;
+}
+
+.cautionBox{
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+    width: 1140px;
+    height: 200px;
 }

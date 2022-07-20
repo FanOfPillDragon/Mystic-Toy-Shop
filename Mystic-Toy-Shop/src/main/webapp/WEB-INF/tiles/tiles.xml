@@ -23,22 +23,22 @@
 
     <definition name="order" extends="main_tile">
         <put-attribute name="title" value="주문"/>
-        <put-attribute name="body" value="/WEB-INF/views/order.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/order.jsp"/>
     </definition>
 
     <definition name="orderdetail" extends="main_tile">
         <put-attribute name="title" value="주문상세"/>
-        <put-attribute name="body" value="/WEB-INF/views/orderdetail.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/orderdetail.jsp"/>
     </definition>
 
     <definition name="orderdate" extends="main_tile">
         <put-attribute name="title" value="주문상세"/>
-        <put-attribute name="body" value="/WEB-INF/views/orderdate.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/orderdate.jsp"/>
     </definition>
 
     <definition name="orderempty" extends="main_tile">
         <put-attribute name="title" value="주문상세"/>
-        <put-attribute name="body" value="/WEB-INF/views/orderempty.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/orderempty.jsp"/>
     </definition>
 
     <definition name="signup" extends="main_tile">
@@ -71,10 +71,10 @@
         <put-attribute name="body" value="/WEB-INF/views/user/sellerSignup.jsp"/>
     </definition>
 
-<!--    <definition name="message" extends="main_tile">
-        <put-attribute name="title" value="메시지"/>
-        <put-attribute name="body" value="/WEB-INF/views/user/sellerSignup.jsp"/>
-    </definition>-->
+    <!--    <definition name="message" extends="main_tile">
+            <put-attribute name="title" value="메시지"/>
+            <put-attribute name="body" value="/WEB-INF/views/user/sellerSignup.jsp"/>
+        </definition>-->
 
     <definition name="cartdetail" extends="main_tile">
         <put-attribute name="title" value="장바구니"/>
@@ -86,4 +86,26 @@
         <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
     </definition>
 
+    <definition name="filewrite" extends="main_tile">
+        <put-attribute name="title" value="파일"/>
+        <put-attribute name="body" value="/WEB-INF/views/file/filewrite.jsp"/>
+    </definition>
+
+    <definition name="payment" extends="main_tile">
+        <put-attribute name="title" value="결제하기"/>
+        <put-attribute name="body" value="/WEB-INF/views/payment/payment.jsp"/>
+    </definition>
+
+
+
+
+
+    <definition name="orderByProduct" extends="main_tile">
+        <put-attribute name="title" value="결제하기"/>
+        <put-attribute name="body" value="/WEB-INF/views/payment/orderByProduct.jsp"/>
+    </definition>
+    <definition name="payMessage" extends="main_tile">
+        <put-attribute name="title" value="결제하기"/>
+        <put-attribute name="body" value="/WEB-INF/views/payment/message.jsp"/>
+    </definition>
 </tiles-definitions>
