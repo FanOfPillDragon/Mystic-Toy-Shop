@@ -20,7 +20,7 @@ public class UserController {
     private Logger log = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
-    UserService service;
+    UserService userservice;
 
     //    회원가입
     @GetMapping("/signup.do")
@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/userLoginAf.do")
     public String userLoginAf(HttpServletRequest req, UserDto dto, HttpSession session) {
         log.info("MemberController userLoginAf()");
-        UserDto rDto = service.userLogin(dto);
+        UserDto rDto = userservice.userLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("userLogin", rDto);
             System.out.println(req.getSession().getAttribute("userLogin"));
@@ -71,17 +71,16 @@ public class UserController {
             return "NONE";
         }
         log.info("MemberController getUserId()");
-        String str = service.getUserId(user_id);
+        String str = userservice.getUserId(user_id);
         return str;
     }
 
     //    유저 회원가입 추가
     @PostMapping("/addUser.do")
     public String addUser(Model model, UserDto dto) {
-        System.out.println(dto.getUser_email());
         log.info("MemberController addUser()");
 
-        boolean b = service.addUser(dto);
+        boolean b = userservice.addUser(dto);
 
         model.addAttribute("msg", b);
         model.addAttribute("process", "login");
@@ -99,7 +98,7 @@ public class UserController {
     @PostMapping("/sellerLoginAf.do")
     public String sellerLoginAf(HttpServletRequest req, SellerDto dto) {
         log.info("MemberController sellerLoginAf()");
-        SellerDto rDto = service.sellerLogin(dto);
+        SellerDto rDto = userservice.sellerLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("sellerLogin", rDto);
             return "redirect:/main.do";
@@ -120,7 +119,7 @@ public class UserController {
     @PostMapping("/sellerIdCheck.do")
     public String getSellerId(String seller_id) {
         log.info("MemberController getSellerId()");
-        String str = service.getSellerId(seller_id);
+        String str = userservice.getSellerId(seller_id);
         return str;
     }
 
@@ -128,7 +127,7 @@ public class UserController {
     @PostMapping("/addSeller.do")
     public String addSeller(Model model, SellerDto dto, HttpServletRequest req) {
         log.info("MemberController addSeller()");
-        boolean b = service.addSeller(dto);
+        boolean b = userservice.addSeller(dto);
 
         model.addAttribute("msg", b);
         model.addAttribute("process", "login");
@@ -139,14 +138,14 @@ public class UserController {
     // kakao
     @RequestMapping(value = "/login_callback.do", method = RequestMethod.GET)
     public String loginCallBack(@RequestParam(value = "code", required = false) String code, Model model, HttpServletRequest req) throws Exception {
-        String access_Token = service.getAccessToken(code);
+        String access_Token = userservice.getAccessToken(code);
 
-        HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
+        HashMap<String, Object> userInfo = userservice.getUserInfo(access_Token);
 
         String user_kakao_identifier = (String) userInfo.get("id");
 
         // 바뀐 값으로 찾아서 데이터 저장하기
-        UserDto rDto = service.kakaoUserLogin(user_kakao_identifier);
+        UserDto rDto = userservice.kakaoUserLogin(user_kakao_identifier);
         if (rDto != null) {
             req.getSession().setAttribute("userLogin", rDto);
             System.out.println(req.getSession().getAttribute("userLogin"));
