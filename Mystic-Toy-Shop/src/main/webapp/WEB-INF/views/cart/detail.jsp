@@ -28,26 +28,35 @@
                             <input type="hidden" id="cart_id" value="${cupDto.cart_id}"/>
                             <input type="hidden" id="user_id" value="${cupDto.user_id}"/>
                             <input type="hidden" id="product_id" value="${cupDto.product_id}"/>
-                            <div class="cartBox p-3">
-                                <div>
-                                    <div class="h4">${cupDto.product_name}</div>
-                                </div>
-
-                                <div>
-                                    <div class="spinnerBox">
-                                        <button type="button" class="btn minus lookDisabled" onclick="minus(${cupDto.cart_id},${cupDto.product_id})">-</button>
-                                        <div class="number">
-                                            <input type="number" class="quantity" id="quantity" name="quantity${cupDto.cart_id}" max="${cupDto.product_stock}" value="${cupDto.cart_quantity}"
-                                                   onchange="updateCartCount(${cupDto.cart_id},${cupDto.product_id})">
-                                            <label for="quantity" class="blind">${cupDto.cart_quantity}</label>
-                                        </div>
-                                        <button type="button" class="btn plus lookDisabled" onclick="plus(${cupDto.cart_id},${cupDto.product_id})">+</button>
+                            <div class="cartBoxBorderContainer">
+                                <div class="cartBox p-3">
+                                    <div>
+                                        <div class="h4">${cupDto.product_name}</div>
                                     </div>
 
+                                    <div>
+                                        <div class="spinnerBox">
+                                            <button type="button" class="btn minus lookDisabled" onclick="minus(${cupDto.cart_id},${cupDto.product_id})">-</button>
+                                            <div class="number">
+                                                <input type="number" class="quantity" id="quantity" name="quantity${cupDto.cart_id}" max="${cupDto.product_stock}" value="${cupDto.cart_quantity}"
+                                                       onchange="updateCartCount(${cupDto.cart_id},${cupDto.product_id})">
+                                                <label for="quantity" class="blind">${cupDto.cart_quantity}</label>
+                                            </div>
+                                            <button type="button" class="btn plus lookDisabled" onclick="plus(${cupDto.cart_id},${cupDto.product_id})">+</button>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <div>${cupDto.product_cost} 원</div>
+                                        <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})"></div>
                                 </div>
-                                <div>
-                                    <div>${cupDto.product_cost} 원</div>
-                                    <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})"></div>
+                                <input type="hidden" name="productCost${cupDto.product_id}" value="${cupDto.product_cost}"/>
+                                <div class="cartFooterContainer">
+                                    <p><span class="point" id="productCost${cupDto.product_id}">${cupDto.product_cost*cupDto.cart_quantity}원</span> + 배송비 2500원 =
+                                        <strong class="onePriceTotal" id="calPrice${cupDto.product_id}">${(cupDto.product_cost*cupDto.cart_quantity)+2500} 원</strong>
+                                    </p>
+                                </div>
+
                             </div>
                         </c:forEach>
                     </c:otherwise>
@@ -80,7 +89,7 @@
 
                 <dl class="totalPrice">
                     <dt>총 <span class="colorPrimary">${fn:length(cartUserProductDtoList)}</span> 건</dt>
-                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary" id="totalPriceAll">${totalPrice} 원</span></dd>
+                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary" id="totalPriceAll">${totalPriceFinal} 원</span></dd>
                 </dl>
 
                 <ul class="cartBtnSet">
@@ -106,6 +115,13 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    // $(function(){
+    //     let price = cartCount * Number($("input[name=" + getPriceClassName + "]").val());
+    //     document.getElementById("productCost" + productId).innerHTML = price + '원';
+    //     document.getElementById("calPrice" + productId).innerHTML = price + 2500 + '원';
+    // });
+
 
     function minus(cartId, productId) {
         let cartClassName = 'quantity' + cartId;
@@ -165,6 +181,8 @@
             'user_id':${sessionScope.userLogin.user_id},
             'product_id': productId
         }
+
+        let getPriceClassName = 'productCost' + productId;
         $.ajax({
             url: '<%=request.getContextPath()%>/cartupdate.do',
             type: 'post',
@@ -173,7 +191,9 @@
                 //$('.won span').text(Number(data.totalPrice) + 2500 + ' 원');
                 document.getElementById("totalPriceOriginal").innerHTML = data.totalPrice + ' 원';
                 document.getElementById("totalPriceAll").innerHTML = Number(data.totalPrice) + 2500 + ' 원';
-
+                let price = cartCount * Number($("input[name=" + getPriceClassName + "]").val());
+                document.getElementById("productCost" + productId).innerHTML = price + '원';
+                document.getElementById("calPrice" + productId).innerHTML = price + 2500 + '원';
             }
         });
     }

@@ -42,7 +42,12 @@ public class CartController {
         List<CartUserProductDto> cartUserProductDtoList = cartService.getCartUserProductDtoByUserId(userId);
 
         model.addAttribute("cartUserProductDtoList", cartUserProductDtoList);
-        model.addAttribute("totalPrice", Utility.getTotalPrice(cartUserProductDtoList));
+        int totalPrice = Utility.getTotalPrice(cartUserProductDtoList);
+        model.addAttribute("totalPrice", totalPrice);
+        if(totalPrice != 0){
+            totalPrice += 2500;
+        }
+        model.addAttribute("totalPriceFinal", totalPrice);
         return "cartdetail";
     }
 
