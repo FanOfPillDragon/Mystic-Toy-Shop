@@ -2,6 +2,7 @@ package lotte.com.toy.dao;
 
 import lotte.com.toy.dto.OrderDateDto;
 import lotte.com.toy.dto.OrderDetailDto;
+import lotte.com.toy.dto.OrderDto;
 import lotte.com.toy.dto.OrderGroupDto;
 
 
@@ -16,4 +17,10 @@ public interface OrderDao {
     List<Integer> findOrderGroupList();
 
     List<Integer> findOrderGroupDateList(OrderDateDto date);
+
+    int insertOrder(OrderDto order);
+
+    int findByLastRowId();
+
+    int findByOrderGroup();
 }

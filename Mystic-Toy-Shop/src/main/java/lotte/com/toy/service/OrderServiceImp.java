@@ -1,16 +1,21 @@
 package lotte.com.toy.service;
 
+import lombok.Getter;
 import lotte.com.toy.dao.OrderDao;
 import lotte.com.toy.dto.OrderDateDto;
 import lotte.com.toy.dto.OrderDetailDto;
 
+import lotte.com.toy.dto.OrderDto;
 import lotte.com.toy.dto.OrderGroupDto;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
+@Getter
 public class OrderServiceImp implements OrderService{
 
     @Autowired
@@ -41,5 +46,23 @@ public class OrderServiceImp implements OrderService{
         return orderDao.findOrderGroupDateList(date);
     }
 
+    @Override
+    public boolean insertOrder(OrderDto order) {
+        int count = orderDao.insertOrder(order);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int findByLastRowId() {
+        return orderDao.findByLastRowId();
+    }
+
+    @Override
+    public int findByOrderGroup() {
+        return orderDao.findByOrderGroup();
+    }
 
 }

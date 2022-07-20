@@ -3,13 +3,14 @@ package lotte.com.toy.dao;
 import lotte.com.toy.dto.OrderDateDto;
 import lotte.com.toy.dto.OrderDetailDto;
 
+import lotte.com.toy.dto.OrderDto;
 import lotte.com.toy.dto.OrderGroupDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
-
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -46,5 +47,20 @@ public class OrderDaoImp implements OrderDao{
     @Override
     public List<Integer> findOrderGroupDateList(OrderDateDto date) {
         return session.selectList(namespace+"findOrderGroupDateList", date);
+    }
+
+    @Override
+    public int insertOrder(OrderDto order) {
+       return session.insert(namespace+"insertOrder",order);
+    }
+
+    @Override
+    public int findByLastRowId() {
+        return session.selectOne(namespace+"findByLastRowId");
+    }
+
+    @Override
+    public int findByOrderGroup() {
+        return session.selectOne(namespace+"findByOrderGroup");
     }
 }
