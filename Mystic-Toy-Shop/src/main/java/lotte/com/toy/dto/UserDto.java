@@ -3,8 +3,11 @@ package lotte.com.toy.dto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
 public class UserDto {
     private int user_id;

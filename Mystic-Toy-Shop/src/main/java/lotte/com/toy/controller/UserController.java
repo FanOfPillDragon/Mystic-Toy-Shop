@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 
 @Controller
@@ -41,12 +42,13 @@ public class UserController {
     }
 
     @PostMapping("/userLoginAf.do")
-    public String userLoginAf(HttpServletRequest req, UserDto dto) {
+    public String userLoginAf(HttpServletRequest req, UserDto dto, HttpSession session) {
         log.info("MemberController userLoginAf()");
         UserDto rDto = service.userLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("login", rDto);
-            return "main";
+            session.setAttribute("login", rDto);
+            return "redirect:/main.do";
         } else {
             return "userLogin";
         }
@@ -95,7 +97,7 @@ public class UserController {
         SellerDto rDto = service.sellerLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("sellerLogin", rDto);
-            return "main";
+            return "redirect:/main.do";
         } else {
             return "sellerLogin";
         }
