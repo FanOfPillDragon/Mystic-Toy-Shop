@@ -64,16 +64,38 @@
             margin: 5px;
         }
 
+        .mid-info{
+            width: 980px;
+            height: 300px;
+            margin-top: 10px;
+
+        }
+        .card2{
+            width: 45%;
+            height: 200px;
+            margin-right: 15px;
+            border: solid 1px;
+            float: left;
+        }
+        .card3{
+            width: 45%;
+            height: 200px;
+            border: solid 1px;
+            float: left;
+        }
+        p.label{
+            margin-left: 5px;
+            text-align: left;
+        }
     </style>
 </head>
 <body style="text-align: center">
 
 <h3>운영현황</h3>
-<div style="text-align: center">
+<div >
     <div class="top-info">
-
         <div class="top1">
-            <p style="text-align: left">판매현황</p>
+            <p class="label">판매현황</p>
             <div class="card-wrap">
                 <div class="card1">
                     <span>판매중</span>
@@ -93,7 +115,7 @@
             </div>
         </div>
         <div class="top2">
-            <p style="text-align: left">배송현황</p>
+            <p class="label">배송현황</p>
             <div class="card-wrap">
                 <div class="card1">
                     <span>배송준비</span>
@@ -113,7 +135,7 @@
             </div>
         </div>
         <div class="top3">
-            <p style="text-align: left">신규</p>
+            <p class="label">신규</p>
             <div class="card-wrap">
                 <div class="card1">
                     <span>신규 주문</span>
@@ -131,6 +153,15 @@
                 <br>
                 <span><%=newReview%></span>
             </div>
+        </div>
+    </div>
+    <div class="mid-info">
+        <div class="card2">
+            <p class="label">리뷰</p>
+        </div>
+        <div class="card3">
+            <p class="label">고객문의</p>
+
         </div>
     </div>
 </div>
