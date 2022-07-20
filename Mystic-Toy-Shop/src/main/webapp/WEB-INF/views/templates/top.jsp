@@ -20,6 +20,7 @@
 
         <a class="navbar-brand" href="<%=request.getContextPath()%>/login.do">로그인</a>
         <a class="navbar-brand" href="<%=request.getContextPath()%>/signup.do">회원가입</a>
+        <a class="navbar-brand" onclick="logout()">로그아웃</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="flex">
@@ -32,9 +33,8 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </nav>
+
 </body>
 </html>

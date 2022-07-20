@@ -137,15 +137,23 @@
             margin-right: 5px;
         }
     </style>
-</head>
-<body>
 
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ page isELIgnored="false" %>
+</head>
+
+<%
+    String user_kakao_identifier = (String) request.getParameter("user_kakao_identifier");
+%>
+<body>
 <div id="container">
     <form id="userSignup" action="<%=request.getContextPath() %>/addUser.do" method="post">
         <div id="loginBox">
             <div class="title">회원가입</div>
             <div class="inputSet login">
                 <input type="text" id="user_email" name="user_email" placeholder="이메일 아이디">
+                <%--카카오아이디--%>
+                <input type="hidden" id="user_kakao_identifier" name="user_kakao_identifier" value=<%=user_kakao_identifier%>>
                 <div class="checkEmail">
                     <p id="idCheck" style="font-size: 12px; margin-left: 15px"></p>
                     <button type="button" id="idBtn">이메일 확인</button>
