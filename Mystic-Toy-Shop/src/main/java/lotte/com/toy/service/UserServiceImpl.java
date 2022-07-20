@@ -174,4 +174,9 @@ public class UserServiceImpl implements UserService {
         System.out.println(count + " service");
         return count;
     }
+
+    @Override
+    public UserDto kakaoUserLogin(String user_kakao_identifier) {
+        return dao.kakaoUserLogin(user_kakao_identifier);
+    }
 }

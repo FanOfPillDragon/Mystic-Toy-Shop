@@ -15,4 +15,5 @@ public interface UserService {
     String getAccessToken (String authorize_code);
     HashMap<String, Object> getUserInfo(String access_Token);
     int getKakaoId (String user_kakao_identifier);
+    UserDto kakaoUserLogin(String user_kakao_identifier);
 }

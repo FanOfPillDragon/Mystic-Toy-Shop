@@ -26,6 +26,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public UserDto kakaoUserLogin(String user_kakao_identifier) {
+        System.out.println(user_kakao_identifier + " : dao");
+        return session.selectOne(ns+"kakaoUserLogin", user_kakao_identifier);
+    }
+
+    @Override
     public int addUser(UserDto dto) {
         System.out.println(dto.getUser_kakao_identifier() + "comen on!!");
         return session.insert(ns + "addUser", dto);

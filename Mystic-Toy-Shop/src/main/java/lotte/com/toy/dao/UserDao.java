@@ -11,4 +11,5 @@ public interface UserDao {
     int addSeller(SellerDto dto);
     SellerDto sellerLogin(SellerDto dto);
     int getKakaoId (String user_kakao_identifier);
+    UserDto kakaoUserLogin(String user_kakao_identifier);
 }
