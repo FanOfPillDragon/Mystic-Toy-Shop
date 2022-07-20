@@ -67,13 +67,20 @@
                     </dl>
                     <dl>
                         <dt>배송비</dt>
-                        <dd>2500 원</dd>
+                        <c:choose>
+                            <c:when test="${empty cartUserProductDtoList}">
+                                <dd>0 원</dd>
+                            </c:when>
+                            <c:otherwise>
+                                <dd>2500 원</dd>
+                            </c:otherwise>
+                        </c:choose>
                     </dl>
                 </div>
 
                 <dl class="totalPrice">
                     <dt>총 <span class="colorPrimary">${fn:length(cartUserProductDtoList)}</span> 건</dt>
-                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary" id="totalPriceAll">${totalPrice+2500} 원</span></dd>
+                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary" id="totalPriceAll">${totalPrice} 원</span></dd>
                 </dl>
 
                 <ul class="cartBtnSet">
