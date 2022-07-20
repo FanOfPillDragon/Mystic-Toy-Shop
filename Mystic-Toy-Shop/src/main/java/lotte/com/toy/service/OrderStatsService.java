@@ -7,13 +7,21 @@ import java.util.Map;
 
 public interface OrderStatsService {
 
+    OrderStatsDto getOrderStatsByDate(int sellerId, String inputDate);
 
-    /**
-     * [집계] 특정 날짜의 결제 금액, 주문상품수량, 주문량
-     * @param sellerId
-     * @param inputDate
-     * @return
-     */
-    List<OrderStatsDto> getOrderStatsListByDate(int sellerId, String inputDate);
+    OrderStatsDto getOrderStatsWeek(int sellerId);
+
+    OrderStatsDto getOrderStatsMonth(int sellerId);
+
+    List<OrderStatsDto> getOrderStatsListWeekly(int sellerId);
+
+    List<OrderStatsDto> getOrderStatsByCatsDate(int sellerId, String inputDate);
+
+    List<OrderStatsDto> getOrderStatsByCatsWeek(int sellerId);
+
+    List<OrderStatsDto> getOrderStatsByCatsMonth(int sellerId);
+
+
+
 
 }
