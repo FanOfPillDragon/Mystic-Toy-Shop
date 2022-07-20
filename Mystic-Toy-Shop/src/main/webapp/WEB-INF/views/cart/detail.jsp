@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>장바구니</title>
-    <link rel="stylesheet" type="text/css" href="/resources/css/cartdetail.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/cartDetail.css">
 </head>
 <body>
 <div class="h3 d-flex justify-content-center my-5">장바구니</div>

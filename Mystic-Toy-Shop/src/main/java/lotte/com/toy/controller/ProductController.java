@@ -42,7 +42,7 @@ public class ProductController {
         log.info("ProductController productDetail()");
 
         ProductResponseDto productResponseDto = productService.getProductByProductId(productId);
-        model.addAttribute("productResponseDtoList",productResponseDto);
+        model.addAttribute("productResponseDto",productResponseDto);
 
         return "productDetail";
     }

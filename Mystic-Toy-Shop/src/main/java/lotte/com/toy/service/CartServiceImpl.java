@@ -45,4 +45,14 @@ public class CartServiceImpl implements CartService {
     public boolean deleteCartByCartId(int cartId) {
         return cartDao.deleteCartByCartId(cartId) > 0;
     }
+
+    @Override
+    public CartDto getCartByCartId(int cartId) {
+        return cartDao.getCartByCartId(cartId);
+    }
+
+    @Override
+    public CartDto getCartByProductIdAndUserId(CartDto cartDto) {
+        return cartDao.getCartByProductIdAndUserId(cartDto);
+    }
 }
