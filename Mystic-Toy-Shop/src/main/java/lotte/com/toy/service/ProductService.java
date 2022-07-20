@@ -1,9 +1,7 @@
 package lotte.com.toy.service;
 
-import lotte.com.toy.dto.ProdcutDto;
-
-import java.util.List;
+import lotte.com.toy.dto.ProductDto;
 
 public interface ProductService {
-    ProdcutDto findByProductId(int productId);
+    ProductDto findByProductId(int productId);
 }

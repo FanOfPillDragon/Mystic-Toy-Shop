@@ -2,10 +2,9 @@ package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.CartDto;
 import lotte.com.toy.dto.CartProductDto;
-import lotte.com.toy.dto.ProdcutDto;
+import lotte.com.toy.dto.ProductDto;
 import lotte.com.toy.dto.UserDto;
 import lotte.com.toy.service.CartService;
-import lotte.com.toy.service.OrderService;
 import lotte.com.toy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,10 +34,10 @@ public class PaymentController {
         UserDto userDto = (UserDto) req.getSession().getAttribute("login");
         int userId = userDto.getUser_id();
         List<CartDto> orderCartList = cartService.getCartListByUserId(userId);
-        List<ProdcutDto> orderProductList = new ArrayList<>();
+        List<ProductDto> orderProductList = new ArrayList<>();
         List<CartProductDto> cartProductList = new ArrayList<>();
         for (CartDto cart : orderCartList) {
-            ProdcutDto product = productService.findByProductId(cart.getProduct_id());
+            ProductDto product = productService.findByProductId(cart.getProduct_id());
             cartProductList.add(new CartProductDto(product.getProduct_img(), product.getProduct_name(), product.getProduct_cost(), cart.getCart_quantity()));
         }
 
@@ -56,7 +55,7 @@ public class PaymentController {
 
     @GetMapping("/orderbyproduct.do")
     public String orderByProductId(Model model, int productId, int quantity) {
-        ProdcutDto prodcutDto = productService.findByProductId(productId);
+        ProductDto prodcutDto = productService.findByProductId(productId);
 
         model.addAttribute("productId", productId);
 

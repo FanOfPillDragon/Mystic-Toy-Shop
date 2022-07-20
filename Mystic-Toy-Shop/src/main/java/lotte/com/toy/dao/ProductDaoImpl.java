@@ -1,11 +1,9 @@
 package lotte.com.toy.dao;
 
-import lotte.com.toy.dto.ProdcutDto;
+import lotte.com.toy.dto.ProductDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class ProductDaoImpl implements ProductDao{
@@ -17,7 +15,7 @@ public class ProductDaoImpl implements ProductDao{
 
 
     @Override
-    public ProdcutDto findByProductId(int productId) {
+    public ProductDto findByProductId(int productId) {
         return session.selectOne(nameSpace+"findByProductId",productId);
     }
 }

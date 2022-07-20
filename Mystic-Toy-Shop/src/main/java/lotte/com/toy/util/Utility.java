@@ -1,7 +1,7 @@
 package lotte.com.toy.util;
 
 import lotte.com.toy.dto.CartUserProductDto;
-import lotte.com.toy.dto.ProdcutDto;
+import lotte.com.toy.dto.ProductDto;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Utility {
         return totalPrice;
     }
 
-    public static int getTotalPriceByProduct(ProdcutDto productDto, int quantity) {
+    public static int getTotalPriceByProduct(ProductDto productDto, int quantity) {
         return productDto.getProduct_cost() * quantity;
     }
 }

@@ -1,6 +1,6 @@
 <%@ page import="lotte.com.toy.dto.CartDto" %>
 <%@ page import="java.util.List" %>
-<%@ page import="lotte.com.toy.dto.ProdcutDto" %>
+<%@ page import="lotte.com.toy.dto.ProductDto" %>
 <%@ page import="lotte.com.toy.dto.CartProductDto" %><%--
   Created by IntelliJ IDEA.
   User: BTC-N06
