@@ -19,43 +19,43 @@ import java.util.HashMap;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDao dao;
+    UserDao userdao;
 
     @Override
     public String getUserId(String user_id) {
-        int count = dao.getUserId(user_id);
+        int count = userdao.getUserId(user_id);
         return count>0?"NO":"YES";
     }
 
     @Override
     public boolean addUser(UserDto dto) {
-        if(dto.getUser_kakao_identifier() == null){
+        if(dto.getUser_kakao_identifier().length() == 4){
             dto.setUser_kakao_identifier("0");
         }
-        int n = dao.addUser(dto);
+        int n = userdao.addUser(dto);
         return n>0?true:false;
     }
 
     @Override
     public UserDto userLogin(UserDto dto) {
-        return dao.userLogin(dto);
+        return userdao.userLogin(dto);
     }
 
     @Override
     public String getSellerId(String seller_id) {
-        int count = dao.getSellerId(seller_id);
+        int count = userdao.getSellerId(seller_id);
         return count>0?"NO":"YES";
     }
 
     @Override
     public boolean addSeller(SellerDto dto) {
-        int n = dao.addSeller(dto);
+        int n = userdao.addSeller(dto);
         return n>0?true:false;
     }
 
     @Override
     public SellerDto sellerLogin(SellerDto dto) {
-        return dao.sellerLogin(dto);
+        return userdao.sellerLogin(dto);
     }
 
     @Override
@@ -170,8 +170,13 @@ public class UserServiceImpl implements UserService {
     public int getKakaoId(String user_kakao_identifier) {
 
         System.out.println(user_kakao_identifier + " service");
-        int count = dao.getKakaoId(user_kakao_identifier);
+        int count = userdao.getKakaoId(user_kakao_identifier);
         System.out.println(count + " service");
         return count;
+    }
+
+    @Override
+    public UserDto kakaoUserLogin(String user_kakao_identifier) {
+        return userdao.kakaoUserLogin(user_kakao_identifier);
     }
 }

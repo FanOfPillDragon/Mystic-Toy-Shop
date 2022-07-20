@@ -162,25 +162,6 @@
     </form>
 </div>
 
-<%--<h1>sellerSignup</h1>
-    이메일 : <input type="text" id="seller_email" name="seller_email"> <br>
-    <p id="idCheck" style="font-size: 8px"></p>
-    <input type="button" id="idBtn" value="이메일 확인">
-    비밀번호 : <input type="password" id="seller_password" name="seller_password" onchange="changePw"> <br>
-    <p id="pwCheck" style="font-size: 8px"></p>
-    이름 : <input type="text" id="seller_name" name="seller_name"> <br>
-    핸드폰번호: <input type="text" id="seller_phone" name="seller_phone"> <br>
-    회사이름 : <input type="text" id="seller_company_name" name="seller_company_name"> <br>
-    회사번호 : <input type="text" id="seller_company_number" name="seller_company_number"> <br>
-    우편번호 : <input id="seller_zipcode" name="seller_zipcode" type="text" placeholder="Zip Code" readonly>
-    회사주소 : <input id="seller_address" name="seller_address" type="text" placeholder="Address" readonly>
-    <button type="button" onclick="findAddr()"> 주소 검색</button>
-    <br>
-    상세주소 : <input type="text" id="seller_detail_address" name="seller_detail_address" placeholder="Detailed Address">
-    사업자번호 : <input type="text" id="seller_business_number" name="seller_business_number"> <br>
-
-</form>--%>
-
 <script type="text/javascript">
     let isSId = false;
     let isSPw = false;

@@ -1,3 +1,4 @@
+/*
 package lotte.com.toy.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -12,3 +13,4 @@ public class WebMvcConfig  implements WebMvcConfigurer {
         registry.addResourceHandler("/mystic_image/**").addResourceLocations("file:///C:/mystic_image/");
     }
 }
+*/

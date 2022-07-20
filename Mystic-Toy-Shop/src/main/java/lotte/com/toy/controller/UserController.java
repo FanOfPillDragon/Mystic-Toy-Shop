@@ -20,7 +20,7 @@ public class UserController {
     private Logger log = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
-    UserService service;
+    UserService userservice;
 
     //    회원가입
     @GetMapping("/signup.do")
@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/userLoginAf.do")
     public String userLoginAf(HttpServletRequest req, UserDto dto, HttpSession session) {
         log.info("MemberController userLoginAf()");
-        UserDto rDto = service.userLogin(dto);
+        UserDto rDto = userservice.userLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("userLogin", rDto);
             System.out.println(req.getSession().getAttribute("userLogin"));
@@ -71,17 +71,16 @@ public class UserController {
             return "NONE";
         }
         log.info("MemberController getUserId()");
-        String str = service.getUserId(user_id);
+        String str = userservice.getUserId(user_id);
         return str;
     }
 
     //    유저 회원가입 추가
     @PostMapping("/addUser.do")
     public String addUser(Model model, UserDto dto) {
-        System.out.println(dto.getUser_email());
         log.info("MemberController addUser()");
 
-        boolean b = service.addUser(dto);
+        boolean b = userservice.addUser(dto);
 
         model.addAttribute("msg", b);
         model.addAttribute("process", "login");
@@ -99,8 +98,7 @@ public class UserController {
     @PostMapping("/sellerLoginAf.do")
     public String sellerLoginAf(HttpServletRequest req, SellerDto dto) {
         log.info("MemberController sellerLoginAf()");
-        System.out.println(dto.getSeller_email() + " " + dto.getSeller_password());
-        SellerDto rDto = service.sellerLogin(dto);
+        SellerDto rDto = userservice.sellerLogin(dto);
         if (rDto != null) {
             req.getSession().setAttribute("sellerLogin", rDto);
             return "redirect:/main.do";
@@ -121,7 +119,7 @@ public class UserController {
     @PostMapping("/sellerIdCheck.do")
     public String getSellerId(String seller_id) {
         log.info("MemberController getSellerId()");
-        String str = service.getSellerId(seller_id);
+        String str = userservice.getSellerId(seller_id);
         return str;
     }
 
@@ -129,7 +127,7 @@ public class UserController {
     @PostMapping("/addSeller.do")
     public String addSeller(Model model, SellerDto dto, HttpServletRequest req) {
         log.info("MemberController addSeller()");
-        boolean b = service.addSeller(dto);
+        boolean b = userservice.addSeller(dto);
 
         model.addAttribute("msg", b);
         model.addAttribute("process", "login");
@@ -139,45 +137,29 @@ public class UserController {
 
     // kakao
     @RequestMapping(value = "/login_callback.do", method = RequestMethod.GET)
-    public String loginCallBack(@RequestParam(value = "code", required = false) String code, Model model) throws Exception {
-        System.out.println("#########" + code);
-        String access_Token = service.getAccessToken(code);
+    public String loginCallBack(@RequestParam(value = "code", required = false) String code, Model model, HttpServletRequest req) throws Exception {
+        String access_Token = userservice.getAccessToken(code);
 
-        HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
-        System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###nickname#### : " + userInfo.get("nickname"));
+        HashMap<String, Object> userInfo = userservice.getUserInfo(access_Token);
 
-        System.out.println(userInfo.get("id"));
         String user_kakao_identifier = (String) userInfo.get("id");
-        int isIn = service.getKakaoId(user_kakao_identifier);
-        System.out.println(isIn + ": isIn ");
-        if(isIn == 0){
-            // 아이디 토큰 같이 넣어주기
-            model.addAttribute("user_kakao_identifier", user_kakao_identifier);
-            return "redirect:/userSignup.do";
-        }
-        else{
-            return "main";
+
+        // 바뀐 값으로 찾아서 데이터 저장하기
+        UserDto rDto = userservice.kakaoUserLogin(user_kakao_identifier);
+        if (rDto != null) {
+            req.getSession().setAttribute("userLogin", rDto);
+            System.out.println(req.getSession().getAttribute("userLogin"));
+            return "redirect:/main.do";
+        } else {
+            return "userSignup.do";
         }
     }
 
     // 로그아웃
     @GetMapping("/logout.do")
     public String logout(HttpServletRequest req) {
-        log.info("MemberController logout()");
-        System.out.println("comein logout!");
-        System.out.println(req.getSession().getAttribute("userLogin"));
-        // 유저 로그아웃
-        if(req.getSession().getAttribute("userLogin")!=null){
-        System.out.println(req.getSession().getAttribute("userLogin"));
-            System.out.println("들어와따!");
-            req.getSession().removeAttribute("userLogin");
-        }
-        // 판매자 로그아웃
-        else if (req.getSession().getAttribute("sellerLogin")!=null) {
-            System.out.println(req.getSession().getAttribute("sellerLogin"));
-            req.getSession().removeAttribute("sellerLogin");
-        }
-        return "main";
+        req.getSession().invalidate();
+
+        return "redirect:/main.do";
     }
 }

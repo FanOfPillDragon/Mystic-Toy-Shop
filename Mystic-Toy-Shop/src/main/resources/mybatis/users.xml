@@ -21,9 +21,16 @@
 <!--    사용자 로그인-->
     <select id="userLogin" parameterType="lotte.com.toy.dto.UserDto"
             resultType="lotte.com.toy.dto.UserDto">
-        select user_id, user_name, user_email
+        select user_id, user_email, user_password, user_name, user_zipcode, user_address, user_phone, user_gender, user_register_date, user_kakao_identifier, is_activated, auth_id
         from users
         where user_email=#{user_email} and user_password=#{user_password}
+    </select>
+
+<!--    카카오 로그인-->
+    <select id="kakaoUserLogin" parameterType="String" resultType="lotte.com.toy.dto.UserDto">
+        select user_id, user_email, user_password, user_name, user_zipcode, user_address, user_phone, user_gender, user_register_date, user_kakao_identifier, is_activated, auth_id
+        from users
+        where user_kakao_identifier=#{user_kakao_identifier}
     </select>
 
     <!--    카카오 아이디 체크-->
