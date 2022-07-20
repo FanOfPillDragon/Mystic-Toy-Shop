@@ -2,6 +2,7 @@ package lotte.com.toy.service;
 
 import lotte.com.toy.dto.OrderDateDto;
 import lotte.com.toy.dto.OrderDetailDto;
+import lotte.com.toy.dto.OrderDto;
 import lotte.com.toy.dto.OrderGroupDto;
 
 
@@ -16,4 +17,10 @@ public interface OrderService {
     List<Integer> findOrderGroupList();
 
     List<Integer> findOrderGroupDateList(OrderDateDto date);
+
+    boolean insertOrder(OrderDto order);
+
+    int findByLastRowId();
+
+    int findByOrderGroup();
 }

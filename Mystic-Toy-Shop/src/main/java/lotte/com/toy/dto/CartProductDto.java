@@ -8,6 +8,8 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class CartProductDto {
+    private int userId;
+    private int productId;
     private String productImg;
     private String productName;
     private int productCost;
