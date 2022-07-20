@@ -7,6 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><tiles:getAsString name="title"/></title>
     <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
         body{
             height: 100%;
         }
@@ -16,6 +20,18 @@
              width: 100%; */
             margin-top: auto;
             height:50px;
+        }
+
+        #sidebar-left {
+            width: 15%;
+            height:700px;
+            padding: 5px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            float: left;
+            background-color: #f8f8f8;
+            border: 0px solid #bcbcbc;
+            font-size:10px;
         }
         .body{
             min-height: 750px;

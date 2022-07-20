@@ -7,16 +7,17 @@
 
     <definition name="main_tile" template="/WEB-INF/views/templates/template.jsp">
         <put-attribute name="header" value="/WEB-INF/views/templates/top.jsp"/>
+        <put-attribute name="side" value="/WEB-INF/views/templates/so_sidebar.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/templates/bottom.jsp"/>
     </definition>
 
-<!--    <definition name="main_tile" template="/WEB-INF/views/templates/so_template.jsp">
+    <definition name="so_main_title" template="/WEB-INF/views/templates/so_template.jsp">
         <put-attribute name="header" value="/WEB-INF/views/templates/so_top.jsp"/>
-        <put-attribute name="left" value="/WEB-INF/views/templates/so_sidebar.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
+        <put-attribute name="side" value="/WEB-INF/views/templates/so_sidebar.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/statistics/orderstatistics.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/templates/so_bottom.jsp"/>
-    </definition>-->
+    </definition>
 
     <definition name="main" extends="main_tile">
         <put-attribute name="title" value="메인"/>
@@ -93,7 +94,12 @@
         <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
     </definition>
 
-    <definition name="orderstatistics" extends="main_tile">
+    <definition name="so_main" extends="so_main_title">
+        <put-attribute name="title" value="메인"/>
+        <put-attribute name="body" value="/WEB-INF/views/statistics/dashboard.jsp"/>
+    </definition>
+
+    <definition name="orderstatistics" extends="so_main">
         <put-attribute name="title" value="통계 주문분석"/>
         <put-attribute name="body" value="/WEB-INF/views/statistics/orderstatistics.jsp"/>
     </definition>
