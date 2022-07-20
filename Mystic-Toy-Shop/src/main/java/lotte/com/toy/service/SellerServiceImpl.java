@@ -1,9 +1,13 @@
 package lotte.com.toy.service;
 
 import lotte.com.toy.dao.SellerDao;
+import lotte.com.toy.dto.QnADto;
+import lotte.com.toy.dto.ReviewDto;
 import lotte.com.toy.dto.SellerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SellerServiceImpl implements SellerService {
@@ -49,5 +53,15 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public int newQnAs(String today) {
         return sellerdao.newQnAs(today);
+    }
+
+    @Override
+    public List<ReviewDto> findAllReviews(SellerDto seller) {
+        return sellerdao.findAllReviews(seller);
+    }
+
+    @Override
+    public List<QnADto> findAllQnAs(SellerDto seller) {
+        return sellerdao.findAllQnAs(seller);
     }
 }

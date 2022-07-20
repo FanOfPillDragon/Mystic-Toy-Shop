@@ -78,19 +78,25 @@
     </select>
 
     <!-- 리뷰 불러오기 -->
-    <select id="findAllReviews" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.R">
-        select review_id, review_title, review_writer, review_register_date
+    <select id="findAllReviews" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.ReviewDto">
+        select review_id, review_title, review_writer,review_register_date
         from sellers s
                  join products p on s.seller_id = p.seller_id
                  join reviews r on r.product_id = p.product_id
         where s.seller_id = #{seller_id}
           and ref_id = 0
           and is_deleted = 0
-        order by review_register_date desc;
+        order by review_register_date desc limit 0,5;
     </select>
 
     <!-- QnA 불러오기 -->
-    <select id="findAllQnAs" parameterType="" resultType="">
-
+    <select id="findAllQnAs" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.QnADto">
+        select qna_id, qna_title, qna_writer,qna_register_date
+        from sellers s
+                 join products p on s.seller_id = p.seller_id
+                 join qnas q on q.product_id = p.product_id
+        where s.seller_id = #{seller_id}
+          and is_deleted = 0
+        order by qna_register_date desc limit 0,5;
     </select>
 </mapper>

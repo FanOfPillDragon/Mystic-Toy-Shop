@@ -1,8 +1,6 @@
 package lotte.com.toy.controller;
 
-import lotte.com.toy.dto.CategoryDto;
-import lotte.com.toy.dto.ProductDto;
-import lotte.com.toy.dto.SellerDto;
+import lotte.com.toy.dto.*;
 import lotte.com.toy.service.CategoryService;
 import lotte.com.toy.service.ProductService;
 import lotte.com.toy.service.SellerService;
@@ -116,9 +114,12 @@ public class SellerOfficeController {
         Date now = new Date();
         String today = sdf.format(now);
 
-        int newOrder = sellerservice.newOrders(today);
-        int newReview = sellerservice.newReviews(today);
-        int newQnA = sellerservice.newQnAs(today);
+        int newOrder = sellerservice.newOrders(today); // 신규 주문
+        int newReview = sellerservice.newReviews(today); // 신규 리뷰
+        int newQnA = sellerservice.newQnAs(today); // 신규 QnA
+
+        List<ReviewDto> reviewList = sellerservice.findAllReviews(seller);
+        List<QnADto> qnaList = sellerservice.findAllQnAs(seller);
 
         JSONObject seller_data = new JSONObject();
         seller_data.put("onSaleProduct", onSaleProduct);
@@ -131,6 +132,8 @@ public class SellerOfficeController {
         seller_data.put("newQnA", newQnA);
 
         model.addAttribute("seller_data", seller_data);
+        model.addAttribute("reviewlist",reviewList);
+        model.addAttribute("qnalist",qnaList);
 
         return "seller_main";
     }

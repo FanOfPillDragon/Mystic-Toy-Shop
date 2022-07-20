@@ -1,6 +1,10 @@
 package lotte.com.toy.service;
 
+import lotte.com.toy.dto.QnADto;
+import lotte.com.toy.dto.ReviewDto;
 import lotte.com.toy.dto.SellerDto;
+
+import java.util.List;
 
 public interface SellerService {
 
@@ -12,4 +16,6 @@ public interface SellerService {
     int newOrders(String today);
     int newReviews(String today);
     int newQnAs(String today);
+    List<ReviewDto> findAllReviews(SellerDto seller);
+    List<QnADto> findAllQnAs(SellerDto seller);
 }
