@@ -7,8 +7,8 @@
         insert into products(product_name, product_info, product_img, product_cost, product_stock, product_sell_count,
                              category_id, seller_id)
 
-        values ('${product_name}', '${product_info}', '${product_img}', ${product_cost}, ${product_stock},
-                ${product_sell_count}, ${category_id}, ${seller_id});
+        values (#{product_name}, #{product_info}, #{product_img}, #{product_cost}, #{product_stock},
+                #{product_sell_count}, #{category_id}, #{seller_id});
     </insert>
     <select id="findByProductId" parameterType="Integer" resultType="lotte.com.toy.dto.ProductDto">
         select product_id,

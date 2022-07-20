@@ -35,6 +35,7 @@ public class SellerServiceImpl implements SellerService {
     public int findCompletedShip(SellerDto seller) {
         return sellerdao.findCompletedShip(seller);
     }
+
     @Override
     public int newOrders(String today) {
         return sellerdao.newOrders(today);

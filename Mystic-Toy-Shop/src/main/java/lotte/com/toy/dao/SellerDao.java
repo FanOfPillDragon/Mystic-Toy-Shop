@@ -1,6 +1,7 @@
 package lotte.com.toy.dao;
 
 import lotte.com.toy.dto.SellerDto;
+import org.apache.ibatis.annotations.Param;
 
 public interface SellerDao {
 

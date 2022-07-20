@@ -10,7 +10,7 @@
         select count(*)
         from sellers s
                  join products p on s.seller_id = p.seller_id
-        where s.seller_id = ${seller_id};
+        where s.seller_id = #{seller_id};
     </select>
 
     <!-- 품절 -->
@@ -18,7 +18,7 @@
         select count(*)
         from sellers s
                  join products p on s.seller_id = p.seller_id
-        where s.seller_id = ${seller_id}
+        where s.seller_id = #{seller_id}
           and p.product_stock = 0;
     </select>
 
@@ -27,7 +27,7 @@
         select count(*)
         from sellers s
                  join products p on s.seller_id = p.seller_id
-        where s.seller_id = ${seller_id}
+        where s.seller_id = #{seller_id}
           and p.product_stock = -1;
     </select>
 
@@ -38,7 +38,7 @@
                  join products p on s.seller_id = p.seller_id
                  join orders o on o.product_id = p.product_id
                  join payments pa on pa.order_id = o.order_id
-        where s.seller_id = ${seller_id}
+        where s.seller_id = #{seller_id}
           and pa.ship_status = 'N';
     </select>
     <!-- 배송완료 -->
@@ -48,33 +48,33 @@
                  join products p on s.seller_id = p.seller_id
                  join orders o on o.product_id = p.product_id
                  join payments pa on pa.order_id = o.order_id
-        where s.seller_id = ${seller_id}
+        where s.seller_id = #{seller_id}
           and pa.ship_status = 'Y';
     </select>
 
     <!-- 신규주문 -->
-    <select id="newOrders" parameterType="String" resultType="Integer">
+    <select id="newOrders" parameterType="string" resultType="Integer">
         select count(*)
         from sellers s
                  join products p on s.seller_id = p.seller_id
                  join orders o on o.product_id = p.product_id
-        where o.order_date like '${today}';
+        where o.order_date like #{today};
     </select>
     <!-- 신규리뷰 -->
-    <select id="newReviews" parameterType="String" resultType="Integer">
+    <select id="newReviews" parameterType="string" resultType="Integer">
         select count(*)
         from sellers s
                  join products p on s.seller_id = p.seller_id
                  join qnas q on q.product_id = p.product_id
-        where q.qna_register_date like '${today}';
+        where q.qna_register_date like #{today};
     </select>
     <!-- 신규QnA-->
-    <select id="newQnAs" parameterType="String" resultType="Integer">
+    <select id="newQnAs" parameterType="string" resultType="Integer">
         select count(*)
         from sellers s
                  join products p on s.seller_id = p.seller_id
                  join reviews r on r.product_id = p.product_id
-        where r.review_register_date like '${today}';
+        where r.review_register_date like #{today};
     </select>
 
 </mapper>
