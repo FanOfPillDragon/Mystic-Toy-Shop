@@ -73,11 +73,8 @@
         <li class="borderLine">
             <div class="lnbTitle">통계</div>
             <ul>
-                <li>
-                    <a href="<%=request.getContextPath()%>/cart.do"> 장바구니 </a>
-
-                </li>
-                <li><a href="#"  class="no-underline">고객현황</a></li>
+                <li><a href="<%=request.getContextPath()%>/orderstats.do"> 판매 분석 </a></li>
+                <li><a href="<%=request.getContextPath()%>/userstats.do"> 고객 현황 </a></li>
             </ul>
         </li>
     </ul>
