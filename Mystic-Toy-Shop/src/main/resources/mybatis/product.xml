@@ -6,9 +6,9 @@
     <insert id="product_write" parameterType="lotte.com.toy.dto.ProductDto">
         insert into products(product_name, product_info, product_img, product_cost, product_stock, product_sell_count,
                              category_id, seller_id)
-        values (${product_name}, ${product_info}, ${product_img}, ${product_cost}, ${product_stock},
-                ${product_sell_count}, ${category_id}, ${seller_id});
 
+        values ('${product_name}', '${product_info}', '${product_img}', ${product_cost}, ${product_stock},
+                ${product_sell_count}, ${category_id}, ${seller_id});
     </insert>
     <select id="findByProductId" parameterType="Integer" resultType="lotte.com.toy.dto.ProductDto">
         select product_id,
@@ -38,8 +38,11 @@
                s.seller_company_number,
                s.seller_email,
                s.seller_address
-        from products p, categories c, sellers s
-        where p.category_id = c.category_id and p.seller_id = s.seller_id
+        from products p,
+             categories c,
+             sellers s
+        where p.category_id = c.category_id
+          and p.seller_id = s.seller_id
     </select>
     <select id="getProductListByCategoryId" parameterType="Integer" resultType="lotte.com.toy.dto.ProductResponseDto">
         select p.product_id,
@@ -56,8 +59,12 @@
                s.seller_company_number,
                s.seller_email,
                s.seller_address
-        from products p, categories c, sellers s
-        where p.category_id = c.category_id and p.seller_id = s.seller_id and p.category_id = #{category_id}
+        from products p,
+             categories c,
+             sellers s
+        where p.category_id = c.category_id
+          and p.seller_id = s.seller_id
+          and p.category_id = #{category_id}
     </select>
     <select id="getProductByProductId" parameterType="Integer" resultType="lotte.com.toy.dto.ProductResponseDto">
         select p.product_id,
@@ -74,7 +81,12 @@
                s.seller_company_number,
                s.seller_email,
                s.seller_address
-        from products p, categories c, sellers s
-        where p.category_id = c.category_id and p.seller_id = s.seller_id and product_id = #{product_id}
+        from products p,
+             categories c,
+             sellers s
+        where p.category_id = c.category_id
+          and p.seller_id = s.seller_id
+          and product_id = #{product_id}
     </select>
+
 </mapper>

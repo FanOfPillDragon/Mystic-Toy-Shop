@@ -10,4 +10,7 @@ public interface ProductService {
     List<ProductResponseDto> getProductList();
     ProductResponseDto getProductByProductId(int productId);
     List<ProductResponseDto> getProductListByCategoryId(int categoryId);
+
+    boolean product_write(ProductDto dto);
+
 }
