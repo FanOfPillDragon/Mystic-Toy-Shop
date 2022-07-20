@@ -49,11 +49,16 @@
                     <script type="text/javascript">
                         (function() {
                             let ship = <c:out value="${order.ship_status}"/>;
+                            let orderId = <c:out value="${order.order_id}"/>;
+                            console.log(orderId+" "+ship);
                             if(ship==0){
                                 $("#shipStatus<c:out value="${order.order_id}"/>").text("구매 미확정");
                             }
                             else{
                                 $("#shipStatus<c:out value="${order.order_id}"/>").text("구매 확정");
+                                let btn = document.createElement('button');
+                                btn.setAttribute('id' , 'reviewBtn');
+                                btn.setAttribute('value' , '리뷰쓰기');
                             }
                         }());
                     </script>
@@ -66,6 +71,7 @@
                 <td rowspan="3">
                     <c:out value="${order.order_total_price}"/>
                     <c:set var="price" value="${order.order_total_price}" />
+
                     <%
                         totalPrice+=(Integer)pageContext.getAttribute("price");
                     %>
