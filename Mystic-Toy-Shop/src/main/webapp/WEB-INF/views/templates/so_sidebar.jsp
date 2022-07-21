@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
@@ -7,6 +6,7 @@
 
 <html>
 <head>
+    <%--<link  href="/resources/css/sb-admin-2.css" rel="stylesheet">--%>
     <style>
         ol, ul {
             list-style: none;
@@ -23,7 +23,7 @@
         }
 
         li {
-        //text-align: -webkit-match-parent;
+            /*//text-align: -webkit-match-parent;*/
             list-style: none;
         }
         .pageTitle {
@@ -48,6 +48,9 @@
             padding-bottom: 14px;
             list-style: none;
         }
+        li > a {
+            font-size: 14px;
+        }
     </style>
     <meta charset="UTF-8">
     <title>사이드 메뉴</title>
@@ -57,7 +60,7 @@
     <h2 class="pageTitle">판매자센터</h2>
 
     <ul>
-        <li>
+        <li class="borderLine">
             <div class="lnbTitle">상품관리</div>
             <ul>
                 <li><a href="<%=request.getContextPath()%>/product_write.do">상품 등록</a></li>
@@ -65,18 +68,22 @@
             </ul>
         </li>
         <li class="borderLine">
-            <div class="lnbTitle">주문관리</div>
-            <ul>
-                <li><a href="#"  class="no-underline">주문 목록 조회</a></li>
-                <li><a href="#"  class="no-underline">배송 관리</a></li>
-            </ul>
+            <div>
+                <div class="lnbTitle">주문관리</div>
+                <ul>
+                    <li><a href="#"  class="no-underline">주문 목록 조회</a></li>
+                    <li><a href="#"  class="no-underline">배송 관리</a></li>
+                </ul>
+            </div>
         </li>
         <li class="borderLine">
-            <div class="lnbTitle">통계</div>
-            <ul>
-                <li><a href="<%=request.getContextPath()%>/orderstats.do"> 판매 분석 </a></li>
-                <li><a href="<%=request.getContextPath()%>/userstats.do"> 고객 현황 </a></li>
-            </ul>
+            <div>
+                <div class="lnbTitle">통계</div>
+                <ul>
+                    <li><a href="<%=request.getContextPath()%>/orderstats.do"> 판매 분석 </a></li>
+                    <li><a href="<%=request.getContextPath()%>/userstats.do"> 고객 현황 </a></li>
+                </ul>
+            </div>
         </li>
     </ul>
 </div>

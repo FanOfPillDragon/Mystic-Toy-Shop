@@ -24,7 +24,7 @@
 
         #sidebar-left {
             width: 15%;
-            height:700px;
+            height:1000px;
             padding: 5px;
             margin-right: 20px;
             margin-bottom: 20px;

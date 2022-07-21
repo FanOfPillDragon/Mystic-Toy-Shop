@@ -73,6 +73,7 @@
     </style>
 </head>
 <body>
+
 <div class="datacontainer">
 <div>
         <c:forEach var="dto" items="${weeklyList}">
@@ -197,7 +198,7 @@
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'pie'
+            type: 'column'
         },
         title: {
             text: '카테고리 별 주간 상품 판매량'
