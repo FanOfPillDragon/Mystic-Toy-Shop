@@ -173,6 +173,10 @@
         <put-attribute name="title" value="QnA등록"/>
         <put-attribute name="body" value="/WEB-INF/views/qna/qna.jsp"/>
     </definition>
+    <definition name="qnalist" extends="main_tile">
+        <put-attribute name="title" value="QnA리스트"/>
+        <put-attribute name="body" value="/WEB-INF/views/qna/qnalist.jsp"/>
+    </definition>
 
 
 </tiles-definitions>
