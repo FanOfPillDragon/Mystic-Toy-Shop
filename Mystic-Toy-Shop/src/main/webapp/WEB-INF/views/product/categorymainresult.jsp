@@ -110,6 +110,7 @@
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         padding-inline-start: 40px;
+        padding: 0;
     }
 
     div {
@@ -239,9 +240,26 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </c:forEach>
-                                </ul>
-                            </div>
+
+                                        <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" class="block">
+                                            <div data-v-7f5dc61d class="info flag">
+                                                <ul data-v-7f5dc61d class="flagArea">
+                                                    <li class="flag" style="border-color: rgb(0, 0, 0); color: rgb(0, 0, 0);">
+                                                        택배배송
+                                                    </li>
+                                                </ul>
+                                                <div data-v-7f5dc61d class="title block-with-text">
+                                                    <strong><c:out value="${productResponseDto.product_name}"/></strong>
+                                                </div>
+                                                <div data-v-7f5dc61d class="price">
+                                                    <strong><c:out value="${productResponseDto.product_cost}"/>원</strong>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>

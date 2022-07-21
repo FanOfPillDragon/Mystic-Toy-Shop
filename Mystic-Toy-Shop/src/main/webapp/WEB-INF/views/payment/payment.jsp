@@ -1,7 +1,8 @@
 <%@ page import="lotte.com.toy.dto.CartDto" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lotte.com.toy.dto.ProductDto" %>
-<%@ page import="lotte.com.toy.dto.CartProductDto" %><%--
+<%@ page import="lotte.com.toy.dto.CartProductDto" %>
+<%@ page import="lotte.com.toy.dto.UserDto" %><%--
   Created by IntelliJ IDEA.
   User: BTC-N06
   Date: 2022-07-19
@@ -14,6 +15,7 @@
 <%@ page isELIgnored="false" %>
 <%
     List<CartProductDto> cartProductList = (List<CartProductDto>) request.getAttribute("orderCartList");
+
     int totalPrice = 0;
     int orderCount = 0;
 %>
@@ -62,15 +64,15 @@
                 <div class="deliveryContentContainer">
                     <div class="mb-3">
                         <label for="orderName" class="mb-2">받는분</label>
-                        <div style="width: 300px;"><input class="form-control" type="text" name="orderName" id="orderName" size="10"/></div>
+                        <div style="width: 300px;"><input class="form-control" type="text" name="orderName" id="orderName" size="10" value="${sessionScope.userLogin.user_name}"/></div>
                     </div>
                     <div class="mb-3">
                         <label for="orderAddress" class="mb-2">배송지</label>
-                        <div class="formLength"><input class="form-control" type="text" name="orderAddress" id="orderAddress"/></div>
+                        <div class="formLength"><input class="form-control" type="text" name="orderAddress" id="orderAddress" value="${sessionScope.userLogin.user_address}"/></div>
                     </div>
                     <div class="mb-3">
                         <label for="orderPhone" class="mb-2">전화번호</label>
-                        <div style="width: 300px;"><input class="form-control" type="text" name="orderPhone" id="orderPhone"/></div>
+                        <div style="width: 300px;"><input class="form-control" type="text" name="orderPhone" id="orderPhone" value="${sessionScope.userLogin.user_phone}"/></div>
                     </div>
                     <div class="mb-3">
                         <label for="orderComment" class="mb-2">배송 요청사항</label>
