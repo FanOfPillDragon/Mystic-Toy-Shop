@@ -34,12 +34,13 @@
                DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-7) DAY), '%Y/%m/%d') as end_date,
                DATE_FORMAT(order_date, '%Y/%m/%d') AS order_date,
                DAYOFWEEK(order_date) as weekday,
+               max(c.category_name)    as category_name,
                count(o.product_id)   as total_orders,
                sum(o.order_total_price) as total_price,
                sum(order_quantity)   as total_quantity
-        from orders o, products p
+        from orders o, products p, categories c
         where p.product_id = o.product_id
-          and p.seller_id =  #{seller_id}
+          and c.category_id = p.product_id
         GROUP BY DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-1) DAY), '%Y/%m/%d'),DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-7) DAY), '%Y/%m/%d'), DATE_FORMAT(order_date, '%Y/%m/%d') ,DAYOFWEEK(order_date)
     </select>
 
@@ -57,6 +58,7 @@
         order by sum(o.order_total_price) desc;
     </select>
 
+    
     <select id="getOrderStatsByCatsWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
         select max(category_name)    as category_name,
                sum(o.order_total_price) as total_price,
@@ -83,5 +85,33 @@
           and date(order_date) >=  DATE_FORMAT(NOW(), '%Y-%m-01')
         group by c.category_id
         order by sum(o.order_total_price) desc;
+    </select>
+    
+    <select id="getMostReviewedCat" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select c.category_name, p.product_img, r.review_cnt
+        from products p,  (select product_id, count(*) as review_cnt from reviews group by product_id) r, categories c
+        where p.product_id = r.product_id
+          and p.category_id = c.category_id
+          and p.seller_id = #{seller_id}
+        order by review_cnt desc
+            limit 5 ;
+    </select>
+
+    <select id="getMostReviewedProduct" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select p.product_id, p.product_img,  p.product_name, r.review_cnt
+        from products p, (select product_id, count(*) as review_cnt from reviews group by product_id) r
+        where p.product_id = r.product_id
+          and p.seller_id = #{seller_id}
+        order by review_cnt desc
+            limit 5 ;
+    </select>
+
+    <select id="getTopRatedProduct" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select p.product_id, p.product_img,  p.product_name, r.review_rate
+        from products p, ( select product_id, cast(avg(review_rate) as signed) as review_rate from reviews group by product_id order by review_rate desc ) r
+        where p.product_id = r.product_id
+          and p.seller_id = #{seller_id}
+        order by review_rate desc
+            limit 5 ;
     </select>
 </mapper>

@@ -19,10 +19,12 @@
         <put-attribute name="footer" value="/WEB-INF/views/templates/so_bottom.jsp"/>
     </definition>
 
+    <!--  seller office part  -->
     <definition name="seller_main" extends="so_main_title">
         <put-attribute name="title" value="seller main"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_main.jsp"/>
     </definition>
+
 
     <definition name="seller_product_list" extends="so_main_title">
         <put-attribute name="title" value="판매상품 조회"/>
@@ -38,7 +40,6 @@
         <put-attribute name="title" value="배송관리"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/clientShipstatus.jsp"/>
     </definition>
-
     <definition name="main" extends="main_tile">
         <put-attribute name="title" value="메인"/>
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
@@ -48,33 +49,46 @@
         <put-attribute name="title" value="상품등록"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/product_write.jsp"/>
     </definition>
-
+    
     <definition name="product_update" extends="main_tile">
         <put-attribute name="title" value="상품수정"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/product_update.jsp"/>
     </definition>
 
 <!--
-    <definition name="order" extends="main_tile">
-        <put-attribute name="title" value="주문"/>
-        <put-attribute name="body" value="/WEB-INF/views/order/order.jsp"/>
+    <definition name="so_main" extends="so_main_title">
+        <put-attribute name="title" value="메인"/>
+        <put-attribute name="body" value="/WEB-INF/views/statistics/dashboard.jsp"/>
+    </definition>
+-->
+
+    <definition name="orderstatistics" extends="seller_main">
+        <put-attribute name="title" value="통계 주문분석"/>
+        <put-attribute name="body" value="/WEB-INF/views/statistics/orderstatistics.jsp"/>
     </definition>
 
-    <definition name="orderdetail" extends="main_tile">
-        <put-attribute name="title" value="주문상세"/>
-        <put-attribute name="body" value="/WEB-INF/views/order/orderdetail.jsp"/>
+    <definition name="customerstatistics" extends="seller_main">
+        <put-attribute name="title" value="통계 사용자 양상"/>
+        <put-attribute name="body" value="/WEB-INF/views/statistics/customerstatistics.jsp"/>
     </definition>
-
-    <definition name="orderdate" extends="main_tile">
-        <put-attribute name="title" value="주문상세"/>
-        <put-attribute name="body" value="/WEB-INF/views/order/orderdate.jsp"/>
-    </definition>
-
-    <definition name="orderempty" extends="main_tile">
-        <put-attribute name="title" value="주문상세"/>
-        <put-attribute name="body" value="/WEB-INF/views/order/orderempty.jsp"/>
-    </definition>
-    -->
+    <!--
+        <definition name="order" extends="main_tile">
+            <put-attribute name="title" value="주문"/>
+            <put-attribute name="body" value="/WEB-INF/views/order/order.jsp"/>
+        </definition>
+        <definition name="orderdetail" extends="main_tile">
+            <put-attribute name="title" value="주문상세"/>
+            <put-attribute name="body" value="/WEB-INF/views/order/orderdetail.jsp"/>
+        </definition>
+        <definition name="orderdate" extends="main_tile">
+            <put-attribute name="title" value="주문상세"/>
+            <put-attribute name="body" value="/WEB-INF/views/order/orderdate.jsp"/>
+        </definition>
+        <definition name="orderempty" extends="main_tile">
+            <put-attribute name="title" value="주문상세"/>
+            <put-attribute name="body" value="/WEB-INF/views/order/orderempty.jsp"/>
+        </definition>
+        -->
     <definition name="order" extends="main_tile">
         <put-attribute name="title" value="주문"/>
         <put-attribute name="body" value="/WEB-INF/views/order/myOrder.jsp"/>
@@ -143,16 +157,6 @@
     <definition name="filedetail" extends="main_tile">
         <put-attribute name="title" value="파일"/>
         <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
-    </definition>
-
-    <definition name="so_main" extends="so_main_title">
-        <put-attribute name="title" value="메인"/>
-        <put-attribute name="body" value="/WEB-INF/views/statistics/dashboard.jsp"/>
-    </definition>
-
-    <definition name="orderstatistics" extends="so_main">
-        <put-attribute name="title" value="통계 주문분석"/>
-        <put-attribute name="body" value="/WEB-INF/views/statistics/orderstatistics.jsp"/>
     </definition>
 
     <definition name="payment" extends="main_tile">

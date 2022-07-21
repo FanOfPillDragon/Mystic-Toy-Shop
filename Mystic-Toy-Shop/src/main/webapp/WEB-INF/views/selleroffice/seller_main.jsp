@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
 <%@ page import="org.json.JSONObject" %>
 <%@ page import="lotte.com.toy.dto.ReviewDto" %>
 <%@ page import="lotte.com.toy.dto.QnADto" %>
@@ -13,6 +12,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     JSONObject jsonObject = (JSONObject) request.getAttribute("seller_data");
     int onSaleProduct = jsonObject.getInt("onSaleProduct"); // 판매중
@@ -61,6 +61,7 @@
     request.setAttribute("jsonData3", json3);
 %>
 
+
 <html>
 <head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -68,236 +69,312 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <title>Title</title>
-    <style type="text/css">
 
-        .top-info {
-            width: 980px;
-            height: 300px;
-            padding: 10px;
-            border: 1px solid;
+    <style>
+        #content-wrapper {
+            background-color: #f8f9fc;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        .shadow {
+            box-shadow: 0 .1rem .5rem rgba(0,0,0,.10)!important;
+        }
+        #wrapper #content-wrapper #content {
+            flex: 1 0 auto;
+        }
+        .border-left-primary {
+            border-left: 0.25rem solid #4e73df!important;
         }
 
-        .top1 {
-            width: 32%;
-            height: 280px;
-            border-right: solid 1px;
-            float: left;
+        .border-left-warning {
+            border-left: 0.25rem solid #d1c4e9!important;
         }
 
-        .top2 {
-            width: 32%;
-            height: 280px;
-            padding-left: 6px;
-            border-right: solid 1px;
-            float: left;
+        .border-left-mint {
+            border-left: 0.25rem solid #6accbc!important;
         }
-
-        .top3 {
-            width: 32%;
-            height: 240px;
-            padding-left: 6px;
-            float: left;
-        }
-
-        .card-wrap {
-            display: flex;
-        }
-
-        .card1 {
-            background-color: #eeeeee;
-            text-align: center;
-            width: 45%;
-            height: 100px;
-            border: solid 1px;
-            border-radius: 1.5em;
-            margin: 5px;
-        }
-
-        .mid-info {
-            width: 980px;
-            height: 200px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .card2 {
-            width: 480px;
-            height: 200px;
-            margin-right: 15px;
-            border: solid 1px;
-            float: left;
-        }
-
-        .card3 {
-            width: 480px;
-            height: 200px;
-            border: solid 1px;
-            float: left;
-        }
-
-        p.label {
-            margin-left: 5px;
-            text-align: left;
-            font-weight: bold;
-        }
-
-        span.label {
-            text-align: left;
-            font-size: 10pt;
-        }
-
-        .num {
-            margin-top: 10px;
-            font-size: 20pt;
-            font-weight: bold;
-        }
-
-        a {
-            all: unset;
-        }
-        .chart-box{
-            width: 480px;
-            height: 425px;
-            margin-right: 10px;
-            border: solid 1px;
-            float: left;
+        .card-header {
+            background-color : #0dacf00d;
         }
     </style>
 </head>
-<body style="text-align: center">
 
-<h3>운영현황</h3>
-<div class="container" >
-    <div class="top-info">
-        <div class="top1">
-            <p class="label">판매현황</p>
-            <div class="card-wrap">
-                <div class="card1">
-                    <span class="label">판매중</span>
-                    <br>
-                    <div class="num">
-                        <span><%=onSaleProduct%></span>
+<body style="text-align: center">
+<div id="content">
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <%--<h1 class="h3 mb-0 text-gray-800">운영 현황</h1>--%>
+        </div>
+        <div class="row">
+
+            <%--판매중--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                    📌 판매중
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=onSaleProduct%>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-                <div class="card1">
-                    <span class="label">품절된 상품</span>
-                    <br>
-                    <div class="num">
-                        <span><%=soldOutProduct%></span>
+            </div>
+            <%--품절된 상품--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                    ❗ 품절된 상품
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=soldOutProduct%>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card1">
-                <span class="label">판매종료</span>
-                <br>
-                <div class="num">
-                    <span><%=endSaleProduct%></span>
+            <%--판매종료--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                    💡 판매종료
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=endSaleProduct%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <%--
+                            <h3 class="h3 mb-0 font-weight-bold text-gray-800">배송현황 </h3>
+            --%>
+
+            <%--배송준비--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                    🚚 배송준비
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=readyToShip%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <%--배송완료--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                    👍 배송완료
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=completedShip%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--반품요청--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                    ❓ 반품요청
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <%--리뷰현황--%>
+        <div class="row">
+            <%--
+                            <h3 class="h3 mb-0 font-weight-bold text-gray-800">신규 </h3>
+            --%>
+
+            <%--신규주문--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-mint shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                    🎉 신규주문
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=newOrder%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <%--신규리뷰--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-mint shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                    💌 신규리뷰
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=newReview%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--신규QnA--%>
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-mint shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                    📃 신규 QnA
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%=newQnA%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-1">
+                        <span>리뷰</span>
+                    </div>
+                    <div class="card-body">
+                        <table style="width: 80%;">
+                            <% for (ReviewDto dto : reviewList) {%>
+                            <colgroup>
+                                <col width="30%">
+                                <col width="50%">
+                                <col width="20%">
+                            </colgroup>
+                            <tr>
+                                <td style="font-size: 11pt"><a
+                                        href="reviewdetail.do?review_id=<%=dto.getReview_id()%>"><%=dto.getReview_title()%>
+                                </a></td>
+                                <td style="font-size: 11pt"><%=dto.getReview_content()%></td>
+                                <td style="font-size: 11pt; text-align: right;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
+                                </td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-1">
+                        <span>고객문의</span>
+                    </div>
+                    <div class="card-body">
+                        <table style="width: 80%;">
+                            <% for (QnADto dto : qnaList) {%>
+                            <colgroup>
+                                <col width="70%">
+                                <col width="30%">
+                            </colgroup>
+                            <tr>
+                                <td style="font-size: 11pt"><a
+                                        href="qnadetail.do?qna_id=<%=dto.getQna_id()%>"><%=dto.getQna_title()%>
+                                </a></td>
+                                <td style="font-size: 8pt; text-align: right; padding-right: 6px;"><%=DateUtil.toYYYYMMDD(dto.getQna_register_date())%>
+                                </td>
+                            </tr>
+                            <%}%>
+                        </table>
+                    </div>
+
+
                 </div>
             </div>
         </div>
-        <div class="top2">
-            <p class="label">배송현황</p>
-            <div class="card-wrap">
-                <div class="card1">
-                    <span class="label">배송준비</span>
-                    <br>
-                    <div class="num">
-                        <span><%=readyToShip%></span>
+
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-1">
+                        <span>카테고리 별 주간 상품 판매 금액</span>
                     </div>
-                </div>
-                <div class="card1">
-                    <span class="label">배송완료</span>
-                    <br>
-                    <div class="num">
-                        <span><%=completedShip%></span>
-                    </div>
-                </div>
-            </div>
-            <div class="card1">
-                <span class="label">반품요청</span>
-                <br>
-                <div class="num">
-                    <span>0</span>
-                </div>
-            </div>
-        </div>
-        <div class="top3">
-            <p class="label">신규</p>
-            <div class="card-wrap">
-                <div class="card1">
-                    <span class="label">신규주문</span>
-                    <br>
-                    <div class="num">
-                        <span><%=newOrder%></span>
-                    </div>
-                </div>
-                <div class="card1">
-                    <span class="label">신규리뷰</span>
-                    <br>
-                    <div class="num">
-                        <span><%=newReview%></span>
+                    <div class="card-body">
+                        <figure class="highcharts-figure">
+                            <div id="container"></div>
+                            <%--<p class="highcharts-description">
+                                카테고리 별 주간 상품 판매 금액 확인할 수 있습니다.
+                            </p>--%>
+                        </figure>
                     </div>
                 </div>
             </div>
-            <div class="card1">
-                <span class="label">신규QnA</span>
-                <br>
-                <div class="num">
-                    <span><%=newQnA%></span>
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-1">
+                        <span>금주 일간 판매량</span>
+                    </div>
+                    <div class="card-body">
+                        <figure class="highcharts-figure">
+                            <div id="container_quan"></div>
+
+                        </figure>
+                    </div>
                 </div>
             </div>
+
         </div>
-    </div>
-    <div class="mid-info">
-        <div class="card2">
-            <p class="label">리뷰</p>
-            <table width="100%">
-                <% for (ReviewDto dto : reviewList) {%>
-                <tr>
-                    <td style="font-size: 11pt"><a
-                            href="reviewdetail.do?review_id=<%=dto.getReview_id()%>"><%=dto.getReview_title()%>
-                    </a></td>
-                    <td style="font-size: 8pt; text-align: right; padding-right: 6px;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
-                    </td>
-                </tr>
-                <%}%>
-            </table>
-        </div>
-        <div class="card3">
-            <p class="label">고객문의</p>
-            <table width="100%">
-                <col width="300">
-                <col width="150">
-                <% for (QnADto dto : qnaList) {%>
-                <tr>
-                    <td style="font-size: 11pt"><a
-                            href="qnadetail.do?qna_id=<%=dto.getQna_id()%>"><%=dto.getQna_title()%>
-                    </a></td>
-                    <td style="font-size: 8pt; text-align: right; padding-right: 6px;"><%=DateUtil.toYYYYMMDD(dto.getQna_register_date())%>
-                    </td>
-                </tr>
-                <%}%>
-            </table>
-        </div>
-    </div>
-    <%--차트 뿌리는 부분--%>
-    <div class="chart-box">
-        <figure class="highcharts-figure">
-            <div id="container"></div>
-            <p class="highcharts-description">
-                카테고리 별 주간 상품 판매 금액 확인할 수 있습니다.
-            </p>
-        </figure>
-    </div>
-    <div class="chart-box">
-        <figure class="highcharts-figure">
-            <div id="container_quan"></div>
-            <p class="highcharts-description">
-                카테고리 별 주간 상품 판매량을 확인할 수 있습니다.
-            </p>
-        </figure>
+
     </div>
 </div>
+
 
 <script type="text/javascript">
     Highcharts.chart('container', {
@@ -309,14 +386,14 @@
         },
         credits: {enabled: false},
         title: {
-            text: '카테고리 별 주간 상품 판매 금액'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         accessibility: {
             point: {
-                valueSuffix: '%'
+                valueSuffix: '개'
             }
         },
         plotOptions: {
@@ -355,7 +432,7 @@
         },
         credits: {enabled: false},
         title: {
-            text: '일별 판매량'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

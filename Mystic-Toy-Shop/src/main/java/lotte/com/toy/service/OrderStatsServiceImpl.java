@@ -59,4 +59,19 @@ public class OrderStatsServiceImpl implements OrderStatsService {
     public List<OrderStatsDto> getOrderStatsByCatsMonth(int sellerId) {
         return orderStatsDao.getOrderStatsByCatsMonth(sellerId);
     }
+
+    @Override
+    public List<OrderStatsDto> getMostReviewedCat(int sellerId) {
+        return orderStatsDao.getMostReviewedCat(sellerId);
+    }
+
+    @Override
+    public List<OrderStatsDto> getMostReviewedProduct(int sellerId) {
+        return orderStatsDao.getMostReviewedProduct(sellerId);
+    }
+
+    @Override
+    public List<OrderStatsDto> getTopRatedProduct(int sellerId) {
+        return orderStatsDao.getTopRatedProduct(sellerId);
+    }
 }

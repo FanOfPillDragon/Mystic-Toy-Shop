@@ -49,4 +49,19 @@ public class OrderStatsDaoImpl implements OrderStatsDao{
     public List<OrderStatsDto> getOrderStatsByCatsMonth(int sellerId) {
         return session.selectList(nameSpace + "getOrderStatsByCatsMonth", sellerId);
     }
+
+    @Override
+    public List<OrderStatsDto> getMostReviewedCat(int sellerId) {
+        return session.selectList(nameSpace + "getMostReviewedCat", sellerId);
+    }
+
+    @Override
+    public List<OrderStatsDto> getMostReviewedProduct(int sellerId) {
+        return session.selectList(nameSpace + "getMostReviewedProduct", sellerId);
+    }
+
+    @Override
+    public List<OrderStatsDto> getTopRatedProduct(int sellerId) {
+        return session.selectList(nameSpace + "getTopRatedProduct", sellerId);
+    }
 }
