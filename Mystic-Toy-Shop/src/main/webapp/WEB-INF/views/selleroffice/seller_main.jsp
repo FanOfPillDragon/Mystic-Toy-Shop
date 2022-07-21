@@ -12,6 +12,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     JSONObject jsonObject = (JSONObject) request.getAttribute("seller_data");
     int onSaleProduct = jsonObject.getInt("onSaleProduct"); // 판매중
@@ -87,6 +88,13 @@
 
         .border-left-warning {
             border-left: 0.25rem solid #d1c4e9!important;
+        }
+
+        .border-left-mint {
+            border-left: 0.25rem solid #6accbc!important;
+        }
+        .card-header {
+            background-color : #0dacf00d;
         }
     </style>
 </head>
@@ -224,7 +232,7 @@
 
             <%--신규주문--%>
             <div class="col-xl-2 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card border-left-mint shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -242,12 +250,12 @@
             </div>
             <%--신규리뷰--%>
             <div class="col-xl-2 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card border-left-mint shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
-                                    ✉ 신규리뷰
+                                    💌 신규리뷰
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <%=newReview%>
@@ -259,12 +267,12 @@
             </div>
             <%--신규QnA--%>
             <div class="col-xl-2 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card border-left-mint shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
-                                    📃 newQnA
+                                    📃 신규 QnA
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <%=newQnA%>
@@ -287,14 +295,16 @@
                         <table style="width: 80%;">
                             <% for (ReviewDto dto : reviewList) {%>
                             <colgroup>
-                                <col width="70%">
                                 <col width="30%">
+                                <col width="50%">
+                                <col width="20%">
                             </colgroup>
                             <tr>
                                 <td style="font-size: 11pt"><a
                                         href="reviewdetail.do?review_id=<%=dto.getReview_id()%>"><%=dto.getReview_title()%>
                                 </a></td>
-                                <td style="font-size: 8pt; text-align: right;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
+                                <td style="font-size: 11pt"><%=substrContents(dto.getReview_content())%></td>
+                                <td style="font-size: 11pt; text-align: right;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
                                 </td>
                             </tr>
                             <%}%>
@@ -451,3 +461,17 @@
 </script>
 </body>
 </html>
+<%!
+    private String substrContents(String str) {
+        String rtnStr = "";
+        if(str == null || str.equals("")) {
+            rtnStr = "내용이 없습니다.";
+        } else if (str.length() < 10) {
+            rtnStr = str;
+        } else {
+            rtnStr = str.substring(0, 16);
+        }
+
+        return rtnStr;
+    }
+%>

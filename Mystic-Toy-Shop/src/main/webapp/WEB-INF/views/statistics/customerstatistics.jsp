@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="lotte.com.toy.dto.OrderStatsDto" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
@@ -30,7 +31,19 @@
       height: 400px;
     }
 
+    .shadow {
+      box-shadow: 0 .1rem .5rem rgba(0,0,0,.10)!important;
+    }
+    #wrapper #content-wrapper #content {
+      flex: 1 0 auto;
+    }
+    .border-left-primary {
+      border-left: 0.25rem solid #4e73df!important;
+    }
 
+    .border-left-warning {
+      border-left: 0.25rem solid #d1c4e9!important;
+    }
     .highcharts-data-table table {
       font-family: Verdana, sans-serif;
       border-collapse: collapse;
@@ -66,30 +79,95 @@
     .highcharts-data-table tr:hover {
       background: #f1f7ff;
     }
+    .card-header {
+      background-color : #0dacf00d;
+    }
     input[type="number"] {
       min-width: 50px;
     }
+
+    td {
+      text-align: center;
+    }
   </style>
 </head>
-<body>
+<body style="text-align: center">
+<div id="content">
+  <div class="container-fluid">
 
-<div class="datacontainer">
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+          <div class="card-header py-1">
+            <span>별점이 높은 상품들</span>
+          </div>
+          <div class="card-body">
+            <figure class="highcharts-figure">
+              <div id="container"></div>
 
-  <div>
-      <h5>가장 리뷰가 많이 달린 상품</h5>
-      <p><strong>${MostReviewedProduct.product_name}</strong></p>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+          <div class="card-header py-1">
+            <span>별점 높은 상품 TOP 5</span>
+          </div>
+          <div class="card-body">
+            <table style="width: 80%;">
+              <colgroup>
+                <col width="40%">
+                <col width="30%">
+                <col width="30%">
+
+              </colgroup>
+              <tr>
+                <th>상품명</th>
+                <th>별점</th>
+                <th>이미지</th>
+              </tr>
+              <c:forEach var="dto" items="${TopRatedProduct}">
+
+              <tr>
+                <td><a
+                        href="/productDetail.do?product_id=${dto.product_id}">${dto.product_name}
+                </a>
+                </td>
+                  <td>
+                    <c:choose>
+                      <c:when test="${dto.review_rate > 0 && dto.review_rate <=1}">💖 (${dto.review_rate}) </c:when>
+                      <c:when test="${dto.review_rate > 1 && dto.review_rate <=2}">💖💖 (${dto.review_rate})</c:when>
+                      <c:when test="${dto.review_rate > 2 && dto.review_rate <=3}">💖💖💖 (${dto.review_rate})</c:when>
+                      <c:when test="${dto.review_rate > 3 && dto.review_rate <=4}">💖💖💖💖 (${dto.review_rate})</c:when>
+                      <c:when test="${dto.review_rate > 4 && dto.review_rate <=5}">💖💖💖💖💖 (${dto.review_rate})</c:when>
+                    </c:choose>
+                  </td>
+                <td>
+                  <img src="${dto.product_img}" style="width:100px">
+                </td>
+
+              </tr>
+              </c:forEach>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%--    <div>
+        <h5>가장 리뷰가 많이 달린 상품</h5>
+        <p><strong>${MostReviewedProduct.product_name}</strong></p>
+      <p style="width: 100px;"><img class="logoArea" src="${MostReviewedProduct.product_img}" alt=""></p>
       <p><strong>${MostReviewedProduct.review_cnt}</strong></p>
+    </div>--%>
+
   </div>
-  <hr>
-  <div>
-    <figure class="highcharts-figure">
-      <div id="container"></div>
-      <p class="highcharts-description">
-       별점이 높은 상품들
-      </p>
-    </figure>
-  </div>
-  <hr>
+</div>
 
   <%
 
@@ -142,6 +220,6 @@
     });
   </script>
 
-</div>
+
 </body>
 </html>
