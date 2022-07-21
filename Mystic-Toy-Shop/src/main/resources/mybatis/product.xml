@@ -88,5 +88,20 @@
           and p.seller_id = s.seller_id
           and product_id = #{product_id}
     </select>
-
+    <select id="getProductListForMain" resultType="lotte.com.toy.dto.ProductResponseDto">
+        select p.product_id,
+               p.product_name,
+               p.product_info,
+               p.product_img,
+               p.product_cost,
+               p.product_stock,
+               p.product_sell_count,
+               p.category_id,
+               c.category_name
+        from products p,
+             categories c
+        where p.category_id = c.category_id
+        order by product_sell_count desc
+        limit 10
+    </select>
 </mapper>

@@ -10,7 +10,7 @@
 <body>
 <div class="container mt-5">
     <div>
-        <c:forEach var="productResponseDto" items="${productResponseDtoList}">
+        <c:forEach var="productResponseDto" items="${mainList}">
             <div>
                 <div>
                     <a href="/productDetail.do?productId=${productResponseDto.product_id}">${productResponseDto.product_name}</a>

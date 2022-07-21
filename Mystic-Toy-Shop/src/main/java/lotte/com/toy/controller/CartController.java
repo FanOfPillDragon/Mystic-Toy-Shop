@@ -35,7 +35,7 @@ public class CartController {
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         if (userDto == null) {
 //            response.sendRedirect("/userLogin.do");
-            return "redirect:/userLogin.do";
+            return "redirect:/login.do";
         }
         int userId = userDto.getUser_id();
 

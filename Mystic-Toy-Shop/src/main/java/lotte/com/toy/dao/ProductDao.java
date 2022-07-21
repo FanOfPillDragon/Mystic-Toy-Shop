@@ -11,4 +11,5 @@ public interface ProductDao {
     ProductResponseDto getProductByProductId(int productId);
     List<ProductResponseDto> getProductListByCategoryId(int categoryId);
     int product_write(ProductDto dto);
+    List<ProductResponseDto> getProductListForMain();
 }
