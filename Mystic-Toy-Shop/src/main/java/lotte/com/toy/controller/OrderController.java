@@ -44,14 +44,12 @@ public class OrderController {
             List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(userId,i));
             for(OrderDetailDto order : orderList){
                 ReviewCheckDto reviewCheck = new ReviewCheckDto(order.getProduct_id(),order.getUser_id());
-
-                ReviewCheckerList.add(reviewService.checkReviewWrite(reviewCheck));
+                order.setReviewCheck(reviewService.checkReviewWrite(reviewCheck));
             }
             list.add(orderList);
         }
 
 
-        model.addAttribute("reviewCheckerList",ReviewCheckerList);
         model.addAttribute("orderList",list);
         model.addAttribute("orderGroupList",orderGroupList);
         return "order";
