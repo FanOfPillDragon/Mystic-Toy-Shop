@@ -30,11 +30,11 @@
                             <input type="hidden" id="product_id" value="${cupDto.product_id}"/>
                             <div class="cartBoxBorderContainer">
                                 <div class="cartBox p-3">
-                                    <div>
+                                    <div class="productName">
                                         <div class="h4">${cupDto.product_name}</div>
                                     </div>
 
-                                    <div>
+                                    <div class="productCount">
                                         <div class="spinnerBox">
                                             <button type="button" class="btn minus lookDisabled" onclick="minus(${cupDto.cart_id},${cupDto.product_id})">-</button>
                                             <div class="number">
@@ -46,9 +46,10 @@
                                         </div>
 
                                     </div>
-                                    <div>
+                                    <div class="cartPrice">
                                         <div>${cupDto.product_cost} 원</div>
-                                        <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})"></div>
+                                    </div>
+                                    <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})">
                                 </div>
                                 <input type="hidden" name="productCost${cupDto.product_id}" value="${cupDto.product_cost}"/>
                                 <div class="cartFooterContainer">
@@ -199,7 +200,10 @@
     }
 
     function goToOrder() {
-        location.href = '<%=request.getContextPath()%>/ordersheet.do';
+        let checkOrder = confirm('상품을 주문하시겠습니까?');
+        if (checkOrder) {
+            location.href = '<%=request.getContextPath()%>/ordersheet.do';
+        }
     }
 
 </script>

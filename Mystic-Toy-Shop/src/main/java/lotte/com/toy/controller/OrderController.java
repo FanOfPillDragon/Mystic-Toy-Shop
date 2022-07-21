@@ -23,12 +23,9 @@ public class OrderController {
 
     @RequestMapping(value = "orderlist.do", method = RequestMethod.GET)
     public String findAllOrder(Model model, HttpServletRequest req){
-        /*
-        로그인 검증 코드 들어가야 함
-         */
+
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         if (userDto == null) {
-//            response.sendRedirect("/userLogin.do");
             return "redirect:/userLogin.do";
         }
 
