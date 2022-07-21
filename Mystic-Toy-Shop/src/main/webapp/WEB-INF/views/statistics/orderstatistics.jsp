@@ -75,6 +75,8 @@
 </head>
 <body>
 
+<div class="row">
+    <div class="col-lg-6">
 <div class="datacontainer">
     <div>
         <figure class="highcharts-figure">
@@ -83,7 +85,10 @@
             </p>
         </figure>
     </div>
-<div>
+</div>
+    </div>
+</div>
+<%--<div>
         <c:forEach var="dto" items="${weeklyList}">
             <div><h5>
             <c:choose>
@@ -104,18 +109,36 @@
 
             <hr>
         </c:forEach>
+</div>--%>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <h5>오늘 가장 많이 팔린 카테고리</h5>
+                <span style="font-size:20px;"><strong>${catToday.category_name}</strong></span>
+                <br>
+                <span>주문수 : ${catToday.total_orders}</span>
+                <span>상품판매량 : ${catToday.total_quantity}</span>
+                <span>결제금액 : ${catToday.total_price}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <h5>이번주 가장 많이 팔린 카테고리</h5>
+                <span style="font-size:20px;"><strong>${catWeek.category_name}</strong></span>
+                <br>
+                <span>주문수 : ${catWeek.total_orders}</span>
+                <span>상품판매량 : ${catWeek.total_quantity}</span>
+                <span>결제금액 : ${catWeek.total_price}</span>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-        <h5>오늘 가장 많이 팔린 카테고리</h5>
-            <span style="font-size:16px;"><strong>${catToday.category_name}</strong></span>
-            <br>
-            <span>주문수 : ${catToday.total_orders}</span>
-            <span>상품판매량 : ${catToday.total_quantity}</span>
-            <span>결제금액 : ${catToday.total_price}</span>
-<hr>
-</div>
-<div>
-    <table>
+<div class="row">
+    <div class="col-lg-8">
+    <table class="table table-hover">
         <h5>주간 판매 분석</h5>
         <tr>
             <th>이번 주 총 주문량</th>
@@ -128,28 +151,35 @@
             <td><strong>${week.total_price}</strong></td>
         </tr>
     </table>
+    </div>
 </div>
-    <hr>
-    <div>
-        <figure class="highcharts-figure">
-            <div id="container"></div>
-            <p class="highcharts-description">
-                카테고리 별 주간 상품 판매 금액 확인할 수 있습니다.
-            </p>
-        </figure>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                <p class="highcharts-description">
+                    카테고리 별 주간 상품 판매 금액 확인할 수 있습니다.
+                </p>
+            </figure>
+        </div>
+
+        <div class="col-lg-4">
+            <div>
+                <figure class="highcharts-figure">
+                    <div id="container_quan"></div>
+                    <p class="highcharts-description">
+                        카테고리 별 주간 상품 판매량을 확인할 수 있습니다.
+                    </p>
+                </figure>
+            </div>
+        </div>
     </div>
-    <hr>
-    <div>
-        <figure class="highcharts-figure">
-            <div id="container_quan"></div>
-            <p class="highcharts-description">
-                카테고리 별 주간 상품 판매량을 확인할 수 있습니다.
-            </p>
-        </figure>
-    </div>
+
+
     <%
 
-        List<OrderStatsDto> list = (List<OrderStatsDto>)request.getAttribute("catWeek");
+        List<OrderStatsDto> list = (List<OrderStatsDto>)request.getAttribute("catWeeks");
         ArrayList<String> category_names = new ArrayList<String>();
         String json = "[";
         String json2 = "[";

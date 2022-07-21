@@ -32,7 +32,7 @@
             margin-block-end: 1em;
             margin-inline-start: 0px;
             margin-inline-end: 0px;
-            /*padding-inline-start: 10px;*/
+            padding-inline-start: 0px;
             list-style: none;
         }
 
@@ -61,9 +61,12 @@
             padding-bottom: 14px;
             list-style: none;
         }
+
         li > a {
             font-size: 14px;
         }
+
+
     </style>
     <meta charset="UTF-8">
     <title>사이드 메뉴</title>
@@ -72,10 +75,12 @@
 <div class="lnbWrap">
     <h2 class="pageTitle">판매자센터</h2>
 
+    <div class="list-group">
     <ul>
         <li class="borderLine">
             <div class="lnbTitle">상품관리</div>
             <ul>
+
                 <li><a href="<%=request.getContextPath()%>/product_write.do">상품 등록</a></li>
                 <li><a href="<%=request.getContextPath()%>/sosalelist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">상품 목록 조회</a></li>
             </ul>
@@ -99,6 +104,7 @@
             </div>
         </li>
     </ul>
+    </div>
 </div>
 
 <%--

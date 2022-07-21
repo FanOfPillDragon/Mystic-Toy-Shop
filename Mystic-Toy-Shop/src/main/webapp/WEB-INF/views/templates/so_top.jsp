@@ -62,14 +62,14 @@
 <!-- 상단 메뉴 -->
 
 <div id="header_section" class="header">
-
     <div style="margin-left: 10px;">
 
         <div id="nav" style="margin-left: 10px;">
             <ul>
-                <li><h3 class="logo">
+                <li><h5 class="logo">
+                    <img class="logoArea" style="width: 120px;" src="resources/images/logo4_trans.png" alt="">
                     <a href="/orderstats.do">판매자센터</a>
-                </h3></li>
+                </h5></li>
                 <li class=""><a href="/main.do">구매자화면</a></li>
                 <li class=""><a href="#">판매자</a></li>
                 <li class=""><a href="#">공지사항</a></li>
