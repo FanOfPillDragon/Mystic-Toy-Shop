@@ -91,8 +91,6 @@ public class SellerOfficeController {
     @PostMapping("/writeAf.do")
     public String write(ProductDto dto, Model model) {
 
-        dto.setSeller_id(1);
-        dto.setProduct_img("temp");
         boolean isSuccess = productService.product_write(dto);
         String msg = "N";
         if (isSuccess) {
