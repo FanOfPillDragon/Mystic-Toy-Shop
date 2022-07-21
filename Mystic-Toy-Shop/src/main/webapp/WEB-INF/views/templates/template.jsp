@@ -27,7 +27,6 @@
     </style>
 </head>
 <body>
-
 <!-- 상단 메뉴 -->
 <tiles:insertAttribute name="header"/>
 <!-- 상단 메뉴 끝 -->

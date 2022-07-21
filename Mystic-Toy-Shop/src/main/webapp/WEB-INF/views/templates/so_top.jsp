@@ -20,17 +20,78 @@
         font-family: 'Noto Sans KR', sans-serif;
     }
 
+    ul, ol {
+        list-style: none;
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .header {
+        position: relative;
+        border-bottom: 1px solid #EEE;
+        background-color: #fff;
+    }
+
+    #nav {
+        width: 980px;
+        margin: 3px auto 0;
+        text-align: center;
+    }
+
+    #nav > ul > li {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    #nav > ul > li > a {
+        display: block;
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 24px;
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+    }
 </style>
 <body>
 <!-- 상단 메뉴 -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
+
+<div id="header_section" class="header">
+
+    <div style="margin-left: 10px;">
+
+        <div id="nav" style="margin-left: 10px;">
+            <ul>
+                <li><h3 class="logo">
+                    <a href="/orderstats.do">판매자센터</a>
+                </h3></li>
+                <li class=""><a href="https://www.lottecinema.co.kr/NLCHS/Ticketing">구매자화면</a></li>
+                <li class=""><a href="https://www.lottecinema.co.kr/NLCHS/Movie">판매자</a></li>
+                <li class=""><a href="#">공지사항</a></li>
+                <li class=""><a href="https://event.lottecinema.co.kr/NLCHS/Event">이벤트</a></li>
+                <li class=""><a href="https://www.lottecinema.co.kr/NLCHS/CinemaMall">로그아웃</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<%--<nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
     <div class="container-fluid">
         <a class="navbar-brand" href="<%=request.getContextPath()%>/main.do">판매자센터</a>
 
-<%--
+&lt;%&ndash;
         <a class="navbar-brand" href="<%=request.getContextPath()%>/login.do">로그인</a>
         <a class="navbar-brand" href="<%=request.getContextPath()%>/signup.do">회원가입</a>
---%>
+&ndash;%&gt;
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="flex">
@@ -46,6 +107,6 @@
 
 
     </div>
-</nav>
+</nav>--%>
 </body>
 </html>

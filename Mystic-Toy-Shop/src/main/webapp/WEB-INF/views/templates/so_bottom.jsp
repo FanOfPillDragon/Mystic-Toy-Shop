@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8"%>
 
 
@@ -257,76 +257,78 @@
 </footer>--%>
 
 <footer id="footer" class="wideArea withSeller toysrus">
-    <div class="footerTopMenu innerContent">
-        <ul>
-            <li>
-                <a href="http://toysrus.lottemart.com/intro/toysrusIntro.do" target="_blank" title="새창">토이저러스 소개</a>
-            </li>
-            <li>
-                <a href="/p/lotteplus/offlinestore/offLineStoreInfo?mall_no=9">지점안내</a>
-            </li>
-            <li>
-                <a href="/common/footerTerms">이용약관</a>
-            </li>
-            <li>
-                <a href="/p/common/footerElectronicFinance">전자금융거래약관</a>
-            </li>
-            <li class="bold">
-                <a href="/common/footerPinfop">개인정보처리방침</a>
-            </li>
-            <li>
-                <a href="/common/footerYth">청소년보호방침</a>
-            </li>
-            <li>
-                <a href="/p/member/lotteGroupStaff/reg">임직원등록</a>
-            </li>
-        </ul>
-        <div class="familySite">
-        </div>
-
-    </div>
-    <hr>
-    <div class="companyInfo innerContent">
-        <h2 class="logoArea toysrus">
-            <img alt="ToysRus" border="0" height="78" hspace="0" src="https://contents.lotteon.com/ec/public/injectImage.20200228113625.1.png">
-        </h2>
-        <div class="infoWrapper">
-            <div class="company">
-                <h3>롯데쇼핑 주식회사</h3>
-                <ul>
-                    <li>대표이사 : 김사무엘상현, 정준호, 강성현</li>
-                    <li>주소 : 서울특별시 송파구 올림픽로 300 롯데월드타워 26층</li>
-                    <li>사업자등록번호 : 529-85-00774(롯데쇼핑(주) e커머스사업부)</li>
-                    <li>통신판매업 신고 : 서울송파 제0158호
-                        <a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=5298500774" target="_blank" title="새창">사업자 정보 확인</a>
-                    </li>
-                    <li>호스팅 서비스사업자 : 롯데쇼핑(주) e커머스사업부</li>
-                </ul>
-                <h4>롯데쇼핑 e커머스 사업부 에스크로</h4>
-                <p>고객님의 안전거래를 위해 현금 등으로 결제 시 결제금액 전액에 대해<br>
-                    소비자 피해 방지 서비스를 이용합니다.</p>
+    <div style="padding-left: 30px;">
+        <div class="footerTopMenu innerContent">
+            <ul>
+                <li>
+                    <a href="http://toysrus.lottemart.com/intro/toysrusIntro.do" target="_blank" title="새창">토이저러스 소개</a>
+                </li>
+                <li>
+                    <a href="/p/lotteplus/offlinestore/offLineStoreInfo?mall_no=9">지점안내</a>
+                </li>
+                <li>
+                    <a href="/common/footerTerms">이용약관</a>
+                </li>
+                <li>
+                    <a href="/p/common/footerElectronicFinance">전자금융거래약관</a>
+                </li>
+                <li class="bold">
+                    <a href="/common/footerPinfop">개인정보처리방침</a>
+                </li>
+                <li>
+                    <a href="/common/footerYth">청소년보호방침</a>
+                </li>
+                <li>
+                    <a href="/p/member/lotteGroupStaff/reg">임직원등록</a>
+                </li>
+            </ul>
+            <div class="familySite">
             </div>
-            <div class="customer">
-                <h3>고객센터 1899-7000(유료)</h3>
-                <div class="stringLine withList" style="margin-bottom: 5px;">
-                    <div class="v-popover">
-                        <div aria-describedby="popover_snw30g5r64" class="trigger" style="display: inline-block;">
-                            <button class="tooltip-target" style="text-indent: 0px; text-decoration: underline; color: rgb(117, 117, 117);">분쟁처리절차</button>
+
+        </div>
+        <hr>
+        <div class="companyInfo innerContent">
+            <h2 class="logoArea toysrus">
+                <img alt="ToysRus" border="0" height="78" hspace="0" src="https://contents.lotteon.com/ec/public/injectImage.20200228113625.1.png">
+            </h2>
+            <div class="infoWrapper">
+                <div class="company">
+                    <h3>롯데쇼핑 주식회사</h3>
+                    <ul>
+                        <li>대표이사 : 김사무엘상현, 정준호, 강성현</li>
+                        <li>주소 : 서울특별시 송파구 올림픽로 300 롯데월드타워 26층</li>
+                        <li>사업자등록번호 : 529-85-00774(롯데쇼핑(주) e커머스사업부)</li>
+                        <li>통신판매업 신고 : 서울송파 제0158호
+                            <a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=5298500774" target="_blank" title="새창">사업자 정보 확인</a>
+                        </li>
+                        <li>호스팅 서비스사업자 : 롯데쇼핑(주) e커머스사업부</li>
+                    </ul>
+                    <h4>롯데쇼핑 e커머스 사업부 에스크로</h4>
+                    <p>고객님의 안전거래를 위해 현금 등으로 결제 시 결제금액 전액에 대해<br>
+                        소비자 피해 방지 서비스를 이용합니다.</p>
+                </div>
+                <div class="customer">
+                    <h3>고객센터 1899-7000(유료)</h3>
+                    <div class="stringLine withList" style="margin-bottom: 5px;">
+                        <div class="v-popover">
+                            <div aria-describedby="popover_snw30g5r64" class="trigger" style="display: inline-block;">
+                                <button class="tooltip-target" style="text-indent: 0px; text-decoration: underline; color: rgb(117, 117, 117);">분쟁처리절차</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="stringLine withList">
-                    <ul class="faqListWrap" style="padding-legt:0px;">
-                        <li><a href="/p/customer/customerCenter/customerFaqFalg/LTON">FAQ 보기</a></li>
-                        <li><a href="/p/customer/customerCenter/customerOneTone">1:1 문의하기</a></li>
-                        <li><a href="/p/customer/customerCenter/customerMain">고객센터</a></li></ul>
-                </div>
-                <h3 style="padding-top: 0;">전자금융거래 분쟁 담당</h3>
-                <div class="stringLine withList">
-                    <p>Tel : 1899-7000(유료)</p>
-                    <p>E-mail : <a href="mailto:lotteon@lotte.net">lotteon@lotte.net</a></p>
-                    <p><a href="/p/trustsafety/main" target="_blank">안전거래센터</a></p>
+                    <div class="stringLine withList">
+                        <ul class="faqListWrap" style="padding-legt:0px;">
+                            <li><a href="/p/customer/customerCenter/customerFaqFalg/LTON">FAQ 보기</a></li>
+                            <li><a href="/p/customer/customerCenter/customerOneTone">1:1 문의하기</a></li>
+                            <li><a href="/p/customer/customerCenter/customerMain">고객센터</a></li></ul>
+                    </div>
+                    <h3 style="padding-top: 0;">전자금융거래 분쟁 담당</h3>
+                    <div class="stringLine withList">
+                        <p>Tel : 1899-7000(유료)</p>
+                        <p>E-mail : <a href="mailto:lotteon@lotte.net">lotteon@lotte.net</a></p>
+                        <p><a href="/p/trustsafety/main" target="_blank">안전거래센터</a></p>
+                    </div>
                 </div>
             </div>
         </div>
