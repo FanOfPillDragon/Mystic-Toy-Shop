@@ -57,7 +57,9 @@ public class StatisticsController {
         model.addAttribute("weeklyList", weeklyList);
 
         model.addAttribute("catToday", catTodayList.get(0));
-        model.addAttribute("catWeek", catWeekList);
+        model.addAttribute("catWeeks", catWeekList);
+        model.addAttribute("catWeek", catWeekList.get(0));
+
         model.addAttribute("catMonth", catMonthList);
 
 

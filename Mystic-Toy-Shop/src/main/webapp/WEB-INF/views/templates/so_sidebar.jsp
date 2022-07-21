@@ -1,8 +1,23 @@
+<%@ page import="lotte.com.toy.dto.SellerDto" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
+<%
+    Object obj = request.getSession().getAttribute("sellerLogin");
+    SellerDto seller = null;
+    if(obj == null){
+        %>
+        <script>
+            alert('비정상적인 접근입니다.');
+            location.href = "<%=request.getContextPath()%>/main.do";
+        </script>
+        <%
+            }
+    seller = (SellerDto)obj;
+%>
 
 <html>
 <head>
@@ -13,12 +28,11 @@
         }
         ul {
             display: block;
-            list-style-type: disc;
             margin-block-start: 1em;
             margin-block-end: 1em;
             margin-inline-start: 0px;
             margin-inline-end: 0px;
-            /*padding-inline-start: 10px;*/
+            padding-inline-start: 0px;
             list-style: none;
         }
 
@@ -30,7 +44,6 @@
             font-size: 20px;
             line-height: 1.39;
             letter-spacing: -1.1px;
-            text-align: left;
             margin-bottom: 0;
             padding: 10px 0 20px;
             text-align: center;
@@ -48,9 +61,12 @@
             padding-bottom: 14px;
             list-style: none;
         }
+
         li > a {
             font-size: 14px;
         }
+
+
     </style>
     <meta charset="UTF-8">
     <title>사이드 메뉴</title>
@@ -59,20 +75,21 @@
 <div class="lnbWrap">
     <h2 class="pageTitle">판매자센터</h2>
 
+    <div class="list-group">
     <ul>
         <li class="borderLine">
             <div class="lnbTitle">상품관리</div>
             <ul>
-                <li><a href="<%=request.getContextPath()%>/product_write.do">상품 등록</a></li>
-                <li><a href="#"  class="no-underline">상품 목록 조회</a></li>
+                <li><a href="<%=request.getContextPath()%>/product_write.do" >상품 등록</a></li>
+                <li><a href="<%=request.getContextPath()%>/sosalelist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">상품 목록 조회</a></li>
             </ul>
         </li>
         <li class="borderLine">
             <div>
                 <div class="lnbTitle">주문관리</div>
                 <ul>
-                    <li><a href="#"  class="no-underline">주문 목록 조회</a></li>
-                    <li><a href="#"  class="no-underline">배송 관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/clientOrderlist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">주문 목록 조회</a></li>
+                    <li><a href="<%=request.getContextPath()%>/clientShipstatus.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">배송 관리</a></li>
                 </ul>
             </div>
         </li>
@@ -86,6 +103,7 @@
             </div>
         </li>
     </ul>
+    </div>
 </div>
 
 <%--

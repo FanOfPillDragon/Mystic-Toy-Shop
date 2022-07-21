@@ -76,6 +76,9 @@
             width: 100%;
             overflow-x: hidden;
         }
+        ul {
+            padding-inline-start: 0px;
+        }
         .shadow {
             box-shadow: 0 .1rem .5rem rgba(0,0,0,.10)!important;
         }
@@ -96,6 +99,19 @@
         .card-header {
             background-color : #0dacf00d;
         }
+        .table>:not(:first-child) {
+            border-top: 0px solid currentColor;
+        }
+
+        .card .read-more:hover{
+            transform:scale(1.08);
+        }
+
+/*        .card:hover{
+            box-shadow: 8px 8px 8px blue;
+            transform:scale(1.08);
+        }*/
+
     </style>
 </head>
 
@@ -107,10 +123,24 @@
         </div>
         <div class="row">
 
+            <div class="col-xl-1 col-md-2 mb-4">
+                <div class="card  h-100 py-2">
+                    <div class="card-body" style="background-color: #4e73df21;">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-uppercase mb-1">
+                                    판매<br>현황
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <%--판매중--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
@@ -128,7 +158,7 @@
             <%--품절된 상품--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
@@ -145,7 +175,7 @@
             <%--판매종료--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
@@ -164,14 +194,24 @@
         </div>
 
         <div class="row">
-            <%--
-                            <h3 class="h3 mb-0 font-weight-bold text-gray-800">배송현황 </h3>
-            --%>
+            <div class="col-xl-1 col-md-2 mb-4">
+                <div class="card  h-100 py-2">
+                    <div class="card-body" style="background-color: #d3c9ec52;">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-uppercase mb-1">
+                                    배송<br>현황
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <%--배송준비--%>
+        <%--배송준비--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -189,7 +229,7 @@
             <%--배송완료--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -206,7 +246,7 @@
             <%--반품요청--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -226,14 +266,24 @@
 
         <%--리뷰현황--%>
         <div class="row">
-            <%--
-                            <h3 class="h3 mb-0 font-weight-bold text-gray-800">신규 </h3>
-            --%>
+            <div class="col-xl-1 col-md-2 mb-4">
+                <div class="card  h-100 py-2">
+                    <div class="card-body" style="background-color: #6accbc1c;">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-uppercase mb-1">
+                                    게시판<br>현황
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <%--신규주문--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-mint shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -251,7 +301,7 @@
             <%--신규리뷰--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-mint shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -268,7 +318,7 @@
             <%--신규QnA--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-mint shadow h-100 py-2">
-                    <div class="card-body">
+                    <div class="card-body read-more">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -292,7 +342,7 @@
                         <span>리뷰</span>
                     </div>
                     <div class="card-body">
-                        <table style="width: 80%;">
+                        <table class= "table table-hover" style="width: 100%;">
                             <% for (ReviewDto dto : reviewList) {%>
                             <colgroup>
                                 <col width="30%">
@@ -318,7 +368,7 @@
                         <span>고객문의</span>
                     </div>
                     <div class="card-body">
-                        <table style="width: 80%;">
+                        <table class="table table-hover" style="width: 100;">
                             <% for (QnADto dto : qnaList) {%>
                             <colgroup>
                                 <col width="70%">
@@ -382,7 +432,7 @@
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'column'
+            type: 'pie'
         },
         credits: {enabled: false},
         title: {
