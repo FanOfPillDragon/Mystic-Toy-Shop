@@ -200,7 +200,10 @@
     }
 
     function goToOrder() {
-        location.href = '<%=request.getContextPath()%>/ordersheet.do';
+        let checkOrder = confirm('상품을 주문하시겠습니까?');
+        if (checkOrder) {
+            location.href = '<%=request.getContextPath()%>/ordersheet.do';
+        }
     }
 
 </script>
