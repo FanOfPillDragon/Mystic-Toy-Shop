@@ -11,5 +11,12 @@ public interface ProductDao {
     ProductResponseDto getProductByProductId(int productId);
     List<ProductResponseDto> getProductListByCategoryId(int categoryId);
     int product_write(ProductDto dto);
+
+    List<ProductResponseDto> findMainList(String productName);
+
+    int updateProductStock(int productId);
+
+    int updateProductSellcount(int productId);
+
     List<ProductResponseDto> getProductListForMain();
 }

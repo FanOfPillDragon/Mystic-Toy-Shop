@@ -1,14 +1,23 @@
-<%@ page import="lotte.com.toy.dto.SellerDto" %>
-<%@ page import="lotte.com.toy.dto.UserDto" %>
+<%@ page import="lotte.com.toy.dto.ProductResponseDto" %>
+<%@ page import="java.util.List" %><%--
+  Created by IntelliJ IDEA.
+  User: BTC-N06
+  Date: 2022-07-21
+  Time: 오후 2:03
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
-
+<%
+    List<ProductResponseDto> findProductByCategoryListList = (List<ProductResponseDto>)request.getAttribute("findProductByCategoryListList");
+%>
 <html>
 <head>
     <title>Title</title>
 </head>
 <style>
+
     .categoryGrid[data-v-9506d5f4] {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -116,7 +125,6 @@
         font-size: 14px;
         line-height: 21px;
     }
-
 </style>
 <body>
 <div data-v-9506d5f4 class="categoryGridWrap">
@@ -192,7 +200,7 @@
                     <div data-v-7f5dc61d class="scroll-wrap dataItem item4">
                         <div data-v-7f5dc61d class="list-wrap">
                             <ul data-v-7f5dc61d>
-                                <c:forEach var="productResponseDto" items="${productResponseDtoList}">
+                                <c:forEach var="productResponseDto" items="${findProductByCategoryListList}">
                                     <div data-v-7f5dc61d class="item">
                                         <div data-v-7f5dc61d class="thumb">
                                             <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" aria-hidden="true" tabindex="-1" class="block">

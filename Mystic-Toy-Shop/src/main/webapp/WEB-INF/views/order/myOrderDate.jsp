@@ -4,6 +4,7 @@
 <%@ page isELIgnored="false" %>
 <%
     int totalPrice = 0;
+    int totalCount = 0;
 %>
 <html>
 <head>
@@ -11,20 +12,19 @@
     <link href="<%=request.getContextPath()%>/css/mypage.css"
           rel="stylesheet">
     <style>
-        img {
-            width: 80px;
-            height: 80px;
-        }
+
     </style>
+    <script src="https://kit.fontawesome.com/079869d0a6.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
-
     <div class="contentWrap">
         <div class="membershipUserWrap">
             <div class="memberInner">
                 <div class="profileWrap">
-                    <button></button>
+                    <button>
+                        <i class="fa-solid fa-user"></i>
+                    </button>
                     <div class="nicknameWrap">
                         <p class="infoWord">쇼핑하기 좋은 날이에요!</p>
                         <div class="nickName">손은성님!</div>
@@ -36,15 +36,15 @@
                             <div>나의 주문내역</div>
                             <div class="contain">
                                 <a>
-                                    <strong>0</strong>
+                                    <strong id="totalCount">0</strong>
                                     <span>개</span>
                                 </a>
                             </div>
                         </li>
                     </ul>
                     <div class="benefit">
-                        <div><strong>첫 구매 우대 -</strong> 적립 5%</div>
-                        <div><strong>첫 구매 우대 -</strong> 20,000원 이상 무료배송</div>
+                        <div><strong>회원 구매 우대 -</strong> 적립 5%</div>
+                        <div><strong>회원 구매 우대 -</strong> 20,000원 이상 무료배송</div>
                     </div>
                 </div>
 
@@ -57,84 +57,87 @@
             <div class="scrollArea">
                 <ul>
                     <li>
-                        <button type="button" style="color: black">주문 내역</button>
-                    </li>
-                    <li>
-                        <button type="button">나의 리뷰</button>
+                        <div style="color: black">주문 내역</div>
                     </li>
                 </ul>
             </div>
-
             <div class="bottomData">
-
-                <h2>주문 내역</h2>
                 <div class="dateBar">
                     <form action="orderDateList.do">
-                        <input type="date" name="startDate">
-                        <input type="date" name="endDate">
-                        <input type="submit" value="검색하기">
+                        <div class="orrderDate">
+                            <input type="date" name="startDate" value="${startDate}">
+                            <input type="date" name="endDate" value="${endDate}">
+                            <input type="submit" class="dateBtn" value="기간검색">
+                        </div>
                     </form>
                 </div>
 
                 <c:forEach var="orderGroup" items="${orderDateGroup}" varStatus="status">
-                    <table border="1">
-                        <c:forEach var="order" items="${dateList[status.index]}">
-                            <tr>
-                                <th>
-                                    <c:out value="${order.order_date}"/>&nbsp;
-                                </th>
-                                <td>
-                                    <c:out value="${order.order_id}"/>
-                                </td>
-                                <td><a href="orderDetail.do?orderId=<c:out value="${order.order_id}"/>">상세보기</a></td>
-                                <td>
-                                    <p id="shipStatus<c:out value="${order.order_id}"/>"></p>
+                    <c:forEach var="order" items="${dateList[status.index]}">
+                        <div style="display: none">
+                        <%= totalCount++%>
+                        </div>
+                        <div class="orderContainer">
+                            <div class="imgWrapper">
+                                <img alt="" src="<c:out value="${order.product_img}"/>">&nbsp;
+                            </div>
+                            <div class="textWrapper">
+                                <div class="title"><c:out value="${order.product_name}"/></div>
+                                <div class="textBottom">
+                                        <%--가격 계산--%>
+                                    <c:set var="price" value="${order.order_total_price}"/>
+                                    <c:set var="quantity" value="${order.order_quantity}"/>
 
-                                    <script type="text/javascript">
-                                        (function() {
-                                            let ship = <c:out value="${order.ship_status}"/>;
-                                            if(ship==0){
-                                                $("#shipStatus<c:out value="${order.order_id}"/>").text("구매 미확정");
-                                            }
-                                            else{
-                                                $("#shipStatus<c:out value="${order.order_id}"/>").text("구매 확정");
-                                            }
-                                        }());
-                                    </script>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <img alt="" src="<c:out value="${order.product_img}"/>">&nbsp;
-                                </th>
-                                <td rowspan="3">
-                                    <c:out value="${order.order_total_price}"/>
-                                    <c:set var="price" value="${order.order_total_price}" />
                                     <%
-                                        totalPrice+=(Integer)pageContext.getAttribute("price");
+                                        totalPrice = (Integer) pageContext.getAttribute("price") * (Integer) pageContext.getAttribute("quantity");
                                     %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><c:out value="${order.product_name}"/></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><c:out value="${order.order_quantity}"/></td>
-                            </tr>
-                        </c:forEach>
-                        <tr>
-                            <th>총 결제금액 : <%=totalPrice%></th>
-                            <%
-                                totalPrice=0;
-                            %>
-                        </tr>
-                    </table>
+                                    <div class="price"><%=totalPrice%>원
+                                    </div>&nbsp;<p>|</p>&nbsp;
+                                    <div class="count"><c:out value="${order.order_quantity}"/>개</div>
+                                </div>
+
+                            </div>
+                            <div class="shipWrapper">
+                                <div id="shipStatus<c:out value="${order.order_id}"/>"
+                                     style="font-size: 20px; font-weight: bold"></div>
+
+                            </div>
+                            <div class="buttonWrapper">
+                                <button type="button" class="detailBtn" onclick="location.href = 'orderDetail.do?orderId=<c:out value="${order.order_id}"/>' ">상세보기</button>
+                                <form id="reviewForm" action="/review.do" method="post">
+                                    <input type="hidden" value="${order.product_img}" name="image">
+                                    <input type="hidden" value="${order.product_name}" name="title">
+                                    <input type="hidden" value="1" name="productId">
+                                    <button type="button" class="reviewBtn" id="reviewBtn<c:out value="${order.order_id}"/>"
+                                            style="display: none" onclick="goReview()">리뷰쓰기
+                                    </button>
+                                </form>
+
+                            </div>
+                            <script type="text/javascript">
+                                (function () {
+                                    let ship = <c:out value="${order.ship_status}"/>;
+                                    if (ship == 0) {
+                                        $("#shipStatus<c:out value="${order.order_id}"/>").text("배송중");
+                                    } else {
+                                        $("#shipStatus<c:out value="${order.order_id}"/>").text("배송완료");
+                                        $("#reviewBtn<c:out value="${order.order_id}"/>").show();
+                                    }
+                                }());
+                                function goReview(){
+                                    const form = document.getElementById("reviewForm");
+                                    form.submit();
+                                }
+                            </script>
+                        </div>
+                    </c:forEach>
                 </c:forEach>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("totalCount").innerText = <%=totalCount%>;
+</script>
 </body>
 </html>

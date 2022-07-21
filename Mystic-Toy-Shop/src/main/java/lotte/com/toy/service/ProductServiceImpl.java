@@ -43,6 +43,27 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductResponseDto> findMainList(String productName) {
+        return productDao.findMainList(productName);
+    }
+
+    @Override
+    public boolean updateProductStock(int productId) {
+        int count =  productDao.updateProductStock(productId);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateProductSellcount(int productId) {
+        int count =  productDao.updateProductSellcount(productId);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
     public List<ProductResponseDto> getProductListForMain() {
         return productDao.getProductListForMain();
     }
