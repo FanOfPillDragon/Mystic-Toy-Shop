@@ -1,6 +1,7 @@
 package lotte.com.toy.service;
 
 import lotte.com.toy.dto.OrderStatsDto;
+import lotte.com.toy.dto.WeeklyStatsDto;
 
 import java.util.List;
 import java.util.Map;
@@ -26,5 +27,7 @@ public interface OrderStatsService {
     List<OrderStatsDto> getMostReviewedProduct(int sellerId);
 
     List<OrderStatsDto> getTopRatedProduct(int sellerId);
+
+    List<WeeklyStatsDto> getWeeklyAll(int sellerId);
 
 }

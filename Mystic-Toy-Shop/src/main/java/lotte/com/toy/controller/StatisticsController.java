@@ -3,6 +3,7 @@ package lotte.com.toy.controller;
 import lotte.com.toy.dao.OrderStatsDao;
 import lotte.com.toy.dto.OrderStatsDto;
 import lotte.com.toy.dto.UserDto;
+import lotte.com.toy.dto.WeeklyStatsDto;
 import lotte.com.toy.service.OrderStatsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class StatisticsController {
     @GetMapping("/orderstats.do")
     public String OrderStatsDetail(HttpServletRequest req, Model model) {
         logger.info("StatisticsController OrderStatsService");
-        System.out.println("StatisticsController OrderStatsService");
+
 
 /*        UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         if (userDto == null) {
@@ -50,6 +51,8 @@ public class StatisticsController {
         List<OrderStatsDto> catWeekList = orderStatsService.getOrderStatsByCatsWeek(sellerId);
         List<OrderStatsDto> catMonthList = orderStatsService.getOrderStatsByCatsMonth(sellerId);
 
+        List<WeeklyStatsDto> weeklyStatsDtoList = orderStatsService.getWeeklyAll(sellerId);
+
         model.addAttribute("today", today);
         model.addAttribute("week", week);
         model.addAttribute("month", month);
@@ -62,6 +65,7 @@ public class StatisticsController {
 
         model.addAttribute("catMonth", catMonthList);
 
+        model.addAttribute("weeklyStatsDtoList", weeklyStatsDtoList);
 
         return "orderstatistics";
     }

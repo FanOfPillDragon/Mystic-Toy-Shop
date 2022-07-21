@@ -2,6 +2,7 @@ package lotte.com.toy.service;
 
 import lotte.com.toy.dao.OrderStatsDao;
 import lotte.com.toy.dto.OrderStatsDto;
+import lotte.com.toy.dto.WeeklyStatsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,5 +74,10 @@ public class OrderStatsServiceImpl implements OrderStatsService {
     @Override
     public List<OrderStatsDto> getTopRatedProduct(int sellerId) {
         return orderStatsDao.getTopRatedProduct(sellerId);
+    }
+
+    @Override
+    public List<WeeklyStatsDto> getWeeklyAll(int sellerId) {
+        return orderStatsDao.getWeeklyAll(sellerId);
     }
 }

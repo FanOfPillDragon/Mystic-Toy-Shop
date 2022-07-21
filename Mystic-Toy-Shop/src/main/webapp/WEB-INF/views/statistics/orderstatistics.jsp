@@ -3,6 +3,7 @@
 <%@ page import="lotte.com.toy.service.FileService" %>
 <%@ page import="lotte.com.toy.dto.OrderStatsDto" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="lotte.com.toy.dto.WeeklyStatsDto" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
@@ -180,25 +181,46 @@
     <%
 
         List<OrderStatsDto> list = (List<OrderStatsDto>)request.getAttribute("catWeeks");
-        ArrayList<String> category_names = new ArrayList<String>();
+        List<WeeklyStatsDto> weeklyList = (List<WeeklyStatsDto>)request.getAttribute("weeklyStatsDtoList");
         String json = "[";
         String json2 = "[";
+        String weeklyData = "[";
+
         for(OrderStatsDto dto : list){
             json += "{ name:'" + dto.getCategory_name() + "', y:" + dto.getTotal_price() + "}, ";
 
             json2 += "{ name:'" + dto.getCategory_name() + "', y:" + dto.getTotal_quantity() + "}, ";
 
-            if (!category_names.contains(dto.getCategory_name())) {
+/*            if (!category_names.contains(dto.getCategory_name())) {
                 category_names.add(dto.getCategory_name());
-            }
+            }*/
+        }
 
+        for(WeeklyStatsDto weekday : weeklyList) {
+            weeklyData += "{ name:'" + weekday.getCategory_name() + "', data: [";
+            weeklyData += weekday.getSun_quantity() +", ";
+            weeklyData += weekday.getMon_quantity() +", ";
+            weeklyData += weekday.getTue_quantity() +", ";
+            weeklyData += weekday.getWed_quantity() +", ";
+            weeklyData += weekday.getThu_quantity() +", ";
+            weeklyData += weekday.getFri_quantity() +", ";
+            weeklyData += weekday.getSat_quantity() +"]}, ";
         }
         json = json.substring(0, json.lastIndexOf(","));
         json += "]";
         json2 = json2.substring(0, json2.lastIndexOf(","));
         json2 += "]";
+        weeklyData = weeklyData.substring(0, weeklyData.lastIndexOf(","));
+        weeklyData += "]";
+        System.out.println(weeklyData);
+        // 전자게임 / 인형놀이
+        /*name: '역할놀이/인형/꾸미기',
+                data: [1, 2, 1, 0, 0,0,1]*/
+
+
         request.setAttribute("jsonData", json);
         request.setAttribute("jsonData2", json2);
+        request.setAttribute("weeklyData", weeklyData);
 
 
 
@@ -302,13 +324,7 @@
                 enableMouseTracking: false
             }
         },
-        series: [{
-            name: '전자게임',
-            data: [0, 2, 5, 3, 0,0,0]
-        }, {
-            name: '역할놀이/인형/꾸미기',
-            data: [1, 2, 1, 0, 0,0,1]
-        }]
+        series: <%=request.getAttribute("weeklyData") %>
     });
 </script>
 
