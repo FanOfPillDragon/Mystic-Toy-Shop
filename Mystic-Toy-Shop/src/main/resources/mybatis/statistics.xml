@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderStats">
+
+    <select id="getOrderStatsByDate" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select sum(o.order_total_price) as total_price, sum(order_quantity) as total_quantity , count(*) as total_orders
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id = #{seller_id}
+          and date(order_date) = #{order_date};
+    </select>
+
+    <select id="getOrderStatsWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select sum(o.order_total_price) as total_price, sum(order_quantity) as total_quantity , count(*) as total_orders
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id = #{seller_id}
+          and order_date between date_add(now(), interval -1 week) and now();
+    </select>
+
+
+    <select id="getOrderStatsMonth" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select sum(o.order_total_price) as total_price, sum(order_quantity) as total_quantity , count(*) as total_orders
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id = #{seller_id}
+          and date(order_date) >=  DATE_FORMAT(NOW(), '%Y-%m-01');
+        </select>
+
+    <select id="getOrderStatsListWeekly" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        SELECT DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-1) DAY), '%Y/%m/%d') as start_date,
+               DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-7) DAY), '%Y/%m/%d') as end_date,
+               DATE_FORMAT(order_date, '%Y/%m/%d') AS order_date,
+               DAYOFWEEK(order_date) as weekday,
+               count(o.product_id)   as total_orders,
+               sum(o.order_total_price) as total_price,
+               sum(order_quantity)   as total_quantity
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id =  #{seller_id}
+        GROUP BY DATE_FORMAT(order_date, '%Y/%m/%d');
+    </select>
+
+    <select id="getOrderStatsByCatsDate" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select max(category_name)    as category_name,
+               sum(o.order_total_price) as total_price,
+               sum(order_quantity)   as total_quantity,
+               count(o.product_id)   as total_orders
+        from orders o, products p, categories c
+        where p.product_id = o.product_id
+          and c.category_id = p.product_id
+          and p.seller_id = #{seller_id}
+          and date(order_date) = #{order_date}
+        group by c.category_id
+        order by sum(o.order_total_price) desc;
+    </select>
+
+    <select id="getOrderStatsByCatsWeek" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select max(category_name)    as category_name,
+               sum(o.order_total_price) as total_price,
+               sum(order_quantity)   as total_quantity,
+               count(o.product_id)   as total_orders
+        from orders o, products p, categories c
+        where p.product_id = o.product_id
+          and c.category_id = p.product_id
+          and p.seller_id = #{seller_id}
+          and order_date between date_add(now(), interval -1 week) and now()
+        group by c.category_id
+        order by sum(o.order_total_price) desc;
+    </select>
+
+    <select id="getOrderStatsByCatsMonth" parameterType="Integer" resultType="lotte.com.toy.dto.OrderStatsDto">
+        select max(category_name)    as category_name,
+               sum(o.order_total_price) as total_price,
+               sum(order_quantity)   as total_quantity,
+               count(o.product_id)   as total_orders
+        from orders o, products p, categories c
+        where p.product_id = o.product_id
+          and c.category_id = p.product_id
+          and p.seller_id = #{seller_id}
+          and date(order_date) >=  DATE_FORMAT(NOW(), '%Y-%m-01')
+        group by c.category_id
+        order by sum(o.order_total_price) desc;
+    </select>
+</mapper>

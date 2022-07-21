@@ -1,7 +1,9 @@
 package lotte.com.toy.dao;
 
+import lotte.com.toy.dto.QnADto;
+import lotte.com.toy.dto.ReviewDto;
 import lotte.com.toy.dto.SellerDto;
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 public interface SellerDao {
 
@@ -13,4 +15,6 @@ public interface SellerDao {
     int newOrders(String today);
     int newReviews(String today);
     int newQnAs(String today);
+    List<ReviewDto> findAllReviews(SellerDto seller);
+    List<QnADto> findAllQnAs(SellerDto seller);
 }

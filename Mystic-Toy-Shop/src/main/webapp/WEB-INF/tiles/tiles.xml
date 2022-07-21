@@ -11,6 +11,13 @@
         <put-attribute name="footer" value="/WEB-INF/views/templates/bottom.jsp"/>
     </definition>
 
+<!--    <definition name="main_tile" template="/WEB-INF/views/templates/so_template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/templates/so_top.jsp"/>
+        <put-attribute name="left" value="/WEB-INF/views/templates/so_sidebar.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/templates/so_bottom.jsp"/>
+    </definition>-->
+
     <definition name="main" extends="main_tile">
         <put-attribute name="title" value="메인"/>
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
@@ -116,19 +123,15 @@
         <put-attribute name="body" value="/WEB-INF/views/file/filedetail.jsp"/>
     </definition>
 
-    <definition name="filewrite" extends="main_tile">
-        <put-attribute name="title" value="파일"/>
-        <put-attribute name="body" value="/WEB-INF/views/file/filewrite.jsp"/>
+    <definition name="orderstatistics" extends="main_tile">
+        <put-attribute name="title" value="통계 주문분석"/>
+        <put-attribute name="body" value="/WEB-INF/views/statistics/orderstatistics.jsp"/>
     </definition>
 
     <definition name="payment" extends="main_tile">
         <put-attribute name="title" value="결제하기"/>
         <put-attribute name="body" value="/WEB-INF/views/payment/payment.jsp"/>
     </definition>
-
-
-
-
 
     <definition name="orderByProduct" extends="main_tile">
         <put-attribute name="title" value="결제하기"/>
