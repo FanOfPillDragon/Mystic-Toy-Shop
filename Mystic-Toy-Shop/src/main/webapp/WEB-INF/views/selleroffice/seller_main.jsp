@@ -303,7 +303,7 @@
                                 <td style="font-size: 11pt"><a
                                         href="reviewdetail.do?review_id=<%=dto.getReview_id()%>"><%=dto.getReview_title()%>
                                 </a></td>
-                                <td style="font-size: 11pt"><%=substrContents(dto.getReview_content())%></td>
+                                <td style="font-size: 11pt"><%=dto.getReview_content()%></td>
                                 <td style="font-size: 11pt; text-align: right;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
                                 </td>
                             </tr>
@@ -461,17 +461,3 @@
 </script>
 </body>
 </html>
-<%!
-    private String substrContents(String str) {
-        String rtnStr = "";
-        if(str == null || str.equals("")) {
-            rtnStr = "내용이 없습니다.";
-        } else if (str.length() < 10) {
-            rtnStr = str;
-        } else {
-            rtnStr = str.substring(0, 16);
-        }
-
-        return rtnStr;
-    }
-%>
