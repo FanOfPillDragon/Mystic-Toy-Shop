@@ -64,20 +64,29 @@ public class PaymentController {
         for (CartDto cart : orderCartList) {
             ProductDto product = productService.findByProductId(cart.getProduct_id());
             OrderDto order = new OrderDto(orderName, orderAddress, orderPhone, orderComment, userId, product.getProduct_id(), cart.getCart_quantity(), product.getProduct_cost(), orderGroup + 1);
-            boolean orderChecker = orderService.insertOrder(order);
+            boolean orderChecker = orderService.insertOrder(order); // 주문 등록
             int orderId = orderService.findByLastRowId();
             PaymentDto payment = new PaymentDto(product.getProduct_id(), orderId, '0');
-            boolean paymentChecker = paymentService.insertPayment(payment);
-            if (!orderChecker && !paymentChecker) {
+            boolean paymentChecker = paymentService.insertPayment(payment); // payment등록
+            boolean updateStockChecker = productService.updateProductStock(product.getProduct_id()); // 재고 업데이트
+            boolean updateSellCountChecker = productService.updateProductSellcount(product.getProduct_id()); // 판매수량 업데이트
+            if (!orderChecker || !paymentChecker || !updateStockChecker || !updateSellCountChecker) {
                 return "redirect:/main.do";
             }
+            cartService.deleteCartByCartId(cart.getCart_id()); // 장바구니 품목 삭제
         }
         return "redirect:/main.do";
     }
 
     @GetMapping("/orderbyproduct.do")
-    public String orderByProductId(Model model, int productId, int quantity) {
+    public String orderByProductId(HttpServletRequest req, Model model, int productId, int quantity) {
         ProductDto productDto = productService.findByProductId(productId);
+
+        UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
+        if (userDto == null) {
+//            response.sendRedirect("/userLogin.do");
+            return "redirect:/userLogin.do";
+        }
 
         model.addAttribute("productId", productId);
 
@@ -105,7 +114,9 @@ public class PaymentController {
         int orderId = orderService.findByLastRowId();
         PaymentDto payment = new PaymentDto(product.getProduct_id(), orderId, '0');
         boolean paymentChecker = paymentService.insertPayment(payment);
-        if (!orderChecker && !paymentChecker) {
+        boolean updateStockChecker = productService.updateProductStock(product.getProduct_id());
+        boolean updateSellCountChecker = productService.updateProductSellcount(product.getProduct_id());
+        if (!orderChecker || !paymentChecker || !updateStockChecker || !updateSellCountChecker) {
             return "redirect:/main.do";
         }
         return "redirect:/main.do";

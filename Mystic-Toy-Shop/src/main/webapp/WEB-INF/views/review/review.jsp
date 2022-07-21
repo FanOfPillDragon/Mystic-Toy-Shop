@@ -116,6 +116,9 @@
             line-height: 18px;
             outline: none;
         }
+
+
+
     </style>
 </head>
 <body>
@@ -143,8 +146,8 @@
                         </li>
                     </ul>
                     <div class="benefit">
-                        <div><strong>첫 구매 우대 -</strong> 적립 5%</div>
-                        <div><strong>첫 구매 우대 -</strong> 20,000원 이상 무료배송</div>
+                        <div><strong>회원 구매 우대 -</strong> 적립 5%</div>
+                        <div><strong>회원 구매 우대 -</strong> 20,000원 이상 무료배송</div>
                     </div>
                 </div>
 
@@ -196,8 +199,15 @@
                             <tr>
                                 <th>평점</th>
                                 <td>
-                                    <input type="hidden" name="reviewRate" value="5">
-                                    ★★★☆☆
+                                    <div id="myform">
+                                        <fieldset>
+                                            <input type="radio" name="reviewRate" value="5" id="rate1"><label for="rate1">⭐</label>
+                                            <input type="radio" name="reviewRate" value="4" id="rate2"><label for="rate2">⭐</label>
+                                            <input type="radio" name="reviewRate" value="3" id="rate3"><label for="rate3">⭐</label>
+                                            <input type="radio" name="reviewRate" value="2" id="rate4"><label for="rate4">⭐</label>
+                                            <input type="radio" name="reviewRate" value="1" id="rate5"><label for="rate5">⭐</label>
+                                        </fieldset>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
@@ -214,7 +224,7 @@
 </div>
 </div>
 <script !src="">
-    function goReviewAf(){
+    function goReviewAf() {
         const form = document.getElementById("reviewForm");
         form.submit();
     }

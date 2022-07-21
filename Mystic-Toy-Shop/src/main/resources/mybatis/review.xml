@@ -12,4 +12,9 @@
         from users u, reviews r
         where u.user_id = r.review_writer and product_id = #{product_id}
     </select>
+    <select id="checkReview" parameterType="lotte.com.toy.dto.ReviewCheckDto" resultType="Integer">
+        select count(*)
+        from reviews
+        where product_id=#{product_id} and review_writer =#{review_writer};
+    </select>
 </mapper>

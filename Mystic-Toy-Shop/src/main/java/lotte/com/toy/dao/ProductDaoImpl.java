@@ -19,17 +19,17 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public ProductDto findByProductId(int productId) {
-        return session.selectOne(nameSpace+"findByProductId",productId);
+        return session.selectOne(nameSpace + "findByProductId", productId);
     }
 
     @Override
     public List<ProductResponseDto> getProductList() {
-        return session.selectList(nameSpace+"getProductList");
+        return session.selectList(nameSpace + "getProductList");
     }
 
     @Override
     public ProductResponseDto getProductByProductId(int productId) {
-        return session.selectOne(nameSpace+"getProductByProductId",productId);
+        return session.selectOne(nameSpace + "getProductByProductId", productId);
     }
 
     @Override
@@ -41,5 +41,24 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public int product_write(ProductDto dto) {
         return session.insert(nameSpace + "product_write", dto);
+    }
+
+    @Override
+    public List<ProductResponseDto> findMainList(String productName) {
+        return session.selectList(nameSpace+"findByProductName",productName);
+    }
+
+    @Override
+    public int updateProductStock(int productId) {
+        return session.update(nameSpace+"updateProductStock",productId);
+    }
+
+    @Override
+    public int updateProductSellcount(int productId) {
+        return session.update(nameSpace+"updateProductSellCount",productId);
+    }
+
+    public List<ProductResponseDto> getProductListForMain() {
+        return session.selectList(nameSpace + "getProductListForMain");
     }
 }

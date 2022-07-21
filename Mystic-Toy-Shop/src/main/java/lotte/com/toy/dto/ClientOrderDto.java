@@ -11,23 +11,22 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @ToString
-public class OrderDetailDto {
+public class ClientOrderDto {
+
+    private int product_id;
+    private String product_name;
+    private String product_img;
+    private int product_cost;
     private int order_id;
-    private int order_group;
-    private int order_total_price;
     private String order_address;
-    private String order_phone;
     private String order_comment;
     private Timestamp order_date;
     private int order_quantity;
+    private int order_total_price;
     private int user_id;
     private String user_name;
-    private String product_name;
-    private String product_info;
-    private String product_img;
-    private int product_cost;
-    private int product_category;
-    private char ship_status;
-    private String seller_company_name;
-    private int product_id;
+    private String user_phone;
+    private String user_zipcode;
+    private int user_gender;
+
 }

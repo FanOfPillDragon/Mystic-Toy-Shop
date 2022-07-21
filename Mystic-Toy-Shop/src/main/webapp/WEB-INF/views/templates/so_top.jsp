@@ -71,10 +71,10 @@
                     <a href="/orderstats.do">판매자센터</a>
                 </h3></li>
                 <li class=""><a href="/main.do">구매자화면</a></li>
-                <li class=""><a href="https://www.lottecinema.co.kr/NLCHS/Movie">판매자</a></li>
+                <li class=""><a href="#">판매자</a></li>
                 <li class=""><a href="#">공지사항</a></li>
-                <li class=""><a href="https://event.lottecinema.co.kr/NLCHS/Event">이벤트</a></li>
-                <li class=""><a href="https://www.lottecinema.co.kr/NLCHS/CinemaMall">로그아웃</a></li>
+                <li class=""><a href="#">이벤트</a></li>
+                <li class=""><a href="/logout.do">로그아웃</a></li>
             </ul>
 
         </div>

@@ -4,6 +4,7 @@
 <%@ page isELIgnored="false" %>
 <%
     int totalPrice = 0;
+    int totalCount = 0;
 %>
 <html>
 <head>
@@ -13,6 +14,7 @@
     <style>
 
     </style>
+    <script src="https://kit.fontawesome.com/079869d0a6.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
@@ -21,10 +23,12 @@
         <div class="membershipUserWrap">
             <div class="memberInner">
                 <div class="profileWrap">
-                    <button></button>
+                    <button>
+                        <i class="fa-solid fa-user"></i>
+                    </button>
                     <div class="nicknameWrap">
                         <p class="infoWord">쇼핑하기 좋은 날이에요!</p>
-                        <div class="nickName">손은성님!</div>
+                        <div class="nickName">${sessionScope.userLogin.user_name}님!</div>
                     </div>
                 </div>
                 <div class="membershipList">
@@ -33,15 +37,15 @@
                             <div>나의 주문내역</div>
                             <div class="contain">
                                 <a>
-                                    <strong>0</strong>
+                                    <strong id="totalCount">0</strong>
                                     <span>개</span>
                                 </a>
                             </div>
                         </li>
                     </ul>
                     <div class="benefit">
-                        <div><strong>첫 구매 우대 -</strong> 적립 5%</div>
-                        <div><strong>첫 구매 우대 -</strong> 20,000원 이상 무료배송</div>
+                        <div><strong>회원 구매 우대 -</strong> 적립 5%</div>
+                        <div><strong>회원 구매 우대 -</strong> 20,000원 이상 무료배송</div>
                     </div>
                 </div>
 
@@ -60,14 +64,18 @@
             </div>
             <div class="dateBar">
                 <form action="orderDateList.do">
-                    <input type="date" name="startDate">
-                    <input type="date" name="endDate">
-                    <input type="submit" value="검색하기">
+                    <div class="orrderDate">
+                        <input type="date" name="startDate">
+                        <input type="date" name="endDate">
+                        <input type="submit" class="dateBtn" value="기간검색">
+                    </div>
                 </form>
             </div>
-
             <c:forEach var="orderGroup" items="${orderGroupList}" varStatus="status">
                 <c:forEach var="order" items="${orderList[status.index]}">
+                    <div style="display: none">
+                        <%= totalCount++%>
+                    </div>
                     <div class="orderContainer">
                         <div class="imgWrapper">
                             <img alt="" src="<c:out value="${order.product_img}"/>">&nbsp;
@@ -94,7 +102,7 @@
 
                         </div>
                         <div class="buttonWrapper">
-                            <button type="button" class="detailBtn">상세보기</button>
+                            <button type="button" class="detailBtn" onclick="location.href = 'orderDetail.do?orderId=<c:out value="${order.order_id}"/>' ">상세보기</button>
                             <form id="reviewForm" action="/review.do" method="post">
                                 <input type="hidden" value="${order.product_img}" name="image">
                                 <input type="hidden" value="${order.product_name}" name="title">
@@ -115,7 +123,8 @@
                                     $("#reviewBtn<c:out value="${order.order_id}"/>").show();
                                 }
                             }());
-                            function goReview(){
+
+                            function goReview() {
                                 const form = document.getElementById("reviewForm");
                                 form.submit();
                             }
@@ -127,5 +136,8 @@
     </div>
 </div>
 </div>
+<script>
+    document.getElementById("totalCount").innerText = <%=totalCount%>;
+</script>
 </body>
 </html>
