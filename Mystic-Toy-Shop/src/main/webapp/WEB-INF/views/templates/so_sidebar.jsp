@@ -73,7 +73,7 @@
 </head>
 <body>
 <div class="lnbWrap">
-    <h2 class="pageTitle">판매자센터</h2>
+    <h2 class="pageTitle"><a href="<%=request.getContextPath()%>/seller_main.do?seller_id=${sessionScope.sellerLogin.seller_id}">판매자센터</a></h2>
 
     <div class="list-group">
     <ul>
