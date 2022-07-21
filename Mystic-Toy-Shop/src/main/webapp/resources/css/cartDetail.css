@@ -1,5 +1,7 @@
 .container {
-    height: 100%;
+    max-width: 100%;
+    min-width: 1200px;
+    height: auto;
     margin-bottom: 20px;
 }
 
@@ -54,6 +56,17 @@
 
     position: relative;
     align-items: center;
+
+    flex-wrap: wrap;
+    /* position: relative; */
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+    display: flex;
+    padding: 24px 10px 24px 20px;
+    border-top: 1px solid #eee;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+
 }
 
 .bgColor {
@@ -338,4 +351,46 @@ input[type=number] {
 
 .cartFooterContainer p {
     margin: 0;
+}
+
+.productName {
+    display: flex;
+    position: relative;
+    padding-left: 15px;
+    width: 300px;
+    word-break: keep-all;
+}
+
+.productCount {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-width: 140px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.cartPrice {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-width: 166px;
+    text-align: center;
+
 }

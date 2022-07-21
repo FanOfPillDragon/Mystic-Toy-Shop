@@ -55,19 +55,52 @@
             </div>
         </div>
     </div>
-    <div class="sellerInfoBox">
-
-        <div>
-            ${productResponseDto.seller_company_name}
+    <div class="productDetailContentArea">
+        <div class="productDetailContents">
+            <div>
+                <div class="h3">판매자 정보</div>
+            </div>
+            <div class="sellerInfoBox">
+                <div class="sellerProperties">
+                    <dl>
+                        <dt>브랜드</dt>
+                        <dd>${productResponseDto.seller_company_name}</dd>
+                    </dl>
+                    <dl>
+                        <dt>email</dt>
+                        <dd>${productResponseDto.seller_email}</dd>
+                    </dl>
+                    <dl>
+                        <dt>사업장 연락처</dt>
+                        <dd>${productResponseDto.seller_company_number}</dd>
+                    </dl>
+                    <dl>
+                        <dt>사업장 소재지</dt>
+                        <dd>${productResponseDto.seller_address}</dd>
+                    </dl>
+                </div>
+            </div>
         </div>
-        <div>
-            ${productResponseDto.seller_email}
-        </div>
-        <div>
-            ${productResponseDto.seller_company_number}
-        </div>
-        <div>
-            ${productResponseDto.seller_address}
+        <div class="optionContents">
+            <div class="productOptionContent">
+                <div class="bundleOptionContents">
+                    <div class="priceWon">
+                        <div class="mb-1"><span class="limitInfo">1일 동안 최대 5개 구매 가능</span></div>
+                        <div class="priceFlexContainer">
+                            <div class="spinnerBox me-2">
+                                <button type="button" class="btn minus lookDisabled" onclick="minus()">-</button>
+                                <div class="number">
+                                    <input type="number" class="quantity" name="quantity" max="5"
+                                           onchange="updateCartCount()" value="1">
+                                    <label for="quantity" class="blind"></label>
+                                </div>
+                                <button type="button" class="btn plus lookDisabled" onclick="plus()">+</button>
+                            </div>
+                            <div id="totalPrice2"><strong class="h4">${productResponseDto.product_cost}</strong><span> 원</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -90,7 +123,7 @@
             $("input[name=quantity]").val(productCount);
             updateCartCount();
         } else {
-            alert('재고가 부족합니다');
+            alert('1일 동안 최대 5개 구매 가능합니다');
         }
     }
 
@@ -112,7 +145,7 @@
         productCount = $("input[name=quantity]").val();
 
         document.getElementById("totalPrice").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
-
+        document.getElementById("totalPrice2").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
     }
 
     function goToCart() {

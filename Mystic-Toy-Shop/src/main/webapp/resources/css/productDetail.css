@@ -243,9 +243,102 @@ input[type=number] {
     background: #1352a2;
 }
 
-.sellerInfoBox {
-    padding-top: 100px;
-    padding-left : 20px;
-    text-align: left;
+.productDetailContentArea {
+    padding-top: 30px;
+    padding-left: 20px;
+
     width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 100px 0;
+    border-top: 1px solid #333;
+
+    position: relative;
+}
+
+.sellerInfoBox {
+    text-align: left;
+    background: #f8f8f8;
+    border-radius: 14px;
+    padding: 20px 24px;
+    overflow: hidden;
+}
+
+.sellerProperties {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: 100% inherit;
+    /*vertical-align: baseline;*/
+    vertical-align: middle;
+    widows: 1;
+}
+
+.sellerProperties dl {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -.3px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-bottom: 1em;
+}
+
+.sellerProperties dt {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    width: 140px;
+    margin-right: 12px;
+    color: #757575;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+.sellerProperties dd {
+    word-break: break-all;
+    margin-bottom: 0;
+}
+
+.productDetailContents {
+    width: 600px;
+    padding-right: 36px;
+    padding-top: 97px;
+}
+
+.optionContents {
+    position: relative;
+    height: 100%;
+}
+
+.productOptionContent {
+    position: relative;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.bundleOptionContents {
+    padding: 24px 20px 50px !important;
+    overflow-y: auto;
+}
+
+.priceWon {
+    border-radius: 6px;
+    padding: 20px 20px 16px;
+    background-color: #f8f8f8;
 }
