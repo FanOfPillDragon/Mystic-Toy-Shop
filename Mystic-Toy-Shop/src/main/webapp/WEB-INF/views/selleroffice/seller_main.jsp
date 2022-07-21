@@ -3,7 +3,8 @@
 <%@ page import="lotte.com.toy.dto.ReviewDto" %>
 <%@ page import="lotte.com.toy.dto.QnADto" %>
 <%@ page import="java.util.List" %>
-<%@ page import="lotte.com.toy.util.DateUtil" %><%--
+<%@ page import="lotte.com.toy.util.DateUtil" %>
+<%@ page import="lotte.com.toy.dto.OrderStatsDto" %><%--
   Created by IntelliJ IDEA.
   User: BTC-N08
   Date: 2022-07-19
@@ -24,11 +25,48 @@
 
     List<ReviewDto> reviewList = (List<ReviewDto>) request.getAttribute("reviewlist");
     List<QnADto> qnaList = (List<QnADto>) request.getAttribute("qnalist");
+
+
+
+    List<OrderStatsDto> list = (List<OrderStatsDto>)request.getAttribute("catWeek");
+    String json = "[";
+    String category = "";
+    String json2 = "[";
+    for(OrderStatsDto dto : list){
+        json += "{ name:'" + dto.getCategory_name() + "', y:" + dto.getTotal_price() + "}, ";
+        category += "'" + dto.getCategory_name() + "',";
+        json2 += "{ name:'" + dto.getCategory_name() + "', y:" + dto.getTotal_quantity() + "}, ";
+    }
+    json = json.substring(0, json.lastIndexOf(","));
+    json += "]";
+    category = category.substring(0, category.lastIndexOf(","));
+    request.setAttribute("category",category);
+    System.out.println(category);
+    json2 = json2.substring(0, json2.lastIndexOf(","));
+    json2 += "]";
+    request.setAttribute("jsonData", json);
+    request.setAttribute("jsonData2", json2);
+
+    List<OrderStatsDto> weeklyList = (List<OrderStatsDto>)request.getAttribute("weeklyList");
+
+    String json3 =  "[";
+
+    for(OrderStatsDto dto : weeklyList){
+        json3 += "{ name:'" + dto.getWeekday() + "', y:" + dto.getTotal_price() + "}, ";
+    }
+
+    json3 = json3.substring(0, json3.lastIndexOf(","));
+    json3 += "]";
+    request.setAttribute("jsonData3", json3);
 %>
 
 
 <html>
 <head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <title>Title</title>
     <style type="text/css">
 
@@ -77,8 +115,9 @@
 
         .mid-info {
             width: 980px;
-            height: 300px;
+            height: 200px;
             margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .card2 {
@@ -116,12 +155,20 @@
         a {
             all: unset;
         }
+        .chart-box{
+            width: 480px;
+            height: 425px;
+            margin-right: 10px;
+            border: solid 1px;
+            float: left;
+        }
     </style>
 </head>
 <body style="text-align: center">
 
 <h3>운영현황</h3>
-<div>
+<%=category%>
+<div class="container" >
     <div class="top-info">
         <div class="top1">
             <p class="label">판매현황</p>
@@ -234,6 +281,107 @@
             </table>
         </div>
     </div>
+    <%--차트 뿌리는 부분--%>
+    <div class="chart-box">
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+            <p class="highcharts-description">
+                카테고리 별 주간 상품 판매 금액 확인할 수 있습니다.
+            </p>
+        </figure>
+    </div>
+    <div class="chart-box">
+        <figure class="highcharts-figure">
+            <div id="container_quan"></div>
+            <p class="highcharts-description">
+                카테고리 별 주간 상품 판매량을 확인할 수 있습니다.
+            </p>
+        </figure>
+    </div>
 </div>
+
+<script type="text/javascript">
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'column'
+        },
+        credits: {enabled: false},
+        title: {
+            text: '카테고리 별 주간 상품 판매 금액'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+/*        xAxis: {
+            title:{
+                text : '이거 x축'
+            }
+        },
+        categories: [<%=request.getAttribute("category")%>],
+        labels:{ //x축이 어떻게 보일것인지 설정
+            style: {color:'red' //글자색}
+            }
+        },*/
+        series: [{
+            name: '주간 카테고리별 판매량',
+            colorByPoint: true,
+            data: <%=request.getAttribute("jsonData") %>
+        }]
+    });
+
+    Highcharts.chart('container_quan', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'column'
+        },
+        credits: {enabled: false},
+        title: {
+            text: '일별 판매량'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: '주간 일별 판매량',
+            colorByPoint: true,
+            data: <%=request.getAttribute("jsonData3") %>
+        }]
+    });
+</script>
 </body>
 </html>

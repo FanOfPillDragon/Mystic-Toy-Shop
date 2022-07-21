@@ -2,6 +2,7 @@ package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.*;
 import lotte.com.toy.service.CategoryService;
+import lotte.com.toy.service.OrderStatsService;
 import lotte.com.toy.service.ProductService;
 import lotte.com.toy.service.SellerService;
 import org.apache.commons.io.FileUtils;
@@ -34,6 +35,8 @@ public class SellerOfficeController {
     ProductService productService;
     @Autowired
     SellerService sellerservice;
+    @Autowired
+    OrderStatsService orderStatsService;
 
     @GetMapping("/product_write.do")
     public String prodcut_write(Model model) {
@@ -120,6 +123,28 @@ public class SellerOfficeController {
 
         List<ReviewDto> reviewList = sellerservice.findAllReviews(seller);
         List<QnADto> qnaList = sellerservice.findAllQnAs(seller);
+
+        /* 차트 데이터 받아오는 부분 */
+        OrderStatsDto todays = orderStatsService.getOrderStatsByDate(seller.getSeller_id(), today);
+        OrderStatsDto week = orderStatsService.getOrderStatsWeek(seller.getSeller_id());
+        OrderStatsDto month = orderStatsService.getOrderStatsMonth(seller.getSeller_id());
+
+        List<OrderStatsDto> weeklyList = orderStatsService.getOrderStatsListWeekly(seller.getSeller_id());
+
+        List<OrderStatsDto> catTodayList = orderStatsService.getOrderStatsByCatsDate(seller.getSeller_id(), today);
+        List<OrderStatsDto> catWeekList = orderStatsService.getOrderStatsByCatsWeek(seller.getSeller_id());
+        List<OrderStatsDto> catMonthList = orderStatsService.getOrderStatsByCatsMonth(seller.getSeller_id());
+
+        model.addAttribute("todays", todays);
+        model.addAttribute("week", week);
+        model.addAttribute("month", month);
+
+        model.addAttribute("weeklyList", weeklyList);
+
+        //model.addAttribute("catToday", catTodayList.get(0)); null 검사 필요
+        model.addAttribute("catWeek", catWeekList);
+        model.addAttribute("catMonth", catMonthList);
+        /* 차트 데이터 */
 
         JSONObject seller_data = new JSONObject();
         seller_data.put("onSaleProduct", onSaleProduct);
