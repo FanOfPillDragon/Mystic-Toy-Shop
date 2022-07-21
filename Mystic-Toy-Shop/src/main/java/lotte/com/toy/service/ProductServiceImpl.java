@@ -41,4 +41,9 @@ public class ProductServiceImpl implements ProductService {
         return productDao.product_write(dto) > 0 ? true : false;
 
     }
+
+    @Override
+    public List<ProductResponseDto> getProductListForMain() {
+        return productDao.getProductListForMain();
+    }
 }

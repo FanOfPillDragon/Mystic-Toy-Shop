@@ -237,7 +237,7 @@
                 <div class="searchArea">
                     <label for="headerSearchId" class="searchBlind">검색어</label>
                     <input type="search" id="headerSearchId" placeholder="검색어를 입력하세요" autocomplete="off">
-                    <button type="button" class="btnSearchInner"><span class="searchBlind">검색</span></button>
+                    <button type="button" class="btnSearchInner" onclick="search()"><span class="searchBlind">검색</span></button>
                 </div>
             </div>
             <div class="buttonArea">
@@ -247,7 +247,7 @@
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderlist.do">마이페이지</a></li>
                         </c:when>
                         <c:when test="${not empty sessionScope.sellerLogin}">
-                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderstats.do">판매자 센터</a></li>
+                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/seller_main.do">판매자 센터</a></li>
                         </c:when>
                         <c:otherwise>
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/login.do">마이페이지</a></li>
@@ -259,5 +259,10 @@
         </div>
     </div>
 </header>
+<script type="text/javascript">
+    function search(){
+        location.href = 'searchResult.do?productName='+$('#headerSearchId').val();
+    }
+</script>
 </body>
 </html>

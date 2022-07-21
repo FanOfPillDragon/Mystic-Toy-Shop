@@ -19,6 +19,11 @@
         <put-attribute name="footer" value="/WEB-INF/views/templates/so_bottom.jsp"/>
     </definition>
 
+    <definition name="seller_main" extends="so_main_title">
+        <put-attribute name="title" value="seller main"/>
+        <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_main.jsp"/>
+    </definition>
+
     <definition name="main" extends="main_tile">
         <put-attribute name="title" value="메인"/>
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
@@ -29,10 +34,6 @@
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/product_write.jsp"/>
     </definition>
 
-    <definition name="seller_main" extends="main_tile">
-        <put-attribute name="title" value="판매자"/>
-        <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_main.jsp"/>
-    </definition>
 <!--
     <definition name="order" extends="main_tile">
         <put-attribute name="title" value="주문"/>
