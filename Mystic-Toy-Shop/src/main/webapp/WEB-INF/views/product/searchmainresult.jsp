@@ -133,6 +133,7 @@
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         padding-inline-start: 40px;
+        padding: 0;
     }
 
     div {
@@ -229,62 +230,59 @@
                 </a>
             </li>
         </ul>
-
-    </div>
-    <section class="srchTitleArea">
-        <h2 class="titMiddle">
-            <strong>"<%=productName%>"</strong>
-            <span>에 대한 검색결과</span>
-        </h2>
-    </section>
-    <div class="container mt-5">
-        <div>
-            <c:set var="searchResultList" value="${searchResultList}"/>
-            <c:choose>
-                <c:when test="${empty searchResultList}">
-                    <section class="srchResultNull srchNullCharacter1 toysrus">
-                        <p>
-                            <em><%=productName%>
-                            </em>
-                            "의 검색결과가 없습니다."
-                            <br>
-                            "다른 검색어를 입력해 주세요."
-                        </p>
-                    </section>
-                </c:when>
-                <c:otherwise>
-                    <div data-v-9506d5f4 class="productListContainer">
-                        <div data-v-9506d5f4 class="productListDataWrap">
-                            <div data-v-7f5dc61d data-v-9506d5f4 class="productList toysrus">
-                                <div data-v-7f5dc61d class="scroll-wrap dataItem item4">
-                                    <div data-v-7f5dc61d class="list-wrap">
-                                        <ul data-v-7f5dc61d>
-                                            <c:forEach var="productResponseDto" items="${searchResultList}">
-                                                <li data-v-7f5dc61d class="isCartBottom" data-ga="gtm">
-                                                    <div data-v-7f5dc61d class="item">
-                                                        <div data-v-7f5dc61d class="thumb">
-                                                            <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" aria-hidden="true" tabindex="-1" class="block">
-                                                                <img data-v-7f5dc61d alt lazy="loaded" class="lazyImg lazy" data-origin src="${productResponseDto.product_img}">
-                                                            </a>
-                                                        </div>
-                                                        <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" class="block">
-                                                            <div data-v-7f5dc61d class="info flag">
-                                                                <ul data-v-7f5dc61d class="flagArea">
-                                                                    <li class="flag" style="border-color: rgb(0, 0, 0); color: rgb(0, 0, 0);">
-                                                                        택배배송
-                                                                    </li>
-                                                                </ul>
-                                                                <div data-v-7f5dc61d class="title block-with-text">
-                                                                    <strong><c:out value="${productResponseDto.product_name}"/></strong>
-                                                                </div>
-                                                                <div data-v-7f5dc61d class="price">
-                                                                    <strong><c:out value="${productResponseDto.product_cost}"/></strong>
-                                                                </div>
-                                                            </div>
+</div>
+<section class="srchTitleArea">
+    <h2 class="titMiddle">
+        <strong>"<%=productName%>"</strong>
+        <span>에 대한 검색결과</span>
+    </h2>
+</section>
+<div class="container mt-5">
+    <div>
+        <c:set var="searchResultList" value="${searchResultList}"/>
+        <c:choose>
+            <c:when test="${empty searchResultList}">
+                <section class="srchResultNull srchNullCharacter1 toysrus">
+                    <p>
+                        <em><%=productName%></em>
+                        "의 검색결과가 없습니다."
+                        <br>
+                        "다른 검색어를 입력해 주세요."
+                    </p>
+                </section>
+            </c:when>
+            <c:otherwise>
+                <div data-v-9506d5f4 class="productListContainer">
+                    <div data-v-9506d5f4 class="productListDataWrap">
+                        <div data-v-7f5dc61d data-v-9506d5f4 class="productList toysrus">
+                            <div data-v-7f5dc61d class="scroll-wrap dataItem item4">
+                                <div data-v-7f5dc61d class="list-wrap">
+                                    <ul data-v-7f5dc61d>
+                                        <c:forEach var="productResponseDto" items="${searchResultList}">
+                                            <li data-v-7f5dc61d class="isCartBottom">
+                                                <div data-v-7f5dc61d class="item">
+                                                    <div data-v-7f5dc61d class="thumb">
+                                                        <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" aria-hidden="true" tabindex="-1" class="block">
+                                                            <img data-v-7f5dc61d alt lazy="loaded" class="lazyImg lazy" data-origin src="${productResponseDto.product_img}">
                                                         </a>
                                                     </div>
-                                                </li>
-
+                                                    <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" class="block">
+                                                        <div data-v-7f5dc61d class="info flag">
+                                                            <ul data-v-7f5dc61d class="flagArea">
+                                                                <li class="flag" style="border-color: rgb(0, 0, 0); color: rgb(0, 0, 0);">
+                                                                    택배배송
+                                                                </li>
+                                                            </ul>
+                                                            <div data-v-7f5dc61d class="title block-with-text">
+                                                                <strong><c:out value="${productResponseDto.product_name}"/></strong>
+                                                            </div>
+                                                            <div data-v-7f5dc61d class="price">
+                                                                <strong><c:out value="${productResponseDto.product_cost}"/>원</strong>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </li>
                                             </c:forEach>
                                         </ul>
                                     </div>

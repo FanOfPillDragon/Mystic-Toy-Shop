@@ -17,4 +17,5 @@ public class QnaListDto {
     private char is_secret;
     private int is_deleted;
     private int product_id;
+    private String product_name;
 }
