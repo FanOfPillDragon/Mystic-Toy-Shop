@@ -19,5 +19,7 @@ ${sellerLogin.auth_id}
 <a href="/seller_main.do?seller_id=1">판매 상품 등록</a>
 <a href="/review.do?productId=1">리뷰등록</a>
 <a href="findReviewList.do?productId=1">리뷰리스트</a>
+<a href="qna.do?productId=1">qna등록</a>
+<a href="findQnaList.do?productId=1">qna리스트</a>
 </body>
 </html>

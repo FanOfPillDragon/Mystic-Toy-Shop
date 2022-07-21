@@ -39,12 +39,11 @@ public class ReviewController {
         int userId = userDto.getUser_id();
         int IntreviewRate = Integer.parseInt(reviewRate); // 지울 것
         CreateReviewDto review = new CreateReviewDto(reviewTitle,reviewContent,userId,IntreviewRate,productId);
-        System.out.println(review.toString());
         boolean checker = reviewService.insertReview(review);
         if(checker){
             return "main";
         }
-        return "review";
+        return "main";
     }
 
     @RequestMapping(value = "findReviewList.do")
