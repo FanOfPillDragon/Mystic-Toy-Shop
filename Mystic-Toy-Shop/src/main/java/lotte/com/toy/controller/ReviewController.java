@@ -36,6 +36,7 @@ public class ReviewController {
 //            response.sendRedirect("/userLogin.do");
             return "redirect:/userLogin.do";
         }
+        System.out.println(reviewRate + " : reviewrate");
         int userId = userDto.getUser_id();
         int IntreviewRate = Integer.parseInt(reviewRate); // 지울 것
         CreateReviewDto review = new CreateReviewDto(reviewTitle,reviewContent,userId,IntreviewRate,productId);
