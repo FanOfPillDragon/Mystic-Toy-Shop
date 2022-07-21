@@ -223,7 +223,6 @@
                 </c:when>
                 <c:when test="${not empty sessionScope.sellerLogin}">
                     <a class="nav-link" href="<%=request.getContextPath()%>/mypage.do">${sessionScope.sellerLogin.seller_name}님</a>
-                    <a class="nav-link" href="<%=request.getContextPath()%>/prooductmanage.do">상품관리 페이지</a>
                     <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a>
                 </c:when>
                 <c:otherwise>
@@ -238,17 +237,32 @@
                 <div class="searchArea">
                     <label for="headerSearchId" class="searchBlind">검색어</label>
                     <input type="search" id="headerSearchId" placeholder="검색어를 입력하세요" autocomplete="off">
-                    <button type="button" class="btnSearchInner"><span class="searchBlind">검색</span></button>
+                    <button type="button" class="btnSearchInner" onclick="search()"><span class="searchBlind">검색</span></button>
                 </div>
             </div>
             <div class="buttonArea">
                 <ul>
-                    <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderlist.do">마이페이지</a></li>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.userLogin}">
+                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderlist.do">마이페이지</a></li>
+                        </c:when>
+                        <c:when test="${not empty sessionScope.sellerLogin}">
+                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderstats.do">판매자 센터</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/login.do">마이페이지</a></li>
+                        </c:otherwise>
+                    </c:choose>
                     <li><a class="cartBtn" href="<%=request.getContextPath()%>/cart.do">장바구니</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </header>
+<script type="text/javascript">
+    function search(){
+        location.href = 'searchResult.do?productName='+$('#headerSearchId').val();
+    }
+</script>
 </body>
 </html>

@@ -13,4 +13,10 @@ public interface ProductService {
 
     boolean product_write(ProductDto dto);
 
+    List<ProductResponseDto> findMainList(String productName);
+
+    boolean updateProductStock(int productId);
+
+    boolean updateProductSellcount(int productId);
+
 }

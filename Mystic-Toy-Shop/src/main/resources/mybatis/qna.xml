@@ -8,8 +8,8 @@
         values (#{qna_title},#{qna_content},#{qna_writer},now(),0,0,0,#{product_id})
     </insert>
     <select id="findAll" parameterType="Integer" resultType="lotte.com.toy.dto.QnaListDto">
-        select q.qna_title, q.qna_content
-        from users u, qnas q
-        where u.user_id = q.qna_writer and product_id = #{product_id}
+        select qna_title, qna_content,qna_writer,qna_register_date,is_secret,is_deleted,product_id
+        from qnas
+        where product_id = #{product_id}
     </select>
 </mapper>

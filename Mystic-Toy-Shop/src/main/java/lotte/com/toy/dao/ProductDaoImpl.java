@@ -42,4 +42,19 @@ public class ProductDaoImpl implements ProductDao {
     public int product_write(ProductDto dto) {
         return session.insert(nameSpace + "product_write", dto);
     }
+
+    @Override
+    public List<ProductResponseDto> findMainList(String productName) {
+        return session.selectList(nameSpace+"findByProductName",productName);
+    }
+
+    @Override
+    public int updateProductStock(int productId) {
+        return session.update(nameSpace+"updateProductStock",productId);
+    }
+
+    @Override
+    public int updateProductSellcount(int productId) {
+        return session.update(nameSpace+"updateProductSellCount",productId);
+    }
 }

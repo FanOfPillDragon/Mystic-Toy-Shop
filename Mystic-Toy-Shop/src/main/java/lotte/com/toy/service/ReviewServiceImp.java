@@ -2,6 +2,7 @@ package lotte.com.toy.service;
 
 import lotte.com.toy.dao.ReviewDao;
 import lotte.com.toy.dto.CreateReviewDto;
+import lotte.com.toy.dto.ReviewCheckDto;
 import lotte.com.toy.dto.ReviewListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,10 @@ public class ReviewServiceImp implements ReviewService{
     @Override
     public List<ReviewListDto> findReviewList(int product_id) {
         return reviewDao.findReviewList(product_id);
+    }
+
+    @Override
+    public int checkReviewWrite(ReviewCheckDto reviewCheck) {
+        return reviewDao.checkReviewWrite(reviewCheck);
     }
 }
