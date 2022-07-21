@@ -41,13 +41,15 @@
         .input-box{
             margin-bottom: 5px;
         }
+        .writeReviewDetailPhoto .picUploadList li .picUploadBtn {
+            padding-top: 18px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-
-
-    <form action="../writeAf.do" method="post">
+    <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
         <div class="temp" style="height:80px;">
             <h3 style="font-size: 17pt; float: left ;">상품등록 <span style="color: red; font-size: 8pt;">• 필수입력</span></h3>
         </div>
@@ -83,21 +85,25 @@
                 <input type="text" size="20" name="product_stock" placeholder="숫자만입력"><span>개</span>
             </div>
         </div>
-        <div class="temp">
-            <h3>이미지</h3>
-            <hr>
-
+        <div class="writeReviewDetailPhoto">
+            <div class="picUploadBtn picture">
+                    <input type="file" multiple="multiple" name="fileload" accept="image/*" class="btnFile">
+                    <br>
+                    <br>
+                    <input type = "hidden" id="file_where_use" name="file_where_use" value="1">
+                    <input type = "hidden" id="file_use_id" name="file_use_id" value="1">
+                    <i ><img  src="//static.lotteon.com/p/product/plugin/assets/img/btn_icon_upload_camera_new.svg" alt=""></i>
+                    <span >사진첨부</span>
+                    <button type="button" id="btnsubmit">자료올리기</button>
+            </div>
         </div>
         <div class="temp">
             <p>상세설명</p>
             <hr>
-            <div class="container">
-                <button type="button" id="btn1">상세입력</button>
                 <textarea class="summernote" name="product_info"></textarea>
-            </div>
         </div>
 
-        <input type="submit" value="등록">
+        <button type="button" id="btnsubmit2">자료올리기</button>
     </form>
 </div>
 
@@ -106,7 +112,7 @@
         height: 300,
         minHeight: null,
         maxHeight: null,
-        focus: true,
+        focus: false,
         lang: "ko-KR",
         toolbar: [
             // [groupName, [list of button]]
@@ -162,6 +168,15 @@
             }
         });
     }
+
+    $("#btnsubmit2").click(function () {
+        if(document.getElementsByName("fileload").length<1 || document.getElementsByName("fileload")[0].value == '') {
+            alert("파일을 업로드 해주세요");
+            document.getElementById("btnsubmit").focus();
+            return;
+        }
+        $("#frm").submit();
+    });
 </script>
 </body>
 </html>

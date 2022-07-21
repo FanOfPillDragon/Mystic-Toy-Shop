@@ -66,11 +66,26 @@ public class SellerDaoImpl implements SellerDao {
 
     @Override
     public List<ProductResponseDto> findAllSellerProductList(SellerDto seller) {
-        return session.selectList(nameSpace + "findAllSellerProductList" , seller);
+        return session.selectList(nameSpace + "findAllSellerProductList", seller);
     }
 
     @Override
     public List<ClientOrderDto> findClientOrders(SellerDto seller) {
-        return session.selectList(nameSpace + "findClientOrders" , seller);
+        return session.selectList(nameSpace + "findClientOrders", seller);
+    }
+
+    @Override
+    public int shipUpdate(int order_id) {
+        return session.update(nameSpace + "shipUpdate", order_id);
+    }
+
+    @Override
+    public int shipUpdateCancel(int order_id) {
+        return session.update(nameSpace + "shipUpdateCancel", order_id);
+    }
+
+    @Override
+    public int stockUpdate(ProductDto dto) {
+        return session.update(nameSpace + "stockUpdate", dto);
     }
 }

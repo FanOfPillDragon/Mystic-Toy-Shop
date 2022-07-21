@@ -67,8 +67,24 @@ public class SellerServiceImpl implements SellerService {
     public List<ProductResponseDto> findAllSellerProductList(SellerDto seller) {
         return sellerdao.findAllSellerProductList(seller);
     }
+
     @Override
     public List<ClientOrderDto> findClientOrders(SellerDto seller) {
         return sellerdao.findClientOrders(seller);
+    }
+
+    @Override
+    public boolean shipUpdate(int order_id) {
+        return sellerdao.shipUpdate(order_id) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean shipUpdateCancel(int order_id) {
+        return sellerdao.shipUpdateCancel(order_id) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean stockUpdate(ProductDto dto) {
+        return sellerdao.stockUpdate(dto) > 0 ? true : false;
     }
 }

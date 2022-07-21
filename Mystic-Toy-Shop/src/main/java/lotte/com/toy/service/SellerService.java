@@ -19,4 +19,7 @@ public interface SellerService {
     List<QnADto> findAllQnAs(SellerDto seller);
     List<ProductResponseDto> findAllSellerProductList(SellerDto seller);
     List<ClientOrderDto> findClientOrders(SellerDto seller);
+    boolean shipUpdate(int order_id);
+    boolean shipUpdateCancel(int order_id);
+    boolean stockUpdate(ProductDto dto);
 }

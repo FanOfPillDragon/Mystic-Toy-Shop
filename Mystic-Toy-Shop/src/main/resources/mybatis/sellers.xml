@@ -79,7 +79,7 @@
 
     <!-- 리뷰 불러오기 -->
     <select id="findAllReviews" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.ReviewDto">
-        select review_id, review_title, review_content, review_writer,review_register_date
+        select review_id, review_title, review_content, review_writer, review_register_date
         from sellers s
                  join products p on s.seller_id = p.seller_id
                  join reviews r on r.product_id = p.product_id
@@ -119,27 +119,41 @@
     </select>
 
     <!-- 주문 조회 -->
-    <select id="findClientOrders" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.ClientOrderDto">
+    <select id="findClientOrders" parameterType="lotte.com.toy.dto.SellerDto"
+            resultType="lotte.com.toy.dto.ClientOrderDto">
         select o.product_id,
                product_name,
                product_img,
                product_cost,
-               order_id,
-               order_address,
-               order_comment,
-               order_date,
-               order_quantity,
-               order_total_price,
+               o.order_id,
+               o.order_address,
+               o.order_comment,
+               o.order_date,
+               o.order_quantity,
+               o.order_total_price,
                o.user_id,
-               user_name,
-               user_phone,
-               user_zipcode,
-               user_gender
-        from sellers s
-                 join products p on s.seller_id = p.seller_id
-                 join orders o on o.product_id = p.product_id
-                 join users u on u.user_id = o.user_id
-        where s.seller_id = #{seller_id}
+               u.user_name,
+               u.user_phone,
+               pa.ship_status
+        from products p,
+             orders o,
+             payments pa,
+             users u
+        where pa.order_id = o.order_id
+          and u.user_id = o.user_id
+          and p.seller_id = #{seller_id}
         order by o.order_date desc;
     </select>
+
+    <update id="shipUpdate" parameterType="Integer">
+        update payments set ship_status = 1 where order_id = #{order_id}
+    </update>
+
+    <update id="shipUpdateCancel" parameterType="Integer">
+        update payments set ship_status = 0 where order_id = #{order_id}
+    </update>
+
+    <update id="stockUpdate" parameterType="lotte.com.toy.dto.ProductDto">
+        update products set product_stock = #{product_stock} where product_id = #{product_id}
+    </update>
 </mapper>

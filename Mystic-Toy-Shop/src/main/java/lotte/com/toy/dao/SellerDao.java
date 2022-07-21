@@ -18,4 +18,7 @@ public interface SellerDao {
     List<QnADto> findAllQnAs(SellerDto seller);
     List<ProductResponseDto> findAllSellerProductList(SellerDto seller);
     List<ClientOrderDto> findClientOrders(SellerDto seller);
+    int shipUpdate(int order_id);
+    int shipUpdateCancel(int order_id);
+    int stockUpdate(ProductDto dto);
 }

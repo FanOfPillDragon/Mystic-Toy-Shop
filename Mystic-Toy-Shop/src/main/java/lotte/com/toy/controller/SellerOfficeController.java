@@ -91,8 +91,6 @@ public class SellerOfficeController {
     @PostMapping("/writeAf.do")
     public String write(ProductDto dto, Model model) {
 
-        dto.setSeller_id(1);
-        dto.setProduct_img("temp");
         boolean isSuccess = productService.product_write(dto);
         String msg = "N";
         if (isSuccess) {
@@ -157,41 +155,85 @@ public class SellerOfficeController {
         seller_data.put("newQnA", newQnA);
 
         model.addAttribute("seller_data", seller_data);
-        model.addAttribute("reviewlist",reviewList);
-        model.addAttribute("qnalist",qnaList);
+        model.addAttribute("reviewlist", reviewList);
+        model.addAttribute("qnalist", qnaList);
 
         return "seller_main";
     }
 
     @GetMapping("sosalelist.do")
-    public String sosalelist(Model model,SellerDto seller){
+    public String sosalelist(Model model, SellerDto seller) {
         System.out.println("SellerOfficeController mysalelist()");
 
         List<ProductResponseDto> mysalelist = sellerservice.findAllSellerProductList(seller);
-        model.addAttribute("mysalelist",mysalelist);
+        model.addAttribute("mysalelist", mysalelist);
 
         return "seller_product_list";
     }
 
     @GetMapping("clientOrderlist.do")
-    public String soOrderlist(Model model,SellerDto seller){
+    public String soOrderlist(Model model, SellerDto seller) {
         System.out.println("SellerOfficeController clientOrderlist()");
 
         List<ClientOrderDto> cod = sellerservice.findClientOrders(seller);
-        model.addAttribute("codlist",cod);
+        model.addAttribute("codlist", cod);
         return "clientOrderlist";
     }
 
     @GetMapping("clientShipstatus.do")
-    public String clientShipstatus(Model model,SellerDto seller){
+    public String clientShipstatus(Model model, SellerDto seller) {
         System.out.println("SellerOfficeController clientShipstatus()");
 
         return "clientShipstatus";
     }
 
+
     @GetMapping("productUpdate.do")
-    public String productUpdate(Model model,ProductDto dto){
+    public String productUpdate(Model model, ProductDto dto) {
+
+        List<CategoryDto> categoryList = categoryservice.categoryList();
+        model.addAttribute("categories", categoryList);
 
         return "product_update";
+    }
+
+    @ResponseBody
+    @GetMapping("completedShip.do")
+    public String shippingAf(int order_id) {
+
+        String msg = "NO";
+        boolean isSuccess = sellerservice.shipUpdate(order_id);
+        if (isSuccess) {
+            msg = "SUCCESS";
+            return msg;
+        }
+        return msg;
+    }
+
+    @ResponseBody
+    @GetMapping("cancelShip.do")
+    public String cancelShipAf(int order_id) {
+
+        String msg = "NO";
+        boolean isSuccess = sellerservice.shipUpdateCancel(order_id);
+        if (isSuccess) {
+            msg = "SUCCESS";
+            return msg;
+        }
+        return msg;
+    }
+
+    @ResponseBody
+    @GetMapping("stockUpdate.do")
+    public String stockUpdate(ProductDto dto){
+        System.out.println(dto.toString());
+
+        String msg = "NO";
+        boolean isSuccess = sellerservice.stockUpdate(dto);
+        if (isSuccess) {
+            msg = "SUCCESS";
+            return msg;
+        }
+        return msg;
     }
 }
