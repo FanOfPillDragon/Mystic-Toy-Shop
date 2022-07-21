@@ -47,6 +47,8 @@
     <!-- webapp/resources 경로 매핑 -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:resources mapping="/mystic_image/**" location="file:///C:/mystic_image"/>
+    <mvc:resources mapping="/favicon.ico" location="/resources/images/favicon.ico" />
+    <mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
 
     <!-- 이미지 업로드 -->
     <bean id="multipartResolver"

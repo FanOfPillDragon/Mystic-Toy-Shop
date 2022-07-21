@@ -11,7 +11,7 @@
         <c:forEach var="productResponseDto" items="${productResponseDtoList}">
             <div>
                 <div>
-                        ${productResponseDto.product_name}
+                    <a href="/productDetail.do?productId=${productResponseDto.product_id}">${productResponseDto.product_name}</a>
                 </div>
                 <div>
                         ${productResponseDto.category_name}

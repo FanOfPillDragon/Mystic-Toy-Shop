@@ -14,10 +14,6 @@ public class Utility {
             totalPrice += cartUserProductDto.getProduct_cost() * cartUserProductDto.getCart_quantity();
         }
 
-        if (totalPrice != 0) {
-            totalPrice += 2500;
-        }
-
         return totalPrice;
     }
 

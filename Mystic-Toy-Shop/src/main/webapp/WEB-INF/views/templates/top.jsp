@@ -13,6 +13,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <link rel="shortcut icon" href='/favicon.ico' type="image/x-icon">
+    <link rel="icon" href='/favicon.ico' type="image/x-icon">
     <style type="text/css">
         :root {
             --actual-width: 1440px;
@@ -23,6 +25,7 @@
             margin-right: calc((var(--actual-width) - 100%) * -0.5);
             margin-left: calc((var(--actual-width) - 100%) * -0.5);
             color: #1352a2;
+            margin: 0 auto;
         }
 
         .headerWrapper {
@@ -106,7 +109,6 @@
             width: 1px;
             height: 1px;
             clip: rect(1px, 1px, 1px, 1px);
-            -webkit-clip-path: inset(50%);
             clip-path: inset(50%);
             position: absolute;
             top: 0 !important;
@@ -138,7 +140,7 @@
             color: transparent;
             background: url(/resources/images/icon_search_mask.png) no-repeat 50% #1352a2;
             border: 1px solid #ffffff;
-            background-size: 26px auto;
+            background-size: 27px auto;
             position: absolute;
             padding: 0;
 

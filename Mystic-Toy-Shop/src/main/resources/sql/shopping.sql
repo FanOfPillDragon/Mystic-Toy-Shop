@@ -46,7 +46,7 @@ CREATE TABLE sellers (
 
 CREATE TABLE products (
                           product_id INT AUTO_INCREMENT PRIMARY KEY,
-                          product_name VARCHAR(20),
+                          product_name VARCHAR(50),
                           product_info VARCHAR(1000),
                           product_img VARCHAR(1000),
                           product_cost INT,
