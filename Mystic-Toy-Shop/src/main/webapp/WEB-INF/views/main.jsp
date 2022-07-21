@@ -1,9 +1,13 @@
 <%@ page import="lotte.com.toy.dto.SellerDto" %>
 <%@ page import="lotte.com.toy.dto.UserDto" %>
+<%@ page import="lotte.com.toy.dto.ProductResponseDto" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
-
+<%
+    List<ProductResponseDto> mainList = (List<ProductResponseDto>)request.getAttribute("mainList");
+%>
 <html>
 <head>
     <title>Title</title>
@@ -89,6 +93,7 @@
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         padding-inline-start: 40px;
+        padding: 0;
     }
     div {
         display: block;
@@ -116,7 +121,6 @@
         font-size: 14px;
         line-height: 21px;
     }
-
 </style>
 <body>
 <div data-v-9506d5f4 class="categoryGridWrap">
@@ -192,7 +196,7 @@
                     <div data-v-7f5dc61d class="scroll-wrap dataItem item4">
                         <div data-v-7f5dc61d class="list-wrap">
                             <ul data-v-7f5dc61d>
-                                <c:forEach var="productResponseDto" items="${productResponseDtoList}">
+                                <c:forEach var="productResponseDto" items="${mainList}">
                                     <div data-v-7f5dc61d class="item">
                                         <div data-v-7f5dc61d class="thumb">
                                             <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" aria-hidden="true" tabindex="-1" class="block">
@@ -210,7 +214,7 @@
                                                     <strong><c:out value="${productResponseDto.product_name}"/></strong>
                                                 </div>
                                                 <div data-v-7f5dc61d class="price">
-                                                    <strong><c:out value="${productResponseDto.product_cost}"/></strong>
+                                                    <strong><c:out value="${productResponseDto.product_cost}"/>원</strong>
                                                 </div>
                                             </div>
                                         </a>

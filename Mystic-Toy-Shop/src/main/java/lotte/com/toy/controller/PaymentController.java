@@ -56,7 +56,7 @@ public class PaymentController {
     }
 
     @RequestMapping(value = "payment.do")
-    public String createPayment(HttpServletRequest req, String orderName, String orderAddress, String orderPhone, String orderComment) {
+    public String createPayment(HttpServletRequest req, Model model,String orderName, String orderAddress, String orderPhone, String orderComment) {
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         int userId = userDto.getUser_id();
         int orderGroup = orderService.findByOrderGroup();
@@ -75,6 +75,7 @@ public class PaymentController {
             }
             cartService.deleteCartByCartId(cart.getCart_id()); // 장바구니 품목 삭제
         }
+
         return "redirect:/main.do";
     }
 

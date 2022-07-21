@@ -118,6 +118,7 @@
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         padding-inline-start: 40px;
+        padding: 0;
     }
     div {
         display: block;
@@ -240,7 +241,7 @@
                                 <div data-v-7f5dc61d class="list-wrap">
                                     <ul data-v-7f5dc61d>
                                         <c:forEach var="productResponseDto" items="${searchResultList}">
-                                            <li data-v-7f5dc61d class="isCartBottom" data-ga="gtm">
+                                            <li data-v-7f5dc61d class="isCartBottom">
                                                 <div data-v-7f5dc61d class="item">
                                                     <div data-v-7f5dc61d class="thumb">
                                                         <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" aria-hidden="true" tabindex="-1" class="block">
@@ -258,7 +259,7 @@
                                                                 <strong><c:out value="${productResponseDto.product_name}"/></strong>
                                                             </div>
                                                             <div data-v-7f5dc61d class="price">
-                                                                <strong><c:out value="${productResponseDto.product_cost}"/></strong>
+                                                                <strong><c:out value="${productResponseDto.product_cost}"/>원</strong>
                                                             </div>
                                                         </div>
                                                     </a>

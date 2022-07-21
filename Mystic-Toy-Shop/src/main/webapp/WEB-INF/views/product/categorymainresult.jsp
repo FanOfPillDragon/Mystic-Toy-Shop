@@ -98,6 +98,7 @@
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         padding-inline-start: 40px;
+        padding: 0;
     }
     div {
         display: block;
@@ -218,7 +219,7 @@
                                                     <strong><c:out value="${productResponseDto.product_name}"/></strong>
                                                 </div>
                                                 <div data-v-7f5dc61d class="price">
-                                                    <strong><c:out value="${productResponseDto.product_cost}"/></strong>
+                                                    <strong><c:out value="${productResponseDto.product_cost}"/>원</strong>
                                                 </div>
                                             </div>
                                         </a>
