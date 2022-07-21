@@ -35,6 +35,7 @@ public class OrderController {
         int userId = userDto.getUser_id();
 
         List<Integer> orderGroupList = orderService.findOrderGroupList();
+        System.out.println(orderGroupList + " : dtoorderGroupList");
         if(orderGroupList.isEmpty()){
             System.out.println("데이터없음!");
             return "orderempty";
