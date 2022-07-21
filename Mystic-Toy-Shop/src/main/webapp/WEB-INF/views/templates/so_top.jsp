@@ -70,7 +70,7 @@
                 <li><h3 class="logo">
                     <a href="/orderstats.do">판매자센터</a>
                 </h3></li>
-                <li class=""><a href="https://www.lottecinema.co.kr/NLCHS/Ticketing">구매자화면</a></li>
+                <li class=""><a href="/main.do">구매자화면</a></li>
                 <li class=""><a href="https://www.lottecinema.co.kr/NLCHS/Movie">판매자</a></li>
                 <li class=""><a href="#">공지사항</a></li>
                 <li class=""><a href="https://event.lottecinema.co.kr/NLCHS/Event">이벤트</a></li>
