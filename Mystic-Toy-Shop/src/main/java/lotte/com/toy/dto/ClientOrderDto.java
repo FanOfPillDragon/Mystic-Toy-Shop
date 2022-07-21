@@ -28,5 +28,6 @@ public class ClientOrderDto {
     private String user_phone;
     private String user_zipcode;
     private int user_gender;
+    private char ship_status;
 
 }

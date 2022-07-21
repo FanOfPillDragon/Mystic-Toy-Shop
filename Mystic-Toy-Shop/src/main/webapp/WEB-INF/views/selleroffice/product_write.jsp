@@ -106,7 +106,7 @@
         height: 300,
         minHeight: null,
         maxHeight: null,
-        focus: true,
+        focus: false,
         lang: "ko-KR",
         toolbar: [
             // [groupName, [list of button]]
