@@ -61,4 +61,7 @@
         where seller_email=#{seller_email} and seller_password=#{seller_password}
     </select>
 
+    <!-- 유저 수정 -->
+    
+
 </mapper>

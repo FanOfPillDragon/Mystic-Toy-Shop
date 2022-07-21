@@ -4,6 +4,7 @@ import lotte.com.toy.dao.QnaDao;
 import lotte.com.toy.dto.*;
 import lotte.com.toy.service.CartService;
 import lotte.com.toy.service.QnaService;
+import lotte.com.toy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ public class QnaController {
 
     @Autowired
     QnaService qnaService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "qna.do")
     public String startQna(Model model, int productId){
@@ -42,6 +46,7 @@ public class QnaController {
     @RequestMapping(value = "findQnaList.do")
     public String findQnaList(Model model,int productId){
         List<QnaListDto> qnas = qnaService.findQnaList(productId);
+        System.out.println(qnas.toString());
         model.addAttribute("qnas",qnas);
         return "qnalist";
     }

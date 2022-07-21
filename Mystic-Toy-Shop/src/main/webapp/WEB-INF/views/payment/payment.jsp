@@ -1,7 +1,8 @@
 <%@ page import="lotte.com.toy.dto.CartDto" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lotte.com.toy.dto.ProductDto" %>
-<%@ page import="lotte.com.toy.dto.CartProductDto" %><%--
+<%@ page import="lotte.com.toy.dto.CartProductDto" %>
+<%@ page import="lotte.com.toy.dto.UserDto" %><%--
   Created by IntelliJ IDEA.
   User: BTC-N06
   Date: 2022-07-19
@@ -14,6 +15,7 @@
 <%@ page isELIgnored="false" %>
 <%
     List<CartProductDto> cartProductList = (List<CartProductDto>) request.getAttribute("orderCartList");
+
     int totalPrice = 0;
     int orderCount = 0;
 %>
