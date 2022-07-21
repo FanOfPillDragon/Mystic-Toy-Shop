@@ -247,7 +247,7 @@
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderlist.do">마이페이지</a></li>
                         </c:when>
                         <c:when test="${not empty sessionScope.sellerLogin}">
-                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderstats.do">판매자 센터</a></li>
+                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/seller_main.do">판매자 센터</a></li>
                         </c:when>
                         <c:otherwise>
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/login.do">마이페이지</a></li>

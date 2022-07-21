@@ -13,7 +13,6 @@
         }
         ul {
             display: block;
-            list-style-type: disc;
             margin-block-start: 1em;
             margin-block-end: 1em;
             margin-inline-start: 0px;
@@ -30,7 +29,6 @@
             font-size: 20px;
             line-height: 1.39;
             letter-spacing: -1.1px;
-            text-align: left;
             margin-bottom: 0;
             padding: 10px 0 20px;
             text-align: center;

@@ -19,4 +19,5 @@ public interface ProductService {
 
     boolean updateProductSellcount(int productId);
 
+    List<ProductResponseDto> getProductListForMain();
 }

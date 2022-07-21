@@ -64,4 +64,7 @@ public class ProductServiceImpl implements ProductService {
         }
         return true;
     }
+    public List<ProductResponseDto> getProductListForMain() {
+        return productDao.getProductListForMain();
+    }
 }

@@ -28,8 +28,8 @@ public class MainController {
     public String main(Model model) {
         log.info("MainController main()");
 
-        List<ProductResponseDto> productResponseDtoList = productService.getProductList();
-        model.addAttribute("productResponseDtoList",productResponseDtoList);
+        List<ProductResponseDto> mainList = productService.getProductListForMain();
+        model.addAttribute("mainList",mainList);
 
         return "main";
     }
