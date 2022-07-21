@@ -26,7 +26,7 @@
 <div class="h3 d-flex justify-content-center my-5">주문/결제하기</div>
 <div class="container my-5">
     <div class="flexTableContainer orderPayWrap">
-        <div class="cardTitle">주문 <span class="colorPrimary">(${fn:length(cartProductList)})</span>건</div>
+        <div class="cardTitle">주문 <span class="colorPrimary">${fn:length(cartProductList)} </span>건</div>
         <c:forEach var="product" items="${cartProductList}" varStatus="status">
             <div class="productBox cardBoxBorderContainer">
                 <div class="productImgContainer">
@@ -62,19 +62,19 @@
                 <div class="deliveryContentContainer">
                     <div class="mb-3">
                         <label for="orderName" class="mb-2">받는분</label>
-                        <div style="width: 300px;"><input class="form-control" type="text" name="orderName" id="orderName" size="10"/></div>
+                        <div style="width: 300px;"><input class="form-control" type="text" name="orderName" id="orderName" size="10" value="${sessionScope.userLogin.user_name}"/></div>
                     </div>
                     <div class="mb-3">
                         <label for="orderAddress" class="mb-2">배송지</label>
-                        <div class="formLength"><input class="form-control" type="text" name="orderAddress" id="orderAddress"/></div>
+                        <div class="formLength"><input class="form-control" type="text" name="orderAddress" id="orderAddress" value="${sessionScope.userLogin.user_address}"/></div>
                     </div>
                     <div class="mb-3">
                         <label for="orderPhone" class="mb-2">전화번호</label>
-                        <div style="width: 300px;"><input class="form-control" type="text" name="orderPhone" id="orderPhone"/></div>
+                        <div style="width: 300px;"><input class="form-control" type="text" name="orderPhone" id="orderPhone" value="${sessionScope.userLogin.user_phone}"/></div>
                     </div>
                     <div class="mb-3">
                         <label for="orderComment" class="mb-2">배송 요청사항</label>
-                        <div class="formLength"><input class="form-control" type="text" name="orderComment" id="orderComment"/></div>
+                        <div class="formLength"><input class="form-control" type="text" name="orderComment" id="orderComment" placeholder="배송 전 연락주세요"/></div>
                     </div>
                 </div>
             </div>
@@ -82,12 +82,10 @@
             <div class="flexContainerCol alignCenterContainer mb-3 priceContainer">
                 <div class="h3 mb-3">총 결제금액</div>
                 <div class="mb-3">
-                    총 <strong class="colorPrimary"><%=orderCount%>
-                </strong> 건
+                    총 <strong class="colorPrimary"><%=orderCount%></strong> 건
                 </div>
                 <div class="mb-3">
-                    총 상품금액 : <strong class="colorPrimary"><%=totalPrice%>
-                </strong> 원
+                    총 상품금액 : <strong class="colorPrimary"><%=totalPrice%></strong> 원
                 </div>
                 <strong class="my-5">위 내용을 확인하였으며 결제에 동의합니다</strong>
                 <input class="btnOrder" type="submit" value="주문하기">

@@ -35,7 +35,7 @@ public class OrderController {
         List<Integer> orderGroupList = orderService.findOrderGroupList();
         System.out.println(orderGroupList + " : dtoorderGroupList");
         if(orderGroupList.isEmpty()){
-                System.out.println("데이터없음!");
+            System.out.println("데이터없음!");
             return "orderempty";
         }
         List<List<OrderDetailDto>> list = new ArrayList<>();
@@ -44,14 +44,12 @@ public class OrderController {
             List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(userId,i));
             for(OrderDetailDto order : orderList){
                 ReviewCheckDto reviewCheck = new ReviewCheckDto(order.getProduct_id(),order.getUser_id());
-
-                ReviewCheckerList.add(reviewService.checkReviewWrite(reviewCheck));
+                order.setReviewCheck(reviewService.checkReviewWrite(reviewCheck));
             }
             list.add(orderList);
         }
 
 
-        model.addAttribute("reviewCheckerList",ReviewCheckerList);
         model.addAttribute("orderList",list);
         model.addAttribute("orderGroupList",orderGroupList);
         return "order";
