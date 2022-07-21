@@ -18,4 +18,11 @@ public class OrderStatsDto {
     int weekday;
 
     String category_name;
+
+    int product_id;
+    String product_name;
+    String product_img;
+
+    int review_cnt;
+    int review_rate;
 }

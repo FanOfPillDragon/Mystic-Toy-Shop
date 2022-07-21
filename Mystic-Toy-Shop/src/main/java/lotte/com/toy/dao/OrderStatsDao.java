@@ -55,4 +55,11 @@ public interface OrderStatsDao {
      * @return
      */
     List<OrderStatsDto> getOrderStatsByCatsMonth(int sellerId);
+
+    List<OrderStatsDto> getMostReviewedCat(int sellerId);
+
+    List<OrderStatsDto> getMostReviewedProduct(int sellerId);
+
+    List<OrderStatsDto> getTopRatedProduct(int sellerId);
+
 }

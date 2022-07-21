@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="lotte.com.toy.service.FileService" %>
 <%@ page import="lotte.com.toy.dto.OrderStatsDto" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
@@ -75,6 +76,13 @@
 <body>
 
 <div class="datacontainer">
+    <div>
+        <figure class="highcharts-figure">
+            <div id="weekly_container"></div>
+            <p class="highcharts-description">
+            </p>
+        </figure>
+    </div>
 <div>
         <c:forEach var="dto" items="${weeklyList}">
             <div><h5>
@@ -142,12 +150,18 @@
     <%
 
         List<OrderStatsDto> list = (List<OrderStatsDto>)request.getAttribute("catWeek");
+        ArrayList<String> category_names = new ArrayList<String>();
         String json = "[";
         String json2 = "[";
         for(OrderStatsDto dto : list){
             json += "{ name:'" + dto.getCategory_name() + "', y:" + dto.getTotal_price() + "}, ";
 
             json2 += "{ name:'" + dto.getCategory_name() + "', y:" + dto.getTotal_quantity() + "}, ";
+
+            if (!category_names.contains(dto.getCategory_name())) {
+                category_names.add(dto.getCategory_name());
+            }
+
         }
         json = json.substring(0, json.lastIndexOf(","));
         json += "]";
@@ -155,6 +169,9 @@
         json2 += "]";
         request.setAttribute("jsonData", json);
         request.setAttribute("jsonData2", json2);
+
+
+
 
     %>
 <script type="text/javascript">
@@ -225,6 +242,42 @@
             name: 'Brands',
             colorByPoint: true,
             data: <%=request.getAttribute("jsonData2") %>
+        }]
+    });
+
+
+    Highcharts.chart('weekly_container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '카테고리별 주간 판매 분석'
+        },
+        subtitle: {
+            text: '카테고라고리고리고리고리고리'
+        },
+        xAxis: {
+            categories: ['월', '화', '수', '목', '금', '토']
+        },
+        yAxis: {
+            title: {
+                text: '결제금액'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: '전자게임',
+            data: [0, 2, 5, 3, 0,0,0]
+        }, {
+            name: '역할놀이/인형/꾸미기',
+            data: [1, 2, 1, 0, 0,0,1]
         }]
     });
 </script>
