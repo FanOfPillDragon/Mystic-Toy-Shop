@@ -8,18 +8,41 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Hello World!</h2>
+<div class="container mt-5">
+    <div>
+        <c:forEach var="productResponseDto" items="${productResponseDtoList}">
+            <div>
+                <div>
+                    <a href="/productDetail.do?productId=${productResponseDto.product_id}">${productResponseDto.product_name}</a>
+                </div>
+                <div>
+                        ${productResponseDto.category_name}
+                </div>
+                <div>
+                        ${productResponseDto.product_info}
+                </div>
+                <div>
+                        ${productResponseDto.product_cost}
+                </div>
+            </div>
 
-${sellerLogin.auth_id}
-<a href="/product_write.do">판매 상품 등록</a>
-<a href="orderlist.do">order</a>
-<a href="ordersheet.do">주문하기</a>
-<a href="orderbyproduct.do?productId=1&quantity=1">단건주문</a>
-<a href="/seller_main.do?seller_id=1">판매자 메인 페이지</a>
-<a href="/seller_main.do?seller_id=1">판매 상품 등록</a>
-<a href="/review.do?productId=1">리뷰등록</a>
-<a href="findReviewList.do?productId=1">리뷰리스트</a>
-<a href="qna.do?productId=1">qna등록</a>
-<a href="findQnaList.do?productId=1">qna리스트</a>
+            <div>
+
+                <div>
+                        ${productResponseDto.seller_email}
+                </div>
+                <div>
+                        ${productResponseDto.seller_company_name}
+                </div>
+                <div>
+                        ${productResponseDto.seller_company_number}
+                </div>
+                <div>
+                        ${productResponseDto.seller_address}
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 </body>
 </html>
