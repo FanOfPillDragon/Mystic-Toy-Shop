@@ -1,10 +1,47 @@
+<%@ page import="lotte.com.toy.dto.QnaListDto" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/productDetail.css">
+    <style>
+        .scrollArea {
+            width: 1296px;
+            height: 58px;
+        }
+
+        .scrollArea ul {
+            padding-left: 0;
+            display: flex;
+        }
+
+        .scrollArea ul li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 58px;
+        }
+
+        .scrollArea ul li:nth-child(1) {
+            border-right: solid 1px gray;
+        }
+
+        .scrollArea ul li:nth-child(2) {
+            border-right: solid 1px gray;
+        }
+
+        .scrollArea ul li button{
+            font-size: 20px;
+            color: #757575;
+            border: none;
+            background-color: transparent;
+        }
+    </style>
 </head>
 <body>
 <div class="container my-5">
@@ -55,20 +92,18 @@
             </div>
         </div>
     </div>
-    <div class="sellerInfoBox">
-
-        <div>
-            ${productResponseDto.seller_company_name}
-        </div>
-        <div>
-            ${productResponseDto.seller_email}
-        </div>
-        <div>
-            ${productResponseDto.seller_company_number}
-        </div>
-        <div>
-            ${productResponseDto.seller_address}
-        </div>
+    <div class="scrollArea">
+        <ul>
+            <li>
+                <button type="button" id="pInfo" style="color: black" onclick="menuChange('pInfo')">상품 정보</button>
+            </li>
+            <li>
+                <button type="button" id="pReview" onclick="menuChange('pReview')">상품 리뷰</button>
+            </li>
+            <li>
+                <button type="button" id="pQna" onclick="menuChange('pQna')">Q&A</button>
+            </li>
+        </ul>
     </div>
 </div>
 <script type="text/javascript">
@@ -90,7 +125,7 @@
             $("input[name=quantity]").val(productCount);
             updateCartCount();
         } else {
-            alert('재고가 부족합니다');
+            alert('1일 동안 최대 5개 구매 가능합니다');
         }
     }
 
@@ -112,7 +147,7 @@
         productCount = $("input[name=quantity]").val();
 
         document.getElementById("totalPrice").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
-
+        document.getElementById("totalPrice2").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
     }
 
     function goToCart() {

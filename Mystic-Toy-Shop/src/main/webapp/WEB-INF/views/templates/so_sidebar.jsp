@@ -80,7 +80,8 @@
         <li class="borderLine">
             <div class="lnbTitle">상품관리</div>
             <ul>
-                <li><a href="<%=request.getContextPath()%>/product_write.do" >상품 등록</a></li>
+
+                <li><a href="<%=request.getContextPath()%>/product_write.do">상품 등록</a></li>
                 <li><a href="<%=request.getContextPath()%>/sosalelist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">상품 목록 조회</a></li>
             </ul>
         </li>

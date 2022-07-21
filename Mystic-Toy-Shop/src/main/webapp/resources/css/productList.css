@@ -1,0 +1,127 @@
+.categoryGrid[data-v-9506d5f4] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.categoryGridWrap ol, ul {
+    list-style: none;
+}
+
+.productListContainer ol, ul {
+    list-style: none;
+}
+
+body, html {
+    line-height: 1;
+    font-family: NotoSansKR, Malgun Gothic, arial, sans-serif;
+    height: 100%;
+    position: relative;
+    letter-spacing: -.02em;
+}
+
+a, button, html, input, select, textarea {
+    font-family: NotoSansKR, Malgun Gothic, arial, sans-serif;
+    color: #333;
+    padding: 0;
+}
+
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+.categoryGrid li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.imgSize {
+    width: 262px;
+    height: 262px;
+}
+
+.productList .item4 .list-wrap > ul[data-v-7f5dc61d] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    margin: 0 -15px;
+    flex-wrap: wrap;
+}
+
+.categoryGridWrap a {
+    text-decoration: none;
+    color: #333;
+}
+
+.productListContainer a {
+    text-decoration: none;
+    color: #333;
+}
+
+.categoryGrid li[data-v-9506d5f4], [data-v-9506d5f4] .swiper-wrapper .swiper-slide {
+    position: relative;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 20%;
+    padding: 10px;
+    margin: -1px 0 0 -1px;
+    text-align: center;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: 1px solid #ddd;
+}
+
+.categoryGrid li .categoryItem[data-v-9506d5f4] {
+    display: block;
+    padding: 14px 10px 13px;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -.3px;
+    cursor: pointer;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+div {
+    display: block;
+}
+
+.productList .item .info[data-v-7f5dc61d] .flag {
+    width: auto !important;
+    display: inline-block;
+    font-size: 11px;
+    border: 1px solid #f04b45;
+    line-height: 15px;
+    vertical-align: top;
+    padding: 0 4px;
+    margin: 0 4px 5px 0;
+    border-radius: 2px;
+}
+
+.productList .item .info .title[data-v-7f5dc61d] {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    white-space: normal;
+    widows: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    line-height: 21px;
+}

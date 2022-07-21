@@ -8,11 +8,9 @@
     <link href="<%=request.getContextPath()%>/css/mypage.css"
           rel="stylesheet">
     <style>
-        img {
-            width: 80px;
-            height: 80px;
-        }
+
     </style>
+    <script src="https://kit.fontawesome.com/079869d0a6.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
@@ -21,7 +19,9 @@
         <div class="membershipUserWrap">
             <div class="memberInner">
                 <div class="profileWrap">
-                    <button></button>
+                    <button>
+                        <i class="fa-solid fa-user"></i>
+                    </button>
                     <div class="nicknameWrap">
                         <p class="infoWord">쇼핑하기 좋은 날이에요!</p>
                         <div class="nickName">손은성님!</div>
@@ -40,8 +40,8 @@
                         </li>
                     </ul>
                     <div class="benefit">
-                        <div><strong>첫 구매 우대 -</strong> 적립 5%</div>
-                        <div><strong>첫 구매 우대 -</strong> 20,000원 이상 무료배송</div>
+                        <div><strong>회원 구매 우대 -</strong> 적립 5%</div>
+                        <div><strong>회원 구매 우대 -</strong> 20,000원 이상 무료배송</div>
                     </div>
                 </div>
 
@@ -54,24 +54,28 @@
             <div class="scrollArea">
                 <ul>
                     <li>
-                        <button type="button" style="color: black">주문 내역</button>
-                    </li>
-                    <li>
-                        <button type="button">나의 리뷰</button>
+                        <div style="color: black">주문 내역</div>
                     </li>
                 </ul>
             </div>
 
             <div class="bottomData">
-                <h2>주문 내역</h2>
                 <div class="dateBar">
                     <form action="orderDateList.do">
-                        <input type="date" name="startDate">
-                        <input type="date" name="endDate">
-                        <input type="submit" value="검색하기">
+                        <div class="orrderDate">
+                            <input type="date" name="startDate" value="${startDate}">
+                            <input type="date" name="endDate" value="${endDate}">
+                            <input type="submit" class="dateBtn" value="기간검색">
+                        </div>
                     </form>
                 </div>
-                <h3>주문 내역 없음</h3>
+                <div class="noOrderWrapper">
+                    <div>
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <div>주문 내역이 없습니다</div>
+                    </div>
+                    <button type="button" class="orderBtn" onclick="location.href='<%=request.getContextPath() %>/productList.do'">지금 쇼핑하러 가기</button>
+                </div>
             </div>
         </div>
     </div>

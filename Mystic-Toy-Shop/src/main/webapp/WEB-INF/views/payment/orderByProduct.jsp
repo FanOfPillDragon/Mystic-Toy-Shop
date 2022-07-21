@@ -5,8 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
 <%
-    ProductDto product = (ProductDto)request.getAttribute("productDto");
-    int productId = (Integer)request.getAttribute("productId");
+    ProductDto product = (ProductDto) request.getAttribute("productDto");
+    int productId = (Integer) request.getAttribute("productId");
     int quantity = (Integer) request.getAttribute("quantity");
     int totalPrice = 0;
     int orderCount = 1;
@@ -14,46 +14,84 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/payment.css">
 </head>
 <body>
-<h1>주문/결제</h1>
-<h2>상품 정보</h2>
-<div class="container">
-    <table border="1">
-        <tr>
-            <img alt="" src=<%=product.getProduct_img()%>>
-            <p><%=product.getProduct_name()%></p>
-            <p><%=quantity%></p>
-            <p><%=product.getProduct_cost()%></p>
+<div class="h3 d-flex justify-content-center my-5">주문/결제하기</div>
+<div class="container my-5">
+    <div class="flexTableContainer orderPayWrap">
+        <div class="cardTitle">상품 정보</div>
+        <div class="productBox cardBoxBorderContainer">
+            <div class="productImgContainer">
+                <img class="productImg" alt="" src="<%=product.getProduct_img()%>"/>
+            </div>
+            <div>
+                <div class="productName">
+                    <div class="h4"><%=product.getProduct_name()%>
+                    </div>
+                </div>
+                <div class="productProperties">
+                    <dl>
+                        <dt>수량</dt>
+                        <dd><%=quantity%>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>가격</dt>
+                        <dd><%=product.getProduct_cost()%>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
             <%
-                totalPrice+=(product.getProduct_cost())*(quantity);
+                totalPrice += (product.getProduct_cost()) * (quantity);
             %>
-        </tr>
-    </table>
-</div>
-<h2>배송 정보</h2>
-<div>
-    <form name="frm" action="singlepayment.do" method="post" onsubmit="return checkForm()">
-        받는분 : <input type="text" name="orderName" id="orderName"><br>
-        배송지 : <input type="text" name="orderAddress" id = "orderAddress"><br>
-        전화번호 : <input type="text" name="orderPhone" id = "orderPhone"><br>
-        배송 요청사항 : <input type="text" name="orderComment" id = "orderComment"><br>
-        <input type="hidden" name="productId" value=<%=productId%>>
-        <input type="hidden" name="quantity" value=<%=quantity%>>
-        <h3>총 결제금액</h3>
-        <table>
-            <tr>
-                상품금액 : <%=totalPrice%><br>
-                총 <%=orderCount%> 건<br>
-            </tr>
-        </table>
-        <input type="submit" value="주문하기">
-    </form>
+        </div>
+        <div class="h3">배송 정보</div>
+
+        <form name="frm" action="singlepayment.do" method="post" onsubmit="return checkForm()">
+            <div class="deliveryContainer">
+                <div class="deliveryContentContainer">
+                    <div class="mb-3">
+                        <label for="orderName" class="mb-2">받는분</label>
+                        <div style="width: 300px;"><input class="form-control" type="text" name="orderName" id="orderName" size="10" value="${sessionScope.userLogin.user_name}"/></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="orderAddress" class="mb-2">배송지</label>
+                        <div class="formLength"><input class="form-control" type="text" name="orderAddress" id="orderAddress" value="${sessionScope.userLogin.user_address}"/></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="orderPhone" class="mb-2">전화번호</label>
+                        <div style="width: 300px;"><input class="form-control" type="text" name="orderPhone" id="orderPhone" value="${sessionScope.userLogin.user_phone}"/></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="orderComment" class="mb-2">배송 요청사항</label>
+                        <div class="formLength"><input class="form-control" type="text" name="orderComment" id="orderComment" placeholder="배송 전 연락주세요"/></div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="productId" value=<%=productId%>>
+            <input type="hidden" name="quantity" value=<%=quantity%>>
+
+            <div class="flexContainerCol alignCenterContainer mb-3 priceContainer">
+                <div class="h3 mb-3">총 결제금액</div>
+                <div class="mb-3">
+                    총 <strong class="colorPrimary"><%=orderCount%></strong> 건
+                </div>
+                <div class="mb-3">
+                    총 상품금액 : <strong class="colorPrimary"><%=totalPrice%></strong> 원
+                </div>
+                <strong class="my-5">위 내용을 확인하였으며 결제에 동의합니다</strong>
+                <input class="btnOrder" type="submit" value="주문하기">
+            </div>
+        </form>
+    </div>
 </div>
 <script type="text/javascript">
-    function checkForm(){
-        if(frm.orderName.value==""||frm.orderAddress.value==""||frm.orderPhone.value==""||frm.orderComment.value==""){
-            alert("입력해");
+    function checkForm() {
+        if (frm.orderName.value == "" || frm.orderAddress.value == "" || frm.orderPhone.value == "" || frm.orderComment.value == "") {
+            alert("빈칸을 채워주세요!");
             return false;
         }
     }

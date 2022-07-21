@@ -28,4 +28,11 @@ public class OrderDetailDto {
     private int product_cost;
     private int product_category;
     private char ship_status;
+    private String seller_company_name;
+    private int product_id;
+    private int reviewCheck;
+
+    public void setReviewCheck(int check){
+        this.reviewCheck = check;
+    }
 }

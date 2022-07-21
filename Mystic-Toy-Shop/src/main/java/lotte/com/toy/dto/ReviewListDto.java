@@ -2,11 +2,13 @@ package lotte.com.toy.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
 @Getter
 @AllArgsConstructor
+@RequiredArgsConstructor
 @ToString
 public class ReviewListDto {
     private String review_title;

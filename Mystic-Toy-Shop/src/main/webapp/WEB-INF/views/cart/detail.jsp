@@ -13,7 +13,7 @@
 
     <div class="flexTableContainer">
 
-        <div class="cartTitle">일반 <span class="colorPrimary">(${fn:length(cartUserProductDtoList)})</span></div>
+        <div class="cartTitle">일반 <span class="colorPrimary">${fn:length(cartUserProductDtoList)} </span>건</div>
         <div class="flexContainer">
             <div class="cartBoxContainer">
                 <c:choose>
@@ -30,11 +30,11 @@
                             <input type="hidden" id="product_id" value="${cupDto.product_id}"/>
                             <div class="cartBoxBorderContainer">
                                 <div class="cartBox p-3">
-                                    <div>
+                                    <div class="productName">
                                         <div class="h4">${cupDto.product_name}</div>
                                     </div>
 
-                                    <div>
+                                    <div class="productCount">
                                         <div class="spinnerBox">
                                             <button type="button" class="btn minus lookDisabled" onclick="minus(${cupDto.cart_id},${cupDto.product_id})">-</button>
                                             <div class="number">
@@ -46,9 +46,10 @@
                                         </div>
 
                                     </div>
-                                    <div>
+                                    <div class="cartPrice">
                                         <div>${cupDto.product_cost} 원</div>
-                                        <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})"></div>
+                                    </div>
+                                    <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})">
                                 </div>
                                 <input type="hidden" name="productCost${cupDto.product_id}" value="${cupDto.product_cost}"/>
                                 <div class="cartFooterContainer">
@@ -93,7 +94,14 @@
                 </dl>
 
                 <ul class="cartBtnSet">
-                    <li><a class="btnOrder" onclick="goToOrder()">주문하기</a></li>
+                    <c:choose>
+                        <c:when test="${empty cartUserProductDtoList}">
+                            <li><a class="btnOrder btnDisabled">주문하기</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a class="btnOrder" onclick="goToOrder()">주문하기</a></li>
+                        </c:otherwise>
+                    </c:choose>
                     <li><a class="btnGift">선물하기</a></li>
                 </ul>
 
@@ -199,7 +207,10 @@
     }
 
     function goToOrder() {
-        location.href = '<%=request.getContextPath()%>/ordersheet.do';
+        let checkOrder = confirm('상품을 주문하시겠습니까?');
+        if (checkOrder) {
+            location.href = '<%=request.getContextPath()%>/ordersheet.do';
+        }
     }
 
 </script>

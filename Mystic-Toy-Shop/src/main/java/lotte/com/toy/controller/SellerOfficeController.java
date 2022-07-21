@@ -162,4 +162,36 @@ public class SellerOfficeController {
 
         return "seller_main";
     }
+
+    @GetMapping("sosalelist.do")
+    public String sosalelist(Model model,SellerDto seller){
+        System.out.println("SellerOfficeController mysalelist()");
+
+        List<ProductResponseDto> mysalelist = sellerservice.findAllSellerProductList(seller);
+        model.addAttribute("mysalelist",mysalelist);
+
+        return "seller_product_list";
+    }
+
+    @GetMapping("clientOrderlist.do")
+    public String soOrderlist(Model model,SellerDto seller){
+        System.out.println("SellerOfficeController clientOrderlist()");
+
+        List<ClientOrderDto> cod = sellerservice.findClientOrders(seller);
+        model.addAttribute("codlist",cod);
+        return "clientOrderlist";
+    }
+
+    @GetMapping("clientShipstatus.do")
+    public String clientShipstatus(Model model,SellerDto seller){
+        System.out.println("SellerOfficeController clientShipstatus()");
+
+        return "clientShipstatus";
+    }
+
+    @GetMapping("productUpdate.do")
+    public String productUpdate(Model model,ProductDto dto){
+
+        return "product_update";
+    }
 }
