@@ -24,6 +24,21 @@
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_main.jsp"/>
     </definition>
 
+    <definition name="seller_product_list" extends="so_main_title">
+        <put-attribute name="title" value="판매상품 조회"/>
+        <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_product_list.jsp"/>
+    </definition>
+
+    <definition name="clientOrderlist" extends="so_main_title">
+        <put-attribute name="title" value="주문관리"/>
+        <put-attribute name="body" value="/WEB-INF/views/selleroffice/clientOrderlist.jsp"/>
+    </definition>
+
+    <definition name="clientShipstatus" extends="so_main_title">
+        <put-attribute name="title" value="배송관리"/>
+        <put-attribute name="body" value="/WEB-INF/views/selleroffice/clientShipstatus.jsp"/>
+    </definition>
+
     <definition name="main" extends="main_tile">
         <put-attribute name="title" value="메인"/>
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
@@ -32,6 +47,11 @@
     <definition name="product_write" extends="main_tile">
         <put-attribute name="title" value="상품등록"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/product_write.jsp"/>
+    </definition>
+
+    <definition name="product_update" extends="main_tile">
+        <put-attribute name="title" value="상품수정"/>
+        <put-attribute name="body" value="/WEB-INF/views/selleroffice/product_update.jsp"/>
     </definition>
 
 <!--

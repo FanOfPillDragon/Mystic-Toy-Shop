@@ -1,8 +1,23 @@
+<%@ page import="lotte.com.toy.dto.SellerDto" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
+<%
+    Object obj = request.getSession().getAttribute("sellerLogin");
+    SellerDto seller = null;
+    if(obj == null){
+        %>
+        <script>
+            alert('비정상적인 접근입니다.');
+            location.href = "<%=request.getContextPath()%>/main.do";
+        </script>
+        <%
+            }
+    seller = (SellerDto)obj;
+%>
 
 <html>
 <head>
@@ -62,15 +77,15 @@
             <div class="lnbTitle">상품관리</div>
             <ul>
                 <li><a href="<%=request.getContextPath()%>/product_write.do">상품 등록</a></li>
-                <li><a href="#"  class="no-underline">상품 목록 조회</a></li>
+                <li><a href="<%=request.getContextPath()%>/sosalelist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">상품 목록 조회</a></li>
             </ul>
         </li>
         <li class="borderLine">
             <div>
                 <div class="lnbTitle">주문관리</div>
                 <ul>
-                    <li><a href="#"  class="no-underline">주문 목록 조회</a></li>
-                    <li><a href="#"  class="no-underline">배송 관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/clientOrderlist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">주문 목록 조회</a></li>
+                    <li><a href="<%=request.getContextPath()%>/clientShipstatus.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">배송 관리</a></li>
                 </ul>
             </div>
         </li>

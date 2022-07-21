@@ -80,7 +80,7 @@
     <!-- 리뷰 불러오기 -->
     <select id="findAllReviews" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.ReviewDto">
 
-        select review_id, review_title, review_writer,review_register_date
+        select review_id, review_title, review_writer, review_register_date
 
         from sellers s
                  join products p on s.seller_id = p.seller_id
@@ -93,12 +93,55 @@
 
     <!-- QnA 불러오기 -->
     <select id="findAllQnAs" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.QnADto">
-        select qna_id, qna_title, qna_writer,qna_register_date
+        select qna_id, qna_title, qna_writer, qna_register_date
         from sellers s
                  join products p on s.seller_id = p.seller_id
                  join qnas q on q.product_id = p.product_id
         where s.seller_id = #{seller_id}
           and is_deleted = 0
         order by qna_register_date desc limit 0,5;
+    </select>
+
+    <!-- 판매자 상품 목록 조회 -->
+    <select id="findAllSellerProductList" parameterType="lotte.com.toy.dto.SellerDto"
+            resultType="lotte.com.toy.dto.ProductResponseDto">
+        select p.product_id,
+               product_name,
+               product_info,
+               product_img,
+               product_cost,
+               product_stock,
+               product_sell_count,
+               c.category_id,
+               category_name
+        from sellers s
+                 join products p on s.seller_id = p.seller_id
+                 join categories c on c.category_id = p.category_id
+        where s.seller_id = #{seller_id};
+    </select>
+
+    <!-- 주문 조회 -->
+    <select id="findClientOrders" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.ClientOrderDto">
+        select o.product_id,
+               product_name,
+               product_img,
+               product_cost,
+               order_id,
+               order_address,
+               order_comment,
+               order_date,
+               order_quantity,
+               order_total_price,
+               o.user_id,
+               user_name,
+               user_phone,
+               user_zipcode,
+               user_gender
+        from sellers s
+                 join products p on s.seller_id = p.seller_id
+                 join orders o on o.product_id = p.product_id
+                 join users u on u.user_id = o.user_id
+        where s.seller_id = #{seller_id}
+        order by o.order_date desc;
     </select>
 </mapper>

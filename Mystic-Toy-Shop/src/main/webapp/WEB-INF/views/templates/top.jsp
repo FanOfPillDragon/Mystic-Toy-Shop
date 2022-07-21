@@ -1,3 +1,4 @@
+<%@ page import="lotte.com.toy.dto.SellerDto" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="true" %>
@@ -247,7 +248,7 @@
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderlist.do">마이페이지</a></li>
                         </c:when>
                         <c:when test="${not empty sessionScope.sellerLogin}">
-                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/seller_main.do">판매자 센터</a></li>
+                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/seller_main.do?seller_id=${sessionScope.sellerLogin.seller_id}">판매자 센터</a></li>
                         </c:when>
                         <c:otherwise>
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/login.do">마이페이지</a></li>

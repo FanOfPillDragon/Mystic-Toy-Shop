@@ -34,7 +34,7 @@ public class OrderController {
         List<Integer> orderGroupList = orderService.findOrderGroupList();
         System.out.println(orderGroupList + " : dtoorderGroupList");
         if(orderGroupList.isEmpty()){
-            System.out.println("데이터없음!");
+                System.out.println("데이터없음!");
             return "orderempty";
         }
         List<List<OrderDetailDto>> list = new ArrayList<>();
