@@ -2,8 +2,11 @@ package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.CreateReviewDto;
 import lotte.com.toy.dto.ReviewListDto;
+import lotte.com.toy.dto.ReviewRequestDto;
 import lotte.com.toy.dto.UserDto;
 import lotte.com.toy.service.ReviewService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +18,19 @@ import java.util.List;
 @Controller
 public class ReviewController {
 
+    private Logger log = LoggerFactory.getLogger(ReviewController.class);
+
     @Autowired
     ReviewService reviewService;
 
     @RequestMapping(value = "review.do")
-    public String startReview(HttpServletRequest request, Model model){
-        String image = request.getParameter("image");
-        String title = request.getParameter("title");
-        String productId = request.getParameter("productId");
-        model.addAttribute("image",image);
-        model.addAttribute("title",title);
-        model.addAttribute("productId",productId);
+    public String startReview(Model model, ReviewRequestDto reviewRequestDto){
+        log.info("ReviewController startReview()");
+        log.info(reviewRequestDto.toString());
+        model.addAttribute("image",reviewRequestDto.getProduct_img());
+        model.addAttribute("title",reviewRequestDto.getProduct_name());
+        model.addAttribute("productId",reviewRequestDto.getProduct_id());
+        model.addAttribute("orderId",reviewRequestDto.getOrder_id());
         return "review";
     }
 

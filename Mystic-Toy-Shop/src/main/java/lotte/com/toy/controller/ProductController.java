@@ -28,10 +28,7 @@ public class ProductController {
     public String productList(Model model) {
         log.info("ProductController productList()");
 
-        List<CategoryDto> categoryList = categoryservice.categoryList();
-        model.addAttribute("categories", categoryList);
-
-        List<ProductResponseDto> productResponseDtoList = productService.getProductList();
+        List<ProductResponseDto> productResponseDtoList = productService.getProductListForMain();
         model.addAttribute("productResponseDtoList",productResponseDtoList);
 
         return "productList";

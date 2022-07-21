@@ -13,7 +13,7 @@
 
     <div class="flexTableContainer">
 
-        <div class="cartTitle">일반 <span class="colorPrimary">(${fn:length(cartUserProductDtoList)})</span></div>
+        <div class="cartTitle">일반 <span class="colorPrimary">${fn:length(cartUserProductDtoList)} </span>건</div>
         <div class="flexContainer">
             <div class="cartBoxContainer">
                 <c:choose>
@@ -94,7 +94,14 @@
                 </dl>
 
                 <ul class="cartBtnSet">
-                    <li><a class="btnOrder" onclick="goToOrder()">주문하기</a></li>
+                    <c:choose>
+                        <c:when test="${empty cartUserProductDtoList}">
+                            <li><a class="btnOrder btnDisabled">주문하기</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a class="btnOrder" onclick="goToOrder()">주문하기</a></li>
+                        </c:otherwise>
+                    </c:choose>
                     <li><a class="btnGift">선물하기</a></li>
                 </ul>
 

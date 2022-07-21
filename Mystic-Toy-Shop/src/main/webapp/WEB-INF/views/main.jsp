@@ -234,16 +234,16 @@
                                             </div>
                                         </a>
                                     </div>
-                                    </c:forEach>
-                                </ul>
-                            </div>
+
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
+
+
     </div>
 </div>
 </body>
