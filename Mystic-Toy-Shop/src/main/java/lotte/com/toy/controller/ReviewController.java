@@ -19,7 +19,12 @@ public class ReviewController {
     ReviewService reviewService;
 
     @RequestMapping(value = "review.do")
-    public String startReview(Model model, int productId){
+    public String startReview(HttpServletRequest request, Model model){
+        String image = request.getParameter("image");
+        String title = request.getParameter("title");
+        String productId = request.getParameter("productId");
+        model.addAttribute("image",image);
+        model.addAttribute("title",title);
         model.addAttribute("productId",productId);
         return "review";
     }

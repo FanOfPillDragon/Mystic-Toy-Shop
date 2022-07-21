@@ -125,7 +125,7 @@
 
 .memberInfoBanner {
     width: 1140px;
-    background-color: #3A4CA8;
+    background-color: #BFBFBF;
     position: relative;
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
@@ -201,7 +201,7 @@ ol, ul {
 
 .textWrapper {
     padding: 20px 0;
-    width: 60%;
+    width: 40%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -234,4 +234,26 @@ ol, ul {
     align-items: center;
     padding: 0;
     border-bottom: 1px solid #f4f4f4;
+}
+
+.buttonWrapper {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonWrapper .detailBtn{
+    background-color: transparent;
+    border: solid 1px #3A4CA8;
+    color: #3A4CA8;
+    font-size: 14px;
+}
+
+.buttonWrapper .reviewBtn{
+    background-color: #3A4CA8;
+    color: white;
+    font-size: 14px;
+    border: solid 1px #3A4CA8;font-family: noto sans;
 }

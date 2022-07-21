@@ -11,6 +11,7 @@
     <link href="<%=request.getContextPath()%>/css/mypage.css"
           rel="stylesheet">
     <style>
+
     </style>
 </head>
 <body>
@@ -90,20 +91,37 @@
                         <div class="shipWrapper">
                             <div id="shipStatus<c:out value="${order.order_id}"/>"
                                  style="font-size: 20px; font-weight: bold"></div>
-                            <script type="text/javascript">
-                                (function () {
-                                    let ship = <c:out value="${order.ship_status}"/>;
-                                    if (ship == 0) {
-                                        $("#shipStatus<c:out value="${order.order_id}"/>").text("배송중");
-                                    } else {
-                                        $("#shipStatus<c:out value="${order.order_id}"/>").text("배송완료");
-                                    }
-                                }());
-                            </script>
+
                         </div>
+                        <div class="buttonWrapper">
+                            <button type="button" class="detailBtn">상세보기</button>
+                            <form id="reviewForm" action="/review.do" method="post">
+                                <input type="hidden" value="${order.product_img}" name="image">
+                                <input type="hidden" value="${order.product_name}" name="title">
+                                <input type="hidden" value="1" name="productId">
+                                <button type="button" class="reviewBtn" id="reviewBtn<c:out value="${order.order_id}"/>"
+                                        style="display: none" onclick="goReview()">리뷰쓰기
+                                </button>
+                            </form>
+
+                        </div>
+                        <script type="text/javascript">
+                            (function () {
+                                let ship = <c:out value="${order.ship_status}"/>;
+                                if (ship == 0) {
+                                    $("#shipStatus<c:out value="${order.order_id}"/>").text("배송중");
+                                } else {
+                                    $("#shipStatus<c:out value="${order.order_id}"/>").text("배송완료");
+                                    $("#reviewBtn<c:out value="${order.order_id}"/>").show();
+                                }
+                            }());
+                            function goReview(){
+                                const form = document.getElementById("reviewForm");
+                                form.submit();
+                            }
+                        </script>
                     </div>
                 </c:forEach>
-                <%--                    </table>--%>
             </c:forEach>
         </div>
     </div>
