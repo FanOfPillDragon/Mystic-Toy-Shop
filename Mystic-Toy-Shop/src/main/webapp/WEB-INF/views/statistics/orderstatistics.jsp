@@ -75,7 +75,32 @@
     </style>
 </head>
 <body>
-
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <h5>오늘 가장 많이 팔린 카테고리</h5>
+                <span style="font-size:20px;"><strong>${catToday.category_name}</strong></span>
+                <br>
+                <span>주문수 : ${catToday.total_orders}</span>
+                <span>상품판매량 : ${catToday.total_quantity}</span>
+                <span>결제금액 : ${catToday.total_price}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <h5>이번주 가장 많이 팔린 카테고리</h5>
+                <span style="font-size:20px;"><strong>${catWeek.category_name}</strong></span>
+                <br>
+                <span>주문수 : ${catWeek.total_orders}</span>
+                <span>상품판매량 : ${catWeek.total_quantity}</span>
+                <span>결제금액 : ${catWeek.total_price}</span>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-lg-6">
 <div class="datacontainer">
@@ -111,32 +136,7 @@
             <hr>
         </c:forEach>
 </div>--%>
-<div class="row">
-    <div class="col-lg-4">
-        <div class="card mb-4 py-3 border-left-primary">
-            <div class="card-body">
-                <h5>오늘 가장 많이 팔린 카테고리</h5>
-                <span style="font-size:20px;"><strong>${catToday.category_name}</strong></span>
-                <br>
-                <span>주문수 : ${catToday.total_orders}</span>
-                <span>상품판매량 : ${catToday.total_quantity}</span>
-                <span>결제금액 : ${catToday.total_price}</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="card mb-4 py-3 border-left-primary">
-            <div class="card-body">
-                <h5>이번주 가장 많이 팔린 카테고리</h5>
-                <span style="font-size:20px;"><strong>${catWeek.category_name}</strong></span>
-                <br>
-                <span>주문수 : ${catWeek.total_orders}</span>
-                <span>상품판매량 : ${catWeek.total_quantity}</span>
-                <span>결제금액 : ${catWeek.total_price}</span>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="row">
     <div class="col-lg-8">
     <table class="table table-hover">
@@ -182,6 +182,10 @@
 
         List<OrderStatsDto> list = (List<OrderStatsDto>)request.getAttribute("catWeeks");
         List<WeeklyStatsDto> weeklyList = (List<WeeklyStatsDto>)request.getAttribute("weeklyStatsDtoList");
+        List<String> category_names = new ArrayList<String>();
+
+        String categories = "[";
+
         String json = "[";
         String json2 = "[";
         String weeklyData = "[";
@@ -191,10 +195,13 @@
 
             json2 += "{ name:'" + dto.getCategory_name() + "', y:" + dto.getTotal_quantity() + "}, ";
 
-/*            if (!category_names.contains(dto.getCategory_name())) {
-                category_names.add(dto.getCategory_name());
-            }*/
+            if (!category_names.contains(dto.getCategory_name())) {
+                categories += "'" + dto.getCategory_name() + "', ";
+            }
         }
+
+        categories = categories.substring(0, categories.lastIndexOf(","));
+        categories += "]";
 
         for(WeeklyStatsDto weekday : weeklyList) {
             weeklyData += "{ name:'" + weekday.getCategory_name() + "', data: [";
@@ -212,7 +219,7 @@
         json2 += "]";
         weeklyData = weeklyData.substring(0, weeklyData.lastIndexOf(","));
         weeklyData += "]";
-        System.out.println(weeklyData);
+        System.out.println("categories : " +categories);
         // 전자게임 / 인형놀이
         /*name: '역할놀이/인형/꾸미기',
                 data: [1, 2, 1, 0, 0,0,1]*/
@@ -221,6 +228,7 @@
         request.setAttribute("jsonData", json);
         request.setAttribute("jsonData2", json2);
         request.setAttribute("weeklyData", weeklyData);
+        request.setAttribute("categories", categories);
 
 
 
@@ -279,6 +287,9 @@
             point: {
                 valueSuffix: '%'
             }
+        },
+        xAxis: {
+            categories: <%=request.getAttribute("categories") %>
         },
         plotOptions: {
             pie: {
