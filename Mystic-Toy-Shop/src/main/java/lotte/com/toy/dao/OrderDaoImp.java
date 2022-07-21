@@ -41,6 +41,7 @@ public class OrderDaoImp implements OrderDao{
 
     @Override
     public List<Integer> findOrderGroupList() {
+        System.out.println("findOrderGroupList DAO");
         return session.selectList(namespace+"findOrderGroupList");
     }
 

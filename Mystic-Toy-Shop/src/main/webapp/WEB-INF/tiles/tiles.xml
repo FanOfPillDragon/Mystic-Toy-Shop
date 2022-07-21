@@ -25,7 +25,7 @@
         <put-attribute name="title" value="판매자"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_main.jsp"/>
     </definition>
-
+<!--
     <definition name="order" extends="main_tile">
         <put-attribute name="title" value="주문"/>
         <put-attribute name="body" value="/WEB-INF/views/order/order.jsp"/>
@@ -44,6 +44,26 @@
     <definition name="orderempty" extends="main_tile">
         <put-attribute name="title" value="주문상세"/>
         <put-attribute name="body" value="/WEB-INF/views/order/orderempty.jsp"/>
+    </definition>
+    -->
+    <definition name="order" extends="main_tile">
+        <put-attribute name="title" value="주문"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/myOrder.jsp"/>
+    </definition>
+
+    <definition name="orderdetail" extends="main_tile">
+        <put-attribute name="title" value="주문상세"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/myOrderDetail.jsp"/>
+    </definition>
+
+    <definition name="orderdate" extends="main_tile">
+        <put-attribute name="title" value="주문상세"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/myOrderDate.jsp"/>
+    </definition>
+
+    <definition name="orderempty" extends="main_tile">
+        <put-attribute name="title" value="주문상세"/>
+        <put-attribute name="body" value="/WEB-INF/views/order/myOrderEmpty.jsp"/>
     </definition>
 
     <definition name="signup" extends="main_tile">
@@ -127,6 +147,16 @@
     <definition name="productDetail" extends="main_tile">
         <put-attribute name="title" value="상품상세 페이지"/>
         <put-attribute name="body" value="/WEB-INF/views/product/detail.jsp"/>
+    </definition>
+
+    <!-- review part -->
+    <definition name="review" extends="main_tile">
+        <put-attribute name="title" value="리뷰등록"/>
+        <put-attribute name="body" value="/WEB-INF/views/review/review.jsp"/>
+    </definition>
+    <definition name="reviewlist" extends="main_tile">
+        <put-attribute name="title" value="리뷰"/>
+        <put-attribute name="body" value="/WEB-INF/views/review/reviewlist.jsp"/>
     </definition>
 
 </tiles-definitions>

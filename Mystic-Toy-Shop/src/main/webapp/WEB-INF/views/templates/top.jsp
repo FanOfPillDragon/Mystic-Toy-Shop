@@ -74,6 +74,7 @@
             display: flex;
             width: 100%;
             text-align: left;
+            align-items: center;
             padding: 15px 0 16px;
             height: 91px;
         }
@@ -84,6 +85,9 @@
 
         .searchAreaWrap {
             margin-left: 0;
+            width: 670px;
+            display: flex;
+            justify-content: center;
         }
 
         .searchArea {
@@ -147,13 +151,15 @@
         }
 
         .buttonArea {
-            margin: 7px -12px 0 auto;
+            width: 300px;
+            margin: 7px -12px 0 0;
             font-size: 0;
             text-align: right;
         }
 
         .buttonArea ul {
             list-style: none;
+            margin-bottom: 0;
         }
 
         .buttonArea li {
@@ -237,7 +243,7 @@
             </div>
             <div class="buttonArea">
                 <ul>
-                    <li><a class="myPageBtn" href="<%=request.getContextPath()%>/mypage.do">마이페이지</a></li>
+                    <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderlist.do">마이페이지</a></li>
                     <li><a class="cartBtn" href="<%=request.getContextPath()%>/cart.do">장바구니</a></li>
                 </ul>
             </div>

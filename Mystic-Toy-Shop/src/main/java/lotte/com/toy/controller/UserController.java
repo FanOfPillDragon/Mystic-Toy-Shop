@@ -144,14 +144,17 @@ public class UserController {
 
         String user_kakao_identifier = (String) userInfo.get("id");
 
+        model.addAttribute("user_kakao_identifier",user_kakao_identifier);
+
         // 바뀐 값으로 찾아서 데이터 저장하기
         UserDto rDto = userservice.kakaoUserLogin(user_kakao_identifier);
+        System.out.println(rDto + " : dtoRDTO");
         if (rDto != null) {
             req.getSession().setAttribute("userLogin", rDto);
             System.out.println(req.getSession().getAttribute("userLogin"));
             return "redirect:/main.do";
         } else {
-            return "userSignup.do";
+            return "redirect:/userSignup.do";
         }
     }
 
