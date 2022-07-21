@@ -12,7 +12,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%!
+    public String getSubstr(String str) {
 
+        String rtnStr = "";
+        if(str == null || str.equals("")) {
+            rtnStr = "내용 없음";
+        } else if (str.length() > 14) {
+            rtnStr = str.substring(0,14) + "...";
+        } else {
+            rtnStr = str;
+        }
+
+        return rtnStr;
+    }
+%>
 <%
     JSONObject jsonObject = (JSONObject) request.getAttribute("seller_data");
     int onSaleProduct = jsonObject.getInt("onSaleProduct"); // 판매중
@@ -114,87 +128,95 @@
 
     </style>
 </head>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 <body style="text-align: center">
-<div id="content">
+<div id="content" style="margin-top: 30px;">
     <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <%--<h1 class="h3 mb-0 text-gray-800">운영 현황</h1>--%>
-        </div>
         <div class="row">
-
-            <div class="col-xl-1 col-md-2 mb-4">
-                <div class="card  h-100 py-2">
-                    <div class="card-body" style="background-color: #4e73df21;">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-uppercase mb-1">
-                                    판매<br>현황
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-xl-4 mb-2">
+                <h5 style="text-align: left;margin-bottom: 0;">🛒 판매 주문 게시판 당일 요약</h5>
+                <p style="text-align: left;">오늘 꺼 분석을 볼수잇따 그래그래 그런 페이지에욤 하하</p>
             </div>
-
-            <%--판매중--%>
-            <div class="col-xl-2 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body read-more">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
-                                    📌 판매중
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <%=onSaleProduct%>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <%--품절된 상품--%>
-            <div class="col-xl-2 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body read-more">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
-                                    ❗ 품절된 상품
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <%=soldOutProduct%>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <%--판매종료--%>
-            <div class="col-xl-2 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body read-more">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
-                                    💡 판매종료
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <%=endSaleProduct%>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
 
         <div class="row">
-            <div class="col-xl-1 col-md-2 mb-4">
+
+                <div class="col-xl-2 col-md-2 mb-4">
+                    <div class="card  h-100 py-2">
+                        <div class="card-body" style="background-color: #4e73df21;">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-uppercase mb-1">
+                                        판매<br>현황
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%--판매중--%>
+                <div class="col-xl-2 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body read-more"  data-toggle="tooltip" title="현재 판매중인 상품 수입니다.">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                        📌 판매중
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <%=onSaleProduct%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <%--품절된 상품--%>
+                <div class="col-xl-2 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body read-more" data-toggle="tooltip" title="재고가 0인 상품 수입니다.">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                        ❗ 품절된 상품
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <%=soldOutProduct%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%--판매종료--%>
+                <div class="col-xl-2 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body read-more" data-toggle="tooltip" title="판매를 종료한 상품 수입니다.">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                        💡 판매종료
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <%=endSaleProduct%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-2 col-md-2 mb-4">
                 <div class="card  h-100 py-2">
                     <div class="card-body" style="background-color: #d3c9ec52;">
                         <div class="row no-gutters align-items-center">
@@ -211,7 +233,7 @@
         <%--배송준비--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body read-more">
+                    <div class="card-body read-more" data-toggle="tooltip" title="출고 되지 않은 주문수 입니다.">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -229,7 +251,7 @@
             <%--배송완료--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body read-more">
+                    <div class="card-body read-more" data-toggle="tooltip" title="출고 된 주문수 입니다.">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -246,7 +268,7 @@
             <%--반품요청--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body read-more">
+                    <div class="card-body read-more" data-toggle="tooltip" title="반품 요청 된 주문 수 입니다.">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
@@ -264,9 +286,10 @@
 
         </div>
 
+
         <%--리뷰현황--%>
         <div class="row">
-            <div class="col-xl-1 col-md-2 mb-4">
+            <div class="col-xl-2 col-md-2 mb-4">
                 <div class="card  h-100 py-2">
                     <div class="card-body" style="background-color: #6accbc1c;">
                         <div class="row no-gutters align-items-center">
@@ -283,10 +306,10 @@
             <%--신규주문--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-mint shadow h-100 py-2">
-                    <div class="card-body read-more">
+                    <div class="card-body read-more" data-toggle="tooltip" title="금일 주문 수입니다.">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                <div class="text-s font-weight-bold text-success text-uppercase mb-1">
                                     🎉 신규주문
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -298,13 +321,14 @@
 
                 </div>
             </div>
+
             <%--신규리뷰--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-mint shadow h-100 py-2">
-                    <div class="card-body read-more">
+                    <div class="card-body read-more" data-toggle="tooltip" title="금일 등록 된 리뷰글 수입니다.">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                <div class="text-s font-weight-bold text-success text-uppercase mb-1">
                                     💌 신규리뷰
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -318,10 +342,10 @@
             <%--신규QnA--%>
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card border-left-mint shadow h-100 py-2">
-                    <div class="card-body read-more">
+                    <div class="card-body read-more" data-toggle="tooltip" title="금일 등록 된 문의 글 수 입니다.">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                <div class="text-s font-weight-bold text-success text-uppercase mb-1">
                                     📃 신규 QnA
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -335,6 +359,12 @@
             </div>
 
         </div>
+    <div class="row">
+        <div class="col-xl-4 mb-2">
+            <h5 style="text-align: left;margin-bottom: 0;"> 🗃️ 판매 주문 게시판 당일 요약</h5>
+            <p style="text-align: left;">오늘 꺼 분석을 볼수잇따 그래그래 그런 페이지에욤 하하</p>
+        </div>
+    </div>
         <div class="row">
             <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card shadow mb-4">
@@ -343,17 +373,23 @@
                     </div>
                     <div class="card-body">
                         <table class= "table table-hover" style="width: 100%;">
-                            <% for (ReviewDto dto : reviewList) {%>
+                            <%
+                                int i = 0;
+                                for (ReviewDto dto : reviewList) {
+                                i++;
+                            %>
                             <colgroup>
-                                <col width="30%">
+                                <col width="5%">
+                                <col width="25%">
                                 <col width="50%">
                                 <col width="20%">
                             </colgroup>
-                            <tr>
+                            <tr data-toggle="tooltip" title="<%=dto.getReview_content()%>">
+                                <td style="color: rgb(119 152 184);font-weight:bold;"><%=i%></td>
                                 <td style="font-size: 11pt"><a
                                         href="reviewdetail.do?review_id=<%=dto.getReview_id()%>"><%=dto.getReview_title()%>
                                 </a></td>
-                                <td style="font-size: 11pt"><%=dto.getReview_content()%></td>
+                                <td style="font-size: 11pt;"><%=getSubstr(dto.getReview_content())%></td>
                                 <td style="font-size: 11pt; text-align: right;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
                                 </td>
                             </tr>
@@ -369,15 +405,23 @@
                     </div>
                     <div class="card-body">
                         <table class="table table-hover" style="width: 100;">
-                            <% for (QnADto dto : qnaList) {%>
+                            <%
+                                int k = 0;
+                                for (QnADto dto : qnaList) {
+                                k++;
+                            %>
                             <colgroup>
-                                <col width="70%">
-                                <col width="30%">
+                                <col width="5%">
+                                <col width="25%">
+                                <col width="50%">
+                                <col width="20%">
                             </colgroup>
-                            <tr>
+                            <tr data-toggle="tooltip" title="<%=dto.getQna_content()%>">
+                                <td style="color: rgb(119 152 184);font-weight:bold;"><%=i%></td>
                                 <td style="font-size: 11pt"><a
                                         href="qnadetail.do?qna_id=<%=dto.getQna_id()%>"><%=dto.getQna_title()%>
                                 </a></td>
+                                <td style="font-size: 11pt;"><%=getSubstr(dto.getQna_content())%></td>
                                 <td style="font-size: 8pt; text-align: right; padding-right: 6px;"><%=DateUtil.toYYYYMMDD(dto.getQna_register_date())%>
                                 </td>
                             </tr>
@@ -389,6 +433,14 @@
                 </div>
             </div>
         </div>
+
+
+    <div class="row">
+        <div class="col-xl-4 mb-2">
+            <h5 style="text-align: left;margin-bottom: 0;"> 📊 판매 내역 차트로 ㅂ여쥬는 </h5>
+            <p style="text-align: left;">오늘 꺼 분석을 볼수잇따 그래그래 그런 페이지에욤 하하</p>
+        </div>
+    </div>
 
         <div class="row">
             <div class="col-lg-4 mb-4">
