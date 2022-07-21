@@ -41,4 +41,27 @@ public class ProductServiceImpl implements ProductService {
         return productDao.product_write(dto) > 0 ? true : false;
 
     }
+
+    @Override
+    public List<ProductResponseDto> findMainList(String productName) {
+        return productDao.findMainList(productName);
+    }
+
+    @Override
+    public boolean updateProductStock(int productId) {
+        int count =  productDao.updateProductStock(productId);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateProductSellcount(int productId) {
+        int count =  productDao.updateProductSellcount(productId);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
 }

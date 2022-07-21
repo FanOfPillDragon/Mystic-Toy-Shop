@@ -237,7 +237,7 @@
                 <div class="searchArea">
                     <label for="headerSearchId" class="searchBlind">검색어</label>
                     <input type="search" id="headerSearchId" placeholder="검색어를 입력하세요" autocomplete="off">
-                    <button type="button" class="btnSearchInner"><span class="searchBlind">검색</span></button>
+                    <button type="button" class="btnSearchInner" onclick="search()"><span class="searchBlind">검색</span></button>
                 </div>
             </div>
             <div class="buttonArea">
@@ -259,5 +259,10 @@
         </div>
     </div>
 </header>
+<script type="text/javascript">
+    function search(){
+        location.href = 'searchResult.do?productName='+$('#headerSearchId').val();
+    }
+</script>
 </body>
 </html>

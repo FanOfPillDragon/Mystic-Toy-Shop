@@ -1,6 +1,7 @@
 package lotte.com.toy.dao;
 
 import lotte.com.toy.dto.CreateReviewDto;
+import lotte.com.toy.dto.ReviewCheckDto;
 import lotte.com.toy.dto.ReviewListDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class ReviewDaoImp implements ReviewDao{
     @Override
     public List<ReviewListDto> findReviewList(int product_id) {
         return session.selectList(nameSpace+"findAll",product_id);
+    }
+
+    @Override
+    public int checkReviewWrite(ReviewCheckDto reviewCheck) {
+        return session.selectOne(nameSpace+"checkReview",reviewCheck);
     }
 }

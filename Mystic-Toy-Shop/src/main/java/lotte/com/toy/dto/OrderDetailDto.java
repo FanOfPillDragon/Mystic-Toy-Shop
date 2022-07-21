@@ -28,4 +28,5 @@ public class OrderDetailDto {
     private int product_cost;
     private int product_category;
     private char ship_status;
+    private int product_id;
 }

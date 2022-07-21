@@ -88,5 +88,15 @@
           and p.seller_id = s.seller_id
           and product_id = #{product_id}
     </select>
-
+    <select id="findByProductName" parameterType="String" resultType="lotte.com.toy.dto.ProductResponseDto">
+        select *
+        from products
+        where product_name like CONCAT("%", #{product_name}, "%")
+    </select>
+    <update id="updateProductStock" parameterType="Integer">
+        update products set product_stock = product_stock - 1 where product_id = #{product_id};
+    </update>
+    <update id="updateProductSellCount" parameterType="Integer">
+        update products set product_sell_count = product_sell_count + 1 where product_id = #{product_id};
+    </update>
 </mapper>
