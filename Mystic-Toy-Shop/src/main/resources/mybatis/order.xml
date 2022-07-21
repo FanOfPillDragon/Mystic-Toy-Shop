@@ -13,12 +13,12 @@
         where a.product_id = c.product_id and b.order_id = c.order_id and b.order_id = #{order_id} and u.user_id = b.user_id and s.seller_id = a.seller_id;
     </select>
     <select id="findAll" parameterType="lotte.com.toy.dto.OrderGroupDto" resultType="lotte.com.toy.dto.OrderDetailDto">
-        select b.order_id order_id, b.order_group order_group, b.order_total_price order_total_price,b.order_address order_address,b.order_phone order_phone,b.order_comment order_comment,b.order_date order_date,b.order_quantity order_quantity,b.user_id user_id, a.product_name product_name,a.product_info product_info,a.product_img product_img,a.product_cost product_cost,a.product_id product_id,a.category_id category_id, c.ship_status ship_status, a.product_id product_id
+        select b.order_id order_id, b.order_group order_group, b.order_total_price order_total_price,b.order_address order_address,b.order_phone order_phone,b.order_comment order_comment,b.order_date order_date,b.order_quantity order_quantity,b.user_id user_id, a.product_name product_name,a.product_info product_info,a.product_img product_img,a.product_cost product_cost,a.product_id product_id,a.category_id category_id, c.ship_status ship_status
         from products a, orders b , payments c
         where a.product_id = c.product_id and b.order_id = c.order_id and b.order_group = #{order_group} and b.user_id = #{user_id};
     </select>
     <select id="findDate" parameterType="lotte.com.toy.dto.OrderDateDto" resultType="lotte.com.toy.dto.OrderDetailDto">
-        select distinct a.order_id order_id, a.order_group order_group, a.order_total_price order_total_price,a.order_address order_address,a.order_phone order_phone,a.order_comment order_comment,a.order_date order_date,a.order_quantity order_quantity,b.user_id user_id,b.user_name user_name,c.product_name product_name,c.product_info product_info,c.product_img product_img,c.product_cost product_cost,a.product_id product_id,c.category_id category_id, d.ship_status ship_status
+        select distinct a.order_id order_id, a.order_group order_group, a.order_total_price order_total_price,a.order_address order_address,a.order_phone order_phone,a.order_comment order_comment,a.order_date order_date,a.order_quantity order_quantity,b.user_id user_id,b.user_name user_name,c.product_name product_name,c.product_info product_info,c.product_img product_img,c.product_cost product_cost,c.category_id category_id, d.ship_status ship_status
         from orders a,users b,products c, payments d
         where a.user_id = b.user_id and a.product_id = c.product_id and a.order_date between #{startDate} and #{endDate} and a.user_id = #{userId};
     </select>

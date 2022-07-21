@@ -84,6 +84,9 @@ public class OrderController {
             return "redirect:/orderlist.do";
         }
 
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+
         Timestamp sDate = Timestamp.valueOf(startDate+" 00:00:00");
         Timestamp eDate = Timestamp.valueOf(endDate+" 00:00:00");
         OrderDateDto orderDate = new OrderDateDto(sDate,eDate,userId);
