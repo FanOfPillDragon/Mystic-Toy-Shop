@@ -240,6 +240,7 @@
                                                 </div>
                                             </a>
                                         </div>
+
                                         <a data-v-7f5dc61d href="/productDetail.do?productId=${productResponseDto.product_id}" class="block">
                                             <div data-v-7f5dc61d class="info flag">
                                                 <ul data-v-7f5dc61d class="flagArea">
