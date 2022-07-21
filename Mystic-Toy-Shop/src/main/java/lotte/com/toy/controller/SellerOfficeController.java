@@ -188,4 +188,10 @@ public class SellerOfficeController {
 
         return "clientShipstatus";
     }
+
+    @GetMapping("productUpdate.do")
+    public String productUpdate(Model model,ProductDto dto){
+
+        return "product_update";
+    }
 }

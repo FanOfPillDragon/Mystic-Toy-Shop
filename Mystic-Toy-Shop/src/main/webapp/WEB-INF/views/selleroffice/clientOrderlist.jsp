@@ -18,15 +18,18 @@
     <style type="text/css">
 
         .mini{
-            width: 50px;
-            height: 70px;
-            margin-right: 10px;
+                width: 50px;
+                height: 70px;
+                margin-right: 10px;
             padding: 5px;
         }
     </style>
 </head>
 <body>
+<div class="container mt-5">
 <div>
+    <strong>주문목록조회</strong>
+    <hr>
     <%if(cod.size() > 0) {%>
     <table border="1">
         <tr>
@@ -48,6 +51,7 @@
     <%}else {%>
         <h2>주문 정보가 없습니다.</h2>
     <%}%>
+</div>
 </div>
 
 </body>
