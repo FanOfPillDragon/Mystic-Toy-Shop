@@ -40,7 +40,7 @@
         from orders o, products p
         where p.product_id = o.product_id
           and p.seller_id =  #{seller_id}
-        GROUP BY DATE_FORMAT(order_date, '%Y/%m/%d');
+        GROUP BY DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-1) DAY), '%Y/%m/%d'),DATE_FORMAT(DATE_SUB(order_date, INTERVAL (DAYOFWEEK(order_date)-7) DAY), '%Y/%m/%d'), DATE_FORMAT(order_date, '%Y/%m/%d') ,DAYOFWEEK(order_date)
     </select>
 
     <select id="getOrderStatsByCatsDate" parameterType="java.util.HashMap" resultType="lotte.com.toy.dto.OrderStatsDto">
