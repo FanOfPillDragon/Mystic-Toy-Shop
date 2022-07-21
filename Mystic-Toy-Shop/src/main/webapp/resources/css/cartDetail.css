@@ -12,13 +12,19 @@
     margin-bottom: 100px;
 }
 
-.emptyContainer{
+.emptyContainer {
     flex-direction: column;
     justify-content: center !important;
     height: 260px !important;
 }
 
-.cartBoxContainer{
+.cartBoxBorderContainer {
+    border: 1px solid #bbbbbb;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.cartBoxContainer {
     margin-right: 20px;
 }
 
@@ -39,8 +45,6 @@
 }
 
 .cartBox {
-    border: 1px solid #bbbbbb;
-    border-radius: 10px;
 
     display: flex;
     justify-content: space-between;
@@ -50,8 +54,6 @@
 
     position: relative;
     align-items: center;
-
-    margin-bottom: 15px;
 }
 
 .bgColor {
@@ -297,10 +299,43 @@ input[type=number] {
     margin-top: 10px;
 }
 
-.cautionBox{
+.cautionBox {
     margin-top: 150px;
     margin-bottom: 150px;
 
     width: 1140px;
     height: 200px;
+}
+
+.cartFooterContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 48px;
+    padding: 0 20px 0 20px;
+    font-size: 13px;
+    line-height: 48px;
+    letter-spacing: .2px;
+    color: #757575;
+    border-top: 1px solid #eee;
+    background-color: #fef5f4 !important;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+}
+
+.cartFooterContainer .point {
+    color: #ef2a23;
+}
+
+.cartFooterContainer .onePriceTotal {
+    font-weight: 700;
+}
+
+.cartFooterContainer p {
+    margin: 0;
 }

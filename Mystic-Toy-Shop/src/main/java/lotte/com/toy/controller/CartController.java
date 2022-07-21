@@ -42,20 +42,34 @@ public class CartController {
         List<CartUserProductDto> cartUserProductDtoList = cartService.getCartUserProductDtoByUserId(userId);
 
         model.addAttribute("cartUserProductDtoList", cartUserProductDtoList);
-        model.addAttribute("totalPrice", Utility.getTotalPrice(cartUserProductDtoList));
+        int totalPrice = Utility.getTotalPrice(cartUserProductDtoList);
+        model.addAttribute("totalPrice", totalPrice);
+        if(totalPrice != 0){
+            totalPrice += 2500;
+        }
+        model.addAttribute("totalPriceFinal", totalPrice);
         return "cartdetail";
     }
 
     @ResponseBody
-    @GetMapping("/cartinsert.do")
-    public String cartInsert(CartDto cartDto) {
+    @PostMapping(value = "/cartinsert.do", produces = "application/text; charset=UTF-8")
+    public String cartInsert(CartDto cartDto, HttpServletResponse response) {
         log.info("CartController cartInsert()");
+
+        response.setCharacterEncoding("UTF-8");
 
         String msg = "이미 장바구니에 존재하는 제품입니다";
 
-        if (cartService.insertCart(cartDto)) {
-            msg = "장바구니로 이동하시겠습니까?";
+        CartDto checkCartDto = cartService.getCartByProductIdAndUserId(cartDto);
+        if (checkCartDto != null) {
+            return msg;
         }
+
+        log.info(cartDto.toString());
+
+        cartService.insertCart(cartDto);
+
+        msg = "장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?";
 
         return msg;
     }
@@ -77,7 +91,7 @@ public class CartController {
 
         }
         map.put("msg", msg);
-        map.put("totalPrice", totalPrice+"");
+        map.put("totalPrice", totalPrice + "");
 
         return map;
     }

@@ -78,7 +78,7 @@
     </select>
 
     <!-- 리뷰 불러오기 -->
-    <select id="findAllReviews" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.R">
+    <select id="findAllReviews" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.ReviewDto">
         select review_id, review_title, review_writer, review_register_date
         from sellers s
                  join products p on s.seller_id = p.seller_id
@@ -90,7 +90,7 @@
     </select>
 
     <!-- QnA 불러오기 -->
-    <select id="findAllQnAs" parameterType="" resultType="">
+<!--    <select id="findAllQnAs" parameterType="" resultType="">-->
 
-    </select>
+<!--    </select>-->
 </mapper>

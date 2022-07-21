@@ -35,4 +35,9 @@
         from carts c, products p
         where c.user_id=#{user_id} and c.product_id = p.product_id
     </select>
+    <select id="getCartByProductIdAndUserId" parameterType="lotte.com.toy.dto.CartDto" resultType="lotte.com.toy.dto.CartDto">
+        select cart_id, cart_quantity, user_id, product_id
+        from carts
+        where user_id = #{user_id} and product_id = #{product_id}
+    </select>
 </mapper>
