@@ -1,9 +1,7 @@
 package lotte.com.toy.service;
 
-import lotte.com.toy.dto.ProductResponseDto;
-import lotte.com.toy.dto.QnADto;
-import lotte.com.toy.dto.ReviewDto;
-import lotte.com.toy.dto.SellerDto;
+import com.mysql.cj.xdevapi.Client;
+import lotte.com.toy.dto.*;
 
 import java.util.List;
 
@@ -20,4 +18,5 @@ public interface SellerService {
     List<ReviewDto> findAllReviews(SellerDto seller);
     List<QnADto> findAllQnAs(SellerDto seller);
     List<ProductResponseDto> findAllSellerProductList(SellerDto seller);
+    List<ClientOrderDto> findClientOrders(SellerDto seller);
 }

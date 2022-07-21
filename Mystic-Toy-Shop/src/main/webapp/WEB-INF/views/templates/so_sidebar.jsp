@@ -77,15 +77,15 @@
             <div class="lnbTitle">상품관리</div>
             <ul>
                 <li><a href="<%=request.getContextPath()%>/product_write.do">상품 등록</a></li>
-                <li><a href="<%=request.getContextPath()%>/mysalelist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">상품 목록 조회</a></li>
+                <li><a href="<%=request.getContextPath()%>/sosalelist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">상품 목록 조회</a></li>
             </ul>
         </li>
         <li class="borderLine">
             <div>
                 <div class="lnbTitle">주문관리</div>
                 <ul>
-                    <li><a href="<%=request.getContextPath()%>/soOrderlist.do?"  class="no-underline">주문 목록 조회</a></li>
-                    <li><a href="#"  class="no-underline">배송 관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/clientOrderlist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">주문 목록 조회</a></li>
+                    <li><a href="<%=request.getContextPath()%>/clientShipstatus.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">배송 관리</a></li>
                 </ul>
             </div>
         </li>

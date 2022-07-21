@@ -1,9 +1,6 @@
 package lotte.com.toy.dao;
 
-import lotte.com.toy.dto.ProductResponseDto;
-import lotte.com.toy.dto.QnADto;
-import lotte.com.toy.dto.ReviewDto;
-import lotte.com.toy.dto.SellerDto;
+import lotte.com.toy.dto.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -70,5 +67,10 @@ public class SellerDaoImpl implements SellerDao {
     @Override
     public List<ProductResponseDto> findAllSellerProductList(SellerDto seller) {
         return session.selectList(nameSpace + "findAllSellerProductList" , seller);
+    }
+
+    @Override
+    public List<ClientOrderDto> findClientOrders(SellerDto seller) {
+        return session.selectList(nameSpace + "findClientOrders" , seller);
     }
 }
