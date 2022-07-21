@@ -24,14 +24,15 @@
 <div>
     <c:forEach var="review" items="${reviews}">
         <c:set var="deleted" value="${review.is_deleted}" />
-        <c:if test="${deleted eq '0'}"> <!-- 삭제 체크 -->
-            <h3><c:out value="${review.review_title}"/></h3>
-            <p>구매자 : <c:out value="${review.user_name}"/></p>
-            <p>별점 : <c:out value="${review.review_rate}"/></p>
-            <p>판매자 : <c:out value="${review.review_rate}"/></p>
-            <p><c:out value="${review.review_content}"/></p>
-            <p><c:out value="${review.review_register_date}"/></p>
-        </c:if>
+        <h3><c:out value="${review.review_title}"/></h3>
+        <p>구매자 : <c:out value="${review.user_name}"/></p>
+        <p>별점 : <c:out value="${review.review_rate}"/></p>
+        <p>판매자 : <c:out value="${review.review_rate}"/></p>
+        <p><c:out value="${review.review_content}"/></p>
+        <p><c:out value="${review.review_register_date}"/></p>
+        <!--<c:if test="${deleted eq '0'}">  삭제 체크 -->
+
+        <!-- </c:if> -->
     </c:forEach>
 
 </div>
