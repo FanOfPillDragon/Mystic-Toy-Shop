@@ -24,6 +24,11 @@
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_main.jsp"/>
     </definition>
 
+    <definition name="seller_product_list" extends="so_main_title">
+        <put-attribute name="title" value="판매상품 조회"/>
+        <put-attribute name="body" value="/WEB-INF/views/selleroffice/seller_product_list.jsp"/>
+    </definition>
+
     <definition name="main" extends="main_tile">
         <put-attribute name="title" value="메인"/>
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>

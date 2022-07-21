@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <%@ page import="org.json.JSONObject" %>
 <%@ page import="lotte.com.toy.dto.ReviewDto" %>
 <%@ page import="lotte.com.toy.dto.QnADto" %>
@@ -59,7 +60,6 @@
     json3 += "]";
     request.setAttribute("jsonData3", json3);
 %>
-
 
 <html>
 <head>
@@ -167,7 +167,6 @@
 <body style="text-align: center">
 
 <h3>운영현황</h3>
-<%=category%>
 <div class="container" >
     <div class="top-info">
         <div class="top1">

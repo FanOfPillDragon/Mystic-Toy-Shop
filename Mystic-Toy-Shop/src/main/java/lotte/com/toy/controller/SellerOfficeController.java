@@ -162,4 +162,14 @@ public class SellerOfficeController {
 
         return "seller_main";
     }
+
+    @GetMapping("mysalelist.do")
+    public String mysalelist(Model model,SellerDto seller){
+        System.out.println("SellerOfficeController mysalelist()");
+
+        List<ProductResponseDto> mysalelist = sellerservice.findAllSellerProductList(seller);
+        model.addAttribute("mysalelist",mysalelist);
+
+        return "seller_product_list";
+    }
 }

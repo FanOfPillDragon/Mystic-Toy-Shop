@@ -1,5 +1,6 @@
 package lotte.com.toy.dao;
 
+import lotte.com.toy.dto.ProductResponseDto;
 import lotte.com.toy.dto.QnADto;
 import lotte.com.toy.dto.ReviewDto;
 import lotte.com.toy.dto.SellerDto;
@@ -64,5 +65,10 @@ public class SellerDaoImpl implements SellerDao {
     @Override
     public List<QnADto> findAllQnAs(SellerDto seller) {
         return session.selectList(nameSpace + "findAllQnAs", seller);
+    }
+
+    @Override
+    public List<ProductResponseDto> findAllSellerProductList(SellerDto seller) {
+        return session.selectList(nameSpace + "findAllSellerProductList" , seller);
     }
 }

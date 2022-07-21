@@ -1,6 +1,7 @@
 package lotte.com.toy.service;
 
 import lotte.com.toy.dao.SellerDao;
+import lotte.com.toy.dto.ProductResponseDto;
 import lotte.com.toy.dto.QnADto;
 import lotte.com.toy.dto.ReviewDto;
 import lotte.com.toy.dto.SellerDto;
@@ -63,5 +64,10 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public List<QnADto> findAllQnAs(SellerDto seller) {
         return sellerdao.findAllQnAs(seller);
+    }
+
+    @Override
+    public List<ProductResponseDto> findAllSellerProductList(SellerDto seller) {
+        return sellerdao.findAllSellerProductList(seller);
     }
 }

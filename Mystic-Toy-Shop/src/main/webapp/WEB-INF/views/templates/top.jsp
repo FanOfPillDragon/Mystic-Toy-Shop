@@ -248,11 +248,7 @@
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/orderlist.do">마이페이지</a></li>
                         </c:when>
                         <c:when test="${not empty sessionScope.sellerLogin}">
-                            <%
-                                SellerDto seller = (SellerDto)request.getSession().getAttribute("sellerLogin");
-                                int seller_id = seller.getSeller_id();
-                            %>
-                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/seller_main.do?seller_id=<%=seller_id%>">판매자 센터</a></li>
+                            <li><a class="myPageBtn" href="<%=request.getContextPath()%>/seller_main.do?seller_id=${sessionScope.sellerLogin.seller_id}">판매자 센터</a></li>
                         </c:when>
                         <c:otherwise>
                             <li><a class="myPageBtn" href="<%=request.getContextPath()%>/login.do">마이페이지</a></li>
