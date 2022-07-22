@@ -49,7 +49,7 @@
         }
     </style>
 </head>
-<body style="text-align: center">
+<body>
 <div id="content" style="margin-top: 30px;">
     <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
 
