@@ -29,9 +29,10 @@
     <title>Title</title>
     <style type="text/css">
         .mini {
-            width: 100px;
-            height: 100px;
-            margin-right: 150px;
+            width: 70px;
+            height: auto;
+            max-height: 70px;
+            margin-right: 10px;
             padding: 5px;
         }
 
@@ -47,18 +48,18 @@
     </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container mt-5 px-5 mx-2">
     <div>
         <strong>상품목록조회</strong>
         <hr>
-        <table class="table-primary">
-            <tr class="table-header" style="text-align: center">
+        <table class="table-primary table-hover">
+            <tr>
                 <col width="600">
                 <col width="150">
                 <col width="100">
                 <col width="100">
                 <col width="100">
-                <th style="text-align: center">상품명</th>
+                <th>상품명</th>
                 <th>카테고리</th>
                 <th>가격</th>
                 <th>현재 재고</th>
