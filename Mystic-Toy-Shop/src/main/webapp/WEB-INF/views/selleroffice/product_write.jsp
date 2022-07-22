@@ -13,6 +13,7 @@
 <%
     List<CategoryDto> categories = (List<CategoryDto>) request.getAttribute("categories");
     request.setCharacterEncoding("utf-8");
+    int seller_id = (int) request.getAttribute("seller_id");
 %>
 <html>
 <head>
@@ -38,9 +39,10 @@
         .category_radio {
         }
 
-        .input-box{
+        .input-box {
             margin-bottom: 5px;
         }
+
         .writeReviewDetailPhoto .picUploadList li .picUploadBtn {
             padding-top: 18px;
             text-align: center;
@@ -50,6 +52,7 @@
 <body>
 <div class="container">
     <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="seller_id" value="<%=seller_id%>">
         <div class="temp" style="height:80px;">
             <h3 style="font-size: 17pt; float: left ;">상품등록 <span style="color: red; font-size: 8pt;">• 필수입력</span></h3>
         </div>
@@ -68,44 +71,49 @@
             <p>상품명</p>
             <hr>
             <div class="input-box">
-                <input type="text" name="product_name" size="80" placeholder="상품명">
+                <input type="text" id="product_name" name="product_name" size="80" placeholder="상품명">
             </div>
         </div>
         <div class="temp">
             <p>판매가</p>
             <hr>
             <div class="input-box">
-                <input type="text" name="product_cost" size="20" placeholder="판매가"><span>원</span>
+                <input type="number" min="1000" step="100" id="product_cost" name="product_cost" size="20"
+                       placeholder="판매가"><span>원</span>
             </div>
         </div>
         <div class="temp">
             <p>재고수량</p>
             <hr>
             <div class="input-box">
-                <input type="text" size="20" name="product_stock" placeholder="숫자만입력"><span>개</span>
+                <input type="number" min="10" max="200" size="20" id="product_stock" name="product_stock"
+                       placeholder="숫자만입력"><span>개</span>
             </div>
         </div>
         <div class="writeReviewDetailPhoto">
             <div class="picUploadBtn picture">
-                    <input type="file" multiple="multiple" name="fileload" accept="image/*" class="btnFile">
-                    <br>
-                    <br>
-                    <input type = "hidden" id="file_where_use" name="file_where_use" value="1">
-                    <input type = "hidden" id="file_use_id" name="file_use_id" value="1">
-                    <i ><img  src="//static.lotteon.com/p/product/plugin/assets/img/btn_icon_upload_camera_new.svg" alt=""></i>
-                    <span >사진첨부</span>
-                    <button type="button" id="btnsubmit">자료올리기</button>
+                <i><img src="//static.lotteon.com/p/product/plugin/assets/img/btn_icon_upload_camera_new.svg"
+                        alt=""></i>
+                <span>사진첨부</span>
+                <input type="file" multiple="multiple" id="titleImage" name="fileload" accept="image/*" class="btnFile">
+                <input type="hidden" name="product_img" id="pr_img" value="">
             </div>
         </div>
         <div class="temp">
             <p>상세설명</p>
             <hr>
-                <textarea class="summernote" name="product_info"></textarea>
+            <textarea class="summernote" id="product_info" name="product_info"></textarea>
         </div>
-
-        <button type="button" id="btnsubmit2">자료올리기</button>
+        <button type="button" id="writebtn" onclick="product_wrtie()">상품등록</button>
     </form>
 </div>
+<script>
+    var imagefile;
+
+    $("#titleImage").on("change", function (event) {
+        imagefile = event.target.files[0];
+    });
+</script>
 
 <script>
     $('.summernote').summernote({
@@ -169,14 +177,59 @@
         });
     }
 
-    $("#btnsubmit2").click(function () {
-        if(document.getElementsByName("fileload").length<1 || document.getElementsByName("fileload")[0].value == '') {
-            alert("파일을 업로드 해주세요");
-            document.getElementById("btnsubmit").focus();
-            return;
+    function product_wrtie() {
+
+        var category_id = $("input[name='category_id']:checked").val();
+        var product_name = $("#product_name").val();
+        var product_cost = $("#product_cost").val();
+        var product_stock = $("#product_stock").val();
+        var product_info = $("#product_info").val();
+
+        if (category_id === "") {
+            alert("카테고리를 선택하세요");
+            $("#category1").focus();
         }
-        $("#frm").submit();
-    });
+        if (product_name == "") {
+            alert("상품 이름을 입력하세요.")
+            $("#product_name").focus();
+        }
+        if (product_cost == "") {
+            alert("가격을 입력하세요.");
+            $("#product_cost").focus();
+        }
+        if (product_stock == "") {
+            alert("재고를 입력하세요.");
+            $("#product_stock").focus();
+        }
+        if (product_info == "") {
+            alert("상세설명을 입력하세요.");
+            $("#product_info").focus();
+        }
+
+        if (imagefile != "") {
+            var data = new FormData();
+            data.append("file", imagefile);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "<%=request.getContextPath()%>/titleImageUpload.do",
+                contentType: false,
+                processData: false,
+                enctype: 'multipart/form-data',
+                success: function (data) {
+                    // const produdct_img = $("<input type='hidden' name='product_img' value = " + data["url"] + ">");
+                    // $("#frm").append(produdct_img);
+                    $("#pr_img").attr("value", data["url"]);
+                    console.log($("pr_img").val());
+                    $("#frm").submit();
+                },
+                error: function (data) {
+                }
+            });
+        } else {
+            $("#frm").submit();
+        }
+    }
 </script>
 </body>
 </html>

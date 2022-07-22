@@ -49,6 +49,7 @@
     <mvc:resources mapping="/mystic_image/**" location="file:///C:/mystic_image"/>
     <mvc:resources mapping="/favicon.ico" location="/resources/images/favicon.ico" />
     <mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
+    <mvc:resources mapping="/mystic/**" location="file:///C:/mystic/Mystic-Toy-Shop/Mystic-Toy-Shop/target/Mystic-Toy-Shop/upload/" />
 
     <!-- 이미지 업로드 -->
     <bean id="multipartResolver"
