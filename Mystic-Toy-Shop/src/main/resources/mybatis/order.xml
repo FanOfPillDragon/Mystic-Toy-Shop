@@ -32,8 +32,8 @@
         from orders a,users b,products c, payments d
         where a.user_id = b.user_id and a.product_id = c.product_id and a.order_date between #{startDate} and #{endDate};
     </select>
-    <delete id="delete" parameterType="Integer">
-        delete order
+    <delete id="deleteOrderByUserId" parameterType="Integer">
+        delete from orders
         where order_id = #{order_id}
     </delete>
     <select id="findByLastRowId" resultType="Integer">
