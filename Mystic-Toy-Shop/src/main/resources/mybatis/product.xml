@@ -94,10 +94,14 @@
         where product_name like CONCAT("%", #{product_name}, "%")
     </select>
     <update id="updateProductStock" parameterType="Integer">
-        update products set product_stock = product_stock - 1 where product_id = #{product_id};
+        update products
+        set product_stock = product_stock - 1
+        where product_id = #{product_id};
     </update>
     <update id="updateProductSellCount" parameterType="Integer">
-        update products set product_sell_count = product_sell_count + 1 where product_id = #{product_id};
+        update products
+        set product_sell_count = product_sell_count + 1
+        where product_id = #{product_id};
     </update>
     <select id="getProductListForMain" resultType="lotte.com.toy.dto.ProductResponseDto">
         select p.product_id,
@@ -112,7 +116,17 @@
         from products p,
              categories c
         where p.category_id = c.category_id
-        order by product_sell_count desc
-        limit 10
+        order by product_sell_count desc limit 10
     </select>
+
+    <update id="product_update" parameterType="lotte.com.toy.dto.ProductDto">
+        update products
+        set product_name = #{product_name},
+            product_info = #{product_info},
+            product_img = #{product_img},
+            product_cost = #{product_cost},
+            product_stock = #{product_stock},
+            category_id = #{category_id}
+            where product_id = #{product_id};
+    </update>
 </mapper>

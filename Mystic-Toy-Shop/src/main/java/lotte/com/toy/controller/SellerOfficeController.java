@@ -189,9 +189,13 @@ public class SellerOfficeController {
     @GetMapping("productUpdate.do")
     public String productUpdate(Model model, ProductDto dto) {
 
+        System.out.println("product_id:" + dto.getProduct_id());
         List<CategoryDto> categoryList = categoryservice.categoryList();
         model.addAttribute("categories", categoryList);
+        ProductDto pr = productService.findByProductId(dto.getProduct_id());
+        model.addAttribute("dto",pr);
 
+        System.out.println(pr.toString());
         return "product_update";
     }
 
@@ -269,5 +273,19 @@ public class SellerOfficeController {
         }
         String title = jsonObject.toString();
         return title;
+    }
+
+    @PostMapping("/updateAf.do")
+    public String update(ProductDto dto, Model model) {
+        System.out.println(dto.toString());
+
+        boolean isSuccess = productService.productUpdate(dto);
+        String msg = "N";
+        if (isSuccess) {
+            msg = "Y";
+            model.addAttribute("msg", msg);
+            return "redirect:/seller_main.do?seller_id=" + dto.getSeller_id();
+        }
+        return "redirect:/product_write";
     }
 }
