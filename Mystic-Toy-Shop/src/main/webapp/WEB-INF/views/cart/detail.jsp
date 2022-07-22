@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <%@ page isELIgnored="false" %>
 <html>
 <head>
@@ -54,14 +55,14 @@
 
                                     </div>
                                     <div class="cartPrice">
-                                        <div>${cupDto.product_cost} 원</div>
+                                        <div>${DateUtil.to000(cupDto.product_cost)} 원</div>
                                     </div>
                                     <input type="button" class="btn deleteItem" id="deleteCart" onclick="deleteCart(${cupDto.cart_id})">
                                 </div>
                                 <input type="hidden" name="productCost${cupDto.product_id}" value="${cupDto.product_cost}"/>
                                 <div class="cartFooterContainer">
-                                    <p><span class="point" id="productCost${cupDto.product_id}">${cupDto.product_cost*cupDto.cart_quantity}원</span> + 배송비 2500원 =
-                                        <strong class="onePriceTotal" id="calPrice${cupDto.product_id}">${(cupDto.product_cost*cupDto.cart_quantity)+2500} 원</strong>
+                                    <p><span class="point" id="productCost${cupDto.product_id}">${DateUtil.to000(cupDto.product_cost*cupDto.cart_quantity)}원</span> + 배송비 2,500원 =
+                                        <strong class="onePriceTotal" id="calPrice${cupDto.product_id}">${DateUtil.to000((cupDto.product_cost*cupDto.cart_quantity)+2500)} 원</strong>
                                     </p>
                                 </div>
 
@@ -76,7 +77,7 @@
 
                     <dl>
                         <dt>상품금액</dt>
-                        <dd id="totalPriceOriginal">${totalPrice} 원</dd>
+                        <dd id="totalPriceOriginal">${DateUtil.to000(totalPrice)} 원</dd>
                     </dl>
                     <dl>
                         <dt>상품할인금액</dt>
@@ -89,7 +90,7 @@
                                 <dd>0 원</dd>
                             </c:when>
                             <c:otherwise>
-                                <dd>2500 원</dd>
+                                <dd>2,500 원</dd>
                             </c:otherwise>
                         </c:choose>
                     </dl>
@@ -97,7 +98,7 @@
 
                 <dl class="totalPrice">
                     <dt>총 <span class="colorPrimary">${fn:length(cartUserProductDtoList)}</span> 건</dt>
-                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary" id="totalPriceAll">${totalPriceFinal} 원</span></dd>
+                    <dd><strong class="price colorPrimary"></strong><span class="won colorPrimary" id="totalPriceAll">${DateUtil.to000(totalPriceFinal)} 원</span></dd>
                 </dl>
 
                 <ul class="cartBtnSet">
@@ -204,11 +205,11 @@
             data: data,
             success: function (data) {
                 //$('.won span').text(Number(data.totalPrice) + 2500 + ' 원');
-                document.getElementById("totalPriceOriginal").innerHTML = data.totalPrice + ' 원';
-                document.getElementById("totalPriceAll").innerHTML = Number(data.totalPrice) + 2500 + ' 원';
+                document.getElementById("totalPriceOriginal").innerHTML = (Number(data.totalPrice)).toLocaleString() + ' 원';
+                document.getElementById("totalPriceAll").innerHTML = (Number(data.totalPrice) + 2500).toLocaleString()  + ' 원';
                 let price = cartCount * Number($("input[name=" + getPriceClassName + "]").val());
-                document.getElementById("productCost" + productId).innerHTML = price + '원';
-                document.getElementById("calPrice" + productId).innerHTML = price + 2500 + '원';
+                document.getElementById("productCost" + productId).innerHTML = price.toLocaleString() + '원';
+                document.getElementById("calPrice" + productId).innerHTML = (price + 2500).toLocaleString() + '원';
             }
         });
     }

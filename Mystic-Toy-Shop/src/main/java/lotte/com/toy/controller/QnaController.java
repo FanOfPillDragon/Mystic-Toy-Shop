@@ -9,6 +9,7 @@ import lotte.com.toy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,20 +41,19 @@ public class QnaController {
         model.addAttribute("productName",product.getProduct_name());
         return "qna";
     }
-    @RequestMapping(value = "qnaAf.do")
-    public String insertQna(HttpServletRequest req, int productId, String qnaTitle, String qnaContent){
+    @PostMapping(value = "qnaAf.do")
+    public String insertQna(HttpServletRequest req,Model model, int productId, String qnaTitle, String qnaContent){
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         if (userDto == null) {
-//            response.sendRedirect("/userLogin.do");
             return "redirect:/userLogin.do";
-        }
-        QnaSheetDto qna = new QnaSheetDto(qnaTitle,qnaContent,userDto.getUser_id(),productId);
-        System.out.println(qna);
+        }        QnaSheetDto qna = new QnaSheetDto(qnaTitle,qnaContent,userDto.getUser_id(),productId);
+
+        model.addAttribute("productId", productId);
         boolean checker = qnaService.insertQna(qna);
         if(checker){
-            return "main";
+            return "redirect:/productDetail.do";
         }
-        return "main";
+        return "redirect:/productDetail.do";
     }
 
     @RequestMapping(value = "findQnaList.do")
