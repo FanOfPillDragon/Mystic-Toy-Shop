@@ -31,7 +31,7 @@
         where cart_id=#{cart_id};
     </delete>
     <select id="getCartUserProductDtoByUserId" parameterType="Integer" resultType="lotte.com.toy.dto.CartUserProductDto">
-        select c.cart_id, c.cart_quantity, c.product_id, c.user_id, p.product_cost, p.product_name, p.product_stock
+        select c.cart_id, c.cart_quantity, c.product_id, c.user_id, p.product_cost, p.product_img, p.product_name, p.product_stock
         from carts c, products p
         where c.user_id=#{user_id} and c.product_id = p.product_id
     </select>

@@ -30,6 +30,11 @@
     margin-right: 20px;
 }
 
+.cartBoxContainer a {
+    text-decoration: none;
+    color: #333;
+}
+
 .cartTitle {
     border-top: 1px solid #bbbbbb;
     border-left: 1px solid #bbbbbb;
@@ -298,6 +303,7 @@ input[type=number] {
     color: #ffffff !important;
     border-radius: 6px;
     width: 100%;
+    cursor: pointer;
 }
 
 .btnGift {
@@ -310,6 +316,7 @@ input[type=number] {
     border: 1px solid #ddd;
     border-radius: 6px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .cautionBox {
@@ -351,6 +358,25 @@ input[type=number] {
 
 .cartFooterContainer p {
     margin: 0;
+}
+
+
+.productImgArea {
+    display: flex;
+    position: relative;
+    padding-left: 15px;
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 0, .02);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.productImgTag {
+    width: auto;
+    height: 70px;
+    max-width: 100px;
 }
 
 .productName {
@@ -395,7 +421,7 @@ input[type=number] {
 
 }
 
-.btnDisabled{
+.btnDisabled {
     opacity: .55;
     background-color: #333333;
 }

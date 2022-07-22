@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="h3 d-flex justify-content-center my-5">주문/결제하기</div>
-<div class="container my-5">
+<div class="container my-5 minWidthContainer">
     <div class="flexTableContainer orderPayWrap">
         <div class="cardTitle">상품 정보</div>
         <div class="productBox cardBoxBorderContainer">
@@ -38,7 +38,7 @@
                     </dl>
                     <dl>
                         <dt>가격</dt>
-                        <dd><%=product.getProduct_cost()%>
+                        <dd><%=product.getProduct_cost()%>원
                         </dd>
                     </dl>
                 </div>
@@ -51,7 +51,7 @@
 
         <form name="frm" action="singlepayment.do" method="post" onsubmit="return checkForm()">
             <div class="deliveryContainer">
-                <div class="deliveryContentContainer">
+                <div class="deliveryContentContainer alignCenterContainer">
                     <div class="mb-3">
                         <label for="orderName" class="mb-2">받는분</label>
                         <div style="width: 300px;"><input class="form-control" type="text" name="orderName" id="orderName" size="10" value="${sessionScope.userLogin.user_name}"/></div>
@@ -68,6 +68,27 @@
                         <label for="orderComment" class="mb-2">배송 요청사항</label>
                         <div class="formLength"><input class="form-control" type="text" name="orderComment" id="orderComment" placeholder="배송 전 연락주세요"/></div>
                     </div>
+                </div>
+            </div>
+
+            <div class="h3">결제 수단</div>
+            <div class="paymentContainer">
+                <div class="paymentContentContainer">
+                    <ul>
+                        <li>
+                            <button class="btn paymentBtn" type="button"><span class="btnSpan"><span class="icoLpay">간편결제</span></span></button>
+                        </li>
+                        <li>
+                            <button class="btn paymentBtn" type="button"><span class="btnSpan"><span class="icoCard">신용카드</span></span></button>
+                        </li>
+                        <li>
+                            <button class="btn paymentBtn" type="button"><span class="btnSpan"><span class="icoKpay">카카오페이</span></span></button>
+                        </li>
+                        <li>
+                            <button class="btn paymentBtn" type="button"><span class="btnSpan"><span class="icoNpay">네이버페이</span></span></button>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
 

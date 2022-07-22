@@ -5,6 +5,8 @@ import lotte.com.toy.service.CartService;
 import lotte.com.toy.service.OrderService;
 import lotte.com.toy.service.PaymentService;
 import lotte.com.toy.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PaymentController {
+
+    private Logger log = LoggerFactory.getLogger(PaymentController.class);
 
     @Autowired
     CartService cartService;
@@ -74,12 +79,15 @@ public class PaymentController {
             boolean updateStockChecker = productService.updateProductStock(product.getProduct_id()); // 재고 업데이트
             boolean updateSellCountChecker = productService.updateProductSellcount(product.getProduct_id()); // 판매수량 업데이트
             if (!orderChecker || !paymentChecker || !updateStockChecker || !updateSellCountChecker) {
-                return "redirect:/main.do";
+                String msg = "결제 실패";
+                model.addAttribute("msg",msg);
+
+                return "payMessage";
             }
             cartService.deleteCartByCartId(cart.getCart_id()); // 장바구니 품목 삭제
         }
 
-        return "redirect:/main.do";
+        return "redirect:/payResult.do?orderGroup="+(orderGroup+1);
     }
 
     @GetMapping("/orderbyproduct.do")
@@ -96,6 +104,7 @@ public class PaymentController {
 
         String msg = "재고 부족으로 현재 선택하신 수량만큼 구매할 수 없습니다";
         if (productDto.getProduct_stock() < quantity) {
+            model.addAttribute("productId",productId);
             model.addAttribute("msg", msg);
 
             return "payMessage";
@@ -108,7 +117,7 @@ public class PaymentController {
     }
 
     @RequestMapping(value = "singlepayment.do")
-    public String createSinglePayment(HttpServletRequest req, String orderName, String orderAddress, String orderPhone, String orderComment, int productId, int quantity) {
+    public String createSinglePayment(Model model, HttpServletRequest req, String orderName, String orderAddress, String orderPhone, String orderComment, int productId, int quantity) {
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         int userId = userDto.getUser_id();
         Integer orderGroup = orderService.findByOrderGroup();
@@ -124,8 +133,28 @@ public class PaymentController {
         boolean updateStockChecker = productService.updateProductStock(product.getProduct_id());
         boolean updateSellCountChecker = productService.updateProductSellcount(product.getProduct_id());
         if (!orderChecker || !paymentChecker || !updateStockChecker || !updateSellCountChecker) {
-            return "redirect:/main.do";
+            String msg = "결제 실패";
+            model.addAttribute("msg",msg);
+
+            return "payMessage";
         }
-        return "redirect:/main.do";
+
+        return "redirect:/payResult.do?orderGroup="+(orderGroup+1);
+    }
+
+    @GetMapping(value="payResult.do")
+    public String payResult(Model model, int orderGroup, HttpSession session){
+        log.info("PaymentController payResult()");
+        log.info("orderGroup: " + orderGroup);
+
+        UserDto userDto = (UserDto)session.getAttribute("userLogin");
+        List<OrderDetailDto> orderDetailDtoList = orderService.orderFindAll(new OrderGroupDto(userDto.getUser_id(),orderGroup));
+
+        for(OrderDetailDto orderDetailDto:orderDetailDtoList){
+            log.info(orderDetailDto.toString());
+        }
+        model.addAttribute("orderDetailDtoList",orderDetailDtoList);
+
+        return "payResult";
     }
 }
