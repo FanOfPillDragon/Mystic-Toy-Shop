@@ -147,7 +147,6 @@ public class UserServiceImpl implements UserService {
             JsonElement element = parser.parse(result);
 
             String id = element.getAsJsonObject().get("id").getAsString();
-            System.out.println("#########id########" + id);
 
             JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();

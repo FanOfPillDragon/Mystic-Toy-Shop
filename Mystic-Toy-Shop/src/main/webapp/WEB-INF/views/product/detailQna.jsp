@@ -1,11 +1,14 @@
 <%@ page import="lotte.com.toy.dto.QnaListDto" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<QnaListDto> qnas = (List<QnaListDto>) request.getAttribute("qnas");
+
     List<String> writers = (List<String>) request.getAttribute("writers");
 
 %>
@@ -14,7 +17,60 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/productDetail.css">
     <style>
+        .reviewContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px 100px 0 100px;
+            margin-bottom: 50px;
+        }
 
+        .reviewCount {
+            display: flex;
+            font-size: 18px;
+            font-weight: bold;
+            justify-content: start;
+            width: 1000px;
+            justify-content: space-between;
+            padding:50px 20px;
+        }
+
+        .reviewCount div {
+            display: flex;
+            align-items: center;
+        }
+
+        .reviewWrapper {
+            margin: 0 10px;
+            margin-bottom: 20px;
+            width: 1000px;
+            border: solid 1px gray;
+            border-radius: 14px;
+            padding: 50px 30px;
+        }
+
+        .reviewWrapper .top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .reviewWrapper .review_title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .reviewWrapper .review_register_date {
+            text-align: right;
+        }
+
+        .btnGoQuestion{
+            background: #fff;
+            color: #757575;
+            border: solid 1px #757575;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -87,64 +143,51 @@
                 </li>
             </ul>
         </div>
-        <div data-v-9b64bfe4 id="reviewMain" class="productReviewWrap">
-            <div data-v-597ad349 data-v-9b64bfe4 class="reviewFilter">
-                <div data-v-597ad349 class="info">
-                    <span data-v-597ad349 class="total"> 총 <%=qnas.size()%>건 </span>
-                </div>
-            </div>
-            <!-- qna버튼 -->
-            <div class="services">
-                <button type="button" class="btnGoQuestion" onclick="location.href='<%=request.getContextPath()%>/qna.do?productId=${productResponseDto.product_id}'">
+
+        <div class="reviewContainer">
+            <div class="reviewCount">
+                <div>총 <%=qnas.size()%>건</div>
+                <button type="button" class="btnGoQuestion"
+                        onclick="location.href='<%=request.getContextPath()%>/qna.do?productId=${productResponseDto.product_id}'">
                     질문하기
                 </button>
             </div>
-            <!-- 여기까지 -->
+            <div class="services">
+            </div>
+
             <c:set var="sizeQna" value="${qnas}"/>
             <c:choose>
                 <c:when test="${empty sizeQna}">
                     <div data-v-748e3961 class="dataNull default">
-                        <p data-v-748e3961>선택 상품의 Q&A가 없어요!</p>
+                        <p>선택 상품의 Q&A가 없어요!</p>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <c:forEach var="qna" items="${qnas}" varStatus="status">
-                        <div data-v-05ce94ee data-v-9b64bfe4 class="reviewList">
-                            <div data-v-05ce94ee class="uswersAndMoremenu">
-                                <div data-v-05ce94ee class="users">
-                                    <figure data-v-05ce94ee class="profileImg">
-                                        <span data-v-05ce94ee class="blind">유저 썸네일 이미지</span>
-                                    </figure>
-                                    <div data-v-05ce94ee class="identities">
-                                        <div data-v-05ce94ee class="userNameWrap">
-                                            <strong data-v-05ce94ee class="userName"><c:out value="${writers[status.index]}"/></strong>
-                                        </div>
-                                        <div data-v-05ce94ee class="badges"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-v-05ce94ee class="contents">
-                                <div data-v-05ce94ee class="options">
-                                    상품명 : <c:out value="${qna.product_name}"/>
-                                </div>
-                                <div data-v-05ce94ee class="texts">
-                    <span data-v-05ce94ee class="texting">
-                    <strong>Q   <c:out value="${qna.qna_title}"/></strong><br>
-                    <c:out value="${qna.qna_content}"/>
-                    </span>
-                                </div>
 
+                        <div class="reviewWrapper">
+                            <div class="top">
+                                <p class="review_title">Q.&nbsp${qna.qna_title}</p>
+                                <c:set var="date" value="${qna.qna_register_date}"/>
+                                <%
+                                    Timestamp date = (Timestamp) pageContext.getAttribute("date");
+                                    String register_date = DateUtil.toYYYYMMDD(date);
+                                    pageContext.setAttribute("register_date", register_date);
+                                %>
+                                <p class="review_register_date">${register_date}</p>
                             </div>
-                            <div data-v-05ce94ee class="underAction">
-                                <span data-v-05ce94ee class="date"><c:out
-                                        value="${qna.qna_register_date}"></c:out></span>
-                            </div>
+
+                            <p class="user_name">구매자 : ${writers[status.index]}</p>
+                            <p class="review_content">${qna.qna_content}</p>
                         </div>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>
+
         </div>
     </div>
+</div>
+
 </div>
 <script type="text/javascript">
     function minus() {

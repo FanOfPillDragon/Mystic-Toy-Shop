@@ -1,6 +1,8 @@
 <%@ page import="lotte.com.toy.dto.QnaListDto" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lotte.com.toy.dto.ReviewListDto" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
+<%@ page import="java.sql.Timestamp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
@@ -25,7 +27,7 @@
             margin-bottom: 50px;
         }
 
-        .reviewCount{
+        .reviewCount {
             font-size: 18px;
             font-weight: bold;
             justify-content: start;
@@ -35,7 +37,7 @@
             margin-bottom: 50px;
         }
 
-        .reviewCount div{
+        .reviewCount div {
             display: flex;
             align-items: center;
         }
@@ -49,7 +51,7 @@
             padding: 50px 30px;
         }
 
-        .reviewWrapper .top{
+        .reviewWrapper .top {
             display: flex;
             justify-content: space-between;
         }
@@ -81,7 +83,7 @@
             overflow: hidden;
             width: 90px;
             height: 100%;
-            background: url(<%=request.getContextPath()%>/images/ic-star-off.svg) no-repeat;
+            background: url(<%=request.getContextPath()%>/resources/images/ic-star-off.svg) no-repeat;
             background-position: left top;
             background-size: 90px 100%;
         }
@@ -90,10 +92,11 @@
             display: block;
             width: 90px;
             height: 100%;
-            background: url(<%=request.getContextPath()%>/images/ic-star-on.svg) no-repeat;
+            background: url(<%=request.getContextPath()%>/resources/images/ic-star-on.svg) no-repeat;
             background-position: left top;
             background-size: 90px 100%;
         }
+
         /*별점 생성 종료*/
     </style>
 </head>
@@ -171,13 +174,20 @@
             <div class="reviewCount">
                 <div>리뷰(&nbsp<p id="count" style="margin: 0"></p>&nbsp)</div>
             </div>
-            <c:forEach var="review" items="${reviews}">
-                <c:set var="deleted" value="${review.is_deleted}"/>
-                <div style="display: none"><%=totalCnt++%></div>
-                <div class="reviewWrapper">
-                    <div class="top">
-                        <p class="review_title">${review.review_title}</p>
-                        <p class="review_content">
+
+            <c:choose>
+                <c:when test="${empty reviews}">
+                    <p>아직까지 작성된 리뷰가 없어요!</p>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="review" items="${reviews}">
+                        <c:set var="deleted" value="${review.is_deleted}"/>
+                        <div style="display: none"><%=totalCnt++%>
+                        </div>
+                        <div class="reviewWrapper">
+                            <div class="top">
+                                <p class="review_title">${review.review_title}</p>
+                                <p class="review_content">
                         <span class="review-list__rating">
                             <span class="review-list__rating__unit">
                                 <c:choose>
@@ -199,16 +209,26 @@
                                 </c:choose>
                             </span>
                         </span>
-                        </p>
-                    </div>
-                    <p class="review_register_date">${review.review_register_date}</p>
-                    <p class="user_name">구매자 : ${review.user_name}</p>
-                    <p class="review_content">${review.review_content}</p>
-                </div>
-                <!--<c:if test="${deleted eq '0'}"> 삭제 체크 -->
+                                </p>
+                            </div>
+                            <c:set var="date" value="${review.review_register_date}"/>
+                            <%
+                                Timestamp date = (Timestamp) pageContext.getAttribute("date");
+                                String register_date = DateUtil.toYYYYMMDD(date);
+                                pageContext.setAttribute("register_date", register_date);
+                            %>
+                            <p class="review_register_date">${register_date}</p>
+                            <p class="user_name">구매자 : ${review.user_name}</p>
+                            <p class="review_content">${review.review_content}</p>
+                        </div>
+                        <!--<c:if test="${deleted eq '0'}"> 삭제 체크 -->
 
-                <!-- </c:if> -->
-            </c:forEach>
+                        <!-- </c:if> -->
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+
+
         </div>
     </div>
 </div>

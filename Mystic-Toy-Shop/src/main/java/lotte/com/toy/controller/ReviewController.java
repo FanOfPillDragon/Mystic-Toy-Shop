@@ -48,10 +48,10 @@ public class ReviewController {
         int IntreviewRate = Integer.parseInt(reviewRate); // 지울 것
         CreateReviewDto review = new CreateReviewDto(reviewTitle,reviewContent,userId,IntreviewRate,productId);
         boolean checker = reviewService.insertReview(review);
-        if(checker){
-            return "main";
+        if(!checker){
+            return "redirect:/orderlist.do";
         }
-        return "main";
+        return "redirect:/orderlist.do";
     }
 
     @RequestMapping(value = "findReviewList.do")
@@ -60,6 +60,7 @@ public class ReviewController {
         ProductResponseDto productResponseDto = productService.getProductByProductId(productId);
         model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
+
         if(reviews.isEmpty()){
             return "redirect:main.do";
         }
@@ -83,6 +84,7 @@ public class ReviewController {
                 newList.add(review);
             }
         }
+        System.out.println(newList.size());
         return newList;
     }
 }

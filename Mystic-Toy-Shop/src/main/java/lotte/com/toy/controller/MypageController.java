@@ -25,15 +25,15 @@ public class MypageController {
 
     @Autowired
     OrderService orderService;
-
+    
     @Autowired
     UserService userService;
-
+    
     @GetMapping("/mypage.do")
     public String mypage() {
 
         return "order";
-    }
+    }*/
 
     @RequestMapping(value = "updateUserInfo.do")
     public String startUpdateUserInfo(HttpServletRequest req){
