@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,13 +102,18 @@ public class SellerOfficeController {
     }
 
     @GetMapping("/seller_main.do")
-    public String seller_main(SellerDto seller, Model model) {
+    public String seller_main(SellerDto seller, Model model, HttpSession session) {
 
         int onSaleProduct = sellerservice.findTotalCount(seller); // 판매중 상품
         int soldOutProduct = sellerservice.findSoldOut(seller); // 품절 상품 stock = 0
         int endSaleProduct = sellerservice.findEndSale(seller); // 판매 종료 상품 stock = -1
         int readyToShip = sellerservice.findReadyShip(seller); // 배송 준비
         int completedShip = sellerservice.findCompletedShip(seller); // 배송 완료
+
+        if(onSaleProduct == 0 && soldOutProduct == 0 && endSaleProduct == 0){
+            SellerDto sellerDto = (SellerDto)session.getAttribute("sellerLogin");
+            return "redirect:/product_write.do?seller_id="+sellerDto.getSeller_id();
+        }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd%"); // like '2022-07-19%';
         Date now = new Date();

@@ -69,11 +69,13 @@
             </li>
             <li>
                 <button type="button" id="pReview"
-                        onclick="location.href='<%=request.getContextPath()%>/findReviewList.do?productId=${productResponseDto.product_id}'">상품 리뷰</button>
+                        onclick="location.href='<%=request.getContextPath()%>/findReviewList.do?productId=${productResponseDto.product_id}'">상품 리뷰
+                </button>
             </li>
             <li>
                 <button type="button" id="pQna"
-                        onclick="location.href='<%=request.getContextPath()%>/findQnaList.do?productId=${productResponseDto.product_id}'">Q&A</button>
+                        onclick="location.href='<%=request.getContextPath()%>/findQnaList.do?productId=${productResponseDto.product_id}'">Q&A
+                </button>
             </li>
         </ul>
     </div>
@@ -82,7 +84,7 @@
             <div>
                 <div class="h3">판매자 정보</div>
             </div>
-            <div class="sellerInfoBox">
+            <div class="sellerInfoBox mb-4">
                 <div class="sellerProperties">
                     <dl>
                         <dt>브랜드</dt>
@@ -102,9 +104,10 @@
                     </dl>
                 </div>
             </div>
+            <div><img src="${productResponseDto.product_info}" alt="No Image" style="width:600px; height:auto;"/></div>
         </div>
-        <div class="optionContents">
-            <div class="productOptionContent">
+        <div class="optionContents banner">
+            <div class="productOptionContent quickmenu" id="chase">
                 <div class="bundleOptionContents">
                     <div class="priceWon">
                         <div class="mb-1"><span class="limitInfo">1일 동안 최대 5개 구매 가능</span></div>

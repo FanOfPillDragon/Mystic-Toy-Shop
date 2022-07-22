@@ -170,7 +170,7 @@
     $(function () {
         $("#idBtn").click(function () {
             // 아이디가 입력되지 않았을 때
-            if($("#user_email").val().length == 0){
+            if($("#seller_email").val().length == 0){
                 $("#idCheck").css("color", "#ff0000");
                 $("#idCheck").html('id를 입력해주세요');
                 return;

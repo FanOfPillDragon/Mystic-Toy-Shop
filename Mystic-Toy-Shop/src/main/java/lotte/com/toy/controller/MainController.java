@@ -32,6 +32,7 @@ public class MainController {
         int size = productResponseDtoList.size();
         List<ProductResponseDto> productResponseDtoList1 = new ArrayList<>(productResponseDtoList.subList(0, (size + 1)/2));
         List<ProductResponseDto> productResponseDtoList2 = new ArrayList<>(productResponseDtoList.subList((size + 1)/2, size));
+        model.addAttribute("productResponseDtoList",productResponseDtoList);
         model.addAttribute("productResponseDtoList1",productResponseDtoList1);
         model.addAttribute("productResponseDtoList2",productResponseDtoList2);
 
