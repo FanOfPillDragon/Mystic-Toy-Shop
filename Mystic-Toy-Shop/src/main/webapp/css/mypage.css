@@ -1,6 +1,5 @@
 .container {
     max-width: 1140px;
-    height: 80vh;
     margin: 0 auto;
     display: flex;
 }
@@ -35,12 +34,11 @@
 }
 
 .memberInner {
+    margin-top: 30px;
     height: 181.94px;
     display: flex;
     padding: 34px 25px 26px;
     background-color: #f1f1f1;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
 }
 
 .profileWrap {
@@ -129,11 +127,10 @@
 }
 
 .memberInfoBanner {
+    margin-top: 10px;
     width: 1140px;
-    background-color: #BFBFBF;
+    background-color: #F9F4F1;
     position: relative;
-    border-bottom-left-radius: 14px;
-    border-bottom-right-radius: 14px;
 }
 
 .memberInfoBanner img {

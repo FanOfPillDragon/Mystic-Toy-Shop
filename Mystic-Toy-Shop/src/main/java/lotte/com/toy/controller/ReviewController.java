@@ -1,9 +1,7 @@
 package lotte.com.toy.controller;
 
-import lotte.com.toy.dto.CreateReviewDto;
-import lotte.com.toy.dto.ReviewListDto;
-import lotte.com.toy.dto.ReviewRequestDto;
-import lotte.com.toy.dto.UserDto;
+import lotte.com.toy.dto.*;
+import lotte.com.toy.service.ProductService;
 import lotte.com.toy.service.ReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,6 +21,9 @@ public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
+
+    @Autowired
+    ProductService productService;
 
     @RequestMapping(value = "review.do")
     public String startReview(Model model, ReviewRequestDto reviewRequestDto){
@@ -55,8 +57,33 @@ public class ReviewController {
     @RequestMapping(value = "findReviewList.do")
     public String findReviewList(Model model,int productId){
         List<ReviewListDto> reviews = reviewService.findReviewList(productId);
+        ProductResponseDto productResponseDto = productService.getProductByProductId(productId);
+        model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
+        if(reviews.isEmpty()){
+            return "mypage.do";
+        }
+        model.addAttribute("reviews",checkerDelete(reviews));
         return "reviewlist";
     }
 
+    @RequestMapping(value="findMyReviewList.do")
+    public String findMyReviewList(Model model, int userId){
+        List<ReviewListDto> myReviews = reviewService.findAllByUserId(userId);
+        if(myReviews.isEmpty()){
+            return "mypage.do";
+        }
+        model.addAttribute("myReviews",checkerDelete(myReviews));
+        return "findMyReviewList";
+    }
+
+    public List<ReviewListDto> checkerDelete(List<ReviewListDto> list){
+        List<ReviewListDto> newList = new ArrayList<>();
+        for(ReviewListDto review : list){
+            if(review.getIs_deleted()==0){
+                newList.add(review);
+            }
+        }
+        return newList;
+    }
 }

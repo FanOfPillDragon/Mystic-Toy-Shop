@@ -7,4 +7,9 @@
         insert into payments(product_id,order_id,ship_status)
         values(#{product_id},#{order_id},#{ship_status})
     </insert>
+    <delete id="deletePaymentByOrderId" parameterType="Integer">
+        delete from payments
+        where
+        order_id in (select o.order_id from orders o where o.user_id = #{user_id});
+    </delete>
 </mapper>

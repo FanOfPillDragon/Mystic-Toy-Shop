@@ -8,7 +8,6 @@
         letter-spacing: -.2px;
         color: #757575;
         text-align: center;
-        background-color: #f8f8f8;
         height: 100%;
     }
 </style>

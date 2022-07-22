@@ -172,7 +172,7 @@
     </div>
     <!-- qna버튼 -->
     <div data-v-0832fcd3 class="services">
-        <button data-v-0832fcd3 type="button" class="btnGoQuestion">
+        <button type="button" class="btnGoQuestion">
             질문하기
         </button>
     </div>

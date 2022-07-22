@@ -1,6 +1,9 @@
 package lotte.com.toy.service;
 
 import lotte.com.toy.dao.MypageDao;
+import lotte.com.toy.dto.UserUpdateName;
+import lotte.com.toy.dto.UserUpdatePassword;
+import lotte.com.toy.dto.UserUpdatePhone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,4 +12,40 @@ public class MypageServiceImpl implements MypageService{
 
     @Autowired
     MypageDao mypagedao;
+
+    @Override
+    public boolean updateUserPassword(UserUpdatePassword password) {
+        int count = mypagedao.updateUserPassword(password);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateUserPhone(UserUpdatePhone phone) {
+        int count = mypagedao.updateUserPhone(phone);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateUserName(UserUpdateName name) {
+        int count = mypagedao.updateUserName(name);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deleteUser(int userId) {
+        int count = mypagedao.deleteUser(userId);
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
 }

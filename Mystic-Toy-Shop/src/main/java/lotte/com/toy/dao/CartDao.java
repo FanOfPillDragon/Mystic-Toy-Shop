@@ -20,4 +20,6 @@ public interface CartDao {
     CartDto getCartByCartId(int cartId);
 
     CartDto getCartByProductIdAndUserId(CartDto cartDto);
+
+    int deleteCartByUserId(int userId);
 }

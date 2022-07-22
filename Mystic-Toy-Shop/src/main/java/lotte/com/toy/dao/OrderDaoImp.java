@@ -64,4 +64,9 @@ public class OrderDaoImp implements OrderDao{
     public int findByOrderGroup() {
         return session.selectOne(namespace+"findByOrderGroup");
     }
+
+    @Override
+    public int deleteOrderByUserId(int userId) {
+        return session.delete(namespace+"deleteOrderByUserId",userId);
+    }
 }
