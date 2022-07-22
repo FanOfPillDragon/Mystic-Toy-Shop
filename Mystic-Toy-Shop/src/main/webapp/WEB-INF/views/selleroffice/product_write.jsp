@@ -18,9 +18,9 @@
 <html>
 <head>
     <%-- Summernote import--%>
-    <script src="resources/summernote/summernote-ko-KR.js"></script>
     <script src="resources/summernote/summernote-lite.js"></script>
     <link rel="stylesheet" href="resources/summernote/summernote-lite.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
     <title>Title</title>
     <style type="text/css">
         /*        body{
@@ -122,6 +122,7 @@
         maxHeight: null,
         focus: false,
         lang: "ko-KR",
+        placeholder: "이미지 드래그시에 등록됩니다.",
         toolbar: [
             // [groupName, [list of button]]
             ['fontname', ['fontname']],
@@ -220,7 +221,6 @@
                     // const produdct_img = $("<input type='hidden' name='product_img' value = " + data["url"] + ">");
                     // $("#frm").append(produdct_img);
                     $("#pr_img").attr("value", data["url"]);
-                    console.log($("pr_img").val());
                     $("#frm").submit();
                 },
                 error: function (data) {
