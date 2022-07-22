@@ -19,4 +19,24 @@ public class WeeklyStatsDto {
     int thu_quantity;
     int fri_quantity;
     int sat_quantity;
+
+    public String toStringPrice() {
+        return "[" + sun_price +","
+                + tue_price +","
+                + wed_price +","
+                + thu_price +","
+                + sun_price +","
+                + fri_price +","
+                + sat_price +"]";
+    }
+
+    public String toStringQuantity() {
+        return "[" + sun_quantity +","
+                + mon_quantity +","
+                + tue_quantity +","
+                + wed_quantity +","
+                + thu_quantity +","
+                + fri_quantity +","
+                + sat_quantity +"]";
+    }
 }

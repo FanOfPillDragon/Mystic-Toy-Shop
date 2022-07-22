@@ -1,6 +1,7 @@
 package lotte.com.toy.dao;
 
 import lotte.com.toy.dto.OrderStatsDto;
+import lotte.com.toy.dto.UserStatsDto;
 import lotte.com.toy.dto.WeeklyStatsDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,5 +70,20 @@ public class OrderStatsDaoImpl implements OrderStatsDao{
     @Override
     public List<WeeklyStatsDto> getWeeklyAll(int sellerId) {
         return session.selectList(nameSpace + "getWeeklyAll", sellerId);
+    }
+
+    @Override
+    public WeeklyStatsDto getWeekTotal(int sellerId) {
+        return session.selectOne(nameSpace + "getWeekTotal", sellerId);
+    }
+
+    @Override
+    public UserStatsDto getGenderOrders(int sellerId) {
+        return session.selectOne(nameSpace + "getGenderOrders", sellerId);
+    }
+
+    @Override
+    public UserStatsDto getSignupCounts() {
+        return session.selectOne(nameSpace + "getSignupCounts");
     }
 }

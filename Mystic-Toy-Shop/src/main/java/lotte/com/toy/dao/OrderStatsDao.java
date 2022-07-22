@@ -1,6 +1,7 @@
 package lotte.com.toy.dao;
 
 import lotte.com.toy.dto.OrderStatsDto;
+import lotte.com.toy.dto.UserStatsDto;
 import lotte.com.toy.dto.WeeklyStatsDto;
 
 import java.util.List;
@@ -64,5 +65,11 @@ public interface OrderStatsDao {
     List<OrderStatsDto> getTopRatedProduct(int sellerId);
 
     List<WeeklyStatsDto> getWeeklyAll(int sellerId);
+
+    WeeklyStatsDto getWeekTotal(int sellerId);
+
+    UserStatsDto getGenderOrders(int sellerId);
+
+    UserStatsDto getSignupCounts();
 
 }

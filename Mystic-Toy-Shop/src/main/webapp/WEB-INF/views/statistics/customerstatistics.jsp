@@ -1,6 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="lotte.com.toy.dto.OrderStatsDto" %>
 <%@ page import="lotte.com.toy.util.DateUtil" %>
+<%@ page import="lotte.com.toy.dto.UserStatsDto" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
@@ -117,16 +120,19 @@
   </style>
 </head>
 <body style="text-align: center">
-<div id="content" style="padding-top: 10px;padding-left: 10px;">
+<div id="content" style="margin-top: 30px;">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-6 mb-4">
-        <div class="card shadow mb-4">
-          <div class="card-header py-1">
-            <span>별점 높은 상품 TOP 5</span>
-          </div>
+      <div class="row">
+        <div class="col-xl-4 mb-2">
+          <h5 style="text-align: left;margin-bottom: 0;">✨ 별점 높은 상품 TOP 5</h5>
+          <p style="text-align: left;">높은 별점을 받은 상품들</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-8 mb-4">
           <div class="card-body">
-            <table class= "table table-hover" style="width: 100%;">
+            <table class= "table table-hover table-striped" style="width: 100%;">
               <colgroup>
                 <col width="40%">
                 <col width="30%">
@@ -142,7 +148,7 @@
 
                 <tr>
                   <td><a
-                          href="/productDetail.do?product_id=${dto.product_id}">${dto.product_name}
+                          href="/productDetail.do?productId=${dto.product_id}">${dto.product_name}
                   </a>
                   </td>
                   <td>
@@ -155,7 +161,7 @@
                     </c:choose>
                   </td>
                   <td>
-                    <img src="${dto.product_img}" style="width:100px">
+                    <img src="${dto.product_img}" style="width:40px">
                   </td>
 
                 </tr>
@@ -164,34 +170,96 @@
             </table>
           </div>
         </div>
+     </div>
+
+      <div class="row">
+      <div class="col-xl-4 mb-2">
+        <h5 style="text-align: left;margin-bottom: 0;">🎉 리뷰 많이 받은 상품 TOP 5</h5>
+        <p style="text-align: left;">리뷰를 많이 받은 상품들</p>
       </div>
     </div>
 
-    <%--    <div>
-            <h5>가장 리뷰가 많이 달린 상품</h5>
-            <p><strong>${MostReviewedProduct.product_name}</strong></p>
-          <p style="width: 100px;"><img class="logoArea" src="${MostReviewedProduct.product_img}" alt=""></p>
-          <p><strong>${MostReviewedProduct.review_cnt}</strong></p>
-        </div>--%>
+      <div class="row">
+      <div class="col-xl-8 mb-4">
+        <div class="card-body">
+          <table class= "table table-hover table-striped" style="width: 100%;">
+            <colgroup>
+              <col width="40%">
+              <col width="30%">
+              <col width="30%">
 
-  </div>
-</div>
-    <div class="row">
-      <div class="col-lg-6 mb-4">
-        <div class="card shadow mb-4">
-          <div class="card-header py-1">
-            <span>별점이 높은 상품들</span>
-          </div>
-          <div class="card-body">
-            <figure class="highcharts-figure">
-              <div id="container"></div>
+            </colgroup>
+            <tr>
+              <th>상품명</th>
+              <th>리뷰 개수</th>
+              <th>이미지</th>
+            </tr>
+            <c:forEach var="dto" items="${MostReviewedProducts}">
 
-            </figure>
-          </div>
+              <tr>
+                <td><a
+                        href="/productDetail.do?productId=${dto.product_id}">${dto.product_name}
+                </a>
+                </td>
+                <td>
+                    ${dto.review_cnt}
+                </td>
+                <td>
+                  <img src="${dto.product_img}" style="width:40px">
+                </td>
+
+              </tr>
+            </c:forEach>
+
+          </table>
         </div>
       </div>
-</div>
+    </div>
 
+  </div>
+
+  <%--    <div>
+          <h5>가장 리뷰가 많이 달린 상품</h5>
+          <p><strong>${MostReviewedProduct.product_name}</strong></p>
+        <p style="width: 100px;"><img class="logoArea" src="${MostReviewedProduct.product_img}" alt=""></p>
+        <p><strong>${MostReviewedProduct.review_cnt}</strong></p>
+      </div>--%>
+  <div class="row">
+    <div class="col-xl-4 mb-2">
+      <h5 style="text-align: left;margin-bottom: 0;">🔍 사용자 분석 </h5>
+      <p style="text-align: left;">사용자 분석하은거임 아아아아아아아ㅏ아ㅏㅏ</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 mb-4">
+      <h6 style="text-align: left;margin-bottom: 0;">👱🏻‍♀️👱🏻‍♂️ 성별에 따른 주문량</h6>
+      <p style="text-align: left;">카카오 vs 자체</p>
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <figure class="highcharts-figure">
+            <div id="gender_container"></div>
+
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 mb-2">
+      <h6 style="text-align: left;margin-bottom: 0;">💬💭회원가입 통계</h6>
+      <p style="text-align: left;">카카오 vs 자체</p>
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <figure class="highcharts-figure">
+            <div id="signup_container"></div>
+
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
 
 
   <%
@@ -207,17 +275,41 @@
 
     request.setAttribute("jsonData", jsonTopRatedProduct);
 
+
+    UserStatsDto genderOrders = (UserStatsDto) request.getAttribute("GenderOrders");
+    UserStatsDto signupCounts = (UserStatsDto) request.getAttribute("SignupCounts");
+
+    String genderJson = "[";
+    genderJson += "['남자', " + genderOrders.getMale() + "],";
+    genderJson += "['여자', " + genderOrders.getFemale() + "]";
+    genderJson += "]";
+
+    String signupJson = "[";
+    signupJson += "['자체 회원가입', " + signupCounts.getSite() + "],";
+    signupJson += "['카카오 회원가입', " + signupCounts.getKakao() + "]";
+    signupJson += "]";
+
+
+    request.setAttribute("jsonData", jsonTopRatedProduct);
+    request.setAttribute("genderJson", genderJson);
+    request.setAttribute("signupJson", signupJson);
+
+
   %>
   <script type="text/javascript">
-    Highcharts.chart('container', {
+
+
+    Highcharts.chart('gender_container', {
       chart: {
         plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'column'
+        plotBorderWidth: 0,
+        plotShadow: false
       },
       title: {
-        text: '카테고리 별 주간 상품 판매량'
+        text: '',
+        align: 'center',
+        verticalAlign: 'middle',
+        y: 60
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -229,18 +321,70 @@
       },
       plotOptions: {
         pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
           dataLabels: {
             enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-          }
+            distance: -50,
+            style: {
+              fontWeight: 'bold',
+              color: 'white'
+            }
+          },
+          startAngle: -90,
+          endAngle: 90,
+          center: ['50%', '75%'],
+          size: '110%'
         }
       },
       series: [{
-        name: 'Brands',
-        colorByPoint: true,
-        data: <%=request.getAttribute("jsonData") %>
+        type: 'pie',
+        name: '성별에 따른 주문량',
+        innerSize: '50%',
+        data:  <%=request.getAttribute("genderJson") %>
+      }]
+    });
+
+
+    Highcharts.chart('signup_container', {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: 0,
+        plotShadow: false
+      },
+      title: {
+        text: '',
+        align: 'center',
+        verticalAlign: 'middle',
+        y: 60
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
+      },
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            enabled: true,
+            distance: -50,
+            style: {
+              fontWeight: 'bold',
+              color: 'white'
+            }
+          },
+          startAngle: -90,
+          endAngle: 90,
+          center: ['50%', '75%'],
+          size: '110%'
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'dsas',
+        innerSize: '50%',
+        data:  <%=request.getAttribute("signupJson") %>
       }]
     });
   </script>

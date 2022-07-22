@@ -141,6 +141,43 @@
                  left join  orders fri on  p.product_id = fri.product_id and DAYOFWEEK(fri.order_date) = 6
                  left join  orders sat on  p.product_id = sat.product_id and DAYOFWEEK(sat.order_date) = 7
         where  p.seller_id = #{seller_id}
-        group by c.category_name;;
+        group by c.category_name;
+    </select>
+
+    <select id="getWeekTotal" parameterType="Integer" resultType="lotte.com.toy.dto.WeeklyStatsDto">
+        select sum(if(DAYOFWEEK(order_date) = 1, order_quantity, 0 )) as sun_quantity
+             ,  sum(if(DAYOFWEEK(order_date) = 2, order_quantity, 0 )) as mon_quantity
+             ,  sum(if(DAYOFWEEK(order_date) = 3, order_quantity, 0 )) as tue_quantity
+             ,  sum(if(DAYOFWEEK(order_date) = 4, order_quantity, 0 )) as wed_quantity
+             ,  sum(if(DAYOFWEEK(order_date) = 5, order_quantity, 0 )) as thu_quantity
+             ,  sum(if(DAYOFWEEK(order_date) = 6, order_quantity, 0 )) as fri_quantity
+             ,  sum(if(DAYOFWEEK(order_date) = 7, order_quantity, 0 )) as sat_quantity
+             ,  sum(if(DAYOFWEEK(order_date) = 1, order_total_price, 0 )) as sun_price
+             ,  sum(if(DAYOFWEEK(order_date) = 2, order_total_price, 0 )) as mon_price
+             ,  sum(if(DAYOFWEEK(order_date) = 3, order_total_price, 0 )) as tue_price
+             ,  sum(if(DAYOFWEEK(order_date) = 4, order_total_price, 0 )) as wed_price
+             ,  sum(if(DAYOFWEEK(order_date) = 5, order_total_price, 0 )) as thu_price
+             ,  sum(if(DAYOFWEEK(order_date) = 6, order_total_price, 0 )) as fri_price
+             ,  sum(if(DAYOFWEEK(order_date) = 7, order_total_price, 0 )) as sat_price
+        from orders o, products p
+        where p.product_id = o.product_id
+          and p.seller_id =  #{seller_id};
+    </select>
+
+    <select id="getGenderOrders" parameterType="Integer" resultType="lotte.com.toy.dto.UserStatsDto">
+        select
+            count(if(user_gender = 0, user_gender, null)) as male
+             ,count(if(user_gender = 1, user_gender, null)) as female
+        from orders o, users u, products p
+        where o.user_id = u.user_id
+          and p.product_id = o.product_id
+          and p.seller_id = #{seller_id};
+    </select>
+
+    <select id="getSignupCounts" resultType="lotte.com.toy.dto.UserStatsDto">
+        select
+            count(if(user_kakao_identifier = 0, user_kakao_identifier, null)) as site
+             ,count(if(user_kakao_identifier !=0 , user_gender, null)) as kakao
+        from users u
     </select>
 </mapper>
