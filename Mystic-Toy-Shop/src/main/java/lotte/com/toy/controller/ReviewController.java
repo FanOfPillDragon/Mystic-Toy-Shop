@@ -60,9 +60,6 @@ public class ReviewController {
         ProductResponseDto productResponseDto = productService.getProductByProductId(productId);
         model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
-        if(reviews.isEmpty()){
-            return "mypage.do";
-        }
         model.addAttribute("reviews",checkerDelete(reviews));
         return "reviewlist";
     }
