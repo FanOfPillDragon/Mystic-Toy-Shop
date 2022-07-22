@@ -81,7 +81,7 @@
             overflow: hidden;
             width: 90px;
             height: 100%;
-            background: url(<%=request.getContextPath()%>/images/ic-star-off.svg) no-repeat;
+            background: url(<%=request.getContextPath()%>/resources/images/ic-star-off.svg) no-repeat;
             background-position: left top;
             background-size: 90px 100%;
         }
@@ -90,7 +90,7 @@
             display: block;
             width: 90px;
             height: 100%;
-            background: url(<%=request.getContextPath()%>/images/ic-star-on.svg) no-repeat;
+            background: url(<%=request.getContextPath()%>/resources/images/ic-star-on.svg) no-repeat;
             background-position: left top;
             background-size: 90px 100%;
         }

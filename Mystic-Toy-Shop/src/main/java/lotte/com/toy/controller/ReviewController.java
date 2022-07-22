@@ -80,10 +80,11 @@ public class ReviewController {
     public List<ReviewListDto> checkerDelete(List<ReviewListDto> list){
         List<ReviewListDto> newList = new ArrayList<>();
         for(ReviewListDto review : list){
-            if(review.getIs_deleted()==0){
+            if(review.getIs_deleted()=='0'){
                 newList.add(review);
             }
         }
+        System.out.println(newList.size());
         return newList;
     }
 }

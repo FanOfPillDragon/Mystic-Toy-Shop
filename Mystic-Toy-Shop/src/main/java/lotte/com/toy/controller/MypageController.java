@@ -88,7 +88,7 @@ public class MypageController {
         if(!check){
             return "redirect:mypage.do";
         }
-        return "redirect:main.do";
+        return "redirect:logout.do";
     }
 
 }
