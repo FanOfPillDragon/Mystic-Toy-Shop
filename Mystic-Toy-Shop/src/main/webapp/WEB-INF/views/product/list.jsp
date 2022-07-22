@@ -1,12 +1,9 @@
-<%@ page import="lotte.com.toy.dto.SellerDto" %>
-<%@ page import="lotte.com.toy.dto.UserDto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
-
 <html>
 <head>
-    <title>Title</title>
+    <title>상품 목록</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/productList.css">
 </head>
 <body>

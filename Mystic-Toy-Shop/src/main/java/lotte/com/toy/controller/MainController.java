@@ -54,9 +54,9 @@ public class MainController {
 
     @RequestMapping("categoryResult.do")
     public String findProductByCategoryList(Model model, int categoryId){
-        List<ProductResponseDto> findProductByCategoryListList = productService.getProductListByCategoryId(categoryId);
-        System.out.println(findProductByCategoryListList.toString());
-        model.addAttribute("findProductByCategoryListList",findProductByCategoryListList);
+        List<ProductResponseDto> findProductByCategoryList = productService.getProductListByCategoryId(categoryId);
+        System.out.println(findProductByCategoryList.toString());
+        model.addAttribute("findProductByCategoryList",findProductByCategoryList);
         model.addAttribute("categoryId", categoryId);
         return "categorymainresult";
     }
