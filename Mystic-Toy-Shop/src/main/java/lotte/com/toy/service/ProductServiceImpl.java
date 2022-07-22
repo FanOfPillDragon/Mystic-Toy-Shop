@@ -7,6 +7,7 @@ import lotte.com.toy.dto.ProductResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,8 +50,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean updateProductStock(int productId) {
-        int count =  productDao.updateProductStock(productId);
-        if(count==0){
+        int count = productDao.updateProductStock(productId);
+        if (count == 0) {
             return false;
         }
         return true;
@@ -58,18 +59,28 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean updateProductSellcount(int productId) {
-        int count =  productDao.updateProductSellcount(productId);
-        if(count==0){
+        int count = productDao.updateProductSellcount(productId);
+        if (count == 0) {
             return false;
         }
         return true;
     }
+
     public List<ProductResponseDto> getProductListForMain() {
         return productDao.getProductListForMain();
     }
 
     @Override
     public boolean productUpdate(ProductDto dto) {
-        return productDao.product_update(dto)>0?true:false;
+        return productDao.product_update(dto) > 0 ? true : false;
+    }
+
+    @Override
+    public boolean product_delete(ArrayList<Integer> product_id) {
+        int count = 0;
+        for(int pr_id : product_id){
+            count = productDao.product_delete(pr_id);
+        }
+        return count > 0 ? true : false;
     }
 }

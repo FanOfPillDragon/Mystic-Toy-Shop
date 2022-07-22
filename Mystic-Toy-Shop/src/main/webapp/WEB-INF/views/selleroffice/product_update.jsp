@@ -14,7 +14,7 @@
 <%
     List<CategoryDto> categories = (List<CategoryDto>) request.getAttribute("categories");
     request.setCharacterEncoding("utf-8");
-    ProductDto dto = (ProductDto)request.getAttribute("dto");
+    ProductDto dto = (ProductDto) request.getAttribute("dto");
 %>
 <html>
 <head>
@@ -55,7 +55,6 @@
     <div class="container">
         <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="seller_id" value="<%=dto.getSeller_id()%>">
-
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-8 col-lg-8 mb-6">
@@ -63,7 +62,6 @@
                             <span style="color: red; font-size: 8pt;">• 필수입력</span>
                         </h4>
                     </div>
-
                 </div>
 
                 <div class="row">
@@ -71,7 +69,7 @@
                         <h6 style="float:left;">💡 카테고리</h6>
                         <div style="float:left;">
                             <% for (CategoryDto c : categories) {%>
-                            <%if(c.getCategory_id() == dto.getCategory_id()) {%>
+                            <%if (c.getCategory_id() == dto.getCategory_id()) {%>
                             <div class="form-check-inline">
                                 <input class="category_radio" type="radio" name="category_id"
                                        id="category<%=c.getCategory_id()%>"
@@ -79,7 +77,7 @@
                                 <label class="form-check-label"><%=c.getCategory_name()%>
                                 </label>
                             </div>
-                            <%}else{%>
+                            <%} else {%>
                             <div class="form-check-inline">
                                 <input class="category_radio" type="radio" name="category_id"
                                        id="category<%=c.getCategory_id()%>"
@@ -98,7 +96,8 @@
                     <div class="col-xl-8 col-lg-8 mb-4">
                         <h6 style="float:left;">🎁 상품명</h6>
                         <div class="form-group">
-                            <input type="text" id = "product_name" name="product_name" class="form-control" value="<%=dto.getProduct_name()%>" placeholder="상품명을 입력하세요.">
+                            <input type="text" id="product_name" name="product_name" class="form-control"
+                                   value="<%=dto.getProduct_name()%>" placeholder="상품명을 입력하세요.">
                         </div>
                     </div>
                 </div>
@@ -108,7 +107,8 @@
                     <div class="col-xl-8 col-lg-8 mb-4">
                         <h6 style="float:left;">💰 판매가격</h6>
                         <div class="form-group">
-                            <input type="number" id = "product_cost" name="product_cost" class="form-control" value="<%=dto.getProduct_cost()%>" placeholder="판매가격을 입력해주세요">
+                            <input type="number" id="product_cost" name="product_cost" class="form-control"
+                                   value="<%=dto.getProduct_cost()%>" placeholder="판매가격을 입력해주세요">
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,8 @@
                     <div class="col-xl-8 col-lg-8 mb-4">
                         <h6 style="float:left;">🚚 재고수량</h6>
                         <div class="form-group">
-                            <input type="number" id="product_stock" name="product_stock" class="form-control" value="<%=dto.getProduct_stock()%>" placeholder="재고수량을 입력해주세요">
+                            <input type="number" id="product_stock" name="product_stock" class="form-control"
+                                   value="<%=dto.getProduct_stock()%>" placeholder="재고수량을 입력해주세요">
                         </div>
                     </div>
                 </div>
@@ -144,14 +145,16 @@
                     <div class="col-xl-8 col-lg-8 mb-4">
                         <h6 style="float:left;">✏ 상세설명</h6>
                         <div>
-                            <textarea class="summernote" id = "product_info" name="product_info"><%=dto.getProduct_info()%></textarea>
+                            <textarea class="summernote" id="product_info"
+                                      name="product_info"><%=dto.getProduct_info()%></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xl-8 col-lg-2 mb-4">
-                        <button type="button" class="btn btn-primary" id="writebtn" onclick="product_wrtie()">수정하기</button>
+                        <button type="button" class="btn btn-primary" id="writebtn" onclick="product_wrtie()">수정하기
+                        </button>
                     </div>
                 </div>
         </form>
@@ -274,7 +277,7 @@
                     $("#frm").submit();
                 },
                 error: function (data) {
-                    $("#pr_img").attr("value","<%=dto.getProduct_img()%>");
+                    $("#pr_img").attr("value", "<%=dto.getProduct_img()%>");
                     $("#frm").submit();
                 }
             });

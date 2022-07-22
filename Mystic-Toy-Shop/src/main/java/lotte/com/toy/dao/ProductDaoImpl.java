@@ -66,4 +66,9 @@ public class ProductDaoImpl implements ProductDao {
     public int product_update(ProductDto dto) {
         return session.update(nameSpace + "product_update", dto);
     }
+
+    @Override
+    public int product_delete(int product_id) {
+        return session.delete(nameSpace + "product_delete" , product_id);
+    }
 }

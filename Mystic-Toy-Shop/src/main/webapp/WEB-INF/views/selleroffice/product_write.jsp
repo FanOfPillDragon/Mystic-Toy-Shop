@@ -50,7 +50,7 @@
     </style>
 </head>
 
-<body>
+<body style="text-align: center">
 <div id="content" style="margin-top: 30px;">
     <div class="container">
         <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">

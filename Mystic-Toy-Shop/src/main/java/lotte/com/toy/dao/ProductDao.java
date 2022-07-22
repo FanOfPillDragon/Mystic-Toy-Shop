@@ -20,4 +20,5 @@ public interface ProductDao {
 
     List<ProductResponseDto> getProductListForMain();
     int product_update(ProductDto dto);
+    int product_delete(int product_id);
 }
