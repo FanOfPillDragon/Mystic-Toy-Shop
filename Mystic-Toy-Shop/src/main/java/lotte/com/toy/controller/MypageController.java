@@ -29,7 +29,7 @@ public class MypageController {
     @Autowired
     UserService userService;
     
-    @GetMapping("/mypage.do")
+/*    @GetMapping("/mypage.do")
     public String mypage() {
 
         return "order";

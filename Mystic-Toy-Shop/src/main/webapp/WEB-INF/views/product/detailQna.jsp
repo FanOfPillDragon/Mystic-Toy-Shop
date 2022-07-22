@@ -177,7 +177,7 @@
                                 <p class="review_register_date">${register_date}</p>
                             </div>
 
-                            <p class="user_name">구매자 : ${writers[status.index]}</p>
+                            <p class="user_name">작성자 : ${writers[status.index]}</p>
                             <p class="review_content">${qna.qna_content}</p>
                         </div>
                     </c:forEach>

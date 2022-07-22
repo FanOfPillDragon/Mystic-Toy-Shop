@@ -61,9 +61,6 @@ public class ReviewController {
         model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
 
-        if(reviews.isEmpty()){
-            return "redirect:main.do";
-        }
         System.out.println(checkerDelete(reviews).size());
         model.addAttribute("reviews",checkerDelete(reviews));
         return "reviewlist";

@@ -297,21 +297,6 @@
             </script>
         </c:otherwise>
     </c:choose>
-    <div class="searchAddress">
-        <div>
-            <input id="user_zipcode" name="userZipcode" type="text" readonly
-                   placeholder="우편번호" onclick="findAddr()">
-        </div>
-        <div>
-            <input id="user_address" name="userAddress" type="text" readonly
-                   placeholder="주소" onclick="findAddr()">
-        </div>
-        <input type="text" id="user_detail_address" name="user_detail_address"
-               placeholder="상세주소">
-        <button type="button" onclick="findAddr()"> 주소 검색</button>
-    </div>
-    <a href="deleteUserInfo.do">탈퇴하기</a>
-</div>
 
 </body>
 </html>

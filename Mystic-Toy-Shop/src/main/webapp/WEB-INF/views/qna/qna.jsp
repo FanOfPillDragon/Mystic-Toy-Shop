@@ -20,7 +20,6 @@
     .reviewContainer {
         margin-top: 20px;
         width: 100%;
-        height: 1000px;
         padding: 0 100px;
     }
 
@@ -126,29 +125,22 @@
         outline: none;
     }
 
+    .myLotteWrap{
+        padding: 50px 400px;
+    }
 
 
 </style>
 
 <body>
-<h1>Q&A 작성</h1>
 <div>
-
     <div class="myLotteWrap">
-        <div class="scrollArea">
-            <ul>
-                <li>
-                    <div style="color: black">QnA 작성</div>
-                </li>
-            </ul>
-        </div>
-
         <div class="reviewContainer">
             <div class="titleWrapper">
                 <div class="imageWrapper">
-                    <img src="${image}">
+                    <img alt="" src=<%=productImg%>>
                 </div>
-                <div class="reviewTitle">${title}</div>
+                <div class="reviewTitle"><%=productName%></div>
             </div>
             <div class="contentWrapper">
                 <form action="/qnaAf.do" id="qnaForm" method="post">
@@ -184,9 +176,6 @@
             </div>
         </div>
     </div>
-    
-    <img alt="" src=<%=productImg%>>
-    <h2><%=productName%></h2>
 
 </div>
 <script !src="">
