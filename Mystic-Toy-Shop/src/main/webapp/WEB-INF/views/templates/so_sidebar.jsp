@@ -72,7 +72,7 @@
     <title>사이드 메뉴</title>
 </head>
 <body>
-<div class="lnbWrap">
+<div class="lnbWrap" style="height: 100%;">
     <h2 class="pageTitle"><a href="<%=request.getContextPath()%>/seller_main.do?seller_id=${sessionScope.sellerLogin.seller_id}">판매자센터</a></h2>
 
     <div class="list-group">
@@ -90,7 +90,7 @@
                 <div class="lnbTitle">주문관리</div>
                 <ul>
                     <li><a href="<%=request.getContextPath()%>/clientOrderlist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">주문 목록 조회</a></li>
-                    <li><a href="<%=request.getContextPath()%>/clientShipstatus.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">배송 관리</a></li>
+<%--                    <li><a href="<%=request.getContextPath()%>/clientShipstatus.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">배송 관리</a></li>--%>
                 </ul>
             </div>
         </li>

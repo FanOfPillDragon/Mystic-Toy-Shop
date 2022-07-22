@@ -233,7 +233,7 @@
   <div class="row">
     <div class="col-lg-4 mb-4">
       <h6 style="text-align: left;margin-bottom: 0;">👱🏻‍♀️👱🏻‍♂️ 성별에 따른 주문량</h6>
-      <p style="text-align: left;">성별에 따른 주문량을 확인할 수 있습니다</p>
+      <p style="text-align: left; height: 50px;">성별에 따른 주문량을 확인할 수 있습니다</p>
       <div class="card shadow mb-4">
         <div class="card-body">
           <figure class="highcharts-figure">
@@ -246,7 +246,7 @@
 
     <div class="col-xl-4 mb-2">
       <h6 style="text-align: left;margin-bottom: 0;">💬💭회원가입 통계</h6>
-      <p style="text-align: left;">자체 사이트 가입회원과 카카오 로그인 회원 통게를 확인할 수 있습니다.</p>
+      <p style="text-align: left; height: 50px;">자체 사이트 가입회원과 카카오 로그인 회원 통계를 확인할 수 있습니다.</p>
       <div class="card shadow mb-4">
         <div class="card-body">
           <figure class="highcharts-figure">

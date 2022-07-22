@@ -260,7 +260,7 @@
     }
 
     .footerWrapper {
-        margin-top: 100px;
+        padding-top: 30px;
         background-color: #f8f8f8;
     }
 
