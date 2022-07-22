@@ -78,11 +78,11 @@
                         <%= totalCount++%>
                     </div>
                     <div class="orderContainer">
-                        <div class="imgWrapper">
+                        <div class="imgWrapper" onclick="location.href = 'productDetail.do?productId=${order.product_id}'" style="cursor: pointer">
                             <img alt="" src="<c:out value="${order.product_img}"/>">&nbsp;
                         </div>
                         <div class="textWrapper">
-                            <div class="title"><c:out value="${order.product_name}"/></div>
+                            <div class="title"  onclick="location.href = 'productDetail.do?productId=${order.product_id}'" style="cursor: pointer"><c:out value="${order.product_name}"/></div>
                             <div class="textBottom">
                                     <%--가격 계산--%>
                                 <c:set var="price" value="${order.order_total_price}"/>
