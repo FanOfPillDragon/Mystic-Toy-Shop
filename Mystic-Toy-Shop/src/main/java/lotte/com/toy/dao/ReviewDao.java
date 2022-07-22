@@ -12,4 +12,6 @@ public interface ReviewDao {
     List<ReviewListDto> findReviewList(int product_id);
 
     int checkReviewWrite(ReviewCheckDto reviewCheck);
+
+    List<ReviewListDto> findAllByUserId(int userId);
 }

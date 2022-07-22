@@ -11,17 +11,6 @@
             height: 100%;
         }
 
-        #footer {
-            /*  left: 0;
-             bottom: 0;
-             width: 100%; */
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            margin-top: auto;
-            height: 50px;
-        }
-
         .body {
             min-height: 750px;
             height: 80%;
@@ -39,7 +28,7 @@
 <!-- 내용 끝 -->
 
 <!-- 하단 부분 -->
-<div id="footer" class="sticky-footer"><tiles:insertAttribute name="footer"/></div>
+<div id="footer"><tiles:insertAttribute name="footer"/></div>
 <!-- 하단부 끝 -->
 </body>
 </html>

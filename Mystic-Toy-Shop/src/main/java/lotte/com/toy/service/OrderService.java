@@ -22,5 +22,7 @@ public interface OrderService {
 
     int findByLastRowId();
 
-    int findByOrderGroup();
+    Integer findByOrderGroup();
+
+    boolean deleteOrderByUserId(int userId);
 }

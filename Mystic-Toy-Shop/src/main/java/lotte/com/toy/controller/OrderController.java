@@ -91,8 +91,13 @@ public class OrderController {
             return "orderempty";
         }
         List<List<OrderDetailDto>> dateList = new ArrayList<>();
+        List<Integer> ReviewCheckerList = new ArrayList<>();
         for(Integer i : orderDateGroup){
             List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(userId,i));
+            for(OrderDetailDto order : orderList){
+                ReviewCheckDto reviewCheck = new ReviewCheckDto(order.getProduct_id(),order.getUser_id());
+                order.setReviewCheck(reviewService.checkReviewWrite(reviewCheck));
+            }
             dateList.add(orderList);
         }
         model.addAttribute("dateList",dateList);

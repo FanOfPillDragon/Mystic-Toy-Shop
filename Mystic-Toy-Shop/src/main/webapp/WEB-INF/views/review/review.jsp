@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>mypage</title>
-    <link href="<%=request.getContextPath()%>/css/mypage.css"
+    <link href="<%=request.getContextPath()%>/resources/css/mypage.css"
           rel="stylesheet">
     <style>
         .reviewContainer {
@@ -116,9 +116,6 @@
             line-height: 18px;
             outline: none;
         }
-
-
-
     </style>
 </head>
 <body>
@@ -153,7 +150,7 @@
 
             </div>
             <div class="memberInfoBanner">
-                <img src="<%=request.getContextPath() %>/images/myBanner.png" alt="">
+                <img src="<%=request.getContextPath() %>/resources/images/myBanner.png" alt="">
             </div>
         </div>
         <div class="myLotteWrap">

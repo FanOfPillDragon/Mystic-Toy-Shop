@@ -32,6 +32,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public String findNameByUserId(int userId) {
+        return session.selectOne(ns+"findNameByUserId",userId);
+    }
+
+    @Override
     public int addUser(UserDto dto) {
         return session.insert(ns + "addUser", dto);
     }

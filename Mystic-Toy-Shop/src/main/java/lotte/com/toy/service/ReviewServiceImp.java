@@ -33,4 +33,9 @@ public class ReviewServiceImp implements ReviewService{
     public int checkReviewWrite(ReviewCheckDto reviewCheck) {
         return reviewDao.checkReviewWrite(reviewCheck);
     }
+
+    @Override
+    public List<ReviewListDto> findAllByUserId(int userId) {
+        return reviewDao.findAllByUserId(userId);
+    }
 }

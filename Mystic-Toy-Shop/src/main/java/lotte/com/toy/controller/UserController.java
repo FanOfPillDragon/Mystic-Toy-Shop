@@ -146,6 +146,7 @@ public class UserController {
 
         model.addAttribute("user_kakao_identifier",user_kakao_identifier);
 
+        System.out.println("come controller userinfo : " + user_kakao_identifier);
         // 바뀐 값으로 찾아서 데이터 저장하기
         UserDto rDto = userservice.kakaoUserLogin(user_kakao_identifier);
         System.out.println(rDto + " : dtoRDTO");

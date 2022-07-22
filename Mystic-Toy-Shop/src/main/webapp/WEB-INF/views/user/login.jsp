@@ -34,10 +34,10 @@
 <div id="container">
     <div id="loginBox">
         <div id="userLoginBox">
-            <img src="<%=request.getContextPath() %>/images/userLogin.png" onclick="location.href = 'userLogin.do'">
+            <img src="<%=request.getContextPath() %>/resources/images/userLogin.png" onclick="location.href = 'userLogin.do'">
         </div>
         <div id="sellerLoginBox">
-            <img src="<%=request.getContextPath() %>/images/sellerLogin.png" onclick="location.href = 'sellerLogin.do'">
+            <img src="<%=request.getContextPath() %>/resources/images/sellerLogin.png" onclick="location.href = 'sellerLogin.do'">
         </div>
     </div>
 </div>

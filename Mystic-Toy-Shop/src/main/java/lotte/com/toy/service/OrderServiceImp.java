@@ -61,8 +61,17 @@ public class OrderServiceImp implements OrderService{
     }
 
     @Override
-    public int findByOrderGroup() {
+    public Integer findByOrderGroup() {
         return orderDao.findByOrderGroup();
+    }
+
+    @Override
+    public boolean deleteOrderByUserId(int userId) {
+        int count = orderDao.deleteOrderByUserId(userId);
+        if(count==0){
+            return false;
+        }
+        return true;
     }
 
 }

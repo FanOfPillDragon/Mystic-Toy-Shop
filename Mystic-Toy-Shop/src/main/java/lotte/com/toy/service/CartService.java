@@ -17,4 +17,6 @@ public interface CartService {
 
     CartDto getCartByCartId(int cartId);
     CartDto getCartByProductIdAndUserId(CartDto cartDto);
+
+    boolean deleteCartByUserId(int userId);
 }

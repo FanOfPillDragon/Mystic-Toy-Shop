@@ -16,4 +16,9 @@ public class PaymentDaoImp implements PaymentDao{
     public int insertPayment(PaymentDto payment) {
         return session.insert(namespace+"insertPayment",payment);
     }
+
+    @Override
+    public int deletePaymentByOrderId(int userId) {
+        return session.delete(namespace+"deletePaymentByOrderId",userId);
+    }
 }

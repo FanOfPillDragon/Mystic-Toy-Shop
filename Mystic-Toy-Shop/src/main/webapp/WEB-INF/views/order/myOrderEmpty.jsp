@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>mypage</title>
-    <link href="<%=request.getContextPath()%>/css/mypage.css"
+    <link href="<%=request.getContextPath()%>/resources/css/mypage.css"
           rel="stylesheet">
     <style>
 
@@ -24,7 +24,7 @@
                     </button>
                     <div class="nicknameWrap">
                         <p class="infoWord">쇼핑하기 좋은 날이에요!</p>
-                        <div class="nickName">손은성님!</div>
+                        <div class="nickName">${sessionScope.userLogin.user_name}님!</div>
                     </div>
                 </div>
                 <div class="membershipList">
@@ -47,7 +47,7 @@
 
             </div>
             <div class="memberInfoBanner">
-                <img src="<%=request.getContextPath() %>/images/myBanner.png" alt="">
+                <img src="<%=request.getContextPath() %>/resources/images/myBanner.png" alt="">
             </div>
         </div>
         <div class="myLotteWrap">

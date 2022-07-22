@@ -143,15 +143,15 @@
                 </div>
                 <div class="searchAddress">
                     <div>
-                        <input id="seller_zipcode" name="seller_zipcode" type="text" placeholder="Zip Code" readonly
-                               placeholder="우편번호">
+                        <input id="seller_zipcode" name="seller_zipcode" type="text" readonly
+                               placeholder="우편번호"  onclick="findAddr()">
                     </div>
                     <div>
-                        <input id="seller_address" name="seller_address" type="text" placeholder="Address" readonly
-                               placeholder="주소">
+                        <input id="seller_address" name="seller_address" type="text" readonly
+                               placeholder="회사 주소"  onclick="findAddr()">
                     </div>
                     <input type="text" id="seller_detail_address" name="seller_detail_address"
-                           placeholder="Detailed Address" placeholder="상세주소">
+                            placeholder="회사 상세주소">
                     <button type="button" onclick="findAddr()"> 주소 검색</button>
                 </div>
             </div>

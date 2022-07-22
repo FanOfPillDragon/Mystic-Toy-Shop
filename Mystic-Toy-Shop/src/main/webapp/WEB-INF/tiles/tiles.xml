@@ -9,7 +9,7 @@
         <put-attribute name="header" value="/WEB-INF/views/templates/top.jsp"/>
         <put-attribute name="side" value="/WEB-INF/views/templates/so_sidebar.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/views/templates/bottom.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/templates/so_bottom.jsp"/>
     </definition>
 
     <definition name="so_main_title" template="/WEB-INF/views/templates/so_template.jsp">
@@ -117,26 +117,31 @@
     <definition name="login" extends="main_tile">
         <put-attribute name="title" value="회원가입"/>
         <put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="userLogin" extends="main_tile">
         <put-attribute name="title" value="사용자 로그인"/>
         <put-attribute name="body" value="/WEB-INF/views/user/userLogin.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="userSignup" extends="main_tile">
         <put-attribute name="title" value="사용자 회원가입"/>
         <put-attribute name="body" value="/WEB-INF/views/user/userSignup.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="sellerLogin" extends="main_tile">
         <put-attribute name="title" value="판매자 로그인"/>
         <put-attribute name="body" value="/WEB-INF/views/user/sellerLogin.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="sellerSignup" extends="main_tile">
         <put-attribute name="title" value="판매자 회원가입"/>
         <put-attribute name="body" value="/WEB-INF/views/user/sellerSignup.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <!--    <definition name="message" extends="main_tile">
@@ -190,17 +195,22 @@
     </definition>
     <definition name="reviewlist" extends="main_tile">
         <put-attribute name="title" value="리뷰"/>
-        <put-attribute name="body" value="/WEB-INF/views/review/reviewlist.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/product/detailReview.jsp"/>
+    </definition>
+    <definition name="findMyReviewList" extends="main_tile">
+        <put-attribute name="title" value="나의리뷰"/>
+        <put-attribute name="body" value="/WEB-INF/views/review/findMyReviewList.jsp"/>
     </definition>
 
     <!-- qna part -->
     <definition name="qna" extends="main_tile">
         <put-attribute name="title" value="QnA등록"/>
         <put-attribute name="body" value="/WEB-INF/views/qna/qna.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
     <definition name="qnalist" extends="main_tile">
         <put-attribute name="title" value="QnA리스트"/>
-        <put-attribute name="body" value="/WEB-INF/views/qna/qnalist.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/product/detailQna.jsp"/>
     </definition>
 
     <!-- product 검색 리스트 -->
@@ -213,6 +223,12 @@
     <definition name="categorymainresult" extends="main_tile">
         <put-attribute name="title" value="카테고리"/>
         <put-attribute name="body" value="/WEB-INF/views/product/categorymainresult.jsp"/>
+    </definition>
+
+    <definition name="updateUserInfo" extends="main_tile">
+        <put-attribute name="title" value="회원정보수정"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/updateUserInfo.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
 </tiles-definitions>

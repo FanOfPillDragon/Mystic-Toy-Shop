@@ -17,4 +17,9 @@
         from reviews
         where product_id=#{product_id} and review_writer =#{review_writer};
     </select>
+    <select id="findAllByUserId" parameterType="Integer" resultType="lotte.com.toy.dto.ReviewListDto">
+        select r.review_title review_title, r.review_content review_content, u.user_name user_name, r.review_rate review_rate, r.review_register_date review_register_date, r.is_deleted is_deleted, p.product_name product_name, p.product_img product_img
+        from users u, reviews r, products p
+        where u.user_id = r.review_writer and p.product_id=r.product_id and u.user_id = #{user_id}
+    </select>
 </mapper>

@@ -4,8 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lotte.com.toy.dao.UserDao;
-import lotte.com.toy.dto.UserDto;
-import lotte.com.toy.dto.SellerDto;
+import lotte.com.toy.dto.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -148,17 +147,18 @@ public class UserServiceImpl implements UserService {
             JsonElement element = parser.parse(result);
 
             String id = element.getAsJsonObject().get("id").getAsString();
-            System.out.println("#########id########" + id);
 
             JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-            String email = kakao_account.getAsJsonObject().get("email").getAsString();
+            if(kakao_account.getAsJsonObject().get("email") != null){
+                String email = kakao_account.getAsJsonObject().get("email").getAsString();
+                userInfo.put("email", email);
+            }
 
             userInfo.put("nickname", nickname);
             userInfo.put("id", id);
-            userInfo.put("email", email);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -179,4 +179,10 @@ public class UserServiceImpl implements UserService {
     public UserDto kakaoUserLogin(String user_kakao_identifier) {
         return userdao.kakaoUserLogin(user_kakao_identifier);
     }
+
+    @Override
+    public String findNameByUserId(int userId) {
+        return userdao.findNameByUserId(userId);
+    }
+
 }
