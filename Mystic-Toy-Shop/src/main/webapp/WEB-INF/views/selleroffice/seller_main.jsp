@@ -479,13 +479,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
     Highcharts.chart('container', {
         chart: {

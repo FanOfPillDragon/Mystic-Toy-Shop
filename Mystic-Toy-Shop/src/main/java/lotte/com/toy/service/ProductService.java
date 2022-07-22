@@ -3,6 +3,7 @@ package lotte.com.toy.service;
 import lotte.com.toy.dto.ProductDto;
 import lotte.com.toy.dto.ProductResponseDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductService {
@@ -21,4 +22,6 @@ public interface ProductService {
 
     List<ProductResponseDto> getProductListForMain();
     boolean productUpdate(ProductDto dto);
+
+    boolean product_delete(ArrayList<Integer> product_id);
 }

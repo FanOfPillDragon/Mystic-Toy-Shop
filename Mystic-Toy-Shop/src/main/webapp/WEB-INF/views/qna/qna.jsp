@@ -157,7 +157,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>후기작성</th>
+                            <th>내용작성</th>
                             <td>
                                 <div class="field_cmt">
                                     <textarea id="content" name="qnaContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>

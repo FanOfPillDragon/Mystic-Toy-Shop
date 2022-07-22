@@ -121,12 +121,18 @@
 
     <update id="product_update" parameterType="lotte.com.toy.dto.ProductDto">
         update products
-        set product_name = #{product_name},
-            product_info = #{product_info},
-            product_img = #{product_img},
-            product_cost = #{product_cost},
+        set product_name  = #{product_name},
+            product_info  = #{product_info},
+            product_img   = #{product_img},
+            product_cost  = #{product_cost},
             product_stock = #{product_stock},
-            category_id = #{category_id}
-            where product_id = #{product_id};
+            category_id   = #{category_id}
+        where product_id = #{product_id};
     </update>
+
+    <delete id="product_delete" parameterType="Integer">
+        delete
+        from products
+        where product_id = #{product_id};
+    </delete>
 </mapper>
