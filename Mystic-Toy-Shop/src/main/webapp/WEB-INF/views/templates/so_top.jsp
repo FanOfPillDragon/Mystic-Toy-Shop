@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -44,7 +45,7 @@
 
     #nav > ul > li {
         display: inline-block;
-        vertical-align: top;
+        vertical-align: middle;
     }
 
     #nav > ul > li > a {
@@ -68,7 +69,7 @@
             <ul>
                 <li><h5 class="logo">
                     <img class="logoArea" style="width: 120px;" src="resources/images/logo4_trans.png" alt="">
-                    <a href="/orderstats.do">판매자센터</a>
+                    <a href="<%=request.getContextPath()%>/seller_main.do?seller_id=${sessionScope.sellerLogin.seller_id}">판매자센터</a>
                 </h5></li>
                 <li class=""><a href="/main.do">구매자화면</a></li>
                 <li class=""><a href="#">판매자</a></li>

@@ -91,7 +91,7 @@
 
     <!-- QnA 불러오기 -->
     <select id="findAllQnAs" parameterType="lotte.com.toy.dto.SellerDto" resultType="lotte.com.toy.dto.QnADto">
-        select qna_id, qna_title, qna_writer, qna_register_date
+        select qna_id, qna_title, qna_content, qna_writer, qna_register_date
         from sellers s
                  join products p on s.seller_id = p.seller_id
                  join qnas q on q.product_id = p.product_id
