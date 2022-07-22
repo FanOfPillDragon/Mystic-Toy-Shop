@@ -119,7 +119,7 @@
     }
   </style>
 </head>
-<body style="text-align: center">
+<body>
 <div id="content" style="margin-top: 30px;">
   <div class="container-fluid">
       <div class="row">
@@ -227,13 +227,13 @@
   <div class="row">
     <div class="col-xl-4 mb-2">
       <h5 style="text-align: left;margin-bottom: 0;">🔍 사용자 분석 </h5>
-      <p style="text-align: left;">사용자 분석하은거임 아아아아아아아ㅏ아ㅏㅏ</p>
+      <p style="text-align: left;">사용자 행동양상을 분석합니다.</p>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-4 mb-4">
       <h6 style="text-align: left;margin-bottom: 0;">👱🏻‍♀️👱🏻‍♂️ 성별에 따른 주문량</h6>
-      <p style="text-align: left;">카카오 vs 자체</p>
+      <p style="text-align: left;">성별에 따른 주문량을 확인할 수 있습니다</p>
       <div class="card shadow mb-4">
         <div class="card-body">
           <figure class="highcharts-figure">
@@ -246,7 +246,7 @@
 
     <div class="col-xl-4 mb-2">
       <h6 style="text-align: left;margin-bottom: 0;">💬💭회원가입 통계</h6>
-      <p style="text-align: left;">카카오 vs 자체</p>
+      <p style="text-align: left;">자체 사이트 가입회원과 카카오 로그인 회원 통게를 확인할 수 있습니다.</p>
       <div class="card shadow mb-4">
         <div class="card-body">
           <figure class="highcharts-figure">
