@@ -9,7 +9,7 @@
         <put-attribute name="header" value="/WEB-INF/views/templates/top.jsp"/>
         <put-attribute name="side" value="/WEB-INF/views/templates/so_sidebar.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/views/templates/bottom.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/templates/so_bottom.jsp"/>
     </definition>
 
     <definition name="so_main_title" template="/WEB-INF/views/templates/so_template.jsp">
@@ -190,7 +190,7 @@
     </definition>
     <definition name="reviewlist" extends="main_tile">
         <put-attribute name="title" value="리뷰"/>
-        <put-attribute name="body" value="/WEB-INF/views/review/reviewlist.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/product/detailReview.jsp"/>
     </definition>
 
     <!-- qna part -->
@@ -200,7 +200,7 @@
     </definition>
     <definition name="qnalist" extends="main_tile">
         <put-attribute name="title" value="QnA리스트"/>
-        <put-attribute name="body" value="/WEB-INF/views/qna/qnalist.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/product/detailQna.jsp"/>
     </definition>
 
     <!-- product 검색 리스트 -->

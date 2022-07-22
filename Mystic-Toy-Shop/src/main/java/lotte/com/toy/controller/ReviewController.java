@@ -1,9 +1,7 @@
 package lotte.com.toy.controller;
 
-import lotte.com.toy.dto.CreateReviewDto;
-import lotte.com.toy.dto.ReviewListDto;
-import lotte.com.toy.dto.ReviewRequestDto;
-import lotte.com.toy.dto.UserDto;
+import lotte.com.toy.dto.*;
+import lotte.com.toy.service.ProductService;
 import lotte.com.toy.service.ReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +20,9 @@ public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
+
+    @Autowired
+    ProductService productService;
 
     @RequestMapping(value = "review.do")
     public String startReview(Model model, ReviewRequestDto reviewRequestDto){
@@ -55,6 +56,8 @@ public class ReviewController {
     @RequestMapping(value = "findReviewList.do")
     public String findReviewList(Model model,int productId){
         List<ReviewListDto> reviews = reviewService.findReviewList(productId);
+        ProductResponseDto productResponseDto = productService.getProductByProductId(productId);
+        model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
         return "reviewlist";
     }

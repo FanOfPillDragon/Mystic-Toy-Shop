@@ -9,38 +9,6 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/productDetail.css">
     <style>
-        .scrollArea {
-            width: 1296px;
-            height: 58px;
-        }
-
-        .scrollArea ul {
-            padding-left: 0;
-            display: flex;
-        }
-
-        .scrollArea ul li {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 58px;
-        }
-
-        .scrollArea ul li:nth-child(1) {
-            border-right: solid 1px gray;
-        }
-
-        .scrollArea ul li:nth-child(2) {
-            border-right: solid 1px gray;
-        }
-
-        .scrollArea ul li button{
-            font-size: 20px;
-            color: #757575;
-            border: none;
-            background-color: transparent;
-        }
     </style>
 </head>
 <body>
@@ -83,7 +51,8 @@
                         </div>
                         <button type="button" class="btn plus lookDisabled" onclick="plus()">+</button>
                     </div>
-                    <div id="totalPrice"><strong class="h4">${productResponseDto.product_cost}</strong><span> 원</span></div>
+                    <div id="totalPrice"><strong class="h4">${productResponseDto.product_cost}</strong><span> 원</span>
+                    </div>
                 </div>
             </div>
             <div class="buttonGroup">
@@ -95,13 +64,17 @@
     <div class="scrollArea">
         <ul>
             <li>
-                <button type="button" id="pInfo" style="color: black" onclick="menuChange('pInfo')">상품 정보</button>
+                <button type="button" id="pInfo" style="color: black; font-weight: bold">상품 정보</button>
             </li>
             <li>
-                <button type="button" id="pReview" onclick="menuChange('pReview')">상품 리뷰</button>
+                <button type="button" id="pReview"
+                        onclick="location.href='<%=request.getContextPath()%>/findReviewList.do?productId=${productResponseDto.product_id}'"
+                ">상품 리뷰</button>
             </li>
             <li>
-                <button type="button" id="pQna" onclick="menuChange('pQna')">Q&A</button>
+                <button type="button" id="pQna"
+                        onclick="location.href='<%=request.getContextPath()%>/findQnaList.do?productId=${productResponseDto.product_id}'"
+                ">Q&A</button>
             </li>
         </ul>
     </div>
@@ -146,93 +119,96 @@
                                 </div>
                                 <button type="button" class="btn plus lookDisabled" onclick="plus()">+</button>
                             </div>
-                            <div id="totalPrice2"><strong class="h4">${productResponseDto.product_cost}</strong><span> 원</span></div>
+                            <div id="totalPrice2"><strong
+                                    class="h4">${productResponseDto.product_cost}</strong><span> 원</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-</div>
-<script type="text/javascript">
-    function minus() {
-        let productCount = $("input[name=quantity]").val();
-        if (productCount > 1) {
-            productCount = Number(productCount) - 1;
-            $("input[name=quantity]").val(productCount);
-            updateCartCount();
-        } else {
-            alert('최소 구매 수량은 1개입니다');
-        }
-    }
 
-    function plus() {
-        let productCount = $("input[name=quantity]").val();
-        if (productCount < Number($("input[name=quantity]").attr('max'))) {
-            productCount = Number(productCount) + 1;
-            $("input[name=quantity]").val(productCount);
-            updateCartCount();
-        } else {
-            alert('1일 동안 최대 5개 구매 가능합니다');
-        }
-    }
+    </div>
 
-    function updateCartCount() {
-
-        let productCount = $("input[name=quantity]").val();
-
-        if (productCount > Number($("input[name=quantity]").attr('max'))) {
-            alert('1일 동안 최대 5개 구매 가능합니다');
-            $("input[name=quantity]").val(5);
-            return;
-        }
-        if (productCount < 1) {
-            alert('최소 구매 수량은 1개입니다');
-            $("input[name=quantity]").val(1);
-            return;
+    <script type="text/javascript">
+        function minus() {
+            let productCount = $("input[name=quantity]").val();
+            if (productCount > 1) {
+                productCount = Number(productCount) - 1;
+                $("input[name=quantity]").val(productCount);
+                updateCartCount();
+            } else {
+                alert('최소 구매 수량은 1개입니다');
+            }
         }
 
-        productCount = $("input[name=quantity]").val();
+        function plus() {
+            let productCount = $("input[name=quantity]").val();
+            if (productCount < Number($("input[name=quantity]").attr('max'))) {
+                productCount = Number(productCount) + 1;
+                $("input[name=quantity]").val(productCount);
+                updateCartCount();
+            } else {
+                alert('1일 동안 최대 5개 구매 가능합니다');
+            }
+        }
 
-        document.getElementById("totalPrice").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
-        document.getElementById("totalPrice2").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
-    }
+        function updateCartCount() {
 
-    function goToCart() {
+            let productCount = $("input[name=quantity]").val();
 
-        let checkLogin = '${empty sessionScope.userLogin}';
-        console.log(checkLogin);
-        if (checkLogin == 'true') {
-            alert("로그인 후 이용해주세요");
-            location.href = '<%=request.getContextPath()%>/login.do';
-            return;
-        } else {
-
-            let data = {
-                'cart_quantity': $("input[name=quantity]").val(),
-                'user_id': '${sessionScope.userLogin.user_id}',
-                'product_id': '${productResponseDto.product_id}'
+            if (productCount > Number($("input[name=quantity]").attr('max'))) {
+                alert('1일 동안 최대 5개 구매 가능합니다');
+                $("input[name=quantity]").val(5);
+                return;
+            }
+            if (productCount < 1) {
+                alert('최소 구매 수량은 1개입니다');
+                $("input[name=quantity]").val(1);
+                return;
             }
 
-            $.ajax({
-                url: '<%=request.getContextPath()%>/cartinsert.do',
-                type: 'post',
-                data: data,
-                success: function (data) {
-                    console.log(data);
-                    var checkCartConfirm = confirm(data);
-                    if (checkCartConfirm) {
-                        location.href = '<%=request.getContextPath()%>/cart.do';
-                    }
-                }
-            });
+            productCount = $("input[name=quantity]").val();
+
+            document.getElementById("totalPrice").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
+            document.getElementById("totalPrice2").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
         }
 
-    }
+        function goToCart() {
 
-    function goToOrder() {
-        location.href = '<%=request.getContextPath()%>/orderbyproduct.do?productId=${productResponseDto.product_id}&quantity=' + $("input[name=quantity]").val();
-    }
+            let checkLogin = '${empty sessionScope.userLogin}';
+            console.log(checkLogin);
+            if (checkLogin == 'true') {
+                alert("로그인 후 이용해주세요");
+                location.href = '<%=request.getContextPath()%>/login.do';
+                return;
+            } else {
 
-</script>
+                let data = {
+                    'cart_quantity': $("input[name=quantity]").val(),
+                    'user_id': '${sessionScope.userLogin.user_id}',
+                    'product_id': '${productResponseDto.product_id}'
+                }
+
+                $.ajax({
+                    url: '<%=request.getContextPath()%>/cartinsert.do',
+                    type: 'post',
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                        var checkCartConfirm = confirm(data);
+                        if (checkCartConfirm) {
+                            location.href = '<%=request.getContextPath()%>/cart.do';
+                        }
+                    }
+                });
+            }
+
+        }
+
+        function goToOrder() {
+            location.href = '<%=request.getContextPath()%>/orderbyproduct.do?productId=${productResponseDto.product_id}&quantity=' + $("input[name=quantity]").val();
+        }
+
+    </script>
 </body>
 </html>
