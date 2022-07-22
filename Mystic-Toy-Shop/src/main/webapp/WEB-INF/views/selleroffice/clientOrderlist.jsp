@@ -38,7 +38,7 @@
         <strong>주문목록조회</strong>
         <hr>
         <%if (cod.size() > 0) {%>
-        <table border="1">
+        <table class="table-primary">
             <tr>
                 <col width="100">
                 <col width="600><col width=" 100

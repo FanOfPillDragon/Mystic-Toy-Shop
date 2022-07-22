@@ -19,4 +19,13 @@ public class PaymentServiceImp implements PaymentService {
         }
         return true;
     }
+
+    @Override
+    public boolean deletePaymentByOrderId(int userId) {
+        int count = paymentDao.deletePaymentByOrderId(userId);
+        if(count ==0){
+            return false;
+        }
+        return true;
+    }
 }

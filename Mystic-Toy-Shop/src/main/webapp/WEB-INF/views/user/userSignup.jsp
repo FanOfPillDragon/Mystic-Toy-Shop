@@ -153,7 +153,8 @@
             <div class="inputSet login">
                 <input type="text" id="user_email" name="user_email" placeholder="이메일 아이디">
                 <%--카카오아이디--%>
-                <input type="hidden" id="user_kakao_identifier" name="user_kakao_identifier" value=<%=user_kakao_identifier%>>
+                <input type="hidden" id="user_kakao_identifier" name="user_kakao_identifier"
+                       value=<%=user_kakao_identifier%>>
                 <div class="checkEmail">
                     <p id="idCheck" style="font-size: 12px; margin-left: 15px"></p>
                     <button type="button" id="idBtn">이메일 확인</button>
@@ -162,7 +163,8 @@
                     <input type="password" id="user_password" name="user_password"
                            placeholder="비밀번호 (8자리 이상 영문+숫자+특수문자 조합)">
                 </div>
-                <p id="pwCheck" style="font-size: 12px; width: 420px; padding-left: 15px; display: none; justify-content: start"></p>
+                <p id="pwCheck"
+                   style="font-size: 12px; width: 420px; padding-left: 15px; display: none; justify-content: start"></p>
                 <div>
                     <input type="text" id="user_name" name="user_name" placeholder="이름">
                 </div>
@@ -179,15 +181,15 @@
                 </div>
                 <div class="searchAddress">
                     <div>
-                        <input id="user_zipcode" name="user_zipcode" type="text" placeholder="Zip Code" readonly
-                               placeholder="우편번호">
+                        <input id="user_zipcode" name="user_zipcode" type="text" readonly
+                               placeholder="우편번호" onclick="findAddr()">
                     </div>
                     <div>
-                        <input id="user_address" name="user_address" type="text" placeholder="Address" readonly
-                               placeholder="주소">
+                        <input id="user_address" name="user_address" type="text" readonly
+                               placeholder="주소" onclick="findAddr()">
                     </div>
                     <input type="text" id="user_detail_address" name="user_detail_address"
-                           placeholder="Detailed Address" placeholder="상세주소">
+                           placeholder="상세주소">
                     <button type="button" onclick="findAddr()"> 주소 검색</button>
                 </div>
             </div>
@@ -198,26 +200,6 @@
     </form>
 </div>
 
-<%--<h1>userSignUp</h1>--%>
-<%--<form id="userSignup" action="<%=request.getContextPath() %>/addUser.do" method="post">--%>
-<%--    이메일 : <input type="text" id="user_email" name="user_email"> <br>--%>
-<%--    <p id="idCheck" style="font-size: 8px"></p>--%>
-<%--    <input type="button" id="idBtn" value="이메일 확인">--%>
-<%--    비밀번호 : <input type="password" id="user_password" name="user_password"> <br>--%>
-<%--    <p id="pwCheck" style="font-size: 8px"></p>--%>
-<%--    이름 : <input type="text" id="user_name" name="user_name"> <br>--%>
-<%--    우편번호 : <input id="user_zipcode" name="user_zipcode" type="text" placeholder="Zip Code" readonly>--%>
-<%--    주소 : <input id="user_address" name="user_address" type="text" placeholder="Address" readonly>--%>
-<%--    <button type="button" onclick="findAddr()"> 주소 검색</button>--%>
-<%--    <br>--%>
-<%--    상세주소 : <input type="text" id="user_detail_address" name="user_detail_address" placeholder="Detailed Address">--%>
-<%--    핸드폰번호: <input type="text" id="user_phone" name="user_phone"> <br>--%>
-<%--    성별 : <select name="user_gender" id="user_gender">--%>
-<%--    <option value=0 selected>남</option>--%>
-<%--    <option value=1>여</option>--%>
-<%--</select>--%>
-<%--    <button type="button" id="submitBtn">회원유저가아입</button>--%>
-<%--</form>--%>
 <script type="text/javascript">
     let isSId = false;
     let isSPw = false;
@@ -226,7 +208,7 @@
     $(function () {
         $("#idBtn").click(function () {
             // 아이디가 입력되지 않았을 때
-            if($("#user_email").val().length == 0){
+            if ($("#user_email").val().length == 0) {
                 $("#idCheck").css("color", "#ff0000");
                 $("#idCheck").html('id를 입력해주세요');
                 return;

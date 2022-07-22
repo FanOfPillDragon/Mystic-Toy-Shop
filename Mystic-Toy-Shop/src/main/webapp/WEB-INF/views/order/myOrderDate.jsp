@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>mypage</title>
-    <link href="<%=request.getContextPath()%>/css/mypage.css"
+    <link href="<%=request.getContextPath()%>/resources/css/mypage.css"
           rel="stylesheet">
     <style>
 
@@ -27,7 +27,7 @@
                     </button>
                     <div class="nicknameWrap">
                         <p class="infoWord">쇼핑하기 좋은 날이에요!</p>
-                        <div class="nickName">손은성님!</div>
+                        <div class="nickName">${sessionScope.userLogin.user_name}님!</div>
                     </div>
                 </div>
                 <div class="membershipList">
@@ -50,7 +50,7 @@
 
             </div>
             <div class="memberInfoBanner">
-                <img src="<%=request.getContextPath() %>/images/myBanner.png" alt="">
+                <img src="<%=request.getContextPath() %>/resources/images/myBanner.png" alt="">
             </div>
         </div>
         <div class="myLotteWrap">
@@ -104,30 +104,28 @@
                             </div>
                             <div class="buttonWrapper">
                                 <button type="button" class="detailBtn" onclick="location.href = 'orderDetail.do?orderId=<c:out value="${order.order_id}"/>' ">상세보기</button>
-                                <form id="reviewForm" action="/review.do" method="post">
-                                    <input type="hidden" value="${order.product_img}" name="image">
-                                    <input type="hidden" value="${order.product_name}" name="title">
-                                    <input type="hidden" value="1" name="productId">
-                                    <button type="button" class="reviewBtn" id="reviewBtn<c:out value="${order.order_id}"/>"
-                                            style="display: none" onclick="goReview()">리뷰쓰기
-                                    </button>
+                                <form id="reviewForm" name="frm" action="/review.do" method="post">
+                                    <input type="hidden" value="${order.product_img}" id="image${order.order_id}" name="product_img">
+                                    <input type="hidden" value="${order.product_name}" id="title${order.order_id}" name="product_name">
+                                    <input type="hidden" value=" ${order.product_id}" id="productId${order.order_id}" name="product_id">
+                                    <input type="hidden" value=" ${order.order_id}" id="productId${order.order_id}" name="order_id">
+                                    <button type="submit" class="reviewBtn" id="reviewBtn${order.order_id}" style="display: none" >리뷰쓰기</button>
                                 </form>
 
                             </div>
                             <script type="text/javascript">
                                 (function () {
                                     let ship = <c:out value="${order.ship_status}"/>;
+                                    let review = ${order.reviewCheck}
                                     if (ship == 0) {
                                         $("#shipStatus<c:out value="${order.order_id}"/>").text("배송중");
                                     } else {
                                         $("#shipStatus<c:out value="${order.order_id}"/>").text("배송완료");
+                                    }
+                                    if(review == 0 && ship == 1){
                                         $("#reviewBtn<c:out value="${order.order_id}"/>").show();
                                     }
                                 }());
-                                function goReview(){
-                                    const form = document.getElementById("reviewForm");
-                                    form.submit();
-                                }
                             </script>
                         </div>
                     </c:forEach>

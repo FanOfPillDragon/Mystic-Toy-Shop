@@ -55,4 +55,13 @@ public class CartServiceImpl implements CartService {
     public CartDto getCartByProductIdAndUserId(CartDto cartDto) {
         return cartDao.getCartByProductIdAndUserId(cartDto);
     }
+
+    @Override
+    public boolean deleteCartByUserId(int userId) {
+        int count = cartDao.deleteCartByUserId(userId);
+        if(count == 0){
+            return false;
+        }
+        return true;
+    }
 }

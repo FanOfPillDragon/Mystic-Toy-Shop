@@ -1,10 +1,8 @@
 package lotte.com.toy.controller;
 
 import lotte.com.toy.dto.*;
-import lotte.com.toy.service.CategoryService;
-import lotte.com.toy.service.OrderStatsService;
-import lotte.com.toy.service.ProductService;
-import lotte.com.toy.service.SellerService;
+import lotte.com.toy.service.*;
+import lotte.com.toy.util.FileUtil;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -37,20 +35,22 @@ public class SellerOfficeController {
     SellerService sellerservice;
     @Autowired
     OrderStatsService orderStatsService;
+    @Autowired
+    FileService fileService;
 
     @GetMapping("/product_write.do")
-    public String prodcut_write(Model model) {
+    public String prodcut_write(Model model, int seller_id) {
         log.info("SellerOfficeController prodcut_write()");
         System.out.println("SellerOfficeController prodcut_write");
 
         List<CategoryDto> categoryList = categoryservice.categoryList();
         model.addAttribute("categories", categoryList);
+        model.addAttribute("seller_id", seller_id);
 
         return "product_write";
     }
 
     @ResponseBody
-    /*    @PostMapping(value="/uploadSummernoteImageFile.do", produces = "application/json")*/
     @RequestMapping(value = "/uploadSummernoteImageFile.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
     public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest req) {
         log.info("uploadSummernoteImageFile ");
@@ -65,7 +65,6 @@ public class SellerOfficeController {
 
         String savedFileName = UUID.randomUUID() + extension;    // 파일 이름 중복 방지 저장될 파일 명
 
-//        File targetFile = new File(fileRoot + savedFileName);
         File targetFile = new File(fileRoot + savedFileName);
 
         try {
@@ -73,6 +72,7 @@ public class SellerOfficeController {
             /*            FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장*/
             FileUtils.writeByteArrayToFile(targetFile, multipartFile.getBytes());
             jsonObject.put("url", "/mystic_image/" + savedFileName);
+            //jsonObject.put("url", "upload/" + savedFileName);
             jsonObject.put("responseCode", "success");
 
         } catch (IOException e) {
@@ -81,24 +81,22 @@ public class SellerOfficeController {
             jsonObject.put("responseCode", "error");
             e.printStackTrace();
         }
-        System.out.println(jsonObject.toString());
-        String a = jsonObject.toString();
 
+        String a = jsonObject.toString();
         return a;
     }
 
-
     @PostMapping("/writeAf.do")
     public String write(ProductDto dto, Model model) {
+        System.out.println(dto.toString());
 
         boolean isSuccess = productService.product_write(dto);
         String msg = "N";
         if (isSuccess) {
             msg = "Y";
             model.addAttribute("msg", msg);
-            return "redirect:/seller_main";
+            return "redirect:/seller_main.do?seller_id=" + dto.getSeller_id();
         }
-
         return "redirect:/product_write";
     }
 
@@ -191,9 +189,13 @@ public class SellerOfficeController {
     @GetMapping("productUpdate.do")
     public String productUpdate(Model model, ProductDto dto) {
 
+        System.out.println("product_id:" + dto.getProduct_id());
         List<CategoryDto> categoryList = categoryservice.categoryList();
         model.addAttribute("categories", categoryList);
+        ProductDto pr = productService.findByProductId(dto.getProduct_id());
+        model.addAttribute("dto",pr);
 
+        System.out.println(pr.toString());
         return "product_update";
     }
 
@@ -225,7 +227,7 @@ public class SellerOfficeController {
 
     @ResponseBody
     @GetMapping("stockUpdate.do")
-    public String stockUpdate(ProductDto dto){
+    public String stockUpdate(ProductDto dto) {
         System.out.println(dto.toString());
 
         String msg = "NO";
@@ -235,5 +237,55 @@ public class SellerOfficeController {
             return msg;
         }
         return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/titleImageUpload.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
+    public String titleImageUpload(@RequestParam("file") MultipartFile fileload, HttpServletRequest req) {
+        System.out.println("SellerOfficeController titleImageUpload");
+        System.out.println("muitipartFile:" + fileload);
+
+        FileDto fileDto = new FileDto();
+        String fupload = "C:\\mystic_image\\pr_img\\";    //저장될 외부 파일 경로
+        String originalFileName = fileload.getOriginalFilename();
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));    //파일 확장자
+        String newfilename = UUID.randomUUID() + extension;
+
+        fileDto.setFile_original_name(originalFileName);
+        fileDto.setFile_name(newfilename);
+        fileDto.setFile_where_use('0');
+        fileDto.setFile_use_id(0); // 프로덕트 id 후처리 필요
+
+        File file = new File(fupload + "/" + newfilename);
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            // 실제로 업로드
+            FileUtils.writeByteArrayToFile(file, fileload.getBytes());
+            // DB에 저장
+            fileService.insertFile(fileDto);
+
+            jsonObject.put("url", "/mystic_image/pr_img/" + newfilename);
+            jsonObject.put("responseCode", "success");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String title = jsonObject.toString();
+        return title;
+    }
+
+    @PostMapping("/updateAf.do")
+    public String update(ProductDto dto, Model model) {
+        System.out.println(dto.toString());
+
+        boolean isSuccess = productService.productUpdate(dto);
+        String msg = "N";
+        if (isSuccess) {
+            msg = "Y";
+            model.addAttribute("msg", msg);
+            return "redirect:/seller_main.do?seller_id=" + dto.getSeller_id();
+        }
+        return "redirect:/product_write";
     }
 }

@@ -19,4 +19,5 @@ public interface ProductDao {
     int updateProductSellcount(int productId);
 
     List<ProductResponseDto> getProductListForMain();
+    int product_update(ProductDto dto);
 }

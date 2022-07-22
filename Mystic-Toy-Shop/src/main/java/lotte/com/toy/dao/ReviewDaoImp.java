@@ -31,4 +31,9 @@ public class ReviewDaoImp implements ReviewDao{
     public int checkReviewWrite(ReviewCheckDto reviewCheck) {
         return session.selectOne(nameSpace+"checkReview",reviewCheck);
     }
+
+    @Override
+    public List<ReviewListDto> findAllByUserId(int userId) {
+        return session.selectList(nameSpace+"findAllByUserId",userId);
+    }
 }

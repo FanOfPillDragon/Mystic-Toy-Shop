@@ -61,4 +61,9 @@ public class ProductDaoImpl implements ProductDao {
     public List<ProductResponseDto> getProductListForMain() {
         return session.selectList(nameSpace + "getProductListForMain");
     }
+
+    @Override
+    public int product_update(ProductDto dto) {
+        return session.update(nameSpace + "product_update", dto);
+    }
 }

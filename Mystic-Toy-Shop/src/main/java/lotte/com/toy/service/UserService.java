@@ -16,4 +16,6 @@ public interface UserService {
     HashMap<String, Object> getUserInfo(String access_Token);
     int getKakaoId (String user_kakao_identifier);
     UserDto kakaoUserLogin(String user_kakao_identifier);
+
+    String findNameByUserId(int userId);
 }

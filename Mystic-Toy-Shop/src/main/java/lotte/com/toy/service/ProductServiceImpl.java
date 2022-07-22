@@ -67,4 +67,9 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductResponseDto> getProductListForMain() {
         return productDao.getProductListForMain();
     }
+
+    @Override
+    public boolean productUpdate(ProductDto dto) {
+        return productDao.product_update(dto)>0?true:false;
+    }
 }

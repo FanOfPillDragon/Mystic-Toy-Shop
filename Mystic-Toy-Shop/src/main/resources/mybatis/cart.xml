@@ -40,4 +40,9 @@
         from carts
         where user_id = #{user_id} and product_id = #{product_id}
     </select>
+    <delete id="deleteCartByUserId" parameterType="Integer">
+        delete
+        from carts
+        where user_id=#{user_id};
+    </delete>
 </mapper>

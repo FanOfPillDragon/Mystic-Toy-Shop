@@ -13,13 +13,14 @@
 <%
     List<CategoryDto> categories = (List<CategoryDto>) request.getAttribute("categories");
     request.setCharacterEncoding("utf-8");
+    int seller_id = (int) request.getAttribute("seller_id");
 %>
 <html>
 <head>
     <%-- Summernote import--%>
-    <script src="resources/summernote/summernote-ko-KR.js"></script>
     <script src="resources/summernote/summernote-lite.js"></script>
     <link rel="stylesheet" href="resources/summernote/summernote-lite.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
     <title>Title</title>
     <style type="text/css">
         /*        body{
@@ -38,9 +39,10 @@
         .category_radio {
         }
 
-        .input-box{
+        .input-box {
             margin-bottom: 5px;
         }
+
         .writeReviewDetailPhoto .picUploadList li .picUploadBtn {
             padding-top: 18px;
             text-align: center;
@@ -58,6 +60,7 @@
                     <span style="color: red; font-size: 8pt;">• 필수입력</span>
                 </h4>
             </div>
+
         </div>
 
         <%--카테고리 시작--%>
@@ -141,9 +144,17 @@
             </div>
         </div>
     </div>
+
     </form>
     </div>
 </div>
+<script>
+    var imagefile;
+
+    $("#titleImage").on("change", function (event) {
+        imagefile = event.target.files[0];
+    });
+</script>
 
 <script>
     $('.summernote').summernote({
@@ -152,6 +163,7 @@
         maxHeight: null,
         focus: false,
         lang: "ko-KR",
+        placeholder: "이미지 드래그시에 등록됩니다.",
         toolbar: [
             // [groupName, [list of button]]
             ['fontname', ['fontname']],
@@ -207,14 +219,58 @@
         });
     }
 
-    $("#btnsubmit2").click(function () {
-        if(document.getElementsByName("fileload").length<1 || document.getElementsByName("fileload")[0].value == '') {
-            alert("파일을 업로드 해주세요");
-            document.getElementById("btnsubmit").focus();
-            return;
+    function product_wrtie() {
+
+        var category_id = $("input[name='category_id']:checked").val();
+        var product_name = $("#product_name").val();
+        var product_cost = $("#product_cost").val();
+        var product_stock = $("#product_stock").val();
+        var product_info = $("#product_info").val();
+
+        if (category_id === "") {
+            alert("카테고리를 선택하세요");
+            $("#category1").focus();
         }
-        $("#frm").submit();
-    });
+        if (product_name == "") {
+            alert("상품 이름을 입력하세요.")
+            $("#product_name").focus();
+        }
+        if (product_cost == "") {
+            alert("가격을 입력하세요.");
+            $("#product_cost").focus();
+        }
+        if (product_stock == "") {
+            alert("재고를 입력하세요.");
+            $("#product_stock").focus();
+        }
+        if (product_info == "") {
+            alert("상세설명을 입력하세요.");
+            $("#product_info").focus();
+        }
+
+        if (imagefile != "") {
+            var data = new FormData();
+            data.append("file", imagefile);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "<%=request.getContextPath()%>/titleImageUpload.do",
+                contentType: false,
+                processData: false,
+                enctype: 'multipart/form-data',
+                success: function (data) {
+                    // const produdct_img = $("<input type='hidden' name='product_img' value = " + data["url"] + ">");
+                    // $("#frm").append(produdct_img);
+                    $("#pr_img").attr("value", data["url"]);
+                    $("#frm").submit();
+                },
+                error: function (data) {
+                }
+            });
+        } else {
+            $("#frm").submit();
+        }
+    }
 </script>
 </body>
 </html>
