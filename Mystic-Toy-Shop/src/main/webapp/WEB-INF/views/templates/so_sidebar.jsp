@@ -73,7 +73,7 @@
 </head>
 <body>
 <div class="lnbWrap">
-    <h2 class="pageTitle">판매자센터</h2>
+    <h2 class="pageTitle"><a href="<%=request.getContextPath()%>/seller_main.do?seller_id=${sessionScope.sellerLogin.seller_id}">판매자센터</a></h2>
 
     <div class="list-group">
     <ul>
@@ -81,7 +81,7 @@
             <div class="lnbTitle">상품관리</div>
             <ul>
 
-                <li><a href="<%=request.getContextPath()%>/product_write.do">상품 등록</a></li>
+                <li><a href="<%=request.getContextPath()%>/product_write.do?seller_id=${sessionScope.sellerLogin.seller_id}">상품 등록</a></li>
                 <li><a href="<%=request.getContextPath()%>/sosalelist.do?seller_id=${sessionScope.sellerLogin.seller_id}"  class="no-underline">상품 목록 조회</a></li>
             </ul>
         </li>

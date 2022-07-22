@@ -73,7 +73,7 @@
                 %>
                 <tr>
                     <td><img class="mini" src="${productResponseDto.product_img}"><a
-                            href="/productUpdate.do?productId=${productResponseDto.product_id}">${productResponseDto.product_name}</a>
+                            href="/productUpdate.do?product_id=${productResponseDto.product_id}">${productResponseDto.product_name}</a>
                     </td>
                     <td>${productResponseDto.category_name}</td>
                     <td>${product_cost} 원</td>
