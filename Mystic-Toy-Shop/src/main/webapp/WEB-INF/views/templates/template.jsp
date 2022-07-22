@@ -16,10 +16,6 @@
             height: 80%;
             width: 100%;
         }
-
-        #footer{
-            margin-top: 100px;
-        }
     </style>
 </head>
 <body>

@@ -117,26 +117,31 @@
     <definition name="login" extends="main_tile">
         <put-attribute name="title" value="회원가입"/>
         <put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="userLogin" extends="main_tile">
         <put-attribute name="title" value="사용자 로그인"/>
         <put-attribute name="body" value="/WEB-INF/views/user/userLogin.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="userSignup" extends="main_tile">
         <put-attribute name="title" value="사용자 회원가입"/>
         <put-attribute name="body" value="/WEB-INF/views/user/userSignup.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="sellerLogin" extends="main_tile">
         <put-attribute name="title" value="판매자 로그인"/>
         <put-attribute name="body" value="/WEB-INF/views/user/sellerLogin.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <definition name="sellerSignup" extends="main_tile">
         <put-attribute name="title" value="판매자 회원가입"/>
         <put-attribute name="body" value="/WEB-INF/views/user/sellerSignup.jsp"/>
+        <put-attribute name="footer" value=""/>
     </definition>
 
     <!--    <definition name="message" extends="main_tile">
