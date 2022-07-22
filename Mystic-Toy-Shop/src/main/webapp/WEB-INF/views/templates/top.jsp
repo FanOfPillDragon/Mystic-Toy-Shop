@@ -186,7 +186,7 @@
             color: #333;
         }
 
-        .logoArea {
+        .headerLogoArea .logoArea {
             display: inline-block;
             width: auto;
             height: 60px;
