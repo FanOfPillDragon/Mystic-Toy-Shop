@@ -143,7 +143,7 @@
                 <div class="reviewTitle"><%=productName%></div>
             </div>
             <div class="contentWrapper">
-                <form action="/qnaAf.do" id="qnaForm" method="post">
+                <form id="qnaForm" action="<%=request.getContextPath() %>/qnaAf.do" method="post">
                     <table>
                         <colgroup>
                             <col style="width: 110px">
@@ -160,29 +160,28 @@
                             <th>후기작성</th>
                             <td>
                                 <div class="field_cmt">
-                                    <textarea id="fieldCmt content" name="qnaContent" cols="100" rows="10" placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,
-일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.
-반품/환불 문의는 1:1문의로 가능합니다."></textarea>
+                                    <textarea id="content" name="qnaContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <input type="hidden" name="productId" value="${productId}">
+                    <input type="hidden" name="productId" value="<%=productId%>">
                 </form>
             </div>
             <div class="reviewButtonWrapper">
-                <button type="button" onclick="goReviewAf()">리뷰등록</button>
+                <button type="button" id="goReviewAf">등록</button>
             </div>
         </div>
     </div>
 
 </div>
 <script !src="">
-    function goReviewAf(){
+    const qnaForm = document.getElementById("qnaForm");
+    document.getElementById("goReviewAf").addEventListener("click", function () {
         const title = document.getElementById("title");
         const content = document.getElementById("content");
-        const qnaForm = document.getElementById("qnaForm");
+
         if (title.value === '') {
             alert("제목을 입력해주세요");
         }
@@ -193,7 +192,7 @@
             alert("등록이 완료되었습니다");
             qnaForm.submit();   // qna 등록 성공
         }
-    }
+    })
 </script>
 </body>
 </html>

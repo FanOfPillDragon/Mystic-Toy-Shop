@@ -68,13 +68,11 @@
             </li>
             <li>
                 <button type="button" id="pReview"
-                        onclick="location.href='<%=request.getContextPath()%>/findReviewList.do?productId=${productResponseDto.product_id}'"
-                ">상품 리뷰</button>
+                        onclick="location.href='<%=request.getContextPath()%>/findReviewList.do?productId=${productResponseDto.product_id}'">상품 리뷰</button>
             </li>
             <li>
                 <button type="button" id="pQna"
-                        onclick="location.href='<%=request.getContextPath()%>/findQnaList.do?productId=${productResponseDto.product_id}'"
-                ">Q&A</button>
+                        onclick="location.href='<%=request.getContextPath()%>/findQnaList.do?productId=${productResponseDto.product_id}'">Q&A</button>
             </li>
         </ul>
     </div>

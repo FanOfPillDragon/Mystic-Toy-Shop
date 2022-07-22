@@ -33,11 +33,11 @@
         <div class="headerInnerContent innerContent">
             <c:choose>
                 <c:when test="${not empty sessionScope.userLogin}">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/mypage.do">${sessionScope.userLogin.user_name}님</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/orderlist.do">${sessionScope.userLogin.user_name}님</a>
                     <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a>
                 </c:when>
                 <c:when test="${not empty sessionScope.sellerLogin}">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/mypage.do">${sessionScope.sellerLogin.seller_name}님</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/orderlist.do">${sessionScope.sellerLogin.seller_name}님</a>
                     <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a>
                 </c:when>
                 <c:otherwise>

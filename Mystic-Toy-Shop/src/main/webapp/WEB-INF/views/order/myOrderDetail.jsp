@@ -5,11 +5,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
-<%
-    int totalPrice = 0;
-%>
+
 <%
     OrderDetailDto order = (OrderDetailDto) request.getAttribute("order");
+    int totalCount = (Integer) request.getAttribute("totalcount");
 %>
 <html>
 <head>
@@ -129,7 +128,7 @@
             background-color: #1352a2;
         }
 
-        .detailOrderWrapper{
+        .detailOrderWrapper {
             margin-bottom: 50px;
         }
 
@@ -143,11 +142,12 @@
             margin-top: 20px;
         }
 
-        tr{
+        tr {
             height: 40px;
         }
 
     </style>
+    <script src="https://kit.fontawesome.com/079869d0a6.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
@@ -156,7 +156,9 @@
         <div class="membershipUserWrap">
             <div class="memberInner">
                 <div class="profileWrap">
-                    <button></button>
+                    <button>
+                        <i class="fa-solid fa-user"></i>
+                    </button>
                     <div class="nicknameWrap">
                         <p class="infoWord">쇼핑하기 좋은 날이에요!</p>
                         <div class="nickName">${sessionScope.userLogin.user_name}님!</div>
@@ -168,7 +170,7 @@
                             <div>나의 주문내역</div>
                             <div class="contain">
                                 <a>
-                                    <strong>0</strong>
+                                    <strong><%=totalCount%></strong>
                                     <span>개</span>
                                 </a>
                             </div>
