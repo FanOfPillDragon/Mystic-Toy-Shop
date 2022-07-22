@@ -29,9 +29,9 @@
     <title>Title</title>
     <style type="text/css">
         .mini {
-            width: 50px;
-            height: 70px;
-            margin-right: 10px;
+            width: 100px;
+            height: 100px;
+            margin-right: 150px;
             padding: 5px;
         }
 
@@ -51,14 +51,14 @@
     <div>
         <strong>상품목록조회</strong>
         <hr>
-        <table border="1">
-            <tr>
+        <table class="table-primary">
+            <tr class="table-header" style="text-align: center">
                 <col width="600">
                 <col width="150">
                 <col width="100">
                 <col width="100">
                 <col width="100">
-                <th>상품명</th>
+                <th style="text-align: center">상품명</th>
                 <th>카테고리</th>
                 <th>가격</th>
                 <th>현재 재고</th>

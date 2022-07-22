@@ -50,68 +50,112 @@
         }
     </style>
 </head>
-<body>
-<div class="container">
-    <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="seller_id" value="<%=dto.getSeller_id()%>">
-        <div class="temp" style="height:80px;">
-            <h3 style="font-size: 17pt; float: left ;">상품등록 <span style="color: red; font-size: 8pt;">• 필수입력</span></h3>
-        </div>
-        <div class="temp">
-            <p>카테고리</p>
-            <hr>
-            <div class="input-box">
-                <% for (CategoryDto c : categories) {%>
-                <% if(c.getCategory_id() == dto.getCategory_id()) {%>
-                <input class="category_radio" type="radio" name="category_id" id="category<%=c.getCategory_id()%>"
-                       value="<%=c.getCategory_id()%>" checked="checked"> <label><%=c.getCategory_name()%>
-                <%}else {%>
-                <input class="category_radio" type="radio" name="category_id" id="category<%=c.getCategory_id()%>"
-                       value="<%=c.getCategory_id()%>"> <label><%=c.getCategory_name()%>
-            </label>
-                <% } %>
-                <% }%>
-            </div>
-        </div>
-        <div class="temp">
-            <p>상품명</p>
-            <hr>
-            <div class="input-box">
-                <input type="text" id="product_name" name="product_name" value="<%=dto.getProduct_name()%>" size="80" placeholder="상품명">
-            </div>
-        </div>
-        <div class="temp">
-            <p>판매가</p>
-            <hr>
-            <div class="input-box">
-                <input type="number" min="1000" step="100" id="product_cost" name="product_cost" value="<%=dto.getProduct_cost()%>" size="20"
-                       placeholder="판매가"><span>원</span>
-            </div>
-        </div>
-        <div class="temp">
-            <p>재고수량</p>
-            <hr>
-            <div class="input-box">
-                <input type="number" min="10" max="200" size="20" value="<%=dto.getProduct_stock()%>" id="product_stock" name="product_stock"
-                       placeholder="숫자만입력"><span>개</span>
-            </div>
-        </div>
-        <div class="writeReviewDetailPhoto">
-            <div class="picUploadBtn picture">
-                <i><img src="//static.lotteon.com/p/product/plugin/assets/img/btn_icon_upload_camera_new.svg"
-                        alt=""></i>
-                <span>사진첨부</span>
-                <input type="file" multiple="multiple" id="titleImage" name="fileload" accept="image/*" class="btnFile">
-                <input type="hidden" name="product_img" id="pr_img" value="<%=dto.getProduct_img()%>">
-            </div>
-        </div>
-        <div class="temp">
-            <p>상세설명</p>
-            <hr>
-            <textarea class="summernote" id="product_info" name="product_info"><%=dto.getProduct_info()%></textarea>
-        </div>
-        <button type="button" id="writebtn" onclick="product_wrtie()">상품등록</button>
-    </form>
+<body style="text-align: center">
+<div id="content" style="margin-top: 30px">
+    <div class="container">
+        <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="seller_id" value="<%=dto.getSeller_id()%>">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-6">
+                        <h4 style="float: left ;">📝 상품등록
+                            <span style="color: red; font-size: 8pt;">• 필수입력</span>
+                        </h4>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4 mt-4">
+                        <h6 style="float:left;">💡 카테고리</h6>
+                        <div style="float:left;">
+                            <% for (CategoryDto c : categories) {%>
+                            <%if(c.getCategory_id() == dto.getCategory_id()) {%>
+                            <div class="form-check-inline">
+                                <input class="category_radio" type="radio" name="category_id"
+                                       id="category<%=c.getCategory_id()%>"
+                                       value="<%=c.getCategory_id()%>" checked="checked">
+                                <label class="form-check-label"><%=c.getCategory_name()%>
+                                </label>
+                            </div>
+                            <%}else{%>
+                            <div class="form-check-inline">
+                                <input class="category_radio" type="radio" name="category_id"
+                                       id="category<%=c.getCategory_id()%>"
+                                       value="<%=c.getCategory_id()%>">
+                                <label class="form-check-label"><%=c.getCategory_name()%>
+                                </label>
+                            </div>
+                            <%}%>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+
+                <%--상품명--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">🎁 상품명</h6>
+                        <div class="form-group">
+                            <input type="text" id = "product_name" name="product_name" class="form-control" value="<%=dto.getProduct_name()%>" placeholder="상품명을 입력하세요.">
+                        </div>
+                    </div>
+                </div>
+
+                <%--판매가--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">💰 판매가격</h6>
+                        <div class="form-group">
+                            <input type="number" id = "product_cost" name="product_cost" class="form-control" value="<%=dto.getProduct_cost()%>" placeholder="판매가격을 입력해주세요">
+                        </div>
+                    </div>
+                </div>
+
+                <%--재고수량--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">🚚 재고수량</h6>
+                        <div class="form-group">
+                            <input type="number" id="product_stock" name="product_stock" class="form-control" value="<%=dto.getProduct_stock()%>" placeholder="재고수량을 입력해주세요">
+                        </div>
+                    </div>
+                </div>
+
+                <%--이미지--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">📸 업로드</h6>
+                        <br>
+                        <div class="picUploadBtn picture">
+                            <i><img src="//static.lotteon.com/p/product/plugin/assets/img/btn_icon_upload_camera_new.svg"
+                                    alt=""></i>
+                            <span>사진첨부</span>
+                            <input type="file" multiple="multiple" id="titleImage" name="fileload" accept="image/*"
+                                   class="btnFile">
+                            <input type="hidden" name="product_img" id="pr_img" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <%--상세설명--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">✏ 상세설명</h6>
+                        <div>
+                            <textarea class="summernote" id = "product_info" name="product_info"><%=dto.getProduct_info()%></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-8 col-lg-2 mb-4">
+                        <button type="button" class="btn btn-primary" id="writebtn" onclick="product_wrtie()">상품등록</button>
+                    </div>
+                </div>
+        </form>
+    </div>
 </div>
 <script>
     var imagefile;
@@ -230,6 +274,8 @@
                     $("#frm").submit();
                 },
                 error: function (data) {
+                    $("#pr_img").attr("value","<%=dto.getProduct_img()%>");
+                    $("#frm").submit();
                 }
             });
         } else {
