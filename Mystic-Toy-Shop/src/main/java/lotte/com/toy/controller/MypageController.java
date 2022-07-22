@@ -1,13 +1,7 @@
 package lotte.com.toy.controller;
 
-import lotte.com.toy.dto.UserDto;
-import lotte.com.toy.dto.UserUpdateName;
-import lotte.com.toy.dto.UserUpdatePassword;
-import lotte.com.toy.dto.UserUpdatePhone;
-import lotte.com.toy.service.CartService;
-import lotte.com.toy.service.MypageService;
-import lotte.com.toy.service.OrderService;
-import lotte.com.toy.service.PaymentService;
+import lotte.com.toy.dto.*;
+import lotte.com.toy.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +26,9 @@ public class MypageController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/mypage.do")
     public String mypage() {
 
@@ -49,7 +46,7 @@ public class MypageController {
     }
 
     @RequestMapping(value = "updateUserInfoAf.do", method = RequestMethod.POST)
-    public String UpdateUserInfo(HttpServletRequest req, Model model, String userName,String userPhone,String userPassword){
+    public String UpdateUserInfo(HttpServletRequest req, Model model, String userName,String userPhone,String userPassword,String userAddress, String userZipcode){
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         if (userDto == null) {
 //            response.sendRedirect("/userLogin.do");
@@ -58,19 +55,46 @@ public class MypageController {
 
         UserUpdateName userUpdateName = new UserUpdateName(userDto.getUser_id(),userName);
         UserUpdatePhone userUpdatePhone = new UserUpdatePhone(userDto.getUser_id(),userPhone);
+        UserUpdateAddress userUpdateAddress = new UserUpdateAddress(userDto.getUser_id(),userAddress);
+        UserUpdateZipcode userUpdateZipcode = new UserUpdateZipcode(userDto.getUser_id(),userZipcode);
         boolean check2 = mypageservice.updateUserPhone(userUpdatePhone);
         boolean check3 = mypageservice.updateUserName(userUpdateName);
+        boolean check4 = mypageservice.updateUserAddress(userUpdateAddress);
+        boolean check5 = mypageservice.updateUserZipcode(userUpdateZipcode);
         if(userPassword != null){
             UserUpdatePassword userUpdatePassword = new UserUpdatePassword(userDto.getUser_id(),userPassword);
             boolean check1 = mypageservice.updateUserPassword(userUpdatePassword);
             if(!check1||!check2||!check3){
                 return "redirect:mypage.do";
             }
+            req.getSession().setAttribute("userLogin", new UserDto(userDto.getUser_id(),
+                    userDto.getUser_email(),
+                    userPassword,
+                    userName,
+                    userZipcode,
+                    userAddress,
+                    userPhone,
+                    userDto.getUser_gender(),
+                    userDto.getUser_register_date(),
+                    "0",
+                    userDto.is_activated(),
+                    userDto.getAuth_id()));
         }
         if(!check2||!check3){
             return "redirect:mypage.do";
         }
-
+        req.getSession().setAttribute("userLogin", new UserDto(userDto.getUser_id(),
+                userDto.getUser_email(),
+                userPassword,
+                userName,
+                userZipcode,
+                userAddress,
+                userPhone,
+                userDto.getUser_gender(),
+                userDto.getUser_register_date(),
+                userDto.getUser_kakao_identifier(),
+                userDto.is_activated(),
+                userDto.getAuth_id()));
         return "redirect:main.do";
     }
 
@@ -88,7 +112,7 @@ public class MypageController {
         if(!check){
             return "redirect:mypage.do";
         }
-        return "redirect:main.do";
+        return "redirect:logout.do";
     }
 
 }

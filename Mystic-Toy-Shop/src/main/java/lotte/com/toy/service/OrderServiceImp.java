@@ -61,7 +61,7 @@ public class OrderServiceImp implements OrderService{
     }
 
     @Override
-    public int findByOrderGroup() {
+    public Integer findByOrderGroup() {
         return orderDao.findByOrderGroup();
     }
 

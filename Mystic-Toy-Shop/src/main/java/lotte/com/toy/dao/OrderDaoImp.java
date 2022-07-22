@@ -61,7 +61,7 @@ public class OrderDaoImp implements OrderDao{
     }
 
     @Override
-    public int findByOrderGroup() {
+    public Integer findByOrderGroup() {
         return session.selectOne(namespace+"findByOrderGroup");
     }
 

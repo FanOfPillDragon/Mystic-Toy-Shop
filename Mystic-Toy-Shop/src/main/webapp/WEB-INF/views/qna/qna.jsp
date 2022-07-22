@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     int productId = (Integer)request.getAttribute("productId");
+    String productImg = (String)request.getAttribute("productImg");
+    String productName = (String)request.getAttribute("productName");
 %>
 <html>
 <head>
@@ -16,6 +18,8 @@
 <body>
 <h1>Q&A 작성</h1>
 <div>
+    <img alt="" src=<%=productImg%>>
+    <h2><%=productName%></h2>
     <form action="/qnaAf.do">
         Q&A제목 : <input type="text" name="qnaTitle">
         Q&A내용 : <input type="text" name="qnaContent">

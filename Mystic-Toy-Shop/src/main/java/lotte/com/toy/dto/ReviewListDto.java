@@ -17,4 +17,6 @@ public class ReviewListDto {
     private int review_rate;
     private Timestamp review_register_date;
     private char is_deleted;
+    private String product_name;
+    private String product_img;
 }

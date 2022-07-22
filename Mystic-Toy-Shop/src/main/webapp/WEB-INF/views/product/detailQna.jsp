@@ -6,6 +6,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<QnaListDto> qnas = (List<QnaListDto>) request.getAttribute("qnas");
+    List<String> writers = (List<String>) request.getAttribute("writers");
+
 %>
 <html>
 <head>
@@ -106,7 +108,7 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <c:forEach var="qna" items="${qnas}">
+                    <c:forEach var="qna" items="${qnas}" varStatus="status">
                         <div data-v-05ce94ee data-v-9b64bfe4 class="reviewList">
                             <div data-v-05ce94ee class="uswersAndMoremenu">
                                 <div data-v-05ce94ee class="users">
@@ -115,7 +117,7 @@
                                     </figure>
                                     <div data-v-05ce94ee class="identities">
                                         <div data-v-05ce94ee class="userNameWrap">
-                                            <strong data-v-05ce94ee class="userName">유저명</strong>
+                                            <strong data-v-05ce94ee class="userName"><c:out value="${writers[status.index]}"/></strong>
                                         </div>
                                         <div data-v-05ce94ee class="badges"></div>
                                     </div>

@@ -197,6 +197,10 @@
         <put-attribute name="title" value="리뷰"/>
         <put-attribute name="body" value="/WEB-INF/views/product/detailReview.jsp"/>
     </definition>
+    <definition name="findMyReviewList" extends="main_tile">
+        <put-attribute name="title" value="나의리뷰"/>
+        <put-attribute name="body" value="/WEB-INF/views/review/findMyReviewList.jsp"/>
+    </definition>
 
     <!-- qna part -->
     <definition name="qna" extends="main_tile">

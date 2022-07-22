@@ -34,7 +34,7 @@
     </select>
     <delete id="deleteOrderByUserId" parameterType="Integer">
         delete from orders
-        where order_id = #{order_id}
+        where user_id = #{user_id}
     </delete>
     <select id="findByLastRowId" resultType="Integer">
         select order_id from orders

@@ -61,8 +61,9 @@ public class ReviewController {
         model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
         if(reviews.isEmpty()){
-            return "mypage.do";
+            return "redirect:main.do";
         }
+        System.out.println(checkerDelete(reviews).size());
         model.addAttribute("reviews",checkerDelete(reviews));
         return "reviewlist";
     }
@@ -70,9 +71,7 @@ public class ReviewController {
     @RequestMapping(value="findMyReviewList.do")
     public String findMyReviewList(Model model, int userId){
         List<ReviewListDto> myReviews = reviewService.findAllByUserId(userId);
-        if(myReviews.isEmpty()){
-            return "mypage.do";
-        }
+
         model.addAttribute("myReviews",checkerDelete(myReviews));
         return "findMyReviewList";
     }
@@ -80,7 +79,7 @@ public class ReviewController {
     public List<ReviewListDto> checkerDelete(List<ReviewListDto> list){
         List<ReviewListDto> newList = new ArrayList<>();
         for(ReviewListDto review : list){
-            if(review.getIs_deleted()==0){
+            if(review.getIs_deleted()=='0'){
                 newList.add(review);
             }
         }

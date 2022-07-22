@@ -153,11 +153,13 @@ public class UserServiceImpl implements UserService {
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-            String email = kakao_account.getAsJsonObject().get("email").getAsString();
+            if(kakao_account.getAsJsonObject().get("email") != null){
+                String email = kakao_account.getAsJsonObject().get("email").getAsString();
+                userInfo.put("email", email);
+            }
 
             userInfo.put("nickname", nickname);
             userInfo.put("id", id);
-            userInfo.put("email", email);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -177,6 +179,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto kakaoUserLogin(String user_kakao_identifier) {
         return userdao.kakaoUserLogin(user_kakao_identifier);
+    }
+
+    @Override
+    public String findNameByUserId(int userId) {
+        return userdao.findNameByUserId(userId);
     }
 
 }
