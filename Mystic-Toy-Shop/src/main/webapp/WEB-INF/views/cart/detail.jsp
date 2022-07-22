@@ -31,10 +31,12 @@
                             <div class="cartBoxBorderContainer">
                                 <div class="cartBox p-3">
                                     <div class="productImgArea">
-                                        <img class="productImgTag" alt="No image" src="${cupDto.product_img}"/>
+                                        <a href="/productDetail.do?productId=${cupDto.product_id}">
+                                            <img class="productImgTag" alt="No image" src="${cupDto.product_img}"/>
+                                        </a>
                                     </div>
                                     <div class="productName">
-                                        <a href="/productDetail.do?productId=${productResponseDto.product_id}">
+                                        <a href="/productDetail.do?productId=${cupDto.product_id}">
                                             <div class="h4">${cupDto.product_name}</div>
                                         </a>
                                     </div>
