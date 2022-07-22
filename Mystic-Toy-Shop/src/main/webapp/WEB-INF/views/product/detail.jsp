@@ -168,8 +168,8 @@
 
             productCount = $("input[name=quantity]").val();
 
-            document.getElementById("totalPrice").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
-            document.getElementById("totalPrice2").innerHTML = '<strong class="h4">' + Number(${productResponseDto.product_cost}) * Number(productCount) + '</strong><span> 원</span>';
+            document.getElementById("totalPrice").innerHTML = '<strong class="h4">' + (Number(${productResponseDto.product_cost}) * Number(productCount)).toLocaleString() + '</strong><span> 원</span>';
+            document.getElementById("totalPrice2").innerHTML = '<strong class="h4">' + (Number(${productResponseDto.product_cost}) * Number(productCount)).toLocaleString() + '</strong><span> 원</span>';
         }
 
         function goToCart() {
