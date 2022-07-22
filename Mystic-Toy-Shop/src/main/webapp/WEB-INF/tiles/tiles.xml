@@ -220,4 +220,9 @@
         <put-attribute name="body" value="/WEB-INF/views/product/categorymainresult.jsp"/>
     </definition>
 
+    <definition name="updateUserInfo" extends="main_tile">
+        <put-attribute name="title" value="회원정보수정"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/updateUserInfo.jsp"/>
+    </definition>
+
 </tiles-definitions>

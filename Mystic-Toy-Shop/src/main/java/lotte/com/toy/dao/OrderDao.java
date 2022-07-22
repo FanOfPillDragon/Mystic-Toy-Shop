@@ -23,4 +23,6 @@ public interface OrderDao {
     int findByLastRowId();
 
     int findByOrderGroup();
+
+    int deleteOrderByUserId(int userId);
 }

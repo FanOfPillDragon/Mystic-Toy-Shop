@@ -62,6 +62,19 @@
     </select>
 
     <!-- 유저 수정 -->
-    
-
+    <update id="updateUserPassword" parameterType="lotte.com.toy.dto.UserUpdatePassword">
+        update users set user_password = #{user_password}
+        where user_id = #{user_id}
+    </update>
+    <update id="updateUserName" parameterType="lotte.com.toy.dto.UserUpdateName">
+        update users set user_name = #{user_name}
+        where user_id = #{user_id}
+    </update>
+    <update id="updateUserPhone" parameterType="lotte.com.toy.dto.UserUpdatePhone">
+        update users set user_phone = #{user_phone}
+        where user_id = #{user_id}
+    </update>
+    <delete id="deleteUser" parameterType="Integer">
+        delete from users where user_id = #{user_id}
+    </delete>
 </mapper>

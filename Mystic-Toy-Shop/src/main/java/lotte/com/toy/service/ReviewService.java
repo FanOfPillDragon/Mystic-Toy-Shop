@@ -13,5 +13,5 @@ public interface ReviewService {
 
     int checkReviewWrite(ReviewCheckDto reviewCheck);
 
-
+    List<ReviewListDto> findAllByUserId(int userId);
 }

@@ -4,8 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lotte.com.toy.dao.UserDao;
-import lotte.com.toy.dto.UserDto;
-import lotte.com.toy.dto.SellerDto;
+import lotte.com.toy.dto.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -179,4 +178,5 @@ public class UserServiceImpl implements UserService {
     public UserDto kakaoUserLogin(String user_kakao_identifier) {
         return userdao.kakaoUserLogin(user_kakao_identifier);
     }
+
 }

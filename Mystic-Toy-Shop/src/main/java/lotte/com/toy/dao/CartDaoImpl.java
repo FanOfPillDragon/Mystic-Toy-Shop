@@ -55,4 +55,9 @@ public class CartDaoImpl implements CartDao {
     public CartDto getCartByProductIdAndUserId(CartDto cartDto) {
         return session.selectOne(nameSpace+"getCartByProductIdAndUserId",cartDto);
     }
+
+    @Override
+    public int deleteCartByUserId(int userId) {
+        return session.delete(nameSpace+"deleteCartByUserId",userId);
+    }
 }

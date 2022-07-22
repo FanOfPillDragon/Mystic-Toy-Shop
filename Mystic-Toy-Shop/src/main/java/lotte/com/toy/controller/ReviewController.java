@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -59,7 +60,30 @@ public class ReviewController {
         ProductResponseDto productResponseDto = productService.getProductByProductId(productId);
         model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
+        if(reviews.isEmpty()){
+            return "mypage.do";
+        }
+        model.addAttribute("reviews",checkerDelete(reviews));
         return "reviewlist";
     }
 
+    @RequestMapping(value="findMyReviewList.do")
+    public String findMyReviewList(Model model, int userId){
+        List<ReviewListDto> myReviews = reviewService.findAllByUserId(userId);
+        if(myReviews.isEmpty()){
+            return "mypage.do";
+        }
+        model.addAttribute("myReviews",checkerDelete(myReviews));
+        return "findMyReviewList";
+    }
+
+    public List<ReviewListDto> checkerDelete(List<ReviewListDto> list){
+        List<ReviewListDto> newList = new ArrayList<>();
+        for(ReviewListDto review : list){
+            if(review.getIs_deleted()==0){
+                newList.add(review);
+            }
+        }
+        return newList;
+    }
 }
