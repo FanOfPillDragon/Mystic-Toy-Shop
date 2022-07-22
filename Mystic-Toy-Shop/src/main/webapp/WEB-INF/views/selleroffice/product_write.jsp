@@ -55,7 +55,7 @@
     <div class="container">
         <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="seller_id" value="<%=seller_id%>">
-      <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-8 col-lg-8 mb-6">
                         <h4 style="float: left ;">📝 상품등록
@@ -87,7 +87,7 @@
                     <div class="col-xl-8 col-lg-8 mb-4">
                         <h6 style="float:left;">🎁 상품명</h6>
                         <div class="form-group">
-                            <input type="text" id = "product_name" name="product_name" class="form-control" placeholder="상품명을 입력하세요.">
+                            <input type="text" id="product_name" name="product_name" class="form-control" placeholder="상품명을 입력하세요.">
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                     <div class="col-xl-8 col-lg-8 mb-4">
                         <h6 style="float:left;">💰 판매가격</h6>
                         <div class="form-group">
-                            <input type="number" id = "product_cost" name="product_cost" class="form-control" placeholder="판매가격을 입력해주세요">
+                            <input type="number" id="product_cost" name="product_cost" class="form-control" placeholder="판매가격을 입력해주세요">
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                     <div class="col-xl-8 col-lg-8 mb-4">
                         <h6 style="float:left;">✏ 상세설명</h6>
                         <div>
-                            <textarea class="summernote" id = "product_info" name="product_info"></textarea>
+                            <textarea class="summernote" id="product_info" name="product_info"></textarea>
                         </div>
                     </div>
                 </div>
@@ -143,6 +143,8 @@
                         <button type="button" class="btn btn-primary" id="writebtn" onclick="product_wrtie()">상품등록</button>
                     </div>
                 </div>
+
+            </div>
         </form>
     </div>
 </div>

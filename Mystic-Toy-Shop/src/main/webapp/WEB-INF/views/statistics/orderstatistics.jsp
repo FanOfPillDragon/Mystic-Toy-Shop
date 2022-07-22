@@ -81,6 +81,10 @@
         input[type="number"] {
             min-width: 50px;
         }
+
+        .word-break-container{
+            word-break: keep-all;
+        }
     </style>
 </head>
 <script type="text/javascript">
@@ -90,7 +94,7 @@
 </script>
 <body>
 <div id="content" style="margin-top: 30px;">
-    <div class="container-fluid">
+    <div class="container-fluid word-break-container">
         <div class="row">
             <div class="col-xl-4 mb-2">
                 <h5 style="text-align: left;margin-bottom: 0;">🛒 카테고리별 주문량 요약 </h5>
@@ -110,8 +114,8 @@
                             <c:otherwise>
                                 <span class="text-primary" style="font-size:20px;"><strong>${catToday.category_name}</strong></span>
                                 <br><br>
-                                <span>주문수 : ${catToday.total_orders}</span>
-                                <span>상품판매량 : ${catToday.total_quantity}</span>
+                                <span>주문수 : ${catToday.total_orders}</span><br>
+                                <span>상품판매량 : ${catToday.total_quantity}</span><br>
                                 <span>결제금액 : ${catToday.total_price}</span>
                             </c:otherwise>
                         </c:choose>
@@ -166,7 +170,7 @@
 
         <%------------------%>
         <div class="row">
-            <div class="col-xl-4 mb-2">
+            <div class="col-xl-4 mb-2 mt-3">
                 <h5 style="text-align: left;margin-bottom: 0;">📊 판매량 분석 및 요약</h5>
                 <p style="text-align: left;">금일, 금주, 금월 판매량 집계를 확인할 수 있습니다.</p>
             </div>
@@ -235,7 +239,7 @@
         <%------------------%>
 
         <div class="row">
-            <div class="col-xl-4 mb-4">
+            <div class="col-xl-4 mb-4 mt-3">
                 <h5 style="text-align: left;margin-bottom: 0;">📈 카테고리별 주간 판매량</h5>
                 <p style="text-align: left;">카테고리별 주간 판매량을 확인합니다.</p>
             </div>

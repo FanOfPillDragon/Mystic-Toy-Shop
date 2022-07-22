@@ -31,6 +31,12 @@
         cursor: pointer;
     }
 
+    a:hover {
+        color: #333;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
     .header {
         position: relative;
         border-bottom: 1px solid #EEE;
