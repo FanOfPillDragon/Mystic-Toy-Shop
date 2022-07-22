@@ -1,4 +1,6 @@
 <%@ page import="lotte.com.toy.dto.OrderDetailDto" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -194,7 +196,13 @@
 
             <div class="bottomData">
                 <div class="detailDateWrapper">
-                    <div><%=order.getOrder_date()%>
+                    <c:set var="date" value="${order.getOrder_date()}"/>
+                    <%
+                        Timestamp date = (Timestamp) pageContext.getAttribute("date");
+                        String register_date = DateUtil.toYYYYMMDD(date);
+                        pageContext.setAttribute("register_date", register_date);
+                    %>
+                    <div>${register_date}
                     </div>
                     <button type="button" onclick="history.back()">주문 내역</button>
                 </div>

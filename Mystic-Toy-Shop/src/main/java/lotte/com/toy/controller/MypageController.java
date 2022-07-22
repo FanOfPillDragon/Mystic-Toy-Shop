@@ -31,12 +31,12 @@ public class MypageController {
 
     @Autowired
     OrderService orderService;
-
+/*
     @GetMapping("/mypage.do")
     public String mypage() {
 
         return "order";
-    }
+    }*/
 
     @RequestMapping(value = "updateUserInfo.do")
     public String startUpdateUserInfo(HttpServletRequest req){

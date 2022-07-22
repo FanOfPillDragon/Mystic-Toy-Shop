@@ -1,6 +1,8 @@
 <%@ page import="lotte.com.toy.dto.QnaListDto" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lotte.com.toy.dto.ReviewListDto" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
+<%@ page import="java.sql.Timestamp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
@@ -201,7 +203,13 @@
                         </span>
                         </p>
                     </div>
-                    <p class="review_register_date">${review.review_register_date}</p>
+                    <c:set var="date" value="${review.review_register_date}"/>
+                    <%
+                        Timestamp date = (Timestamp) pageContext.getAttribute("date");
+                        String register_date = DateUtil.toYYYYMMDD(date);
+                        pageContext.setAttribute("register_date", register_date);
+                    %>
+                    <p class="review_register_date">${register_date}</p>
                     <p class="user_name">구매자 : ${review.user_name}</p>
                     <p class="review_content">${review.review_content}</p>
                 </div>
