@@ -45,7 +45,7 @@
             <div class="productBoxOneArea">
                 <div class="productImgArea flexContainerRow alignCenterContainer">
                     <a href="/productDetail.do?productId=${productResponseDto2.product_id}">
-                        <img class="productImgTag" src="${productResponseDto2.product_img}" alt="">
+                        <img class="productImgTag" src="${productResponseDto2.product_img}" alt="No Image">
                     </a>
                 </div>
 
