@@ -112,7 +112,7 @@
             type: 'get',
             data: {},
             success: function (data) {
-                alert("배송준비 처리되었습니다.")
+                alert("정상처리 되었습니다.")
                 location.reload();
             }
         });

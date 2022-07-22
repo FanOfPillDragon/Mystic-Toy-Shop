@@ -4,6 +4,7 @@
 <%@ page import="lotte.com.toy.dto.OrderStatsDto" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="lotte.com.toy.dto.WeeklyStatsDto" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
@@ -85,6 +86,10 @@
         .word-break-container{
             word-break: keep-all;
         }
+
+        .card-height-size{
+            height: 250px;
+        }
     </style>
 </head>
 <script type="text/javascript">
@@ -103,7 +108,7 @@
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <div class="card mb-4 py-3 border-left-primary">
+                <div class="card mb-4 py-3 border-left-primary card-height-size">
                     <div class="card-body read-more">
                         <h5>오늘 가장 많이 팔린 카테고리</h5>
                         <c:choose>
@@ -112,11 +117,17 @@
                                 <br><br><br>
                             </c:when>
                             <c:otherwise>
+                                <c:set var="cost" value="${catToday.total_price}"/>
+                                <%
+                                    int cost = (int) pageContext.getAttribute("cost");
+                                    String product_cost = DateUtil.to000(cost);
+                                    pageContext.setAttribute("catTodayTotalPrice", product_cost);
+                                %>
                                 <span class="text-primary" style="font-size:20px;"><strong>${catToday.category_name}</strong></span>
                                 <br><br>
                                 <span>주문수 : ${catToday.total_orders}</span><br>
                                 <span>상품판매량 : ${catToday.total_quantity}</span><br>
-                                <span>결제금액 : ${catToday.total_price}</span>
+                                <span>결제금액 : ${catTodayTotalPrice}원</span>
                             </c:otherwise>
                         </c:choose>
 
@@ -129,7 +140,7 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="card mb-4 py-3 border-left-primary">
+                <div class="card mb-4 py-3 border-left-primary card-height-size">
                     <div class="card-body read-more">
                         <h5>이번주 가장 많이 팔린 카테고리</h5>
                         <c:choose>
@@ -137,18 +148,24 @@
                                 <span>이번주 주문량이 없습니다</span>
                             </c:when>
                             <c:otherwise>
+                                <c:set var="cost2" value="${catWeek.total_price}"/>
+                                <%
+                                    int cost2 = (int) pageContext.getAttribute("cost2");
+                                    String product_cost = DateUtil.to000(cost2);
+                                    pageContext.setAttribute("catWeakTotalPrice", product_cost);
+                                %>
                                 <span class="text-primary" style="font-size:20px;"><strong>${catWeek.category_name}</strong></span>
                                 <br><br>
-                                <span>주문수 : ${catWeek.total_orders}</span>
-                                <span>상품판매량 : ${catWeek.total_quantity}</span>
-                                <span>결제금액 : ${catWeek.total_price}</span>
+                                <span>주문수 : ${catWeek.total_orders}</span><br>
+                                <span>상품판매량 : ${catWeek.total_quantity}</span><br>
+                                <span>결제금액 : ${catWeakTotalPrice}원</span>
                             </c:otherwise>
                         </c:choose>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="card mb-4 py-3 border-left-primary">
+                <div class="card mb-4 py-3 border-left-primary card-height-size">
                     <div class="card-body read-more">
                         <h5>이번달 가장 많이 팔린 카테고리</h5>
                         <c:choose>
@@ -156,11 +173,17 @@
                                 <span>이번달 주문량이 없습니다</span>
                             </c:when>
                             <c:otherwise>
+                                <c:set var="cost2" value="${catMonth.total_price}"/>
+                                <%
+                                    int cost2 = (int) pageContext.getAttribute("cost2");
+                                    String product_cost = DateUtil.to000(cost2);
+                                    pageContext.setAttribute("catMonthTotalPrice", product_cost);
+                                %>
                                 <span class="text-primary" style="font-size:20px;"><strong>${catMonth.category_name}</strong></span>
                                 <br><br>
-                                <span>주문수 : ${catMonth.total_orders}</span>
-                                <span>상품판매량 : ${catMonth.total_quantity}</span>
-                                <span>결제금액 : ${catMonth.total_price}</span>
+                                <span>주문수 : ${catMonth.total_orders}</span><br>
+                                <span>상품판매량 : ${catMonth.total_quantity}</span><br>
+                                <span>결제금액 : ${catMonthTotalPrice}원</span>
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -179,7 +202,7 @@
         <div class="row">
             <div class="col-lg-9 mb-4">
                 <table id="mainstats" class="table table-striped table-hover">
-                    <tr >
+                    <tr>
                         <td>금일 주문량</td>
                         <td>금일 판매상품량</td>
                         <td>금일 결제금액</td>
@@ -190,9 +213,15 @@
                                 <td colspan="3">오늘 주문량이 없습니다</td>
                             </c:when>
                             <c:otherwise>
+                                <c:set var="cost2" value="${today.total_price}"/>
+                                <%
+                                    int cost2 = (int) pageContext.getAttribute("cost2");
+                                    String product_cost = DateUtil.to000(cost2);
+                                    pageContext.setAttribute("todayTotalPrice", product_cost);
+                                %>
                                 <td><strong>${today.total_orders}</strong></td>
                                 <td><strong>${today.total_quantity}</strong></td>
-                                <td><strong>${today.total_price}</strong></td>
+                                <td><strong>${todayTotalPrice}원</strong></td>
                             </c:otherwise>
                         </c:choose>
                     </tr>
@@ -208,9 +237,15 @@
                                 <td colspan="3">금주 주문량이 없습니다</td>
                             </c:when>
                             <c:otherwise>
+                                <c:set var="cost2" value="${week.total_price}"/>
+                                <%
+                                    int cost2 = (int) pageContext.getAttribute("cost2");
+                                    String product_cost = DateUtil.to000(cost2);
+                                    pageContext.setAttribute("weekTotalPrice", product_cost);
+                                %>
                                 <td><strong>${week.total_orders}</strong></td>
                                 <td><strong>${week.total_quantity}</strong></td>
-                                <td><strong>${week.total_price}</strong></td>
+                                <td><strong>${weekTotalPrice}원</strong></td>
                             </c:otherwise>
                         </c:choose>
 
@@ -226,9 +261,15 @@
                                 <td colspan="3">이번 달 주문량이 없습니다</td>
                             </c:when>
                             <c:otherwise>
+                                <c:set var="cost2" value="${month.total_price}"/>
+                                <%
+                                    int cost2 = (int) pageContext.getAttribute("cost2");
+                                    String product_cost = DateUtil.to000(cost2);
+                                    pageContext.setAttribute("monthTotalPrice", product_cost);
+                                %>
                                 <td><strong>${month.total_orders}</strong></td>
                                 <td><strong>${month.total_quantity}</strong></td>
-                                <td><strong>${month.total_price}</strong></td>
+                                <td><strong>${monthTotalPrice}원</strong></td>
                             </c:otherwise>
                         </c:choose>
                     </tr>

@@ -59,7 +59,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-8 col-lg-8 mb-6">
-                        <h4 style="float: left ;">📝 상품등록
+                        <h4 style="float: left ;">📝 상품수정
                             <span style="color: red; font-size: 8pt;">• 필수입력</span>
                         </h4>
                     </div>
@@ -151,7 +151,7 @@
 
                 <div class="row">
                     <div class="col-xl-8 col-lg-2 mb-4">
-                        <button type="button" class="btn btn-primary" id="writebtn" onclick="product_wrtie()">상품등록</button>
+                        <button type="button" class="btn btn-primary" id="writebtn" onclick="product_wrtie()">수정하기</button>
                     </div>
                 </div>
         </form>
