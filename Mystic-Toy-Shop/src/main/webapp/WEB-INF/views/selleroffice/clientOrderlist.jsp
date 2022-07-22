@@ -39,6 +39,7 @@
         <strong>주문목록조회</strong>
         <hr>
         <%if (cod.size() > 0) {%>
+
         <table class="table-primary table-hover">
             <tr>
                 <col width="100">
@@ -61,7 +62,7 @@
             <% for (int i = 0; i < cod.size(); i++) { %>
             <% ClientOrderDto c = cod.get(i);%>
             <tr style="height: 100px">
-                <td style="padding-left: 6px"><%=DateUtil.toYYYYMMDD(c.getOrder_date())%>
+                <td ><%=DateUtil.toYYYYMMDD(c.getOrder_date())%>
                     <span style="font-size: 8pt; color: #868e96"><%=DateUtil.toOrderNumber(c.getOrder_date())%></span>
                 </td>
                 <td style="text-align: center"><a
