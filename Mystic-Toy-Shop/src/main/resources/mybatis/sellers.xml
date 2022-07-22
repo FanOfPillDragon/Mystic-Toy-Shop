@@ -121,7 +121,7 @@
     <!-- 주문 조회 -->
     <select id="findClientOrders" parameterType="lotte.com.toy.dto.SellerDto"
             resultType="lotte.com.toy.dto.ClientOrderDto">
-        select o.product_id,
+        select p.product_id,
                product_name,
                product_img,
                product_cost,
@@ -135,11 +135,12 @@
                u.user_name,
                u.user_phone,
                pa.ship_status
-        from products p,
+        from payments pa,
+             products p,
              orders o,
-             payments pa,
              users u
         where pa.order_id = o.order_id
+          and o.product_id = p.product_id
           and u.user_id = o.user_id
           and p.seller_id = #{seller_id}
         order by o.order_date desc;
