@@ -2,9 +2,14 @@
     color: #ef2a23;
 }
 
+.containerSize{
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
 .container {
     max-width: 100%;
-
+    width: 100%;
     height: auto;
     margin-bottom: 20px;
 }

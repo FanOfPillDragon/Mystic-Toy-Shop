@@ -29,8 +29,9 @@
     <title>Title</title>
     <style type="text/css">
         .mini {
-            width: 50px;
-            height: 70px;
+            width: 70px;
+            height: auto;
+            max-height: 70px;
             margin-right: 10px;
             padding: 5px;
         }
@@ -47,11 +48,11 @@
     </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container mt-5 px-5 mx-2">
     <div>
         <strong>상품목록조회</strong>
         <hr>
-        <table border="1">
+        <table class="table-primary table-hover">
             <tr>
                 <col width="600">
                 <col width="150">

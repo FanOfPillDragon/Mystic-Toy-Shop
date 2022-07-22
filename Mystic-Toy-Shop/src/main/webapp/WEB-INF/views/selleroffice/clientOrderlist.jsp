@@ -18,8 +18,9 @@
     <style type="text/css">
 
         .mini {
-            width: 50px;
-            height: 70px;
+            width: 70px;
+            height: auto;
+            max-height: 70px;
             margin-right: 10px;
             padding: 5px;
         }
@@ -33,16 +34,17 @@
     </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container mt-5 px-5 mx-2">
     <div>
         <strong>주문목록조회</strong>
         <hr>
         <%if (cod.size() > 0) {%>
-        <table class="table-primary">
+
+        <table class="table-primary table-hover">
             <tr>
                 <col width="100">
-                <col width="600><col width=" 100
-                ">
+                <col width="600">
+                <col width="100">
                 <col width="100">
                 <col width="100">
                 <col width="100">
@@ -60,7 +62,7 @@
             <% for (int i = 0; i < cod.size(); i++) { %>
             <% ClientOrderDto c = cod.get(i);%>
             <tr style="height: 100px">
-                <td style="padding-left: 6px"><%=DateUtil.toYYYYMMDD(c.getOrder_date())%>
+                <td ><%=DateUtil.toYYYYMMDD(c.getOrder_date())%>
                     <span style="font-size: 8pt; color: #868e96"><%=DateUtil.toOrderNumber(c.getOrder_date())%></span>
                 </td>
                 <td style="text-align: center"><a
