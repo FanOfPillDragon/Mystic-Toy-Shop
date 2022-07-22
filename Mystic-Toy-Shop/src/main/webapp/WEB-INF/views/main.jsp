@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
-
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <html>
 <head>
     <title>Title</title>
@@ -97,7 +97,7 @@
                         </a>
                     </div>
                     <div>
-                        <strong>${productResponseDto1.product_cost}</strong>원
+                        <strong>${DateUtil.to000(productResponseDto1.product_cost)}</strong>원
                     </div>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                         </a>
                     </div>
                     <div>
-                        <strong>${productResponseDto2.product_cost}</strong>원
+                        <strong>${DateUtil.to000(productResponseDto2.product_cost)}</strong>원
                     </div>
                 </div>
 
