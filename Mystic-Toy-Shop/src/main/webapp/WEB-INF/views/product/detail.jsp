@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <html>
 <head>
     <title>Title</title>
@@ -36,7 +37,7 @@
                 </div>
                 <hr>
                 <div>
-                    <strong class="h4">${productResponseDto.product_cost}</strong><span> 원</span>
+                    <strong class="h4">${DateUtil.to000(productResponseDto.product_cost)}</strong><span> 원</span>
                 </div>
             </div>
             <div class="priceOptionBox">
@@ -51,7 +52,7 @@
                         </div>
                         <button type="button" class="btn plus lookDisabled" onclick="plus()">+</button>
                     </div>
-                    <div id="totalPrice"><strong class="h4">${productResponseDto.product_cost}</strong><span> 원</span>
+                    <div id="totalPrice"><strong class="h4">${DateUtil.to000(productResponseDto.product_cost)}</strong><span> 원</span>
                     </div>
                 </div>
             </div>
@@ -118,7 +119,7 @@
                                 <button type="button" class="btn plus lookDisabled" onclick="plus()">+</button>
                             </div>
                             <div id="totalPrice2"><strong
-                                    class="h4">${productResponseDto.product_cost}</strong><span> 원</span></div>
+                                    class="h4">${DateUtil.to000(productResponseDto.product_cost)}</strong><span> 원</span></div>
                         </div>
                     </div>
                 </div>
