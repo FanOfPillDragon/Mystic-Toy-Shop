@@ -364,127 +364,127 @@
             </div>
 
         </div>
-    <div class="row">
-        <div class="col-xl-4 mb-2">
-            <h5 style="text-align: left;margin-bottom: 0;"> 🗃️ 신규 사용자 게시글 현황</h5>
-            <p style="text-align: left;">사용자 리뷰 및 Q&A 신규 게시글 조회</p>
-        </div>
         <div class="row">
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card card-main shadow mb-4">
-                    <div class="card-header py-1">
-                        <span>리뷰</span>
+            <div class="col-xl-4 mb-2">
+                <h5 style="text-align: left;margin-bottom: 0;"> 🗃️ 신규 사용자 게시글 현황</h5>
+                <p style="text-align: left;">사용자 리뷰 및 Q&A 신규 게시글 조회</p>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card card-main shadow mb-4">
+                        <div class="card-header py-1">
+                            <span>리뷰</span>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover" style="width: 100%;">
+                                <%
+                                    int i = 0;
+                                    for (ReviewDto dto : reviewList) {
+                                        i++;
+                                %>
+                                <colgroup>
+                                    <col width="5%">
+                                    <col width="25%">
+                                    <col width="50%">
+                                    <col width="20%">
+                                </colgroup>
+                                <tr data-toggle="tooltip" title="<%=dto.getReview_content()%>">
+                                    <td style="color: rgb(119 152 184);font-weight:bold;"><%=i%>
+                                    </td>
+                                    <td style="font-size: 11pt"><a
+                                            href="reviewdetail.do?review_id=<%=dto.getReview_id()%>"><%=dto.getReview_title()%>
+                                    </a></td>
+                                    <td style="font-size: 11pt;"><%=getSubstr(dto.getReview_content())%>
+                                    </td>
+                                    <td style="font-size: 11pt; text-align: right;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </table>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-hover" style="width: 100%;">
-                            <%
-                                int i = 0;
-                                for (ReviewDto dto : reviewList) {
-                                    i++;
-                            %>
-                            <colgroup>
-                                <col width="5%">
-                                <col width="25%">
-                                <col width="50%">
-                                <col width="20%">
-                            </colgroup>
-                            <tr data-toggle="tooltip" title="<%=dto.getReview_content()%>">
-                                <td style="color: rgb(119 152 184);font-weight:bold;"><%=i%>
-                                </td>
-                                <td style="font-size: 11pt"><a
-                                        href="reviewdetail.do?review_id=<%=dto.getReview_id()%>"><%=dto.getReview_title()%>
-                                </a></td>
-                                <td style="font-size: 11pt;"><%=getSubstr(dto.getReview_content())%>
-                                </td>
-                                <td style="font-size: 11pt; text-align: right;"><%=DateUtil.toYYYYMMDD(dto.getReview_register_date())%>
-                                </td>
-                            </tr>
-                            <%}%>
-                        </table>
+                </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card card-main shadow mb-4">
+                        <div class="card-header py-1">
+                            <span>고객문의</span>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover" style="width: 100%;">
+                                <%
+                                    int k = 0;
+                                    for (QnADto dto : qnaList) {
+                                        k++;
+                                %>
+                                <colgroup>
+                                    <col width="5%">
+                                    <col width="25%">
+                                    <col width="50%">
+                                    <col width="20%">
+                                </colgroup>
+                                <tr data-toggle="tooltip" title="<%=dto.getQna_content()%>">
+                                    <td style="color: rgb(119 152 184);font-weight:bold;"><%=i%>
+                                    </td>
+                                    <td style="font-size: 11pt"><a
+                                            href="qnadetail.do?qna_id=<%=dto.getQna_id()%>"><%=dto.getQna_title()%>
+                                    </a></td>
+                                    <td style="font-size: 11pt;"><%=getSubstr(dto.getQna_content())%>
+                                    </td>
+                                    <td style="font-size: 8pt; text-align: right; padding-right: 6px;"><%=DateUtil.toYYYYMMDD(dto.getQna_register_date())%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </table>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card card-main shadow mb-4">
-                    <div class="card-header py-1">
-                        <span>고객문의</span>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover" style="width: 100%;">
-                            <%
-                                int k = 0;
-                                for (QnADto dto : qnaList) {
-                                    k++;
-                            %>
-                            <colgroup>
-                                <col width="5%">
-                                <col width="25%">
-                                <col width="50%">
-                                <col width="20%">
-                            </colgroup>
-                            <tr data-toggle="tooltip" title="<%=dto.getQna_content()%>">
-                                <td style="color: rgb(119 152 184);font-weight:bold;"><%=i%>
-                                </td>
-                                <td style="font-size: 11pt"><a
-                                        href="qnadetail.do?qna_id=<%=dto.getQna_id()%>"><%=dto.getQna_title()%>
-                                </a></td>
-                                <td style="font-size: 11pt;"><%=getSubstr(dto.getQna_content())%>
-                                </td>
-                                <td style="font-size: 8pt; text-align: right; padding-right: 6px;"><%=DateUtil.toYYYYMMDD(dto.getQna_register_date())%>
-                                </td>
-                            </tr>
-                            <%}%>
-                        </table>
-                    </div>
 
+
+            <div class="row">
+                <div class="col-xl-4 mb-2">
+                    <h5 style="text-align: left;margin-bottom: 0;"> 📊 판매 내역 차트 </h5>
+                    <p style="text-align: left;">금주의 판매 금액, 판매량 분석 정보</p>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="card card-main shadow mb-4">
+                            <div class="card-header py-1">
+                                <span>카테고리 별 주간 상품 판매 금액</span>
+                            </div>
+                            <div class="card-body">
+                                <figure class="highcharts-figure">
+                                    <div id="container"></div>
+                                    <%--<p class="highcharts-description">
+                                        카테고리 별 주간 상품 판매 금액 확인할 수 있습니다.
+                                    </p>--%>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card card-main shadow mb-4">
+                            <div class="card-header py-1">
+                                <span>금주 일간 판매량</span>
+                            </div>
+                            <div class="card-body">
+                                <figure class="highcharts-figure">
+                                    <div id="container_quan"></div>
+
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
-
-
-    <div class="row">
-        <div class="col-xl-4 mb-2">
-            <h5 style="text-align: left;margin-bottom: 0;"> 📊 판매 내역 차트 </h5>
-            <p style="text-align: left;">금주의 판매 금액, 판매량 분석 정보</p>
-
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card card-main shadow mb-4">
-                    <div class="card-header py-1">
-                        <span>카테고리 별 주간 상품 판매 금액</span>
-                    </div>
-                    <div class="card-body">
-                        <figure class="highcharts-figure">
-                            <div id="container"></div>
-                            <%--<p class="highcharts-description">
-                                카테고리 별 주간 상품 판매 금액 확인할 수 있습니다.
-                            </p>--%>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card card-main shadow mb-4">
-                    <div class="card-header py-1">
-                        <span>금주 일간 판매량</span>
-                    </div>
-                    <div class="card-body">
-                        <figure class="highcharts-figure">
-                            <div id="container_quan"></div>
-
-                        </figure>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
     </div>
 </div>
-
 
 <script type="text/javascript">
     Highcharts.chart('container', {
