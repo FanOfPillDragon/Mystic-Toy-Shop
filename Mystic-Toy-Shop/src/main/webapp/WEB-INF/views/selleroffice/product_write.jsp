@@ -49,14 +49,13 @@
         }
     </style>
 </head>
-<body style="text-align: center">
-<div id="content" style="margin-top: 30px">
+
+<body>
+<div id="content" style="margin-top: 30px;">
     <div class="container">
         <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="seller_id" value="<%=seller_id%>">
-
-
-            <div class="container-fluid">
+      <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-8 col-lg-8 mb-6">
                         <h4 style="float: left ;">📝 상품등록

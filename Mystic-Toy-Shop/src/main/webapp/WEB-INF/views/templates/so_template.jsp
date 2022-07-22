@@ -12,7 +12,7 @@
         }
 
         body{
-            height: 100%;
+            height: 85%;
         }
         #footer{
             margin-top: auto;
@@ -21,7 +21,8 @@
 
         #sidebar-left {
             width: 15%;
-            height:1000px;
+            min-height: 1600px;
+            height:100%;
             padding: 5px;
             margin-right: 20px;
             margin-bottom: 20px;

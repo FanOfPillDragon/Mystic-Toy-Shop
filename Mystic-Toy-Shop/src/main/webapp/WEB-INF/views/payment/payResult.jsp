@@ -16,7 +16,7 @@
         </script>
     </c:when>
     <c:when test="${not empty orderDetailDtoList}">
-        <div class="container py-5">
+        <div class="container containerSize">
             <div class="h2 d-flex justify-content-center my-5">주문 완료<img class="checkImg" src="/resources/images/img_check.gif" alt="No Image"/></div>
             <div class="payResultContainer">
                 <div class="h3">배송 정보</div>
