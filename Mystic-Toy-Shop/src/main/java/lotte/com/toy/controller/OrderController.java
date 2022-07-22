@@ -56,12 +56,35 @@ public class OrderController {
     }
 
     @RequestMapping(value = "orderDetail.do", method = RequestMethod.GET)
-    public String findOrder(Model model, int orderId){
+    public String findOrder(Model model, HttpServletRequest req, int orderId){
+        UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
+        if (userDto == null) {
+            return "redirect:/userLogin.do";
+        }
+
+        int userId = userDto.getUser_id();
         OrderDetailDto order = orderService.orderFind(orderId);
         if(order == null){
             System.out.println("주문없음!!!!");
             return "order";
         }
+        List<Integer> orderGroupList = orderService.findOrderGroupList();
+        System.out.println(orderGroupList + " : dtoorderGroupList");
+        if(orderGroupList.isEmpty()){
+            System.out.println("데이터없음!");
+            return "orderempty";
+        }
+        int count = 0;
+        List<Integer> ReviewCheckerList = new ArrayList<>();
+        for(Integer i : orderGroupList){
+            List<OrderDetailDto> orderList = orderService.orderFindAll(new OrderGroupDto(userId,i));
+            for(OrderDetailDto orders : orderList){
+                count++;
+            }
+        }
+
+
+        model.addAttribute("totalcount",count);
         model.addAttribute("order",order);
         return "orderdetail";
     }

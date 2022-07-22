@@ -56,8 +56,11 @@
         <div class="myLotteWrap">
             <div class="scrollArea">
                 <ul>
-                    <li>
+                    <li class="first">
                         <div style="color: black">주문 내역</div>
+                    </li>
+                    <li>
+                        <div onclick="location.href='<%=request.getContextPath()%>/findMyReviewList.do?userId=${sessionScope.userLogin.user_id}'">마이 리뷰</div>
                     </li>
                 </ul>
             </div>

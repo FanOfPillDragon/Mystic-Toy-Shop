@@ -361,8 +361,8 @@
         </div>
     <div class="row">
         <div class="col-xl-4 mb-2">
-            <h5 style="text-align: left;margin-bottom: 0;"> 🗃️ 판매 주문 게시판 당일 요약</h5>
-            <p style="text-align: left;">오늘 꺼 분석을 볼수잇따 그래그래 그런 페이지에욤 하하</p>
+            <h5 style="text-align: left;margin-bottom: 0;"> 🗃️ 신규 사용자 게시글 현황</h5>
+            <p style="text-align: left;">사용자 리뷰 및 Q&A 신규 게시글 조회</p>
         </div>
     </div>
         <div class="row">
@@ -437,8 +437,8 @@
 
     <div class="row">
         <div class="col-xl-4 mb-2">
-            <h5 style="text-align: left;margin-bottom: 0;"> 📊 판매 내역 차트로 ㅂ여쥬는 </h5>
-            <p style="text-align: left;">오늘 꺼 분석을 볼수잇따 그래그래 그런 페이지에욤 하하</p>
+            <h5 style="text-align: left;margin-bottom: 0;"> 📊 판매 내역 차트 </h5>
+            <p style="text-align: left;">금주의 판매 금액, 판매량 분석 정보</p>
         </div>
     </div>
 
