@@ -259,7 +259,7 @@
                 <h5 style="text-align: left;margin-bottom: 0;">🏆 판매량 추이 그래프</h5>
                 <p style="text-align: left;">판매 추이</p>
                 <ul class="srchResultSortOptions">
-                    <li class="searchoption"><div id="btnPrice" onclick="getChartPrice()" style="cursor: pointer;">판매금액</div></li>
+                    <li class="searchoption"><div id="btnPrice" onclick="getChartPrice()" style="font-weight:bold; cursor: pointer;">판매금액</div></li>
                     <li class="searchoption"><div id="btnQuan"  onclick="getChartQuan()"  style="cursor: pointer;">판매량</div></li>
                 </ul>
             </div>
