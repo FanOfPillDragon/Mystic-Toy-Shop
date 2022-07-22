@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -110,7 +111,7 @@
                                 <%
                                     totalPrice = (Integer) pageContext.getAttribute("price") * (Integer) pageContext.getAttribute("quantity");
                                 %>
-                                <div class="price"><%=totalPrice%>원
+                                <div class="price"><%=DateUtil.to000(totalPrice)%>원
                                 </div>&nbsp;<p>|</p>&nbsp;
                                 <div class="count"><c:out value="${order.order_quantity}"/>개</div>
                             </div>
