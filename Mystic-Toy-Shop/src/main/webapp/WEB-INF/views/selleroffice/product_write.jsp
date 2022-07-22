@@ -50,107 +50,105 @@
     </style>
 </head>
 <body style="text-align: center">
-<div id="content" style="margin-top: 30px;">
-    <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
+<div id="content" style="margin-top: 30px">
+    <div class="container">
+        <form action="../writeAf.do" id="frm" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="seller_id" value="<%=seller_id%>">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 mb-6">
-                <h4 style="float: left ;">📝 상품등록
-                    <span style="color: red; font-size: 8pt;">• 필수입력</span>
-                </h4>
-            </div>
 
-        </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-6">
+                        <h4 style="float: left ;">📝 상품등록
+                            <span style="color: red; font-size: 8pt;">• 필수입력</span>
+                        </h4>
+                    </div>
 
-        <%--카테고리 시작--%>
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 mb-4 mt-4">
-                <h6 style="float:left;">💡 카테고리</h6>
-                <div style="float:left;">
-                    <% for (CategoryDto c : categories) {%>
-                        <div class="form-check-inline">
-                            <input class="category_radio" type="radio" name="category_id" id="category<%=c.getCategory_id()%>"
-                                   value="<%=c.getCategory_id()%>">
-                            <label class="form-check-label"><%=c.getCategory_name()%></label>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4 mt-4">
+                        <h6 style="float:left;">💡 카테고리</h6>
+                        <div style="float:left;">
+                            <% for (CategoryDto c : categories) {%>
+                            <div class="form-check-inline">
+                                <input class="category_radio" type="radio" name="category_id"
+                                       id="category<%=c.getCategory_id()%>"
+                                       value="<%=c.getCategory_id()%>">
+                                <label class="form-check-label"><%=c.getCategory_name()%>
+                                </label>
+                            </div>
+                            <% } %>
                         </div>
-                        <% } %>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-
-        <%--상품명--%>
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 mb-4">
-                <h6 style="float:left;">🎁 상품명</h6>
-                <div class="form-group">
-                    <input type="text" name="product_name" class="form-control" placeholder="상품명을 입력하세요.">
+                <%--상품명--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">🎁 상품명</h6>
+                        <div class="form-group">
+                            <input type="text" id = "product_name" name="product_name" class="form-control" placeholder="상품명을 입력하세요.">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <%--판매가--%>
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 mb-4">
-                <h6 style="float:left;">💰 판매가격</h6>
-                <div class="form-group">
-                    <input type="number" name="product_cost" class="form-control" placeholder="판매가격을 입력해주세요">
+                <%--판매가--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">💰 판매가격</h6>
+                        <div class="form-group">
+                            <input type="number" id = "product_cost" name="product_cost" class="form-control" placeholder="판매가격을 입력해주세요">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <%--재고수량--%>
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 mb-4">
-                <h6 style="float:left;">🚚 재고수량</h6>
-                <div class="form-group">
-                    <input type="number" name="product_stock" class="form-control" placeholder="재고수량을 입력해주세요">
+                <%--재고수량--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">🚚 재고수량</h6>
+                        <div class="form-group">
+                            <input type="number" id="product_stock" name="product_stock" class="form-control" placeholder="재고수량을 입력해주세요">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <%--이미지--%>
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 mb-4">
-                <h6 style="float:left;">📸 업로드</h6>
-                <div class="picUploadBtn picture">
-                    <input type="file" multiple="multiple" name="fileload" accept="image/*" class="btnFile">
-                    <br>
-                    <br>
-                    <input type = "hidden" id="file_where_use" name="file_where_use" value="1">
-                    <input type = "hidden" id="file_use_id" name="file_use_id" value="1">
-                    <i ><img  src="//static.lotteon.com/p/product/plugin/assets/img/btn_icon_upload_camera_new.svg" alt=""></i>
-                    <span >사진첨부</span>
-                    <button type="button" class="btn btn-light" id="btnsubmit">자료올리기</button>
+                <%--이미지--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">📸 업로드</h6>
+                        <br>
+                        <div class="picUploadBtn picture">
+                            <i><img src="//static.lotteon.com/p/product/plugin/assets/img/btn_icon_upload_camera_new.svg"
+                                    alt=""></i>
+                            <span>사진첨부</span>
+                            <input type="file" multiple="multiple" id="titleImage" name="fileload" accept="image/*"
+                                   class="btnFile">
+                            <input type="hidden" name="product_img" id="pr_img" value="">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <%--상세설명--%>
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 mb-4">
-                <h6 style="float:left;">✏ 상세설명</h6>
-                <div>
-                    <textarea class="summernote" name="product_info"></textarea>
+                <%--상세설명--%>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 mb-4">
+                        <h6 style="float:left;">✏ 상세설명</h6>
+                        <div>
+                            <textarea class="summernote" id = "product_info" name="product_info"></textarea>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <%--상세설명--%>
-        <div class="row">
-            <div class="col-xl-8 col-lg-2 mb-4">
-                <button type="button" id="btnsubmit2" class="btn btn-primary">상품 등록</button>
-            </div>
-        </div>
-    </div>
-
-    </form>
+                <div class="row">
+                    <div class="col-xl-8 col-lg-2 mb-4">
+                        <button type="button" class="btn btn-primary" id="writebtn" onclick="product_wrtie()">상품등록</button>
+                    </div>
+                </div>
+        </form>
     </div>
 </div>
 <script>
     var imagefile;
-
     $("#titleImage").on("change", function (event) {
         imagefile = event.target.files[0];
     });
@@ -226,7 +224,6 @@
         var product_cost = $("#product_cost").val();
         var product_stock = $("#product_stock").val();
         var product_info = $("#product_info").val();
-
         if (category_id === "") {
             alert("카테고리를 선택하세요");
             $("#category1").focus();
@@ -247,7 +244,6 @@
             alert("상세설명을 입력하세요.");
             $("#product_info").focus();
         }
-
         if (imagefile != "") {
             var data = new FormData();
             data.append("file", imagefile);
@@ -265,6 +261,7 @@
                     $("#frm").submit();
                 },
                 error: function (data) {
+                    alert("이미지를 등록하세요.")
                 }
             });
         } else {
