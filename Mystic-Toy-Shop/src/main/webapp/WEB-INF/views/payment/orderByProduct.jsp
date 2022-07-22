@@ -1,8 +1,8 @@
-<%@ page import="lotte.com.toy.dto.CartProductDto" %>
 <%@ page import="lotte.com.toy.dto.ProductDto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="lotte.com.toy.util.DateUtil" %>
 <%@ page isELIgnored="false" %>
 <%
     ProductDto product = (ProductDto) request.getAttribute("productDto");
@@ -38,7 +38,7 @@
                     </dl>
                     <dl>
                         <dt>가격</dt>
-                        <dd><%=product.getProduct_cost()%>원
+                        <dd><%=DateUtil.to000(product.getProduct_cost())%>원
                         </dd>
                     </dl>
                 </div>
@@ -101,7 +101,7 @@
                     총 <strong class="colorPrimary"><%=orderCount%></strong> 건
                 </div>
                 <div class="mb-3">
-                    총 상품금액 : <strong class="colorPrimary"><%=totalPrice%></strong> 원
+                    총 상품금액 : <strong class="colorPrimary"><%=DateUtil.to000(totalPrice)%></strong> 원
                 </div>
                 <strong class="my-5">위 내용을 확인하였으며 결제에 동의합니다</strong>
                 <input class="btnOrder" type="submit" value="주문하기">
