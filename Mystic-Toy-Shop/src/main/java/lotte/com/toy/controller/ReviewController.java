@@ -60,6 +60,11 @@ public class ReviewController {
         ProductResponseDto productResponseDto = productService.getProductByProductId(productId);
         model.addAttribute("productResponseDto",productResponseDto);
         model.addAttribute("reviews",reviews);
+
+        if(reviews.isEmpty()){
+            return "redirect:main.do";
+        }
+        System.out.println(checkerDelete(reviews).size());
         model.addAttribute("reviews",checkerDelete(reviews));
         return "reviewlist";
     }
@@ -67,9 +72,7 @@ public class ReviewController {
     @RequestMapping(value="findMyReviewList.do")
     public String findMyReviewList(Model model, int userId){
         List<ReviewListDto> myReviews = reviewService.findAllByUserId(userId);
-        if(myReviews.isEmpty()){
-            return "mypage.do";
-        }
+
         model.addAttribute("myReviews",checkerDelete(myReviews));
         return "findMyReviewList";
     }

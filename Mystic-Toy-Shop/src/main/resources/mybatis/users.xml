@@ -74,7 +74,20 @@
         update users set user_phone = #{user_phone}
         where user_id = #{user_id}
     </update>
+    <update id="updateUserAddress" parameterType="lotte.com.toy.dto.UserUpdateAddress">
+        update users set user_address = #{user_address}
+        where user_id = #{user_id}
+    </update>
+    <update id="updateUserZipcode" parameterType="lotte.com.toy.dto.UserUpdateZipcode">
+        update users set user_zipcode = #{user_zipcode}
+        where user_id = #{user_id}
+    </update>
     <delete id="deleteUser" parameterType="Integer">
         delete from users where user_id = #{user_id}
     </delete>
+    <select id="findNameByUserId" parameterType="Integer" resultType="String">
+        select user_name
+        from users
+        where user_id = #{user_id}
+    </select>
 </mapper>

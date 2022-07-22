@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     int productId = (Integer)request.getAttribute("productId");
+    String productImg = (String)request.getAttribute("productImg");
+    String productName = (String)request.getAttribute("productName");
 %>
 <html>
 <head>
@@ -182,6 +184,10 @@
             </div>
         </div>
     </div>
+    
+    <img alt="" src=<%=productImg%>>
+    <h2><%=productName%></h2>
+
 </div>
 <script !src="">
     function goReviewAf(){

@@ -8,7 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<QnaListDto> qnas = (List<QnaListDto>) request.getAttribute("qnas");
-    List<String> writers = (List<String>)request.getAttribute("writers");
+
+    List<String> writers = (List<String>) request.getAttribute("writers");
+
 %>
 <html>
 <head>
@@ -162,6 +164,7 @@
                 </c:when>
                 <c:otherwise>
                     <c:forEach var="qna" items="${qnas}" varStatus="status">
+
                         <div class="reviewWrapper">
                             <div class="top">
                                 <p class="review_title">Q.&nbsp${qna.qna_title}</p>

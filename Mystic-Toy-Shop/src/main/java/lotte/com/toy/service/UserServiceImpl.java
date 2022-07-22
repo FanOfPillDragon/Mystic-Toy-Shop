@@ -180,4 +180,9 @@ public class UserServiceImpl implements UserService {
         return userdao.kakaoUserLogin(user_kakao_identifier);
     }
 
+    @Override
+    public String findNameByUserId(int userId) {
+        return userdao.findNameByUserId(userId);
+    }
+
 }

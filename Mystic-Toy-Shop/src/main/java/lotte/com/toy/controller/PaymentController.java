@@ -59,7 +59,10 @@ public class PaymentController {
     public String createPayment(HttpServletRequest req, Model model,String orderName, String orderAddress, String orderPhone, String orderComment) {
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         int userId = userDto.getUser_id();
-        int orderGroup = orderService.findByOrderGroup();
+        Integer orderGroup = orderService.findByOrderGroup();
+        if(orderGroup==null){
+            orderGroup = 0;
+        }
         List<CartDto> orderCartList = cartService.getCartListByUserId(userId);
         for (CartDto cart : orderCartList) {
             ProductDto product = productService.findByProductId(cart.getProduct_id());
@@ -108,7 +111,10 @@ public class PaymentController {
     public String createSinglePayment(HttpServletRequest req, String orderName, String orderAddress, String orderPhone, String orderComment, int productId, int quantity) {
         UserDto userDto = (UserDto) req.getSession().getAttribute("userLogin");
         int userId = userDto.getUser_id();
-        int orderGroup = orderService.findByOrderGroup();
+        Integer orderGroup = orderService.findByOrderGroup();
+        if(orderGroup==null){
+            orderGroup=0;
+        }
         ProductDto product = productService.findByProductId(productId);
         OrderDto order = new OrderDto(orderName, orderAddress, orderPhone, orderComment, userId, product.getProduct_id(), quantity, product.getProduct_cost(), orderGroup + 1);
         boolean orderChecker = orderService.insertOrder(order);
