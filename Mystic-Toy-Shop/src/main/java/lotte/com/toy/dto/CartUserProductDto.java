@@ -14,6 +14,7 @@ public class CartUserProductDto {
     private int product_id;
 
     private int product_cost;
+    private String product_img;
     private String product_name;
     private int product_stock;
 

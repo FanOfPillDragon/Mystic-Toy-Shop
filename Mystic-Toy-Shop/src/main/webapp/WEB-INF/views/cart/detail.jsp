@@ -30,8 +30,13 @@
                             <input type="hidden" id="product_id" value="${cupDto.product_id}"/>
                             <div class="cartBoxBorderContainer">
                                 <div class="cartBox p-3">
+                                    <div class="productImgArea">
+                                        <img class="productImgTag" alt="No image" src="${cupDto.product_img}"/>
+                                    </div>
                                     <div class="productName">
-                                        <div class="h4">${cupDto.product_name}</div>
+                                        <a href="/productDetail.do?productId=${productResponseDto.product_id}">
+                                            <div class="h4">${cupDto.product_name}</div>
+                                        </a>
                                     </div>
 
                                     <div class="productCount">
