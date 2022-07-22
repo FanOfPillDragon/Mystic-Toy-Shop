@@ -45,12 +45,12 @@
         <put-attribute name="body" value="/WEB-INF/views/main.jsp"/>
     </definition>
 
-    <definition name="product_write" extends="main_tile">
+    <definition name="product_write" extends="seller_main">
         <put-attribute name="title" value="상품등록"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/product_write.jsp"/>
     </definition>
     
-    <definition name="product_update" extends="main_tile">
+    <definition name="product_update" extends="seller_main">
         <put-attribute name="title" value="상품수정"/>
         <put-attribute name="body" value="/WEB-INF/views/selleroffice/product_update.jsp"/>
     </definition>

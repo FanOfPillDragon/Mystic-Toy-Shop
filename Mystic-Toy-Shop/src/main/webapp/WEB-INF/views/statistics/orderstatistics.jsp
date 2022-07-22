@@ -88,7 +88,7 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
-<body style="text-align: center">
+<body>
 <div id="content" style="margin-top: 30px;">
     <div class="container-fluid">
         <div class="row">

@@ -312,7 +312,7 @@
         y: 60
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '<b>{point.percentage:.1f}%</b>'
       },
       accessibility: {
         point: {
@@ -357,7 +357,7 @@
         y: 60
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '<b>{point.percentage:.1f}%</b>'
       },
       accessibility: {
         point: {
