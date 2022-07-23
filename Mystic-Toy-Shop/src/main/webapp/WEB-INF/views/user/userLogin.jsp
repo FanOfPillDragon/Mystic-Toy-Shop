@@ -128,7 +128,7 @@
         </div>
 
         <div class="socialSignupWrap">
-            <button class="kakaoLogin" type="button" onclick="location.href  ='https://kauth.kakao.com/oauth/authorize?client_id=a7b71fe2e271db4868dd5a0203d15d30&redirect_uri=http://localhost:8091/login_callback.do&response_type=code'">카카오로 시작하기</button>
+            <button class="kakaoLogin" type="button" onclick="location.href  ='https://kauth.kakao.com/oauth/authorize?client_id=a7b71fe2e271db4868dd5a0203d15d30&redirect_uri=http://204.236.128.77:8091/login_callback.do&response_type=code'">카카오로 시작하기</button>
         </div>
     </div>
     </form>

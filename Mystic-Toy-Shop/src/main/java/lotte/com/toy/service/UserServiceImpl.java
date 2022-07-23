@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
             sb.append("grant_type=authorization_code");
 
             sb.append("&client_id=a7b71fe2e271db4868dd5a0203d15d30"); //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8091/login_callback.do"); // 본인이 설정한 주소
+            sb.append("&redirect_uri=http://204.236.128.77:8091/login_callback.do"); // 본인이 설정한 주소
 
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
