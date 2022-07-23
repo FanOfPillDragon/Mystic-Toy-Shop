@@ -83,7 +83,7 @@
     <c:choose>
         <c:when test="${not empty productResponseDtoList}">
             <c:set var="i" value="0"/>
-            <c:set var="j" value="4"/>
+            <c:set var="j" value="5"/>
             <table>
                 <c:forEach var="productResponseDto" items="${productResponseDtoList}">
                     <c:if test="${i%j == 0 }">
@@ -107,7 +107,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <strong>${productResponseDto.product_cost}</strong>원
+                                    <strong>${DateUtil.to000(productResponseDto.product_cost)}</strong>원
                                 </div>
                             </div>
 
